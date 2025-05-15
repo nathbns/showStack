@@ -33,12 +33,12 @@ export default function TechCard({
 
   return (
     <div
-      className="relative rounded-lg border-2 border-[var(--border)] p-6 group overflow-hidden h-full w-full flex flex-col"
-      style={styleProps}
+      className="relative rounded-lg border-2 p-6 group overflow-hidden h-full w-full flex flex-col"
+      style={{ borderColor: `${color}50` }}
     >
       {/* Arrière-plan avec effet de flou */}
       <div
-        className="absolute inset-0 blur-sm opacity-20 z-0"
+        className="absolute inset-0 opacity-20 z-0"
         style={{ backgroundColor: color }}
       />
 

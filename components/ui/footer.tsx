@@ -3,7 +3,7 @@ import { GithubIcon } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] py-6 mt-10 max-w-4xl mx-auto">
+    <footer className="border-t border-[var(--border)] py-6 mt-10 max-w-7xl mx-auto">
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <div>
           <p className="text-sm text-gray-500">

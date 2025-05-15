@@ -12,6 +12,11 @@ import {
   Firebase,
   JavaScript,
   Angular,
+  Svelte,
+  Nuxt,
+  Redux,
+  Expressjs,
+  GraphQL,
 } from "../logo-card";
 import { type Tech } from "./tech-stack-grid";
 
@@ -50,13 +55,13 @@ export const techsByCategory: Record<string, Tech[]> = {
       id: "svelte",
       name: "Svelte",
       color: "#FF3E00",
-      icon: <span className="text-xl">S</span>,
+      icon: <Svelte />,
       category: "Frontend",
     },
     {
       id: "nextjs",
       name: "Next.js",
-      color: "#000000",
+      color: "#191919",
       icon: <NextJS />,
       category: "Frontend",
     },
@@ -64,7 +69,7 @@ export const techsByCategory: Record<string, Tech[]> = {
       id: "nuxt",
       name: "Nuxt.js",
       color: "#00DC82",
-      icon: <span className="text-xl">N</span>,
+      icon: <Nuxt />,
       category: "Frontend",
     },
     {
@@ -82,31 +87,10 @@ export const techsByCategory: Record<string, Tech[]> = {
       category: "Frontend",
     },
     {
-      id: "sass",
-      name: "Sass",
-      color: "#CC6699",
-      icon: <span className="text-xl">S</span>,
-      category: "Frontend",
-    },
-    {
       id: "redux",
       name: "Redux",
       color: "#764ABC",
-      icon: <span className="text-xl">R</span>,
-      category: "Frontend",
-    },
-    {
-      id: "recoil",
-      name: "Recoil",
-      color: "#3578E5",
-      icon: <span className="text-xl">↺</span>,
-      category: "Frontend",
-    },
-    {
-      id: "zustand",
-      name: "Zustand",
-      color: "#764317",
-      icon: <span className="text-xl">Z</span>,
+      icon: <Redux />,
       category: "Frontend",
     },
   ],
@@ -119,10 +103,10 @@ export const techsByCategory: Record<string, Tech[]> = {
       category: "Backend",
     },
     {
-      id: "express",
-      name: "Express",
+      id: "expressjs",
+      name: "Express.js",
       color: "#000000",
-      icon: <span className="text-xl">E</span>,
+      icon: <Expressjs />,
       category: "Backend",
     },
     {
@@ -136,7 +120,7 @@ export const techsByCategory: Record<string, Tech[]> = {
       id: "graphql",
       name: "GraphQL",
       color: "#E535AB",
-      icon: <span className="text-xl">G</span>,
+      icon: <GraphQL />,
       category: "Backend",
     },
     {

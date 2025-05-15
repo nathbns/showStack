@@ -53,7 +53,7 @@ export default function Header() {
         className="fixed top-3 left-0 w-full z-50 flex justify-center transition-opacity duration-300"
         style={{ opacity }}
       >
-        <nav className="max-w-4xl w-full filter backdrop-blur-sm bg-background/80 rounded-lg border-2 border-[var(--sidebar-border)]">
+        <nav className="max-w-7xl w-full filter backdrop-blur-sm bg-background/80 rounded-lg border-2 border-[var(--sidebar-border)]">
           <div className="px-4 py-4">
             <div className="flex items-center justify-between">
               <Link href="/" className="text-2xl font-bold">
@@ -73,7 +73,7 @@ export default function Header() {
                 {isLoggedIn ? (
                   <button
                     onClick={handleSignOut}
-                    className="hover:text-primary font-semibold border border-primary rounded px-3 py-1 transition-colors hover:bg-primary hover:text-white"
+                    className="font-semibold border border-primary rounded px-3 py-1 "
                   >
                     Se déconnecter
                   </button>
@@ -81,13 +81,13 @@ export default function Header() {
                   <>
                     <Link
                       href="/auth/signin"
-                      className="hover:text-primary font-semibold border border-primary rounded px-3 py-1 transition-colors hover:bg-primary hover:text-white"
+                      className="font-semibold border border-primary rounded px-3 py-1 transition-colors hover:bg-primary"
                     >
                       Se connecter
                     </Link>
                     <Link
                       href="/auth/signup"
-                      className="hover:text-primary font-semibold border border-primary rounded px-3 py-1 transition-colors hover:bg-primary hover:text-white"
+                      className="font-semibold border border-primary rounded px-3 py-1 transition-colors hover:bg-primary"
                     >
                       S'inscrire
                     </Link>

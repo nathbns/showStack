@@ -161,6 +161,8 @@ __turbopack_context__.s({
     "userRelations": (()=>userRelations),
     "userStackTechnologies": (()=>userStackTechnologies),
     "userStackTechnologiesRelations": (()=>userStackTechnologiesRelations),
+    "userTag": (()=>userTag),
+    "userTagRelations": (()=>userTagRelations),
     "verification": (()=>verification)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$table$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/drizzle-orm/pg-core/table.js [app-route] (ecmascript)");
@@ -178,8 +180,18 @@ const user = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f
     email: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("email").notNull().unique(),
     emailVerified: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$boolean$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["boolean"])("email_verified").notNull(),
     image: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("image"),
+    description: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("description"),
     createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("created_at").notNull(),
     updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").notNull()
+});
+const userTag = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$table$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["pgTable"])("user_tag", {
+    id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$serial$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["serial"])("id").primaryKey(),
+    userId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("user_id").notNull().references(()=>user.id, {
+        onDelete: "cascade"
+    }),
+    name: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("name").notNull(),
+    color: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("color").notNull().default("#3B82F6"),
+    createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("created_at").defaultNow().notNull()
 });
 const session = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$table$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["pgTable"])("session", {
     id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("id").primaryKey(),
@@ -253,7 +265,8 @@ const userRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_m
         sessions: many(session),
         accounts: many(account),
         stackTechnologies: many(userStackTechnologies),
-        techStacks: many(techStack)
+        techStacks: many(techStack),
+        tags: many(userTag)
     }));
 const userStackTechnologiesRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(userStackTechnologies, ({ one })=>({
         user: one(user, {
@@ -271,8 +284,6 @@ const techStack = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
         onDelete: "cascade"
     }),
     name: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("name"),
-    description: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("description"),
-    isPublic: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$boolean$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["boolean"])("is_public").default(false).notNull(),
     upvotes: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("upvotes").default(0).notNull(),
     createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("created_at").defaultNow().notNull(),
     updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").defaultNow().notNull()
@@ -307,6 +318,16 @@ const stackTechnologyItemRelations = (0, __TURBOPACK__imported__module__$5b$proj
             ],
             references: [
                 techStack.id
+            ]
+        })
+    }));
+const userTagRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(userTag, ({ one })=>({
+        user: one(user, {
+            fields: [
+                userTag.userId
+            ],
+            references: [
+                user.id
             ]
         })
     })); /*
@@ -423,17 +444,17 @@ async function GET(request) {
             where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].userId, session.user.id),
             with: {
                 technologies: true
-            }
+            },
+            orderBy: (techStack, { asc })=>[
+                    asc(techStack.createdAt)
+                ]
         });
-        const firstUserStack = userStacksResults.length > 0 ? userStacksResults[0] : null;
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(firstUserStack || {
-            userId: session.user.id,
-            technologies: []
-        });
+        // Retourner toutes les stacks trouvées pour l'utilisateur
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(userStacksResults);
     } catch (error) {
-        console.error("Erreur lors de la récupération de la stack:", error);
+        console.error("Erreur lors de la récupération des stacks:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Erreur lors de la récupération de la stack"
+            error: "Erreur lors de la récupération des stacks"
         }, {
             status: 500
         });
@@ -451,21 +472,21 @@ async function POST(request) {
                 status: 401
             });
         }
-        const { name, description, isPublic, technologies } = await request.json();
-        console.log("Technologies reçues dans l'API:", technologies);
-        let currentStack = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.techStack.findFirst({
-            where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].userId, session.user.id)
-        });
+        const { id, name, technologies } = await request.json();
+        let currentStack;
         const stackData = {
             userId: session.user.id,
-            name: name || currentStack?.name || "Ma Stack",
-            description: description || currentStack?.description || null,
-            isPublic: isPublic !== undefined ? isPublic : currentStack?.isPublic || false,
+            name: name,
             updatedAt: new Date()
         };
-        if (currentStack) {
-            await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].update(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"]).set(stackData).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].id, currentStack.id));
+        if (id) {
+            // Mise à jour d'une stack existante
+            await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].update(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"]).set(stackData).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].id, id));
+            currentStack = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.techStack.findFirst({
+                where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].id, id)
+            });
         } else {
+            // Création d'une nouvelle stack
             const newStacks = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].insert(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"]).values({
                 ...stackData,
                 createdAt: new Date()
@@ -535,42 +556,81 @@ async function DELETE(request) {
             });
         }
         const { searchParams } = new URL(request.url);
-        const stackTechnologyItemId = searchParams.get("id");
-        if (!stackTechnologyItemId) {
+        const itemId = searchParams.get("id");
+        if (!itemId) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "ID de la technologie manquant"
+                error: "ID manquant"
             }, {
                 status: 400
             });
         }
-        // Vérifier que l'item appartient bien à une stack de l'utilisateur actuel pour la sécurité
-        // Cela nécessite une jointure ou une requête imbriquée pour être sûr.
-        // Pour simplifier ici, on assume que si l'utilisateur est connecté, il ne peut supprimer que ses items.
-        // Une vérification plus robuste serait : trouver le techStackId de l'item, puis vérifier que techStack.userId === session.user.id.
-        // Tentative de conversion en nombre, car l'ID dans la DB est serial (nombre)
-        const itemIdAsNumber = parseInt(stackTechnologyItemId, 10);
-        if (isNaN(itemIdAsNumber)) {
+        // Tentative de conversion en nombre
+        const idAsNumber = parseInt(itemId, 10);
+        if (isNaN(idAsNumber)) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "ID de la technologie invalide"
+                error: "ID invalide"
             }, {
                 status: 400
             });
         }
-        const deletedItems = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].delete(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].id, itemIdAsNumber)).returning(); // returning() pour confirmer la suppression
-        if (deletedItems.length === 0) {
+        // Vérifier si le paramètre stackId est présent pour savoir si on supprime une stack entière
+        const isStack = searchParams.has("stackId");
+        if (isStack) {
+            // Vérifier que la stack appartient bien à l'utilisateur
+            const stack = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.techStack.findFirst({
+                where: (techStack)=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(techStack.id, idAsNumber) && (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(techStack.userId, session.user.id)
+            });
+            if (!stack) {
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                    error: "Stack non trouvée ou vous n'avez pas les droits"
+                }, {
+                    status: 404
+                });
+            }
+            // Supprimer la stack (les technologies associées seront supprimées automatiquement grâce à onDelete: "cascade")
+            const deletedStacks = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].delete(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].id, idAsNumber)).returning();
+            if (deletedStacks.length === 0) {
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                    error: "Stack non trouvée ou déjà supprimée"
+                }, {
+                    status: 404
+                });
+            }
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: "Technologie non trouvée ou déjà supprimée"
-            }, {
-                status: 404
+                message: "Stack supprimée avec succès"
+            });
+        } else {
+            // Vérifier que l'item appartient bien à une stack de l'utilisateur actuel
+            const item = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.stackTechnologyItem.findFirst({
+                where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].id, idAsNumber),
+                with: {
+                    techStack: true
+                }
+            });
+            if (!item || item.techStack.userId !== session.user.id) {
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                    error: "Technologie non trouvée ou vous n'avez pas les droits"
+                }, {
+                    status: 404
+                });
+            }
+            // Supprimer la technologie
+            const deletedItems = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].delete(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].id, idAsNumber)).returning();
+            if (deletedItems.length === 0) {
+                return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                    error: "Technologie non trouvée ou déjà supprimée"
+                }, {
+                    status: 404
+                });
+            }
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                message: "Technologie supprimée avec succès"
             });
         }
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            message: "Technologie supprimée avec succès"
-        });
     } catch (error) {
-        console.error("Erreur lors de la suppression de la technologie:", error);
+        console.error("Erreur lors de la suppression:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Erreur lors de la suppression de la technologie"
+            error: "Erreur lors de la suppression"
         }, {
             status: 500
         });

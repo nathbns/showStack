@@ -22,6 +22,7 @@ import {
 
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { ImageUpload } from "../profile/image-upload";
 
 export function SignUpForm() {
   const router = useRouter();
@@ -30,10 +31,12 @@ export function SignUpForm() {
     email: false,
     github: false,
   });
+  const [profileImage, setProfileImage] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<SignUpFormData>({
     resolver: zodResolver(signUpSchema),
@@ -60,6 +63,11 @@ export function SignUpForm() {
     }
   };
 
+  const handleImageUpload = (imageUrl: string) => {
+    setProfileImage(imageUrl);
+    setValue("profileImage", imageUrl);
+  };
+
   const handleSignUpEmail = async (data: SignUpFormData) => {
     try {
       setLoadingButtons((prevState) => ({ ...prevState, email: true }));
@@ -69,6 +77,7 @@ export function SignUpForm() {
         name: data.name,
         email: data.email,
         password: data.password,
+        image: data.profileImage,
         callbackURL: "/dashboard",
       });
       toast.success("Account created successfully! Redirecting...");
@@ -115,6 +124,13 @@ export function SignUpForm() {
               <span className="bg-background text-muted-foreground relative z-10 px-2">
                 Or continue with email
               </span>
+            </div>
+            <div className="flex justify-center my-2">
+              <ImageUpload
+                onImageUpload={handleImageUpload}
+                initialImage={profileImage}
+                isRegister={true}
+              />
             </div>
             <div className="grid gap-4">
               <div className="grid gap-2">

@@ -1,6 +1,5 @@
 import TechCard from "../ui/tech-card";
 import * as React from "react";
-import { TypeScript, Vue, NextJS, TailwindCSS, Node } from "../logo-card";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -35,17 +34,8 @@ type TechStackGridProps = {
   onUpdateTech?: (id: string, updates: Partial<Tech>) => void;
 };
 
-// Technologies par défaut
-const defaultTechs: Tech[] = [
-  { id: "1", name: "TypeScript", color: "#3178C6", icon: <TypeScript /> },
-  { id: "2", name: "Vue.js", color: "#41B883", icon: <Vue /> },
-  { id: "3", name: "Next.js", color: "#000000", icon: <NextJS /> },
-  { id: "4", name: "Tailwind CSS", color: "#38B2AC", icon: <TailwindCSS /> },
-  { id: "5", name: "Node.js", color: "#539E43", icon: <Node /> },
-];
-
 export default function TechStackGrid({
-  technologies = defaultTechs,
+  technologies,
   onRemoveTech,
   onUpdateTech,
 }: TechStackGridProps) {

@@ -28,7 +28,9 @@ const signUpSchema = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
     }),
     password: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["string"])().min(8, {
         message: "Password must be at least 8 characters long."
-    })
+    }),
+    // confirmPassword: z.string(), // Vous pouvez décommenter et ajouter une logique de correspondance si nécessaire
+    profileImage: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$lib$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["string"])().optional()
 });
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);

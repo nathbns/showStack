@@ -23,11 +23,13 @@ function TechCard({ id, name, color, icon, gridSpan, onRemove }) {
         styleProps.minHeight = `calc(${gridSpan.rows} * 150px + (${gridSpan.rows - 1} * 1.5rem))`;
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "relative rounded-lg border-2 border-[var(--border)] p-6 group overflow-hidden h-full w-full flex flex-col",
-        style: styleProps,
+        className: "relative rounded-lg border-2 p-6 group overflow-hidden h-full w-full flex flex-col",
+        style: {
+            borderColor: `${color}50`
+        },
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 blur-sm opacity-20 z-0",
+                className: "absolute inset-0 opacity-20 z-0",
                 style: {
                     backgroundColor: color
                 }
@@ -184,8 +186,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 const TypeScript = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
         viewBox: "0 0 256 256",
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         xmlns: "http://www.w3.org/2000/svg",
         preserveAspectRatio: "xMidYMid",
         ...props,
@@ -214,8 +216,8 @@ const TypeScript = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b
     }, this);
 _c = TypeScript;
 const Vue = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         viewBox: "0 0 256 221",
         xmlns: "http://www.w3.org/2000/svg",
         ...props,
@@ -252,8 +254,8 @@ const Vue = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$projec
     }, this);
 _c1 = Vue;
 const NextJS = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         viewBox: "0 0 180 180",
         fill: "none",
         xmlns: "http://www.w3.org/2000/svg",
@@ -400,8 +402,8 @@ const NextJS = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$pro
     }, this);
 _c2 = NextJS;
 const Node = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         viewBox: "0 0 256 289",
         xmlns: "http://www.w3.org/2000/svg",
         ...props,
@@ -420,8 +422,8 @@ const Node = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proje
     }, this);
 _c3 = Node;
 const Flutter = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         viewBox: "0 0 256 256",
         xmlns: "http://www.w3.org/2000/svg",
         ...props,
@@ -441,8 +443,8 @@ const Flutter = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$pr
 _c4 = Flutter;
 const Kotlin = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
         viewBox: "0 0 256 256",
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         xmlns: "http://www.w3.org/2000/svg",
         preserveAspectRatio: "xMidYMid",
         ...props,
@@ -509,8 +511,8 @@ const Swift = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proj
         xmlns: "http://www.w3.org/2000/svg",
         preserveAspectRatio: "xMidYMid",
         viewBox: "0 0 256 256",
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         ...props,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
@@ -617,8 +619,8 @@ const TailwindCSS = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5
         xmlns: "http://www.w3.org/2000/svg",
         fill: "none",
         viewBox: "0 0 54 33",
-        width: "1em",
-        height: "1em",
+        width: "50",
+        height: "50",
         ...props,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
@@ -670,8 +672,8 @@ const Expo = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proje
         xmlns: "http://www.w3.org/2000/svg",
         preserveAspectRatio: "xMidYMid",
         viewBox: "0 0 256 231",
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         ...props,
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
             d: "M121 85c2-3 5-4 7-4 1 0 5 1 7 4 16 22 43 67 63 101l26 40c7 8 18 3 24-6s8-15 8-22c0-4-88-168-97-182-9-13-11-16-26-16h-11c-14 0-16 3-25 16C88 30 0 194 0 198c0 7 2 13 8 22s17 14 24 6l26-40c20-34 47-79 63-101Z",
@@ -689,8 +691,8 @@ const Expo = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proje
 _c8 = Expo;
 const Firebase = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
         xmlns: "http://www.w3.org/2000/svg",
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         fill: "none",
         viewBox: "0 0 600 600",
         ...props,
@@ -735,8 +737,8 @@ const Firebase = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$p
     }, this);
 _c9 = Firebase;
 const JavaScript = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         viewBox: "0 0 256 256",
         xmlns: "http://www.w3.org/2000/svg",
         ...props,
@@ -758,8 +760,8 @@ const Angular = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$pr
         xmlns: "http://www.w3.org/2000/svg",
         fill: "none",
         viewBox: "0 0 242 256",
-        width: "24",
-        height: "24",
+        width: "50",
+        height: "50",
         ...props,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
@@ -944,8 +946,8 @@ const Ionic = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proj
         xmlns: "http://www.w3.org/2000/svg",
         preserveAspectRatio: "xMidYMid",
         viewBox: "0 0 256 317",
-        width: "1em",
-        height: "1em",
+        width: "50",
+        height: "50",
         ...props,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
@@ -3075,9 +3077,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$add$2d$tech$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/tech-stack/add-tech-form.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/tech-stack/tech-data.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -3092,40 +3096,56 @@ __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$t
 });
 // Fonction pour obtenir l'icône par défaut si non trouvée dans le map
 const getDefaultIcon = (name)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-        className: "flex items-center justify-center w-full h-full text-sm font-bold bg-gray-700 rounded-sm",
+        className: "flex items-center justify-center w-full h-full text-sm font-bold bg-[var(--muted)] text-[var(--muted-foreground)] rounded-sm",
         children: name.charAt(0).toUpperCase()
     }, void 0, false, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 20,
+        lineNumber: 21,
         columnNumber: 3
     }, this);
 function Dashboard() {
     _s();
     const { data: sessionData, isPending } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSession"])();
-    const [technologies, setTechnologies] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    // Remplacer l'état unique par un tableau de stacks
+    const [userStacks, setUserStacks] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    // ID de la stack actuellement sélectionnée pour édition
+    const [activeStackId, setActiveStackId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isLoadingInitialData, setIsLoadingInitialData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    const [stackDetails, setStackDetails] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
-        name: "Ma Stack",
-        description: "",
-        isPublic: false
-    });
+    const [userProfileDescription, setUserProfileDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [newStackName, setNewStackName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    // États pour l'édition du profil
+    const [isEditingProfile, setIsEditingProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [editingDescription, setEditingDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    // Dériver la stack active à partir de userStacks et activeStackId
+    const activeStack = userStacks.find((stack)=>stack.id === activeStackId);
+    // Dériver les technologies de la stack active
+    const technologies = activeStack?.technologies || [];
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Dashboard.useEffect": ()=>{
+            if (sessionData?.user) {
+                // @ts-ignore
+                const currentDesc = sessionData.user.description || "";
+                setUserProfileDescription(currentDesc);
+                setEditingDescription(currentDesc); // Initialiser aussi la description en édition
+            }
+        }
+    }["Dashboard.useEffect"], [
+        sessionData
+    ]);
     const hydrateTechnologies = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "Dashboard.useCallback[hydrateTechnologies]": (rawTechs)=>{
-            console.log("Données brutes des technologies:", rawTechs);
+            console.log("Données brutes des technologies pour hydratation:", rawTechs);
+            if (!rawTechs) return []; // Vérifier si rawTechs est undefined ou null
             return rawTechs.map({
                 "Dashboard.useCallback[hydrateTechnologies]": (rawTech)=>{
                     const techIdToLookup = rawTech.technologyId ? rawTech.technologyId.toLowerCase() : "";
                     const icon = iconMap[techIdToLookup] || getDefaultIcon(rawTech.name);
-                    // Vérifier les valeurs des propriétés gridCols et gridRows
                     const gridCols = parseInt(rawTech.gridCols || "1", 10);
                     const gridRows = parseInt(rawTech.gridRows || "1", 10);
-                    console.log(`Tech ${rawTech.name} - gridCols: ${gridCols}, gridRows: ${gridRows}`);
-                    // Créer l'objet gridSpan s'il y a des valeurs personnalisées
                     const gridSpan = gridCols > 1 || gridRows > 1 ? {
                         cols: gridCols,
                         rows: gridRows
                     } : undefined;
-                    console.log(`Tech ${rawTech.name} - gridSpan:`, gridSpan);
                     return {
                         id: rawTech.id.toString(),
                         name: rawTech.name,
@@ -3139,45 +3159,41 @@ function Dashboard() {
             }["Dashboard.useCallback[hydrateTechnologies]"]);
         }
     }["Dashboard.useCallback[hydrateTechnologies]"], []);
-    const saveStack = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "Dashboard.useCallback[saveStack]": async (currentTechnologies, details)=>{
+    // Modifié pour sauvegarder la stack active
+    const saveActiveStack = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Dashboard.useCallback[saveActiveStack]": async (stackToSave)=>{
             if (!sessionData?.user?.id) {
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Vous devez être connecté pour sauvegarder.");
                 return;
             }
+            if (!stackToSave) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Aucune stack active à sauvegarder.");
+                return;
+            }
             try {
-                // Avant de sauvegarder, s'assurer que les technologies ont le bon format pour l'API
-                // L'API s'attend à technologyId, name, color, category
-                const technologiesToSave = currentTechnologies.map({
-                    "Dashboard.useCallback[saveStack].technologiesToSave": (tech)=>{
-                        const techData = {
+                const technologiesToSave = stackToSave.technologies.map({
+                    "Dashboard.useCallback[saveActiveStack].technologiesToSave": (tech)=>({
                             id: tech.id,
                             name: tech.name,
                             color: tech.color,
                             technologyId: tech.technologyId || __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["allTechnologies"].find({
-                                "Dashboard.useCallback[saveStack].technologiesToSave": (t)=>t.id.toLowerCase() === tech.id.toLowerCase()
-                            }["Dashboard.useCallback[saveStack].technologiesToSave"])?.id || tech.id,
+                                "Dashboard.useCallback[saveActiveStack].technologiesToSave": (t)=>t.id.toLowerCase() === tech.id.toLowerCase()
+                            }["Dashboard.useCallback[saveActiveStack].technologiesToSave"])?.id || tech.id,
                             category: tech.category || __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["allTechnologies"].find({
-                                "Dashboard.useCallback[saveStack].technologiesToSave": (t)=>t.id.toLowerCase() === tech.id.toLowerCase()
-                            }["Dashboard.useCallback[saveStack].technologiesToSave"])?.category || "Custom",
-                            // Envoyer les propriétés directement plutôt que dans un objet gridSpan
+                                "Dashboard.useCallback[saveActiveStack].technologiesToSave": (t)=>t.id.toLowerCase() === tech.id.toLowerCase()
+                            }["Dashboard.useCallback[saveActiveStack].technologiesToSave"])?.category || "Custom",
                             gridCols: tech.gridSpan?.cols || 1,
                             gridRows: tech.gridSpan?.rows || 1
-                        };
-                        console.log(`Tech ${tech.name} à sauvegarder:`, techData);
-                        return techData;
-                    }
-                }["Dashboard.useCallback[saveStack].technologiesToSave"]);
-                console.log("Technologies à sauvegarder:", technologiesToSave);
+                        })
+                }["Dashboard.useCallback[saveActiveStack].technologiesToSave"]);
                 const response = await fetch("/api/tech/stack", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        name: details.name,
-                        description: details.description,
-                        isPublic: details.isPublic,
+                        id: stackToSave.id,
+                        name: stackToSave.name,
                         technologies: technologiesToSave
                     })
                 });
@@ -3185,95 +3201,131 @@ function Dashboard() {
                     const errorData = await response.json();
                     throw new Error(errorData.error || "Erreur lors de la sauvegarde de la stack");
                 }
-                const savedStack = await response.json();
-                // `savedStack.technologies` devrait être une liste d'objets avec technologyId, name, color
-                setTechnologies(hydrateTechnologies(savedStack.technologies || []));
-                setStackDetails({
-                    name: savedStack.name || "Ma Stack",
-                    description: savedStack.description || "",
-                    isPublic: savedStack.isPublic || false
-                });
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Stack sauvegardée avec succès!");
+                const savedStackData = await response.json();
+                // Mettre à jour la stack dans l'état userStacks
+                setUserStacks({
+                    "Dashboard.useCallback[saveActiveStack]": (prevStacks)=>prevStacks.map({
+                            "Dashboard.useCallback[saveActiveStack]": (s)=>s.id === savedStackData.id ? {
+                                    ...savedStackData,
+                                    technologies: hydrateTechnologies(savedStackData.technologies || [])
+                                } : s
+                        }["Dashboard.useCallback[saveActiveStack]"])
+                }["Dashboard.useCallback[saveActiveStack]"]);
+                if (activeStackId === null && savedStackData.id) {
+                    setActiveStackId(savedStackData.id);
+                }
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(`Stack '${savedStackData.name}' sauvegardée avec succès!`);
             } catch (error) {
                 console.error("Erreur sauvegarde stack:", error);
                 __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Impossible de sauvegarder la stack.");
             }
         }
-    }["Dashboard.useCallback[saveStack]"], [
+    }["Dashboard.useCallback[saveActiveStack]"], [
         sessionData,
-        hydrateTechnologies
-    ] // Ajouter hydrateTechnologies aux dépendances
-    );
+        hydrateTechnologies,
+        activeStackId
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Dashboard.useEffect": ()=>{
-            const fetchStack = {
-                "Dashboard.useEffect.fetchStack": async ()=>{
+            const fetchUserStacks = {
+                "Dashboard.useEffect.fetchUserStacks": async ()=>{
                     if (sessionData?.user?.id) {
                         setIsLoadingInitialData(true);
                         try {
                             const response = await fetch("/api/tech/stack");
                             if (!response.ok) throw new Error("Erreur réseau ou serveur");
-                            const data = await response.json();
-                            // data est la réponse de GET /api/tech/stack
-                            // Elle contient { id, name, description, isPublic, technologies: [ { id (stackTechItem), techStackId, technologyId, name, color, category } ] }
-                            if (data && data.id) {
-                                // Hydrater les technologies récupérées
-                                setTechnologies(hydrateTechnologies(data.technologies || []));
-                                setStackDetails({
-                                    name: data.name || "Ma Stack",
-                                    description: data.description || "",
-                                    isPublic: data.isPublic || false
-                                });
-                            } else {
-                                setTechnologies([]);
-                                setStackDetails({
-                                    name: "Ma Stack par défaut",
-                                    description: "Décrivez votre stack !",
-                                    isPublic: false
-                                });
+                            const stacksData = await response.json();
+                            const hydratedStacks = stacksData.map({
+                                "Dashboard.useEffect.fetchUserStacks.hydratedStacks": (stack)=>({
+                                        ...stack,
+                                        technologies: hydrateTechnologies(stack.technologies || [])
+                                    })
+                            }["Dashboard.useEffect.fetchUserStacks.hydratedStacks"]);
+                            setUserStacks(hydratedStacks);
+                            if (activeStackId === null && hydratedStacks.length > 0) {
+                                setActiveStackId(hydratedStacks[0].id);
+                            } else if (hydratedStacks.length === 0) {
+                                setActiveStackId(null);
                             }
                         } catch (error) {
-                            console.error("Erreur chargement stack:", error);
-                            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Impossible de charger votre stack.");
-                            setTechnologies([]);
-                            setStackDetails({
-                                name: "Ma Stack",
-                                description: "",
-                                isPublic: false
-                            });
+                            console.error("Erreur chargement des stacks:", error);
+                            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Impossible de charger vos stacks.");
+                            setUserStacks([]);
+                            setActiveStackId(null);
                         } finally{
                             setIsLoadingInitialData(false);
                         }
                     } else if (!isPending && !sessionData) {
                         setIsLoadingInitialData(false);
-                        setTechnologies([]);
-                        setStackDetails({
-                            name: "",
-                            description: "",
-                            isPublic: false
-                        });
+                        setUserStacks([]);
+                        setActiveStackId(null);
                     }
                 }
-            }["Dashboard.useEffect.fetchStack"];
+            }["Dashboard.useEffect.fetchUserStacks"];
             if (!isPending) {
-                fetchStack();
+                fetchUserStacks();
             }
         }
     }["Dashboard.useEffect"], [
         isPending,
         sessionData,
         hydrateTechnologies
-    ]); // Ajouter hydrateTechnologies aux dépendances
+    ]);
+    const handleCreateNewStack = async (stackName)=>{
+        if (!sessionData?.user?.id) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Vous devez être connecté pour créer une stack.");
+            return;
+        }
+        try {
+            const response = await fetch("/api/tech/stack", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: stackName,
+                    technologies: []
+                })
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Erreur lors de la création de la stack");
+            }
+            const newStackData = await response.json();
+            const hydratedNewStack = {
+                ...newStackData,
+                technologies: hydrateTechnologies(newStackData.technologies || [])
+            };
+            setUserStacks((prevStacks)=>[
+                    ...prevStacks,
+                    hydratedNewStack
+                ]);
+            setActiveStackId(hydratedNewStack.id);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(`Stack '${hydratedNewStack.name}' créée avec succès!`);
+        } catch (error) {
+            console.error("Erreur création stack:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Impossible de créer la stack.");
+        }
+    };
     const handleAddTech = (newTechFromForm)=>{
+        if (!activeStack) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Veuillez sélectionner une stack pour y ajouter une technologie.");
+            return;
+        }
         const updatedTechnologies = [
-            ...technologies,
+            ...activeStack.technologies,
             newTechFromForm
         ];
-        setTechnologies(updatedTechnologies);
-        saveStack(updatedTechnologies, stackDetails);
+        const updatedStack = {
+            ...activeStack,
+            technologies: updatedTechnologies
+        };
+        setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
+        saveActiveStack(updatedStack); // Sauvegarder la stack active modifiée
     };
     const handleRemoveTech = async (stackTechnologyItemId)=>{
-        // L'ID reçu ici est l'ID de l'objet Tech, qui est l'ID de stackTechnologyItem après hydratation.
+        if (!activeStack) return;
+        // La suppression se fait via API qui utilise l'ID de stackTechnologyItem
         try {
             const response = await fetch(`/api/tech/stack?id=${stackTechnologyItemId}`, {
                 method: "DELETE"
@@ -3282,73 +3334,114 @@ function Dashboard() {
                 const errorData = await response.json();
                 throw new Error(errorData.error || "Erreur lors de la suppression");
             }
-            setTechnologies((prevTechs)=>prevTechs.filter((tech)=>tech.id !== stackTechnologyItemId));
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Technologie supprimée de votre stack !");
+            const updatedTechnologies = activeStack.technologies.filter((tech)=>tech.id !== stackTechnologyItemId);
+            const updatedStack = {
+                ...activeStack,
+                technologies: updatedTechnologies
+            };
+            setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
+            // Pas besoin de saveActiveStack ici si l'API a déjà fait la modif persistante et que la suppression affecte globalement stackTechnologyItem
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Technologie supprimée de la stack active!");
         } catch (error) {
             console.error("Erreur suppression tech:", error);
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Impossible de supprimer la technologie.");
         }
     };
-    const handleDetailsChange = (newDetails)=>{
-        const updatedDetails = {
-            ...stackDetails,
-            ...newDetails
+    // Gère les changements de nom de la stack ACTIVE
+    const handleActiveStackNameChange = (newName)=>{
+        if (!activeStack) return;
+        const updatedStack = {
+            ...activeStack,
+            name: newName
         };
-        setStackDetails(updatedDetails);
-        // Les technologies actuelles sont déjà hydratées, saveStack s'en chargera
-        saveStack(technologies, updatedDetails);
+        setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
+        saveActiveStack(updatedStack);
+    };
+    const handleProfileDescriptionChange = async (newDescription)=>{
+        // Mise à jour optimiste de l'UI principale
+        setUserProfileDescription(newDescription);
+        // Quitter le mode édition après sauvegarde
+        setIsEditingProfile(false);
+        if (!sessionData?.user?.id) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Vous devez être connecté pour sauvegarder votre description.");
+            return;
+        }
+        try {
+            const response = await fetch("/api/user/profile", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    description: newDescription
+                })
+            });
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Erreur lors de la sauvegarde de la description.");
+            }
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Description du profil sauvegardée !");
+        // Optionnel: rafraîchir les données de session si la description y est stockée et que useSession ne le fait pas automatiquement
+        // Par exemple: refetchSession(); ou une logique similaire si votre hook useSession le permet
+        } catch (error) {
+            console.error("Erreur sauvegarde description profil:", error);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Impossible de sauvegarder la description.");
+        // Rollback optimiste si nécessaire, ou re-fetch des données utilisateur
+        }
     };
     const handleUpdateTech = (id, updates)=>{
-        console.log(`Mise à jour de la tech ${id} avec:`, updates);
-        // Mettre à jour la technologie dans l'état local
-        const updatedTechnologies = technologies.map((tech)=>tech.id === id ? {
+        if (!activeStack) return;
+        const updatedTechnologies = activeStack.technologies.map((tech)=>tech.id === id ? {
                 ...tech,
                 ...updates
             } : tech);
-        console.log("Technologies après mise à jour:", updatedTechnologies);
-        // Mettre à jour l'état et sauvegarder
-        setTechnologies(updatedTechnologies);
-        saveStack(updatedTechnologies, stackDetails);
+        const updatedStack = {
+            ...activeStack,
+            technologies: updatedTechnologies
+        };
+        setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
+        saveActiveStack(updatedStack);
     };
     if (isPending || isLoadingInitialData) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex justify-center items-center min-h-screen bg-[var(--background)] text-white",
+            className: "flex justify-center items-center min-h-screen bg-[var(--background)] text-[var(--foreground)]",
             children: "Chargement de votre dashboard..."
         }, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 253,
+            lineNumber: 363,
             columnNumber: 7
         }, this);
     }
     if (!sessionData?.user?.id) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex flex-col justify-center items-center min-h-screen bg-[var(--background)] text-white",
+            className: "flex flex-col justify-center items-center min-h-screen bg-[var(--background)] text-[var(--foreground)]",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                     className: "text-xl mb-4",
                     children: "Veuillez vous connecter pour accéder à votre dashboard."
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 262,
+                    lineNumber: 372,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                     onClick: ()=>window.location.href = "/auth/signin",
+                    className: "bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90",
                     children: "Se connecter"
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 265,
+                    lineNumber: 375,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 261,
+            lineNumber: 371,
             columnNumber: 7
         }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex flex-col min-h-screen bg-[var(--background)] text-white pt-20 mx-auto max-w-4xl",
+        className: "flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] pt-20 mx-auto max-w-7xl",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex-grow",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3358,244 +3451,380 @@ function Dashboard() {
                         className: "flex flex-col gap-1 mb-12",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                className: "text-3xl font-bold text-white text-center",
+                                className: "text-3xl font-bold text-[var(--foreground)] text-center",
                                 children: [
-                                    "Bienvenue, ",
+                                    "Tableau de Bord de ",
                                     sessionData.user.name || "Développeur"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 277,
+                                lineNumber: 390,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-gray-500 text-lg text-center",
-                                children: "Gérez votre stack technologique ici."
+                                className: "text-[var(--muted-foreground)] text-lg text-center",
+                                children: "Gérez votre profil et votre stack technologique ici."
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 280,
+                                lineNumber: 393,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 276,
+                        lineNumber: 389,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-                        className: "flex flex-col gap-8",
+                        className: "grid grid-cols-1 lg:grid-cols-3 gap-8",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-zinc-800 p-4 rounded-lg shadow",
+                                className: "lg:col-span-1 bg-[var(--card)] p-6 rounded-lg shadow",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "text-xl font-semibold mb-3",
-                                        children: "Détails de la Stack"
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                        className: "text-2xl font-semibold mb-4 text-[var(--card-foreground)]",
+                                        children: "Mon Profil"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 287,
+                                        lineNumber: 400,
+                                        columnNumber: 15
+                                    }, this),
+                                    sessionData?.user?.image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mb-4 relative w-32 h-32 mx-auto",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            src: sessionData.user.image,
+                                            alt: sessionData.user.name || "Avatar de l'utilisateur",
+                                            layout: "fill",
+                                            objectFit: "cover",
+                                            className: "rounded-full"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 405,
+                                            columnNumber: 19
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 404,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        className: "text-xl font-medium text-center text-[var(--card-foreground)] mb-1",
+                                        children: sessionData?.user?.name || "Utilisateur Anonyme"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 414,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                        className: "text-sm text-[var(--muted-foreground)] text-center mb-4",
+                                        children: sessionData?.user?.email
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 417,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "grid grid-cols-1 md:grid-cols-2 gap-4 mb-4",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                        htmlFor: "stackName",
-                                                        className: "block text-sm font-medium text-gray-300 mb-1",
-                                                        children: "Nom de la Stack"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/dashboard/page.tsx",
-                                                        lineNumber: 292,
-                                                        columnNumber: 19
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                        type: "text",
-                                                        id: "stackName",
-                                                        value: stackDetails.name,
-                                                        onChange: (e)=>handleDetailsChange({
-                                                                name: e.target.value
-                                                            }),
-                                                        onBlur: ()=>handleDetailsChange({
-                                                                name: document.getElementById("stackName").value
-                                                            }),
-                                                        className: "w-full p-2 rounded bg-zinc-700 border-zinc-600 text-white"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/dashboard/page.tsx",
-                                                        lineNumber: 298,
-                                                        columnNumber: 19
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 291,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                        htmlFor: "stackDescription",
-                                                        className: "block text-sm font-medium text-gray-300 mb-1",
-                                                        children: "Description"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/dashboard/page.tsx",
-                                                        lineNumber: 318,
-                                                        columnNumber: 19
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
-                                                        id: "stackDescription",
-                                                        value: stackDetails.description,
-                                                        onChange: (e)=>handleDetailsChange({
-                                                                description: e.target.value
-                                                            }),
-                                                        onBlur: ()=>handleDetailsChange({
-                                                                description: document.getElementById("stackDescription").value
-                                                            }),
-                                                        rows: 3,
-                                                        className: "w-full p-2 rounded bg-zinc-700 border-zinc-600 text-white"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/app/dashboard/page.tsx",
-                                                        lineNumber: 324,
-                                                        columnNumber: 19
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 317,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                        className: "mt-4",
+                                        children: !isEditingProfile ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
+                                                    className: "text-md font-semibold text-[var(--card-foreground)] mb-1",
+                                                    children: "Ma description"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 425,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: `text-sm text-[var(--muted-foreground)] whitespace-pre-wrap min-h-[60px] ${!userProfileDescription && "italic"}`,
+                                                    children: userProfileDescription || "Aucune description pour le moment."
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 428,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                    variant: "outline",
+                                                    size: "sm",
+                                                    className: "mt-2 text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]",
+                                                    onClick: ()=>{
+                                                        setEditingDescription(userProfileDescription); // Synchroniser avant d'éditer
+                                                        setIsEditingProfile(true);
+                                                    },
+                                                    children: "Modifier la description"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 436,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 424,
+                                            columnNumber: 19
+                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                    htmlFor: "profileDescriptionTextarea",
+                                                    className: "block text-sm font-medium text-[var(--muted-foreground)] mb-1",
+                                                    children: "Modifier ma description"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 450,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
+                                                    id: "profileDescriptionTextarea",
+                                                    value: editingDescription,
+                                                    onChange: (e)=>setEditingDescription(e.target.value),
+                                                    rows: 4,
+                                                    className: "w-full p-2 rounded bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]",
+                                                    placeholder: "Présentez-vous en quelques mots..."
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 456,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "mt-2 flex gap-2",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                            size: "sm",
+                                                            onClick: ()=>handleProfileDescriptionChange(editingDescription),
+                                                            className: "bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90",
+                                                            children: "Enregistrer"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/dashboard/page.tsx",
+                                                            lineNumber: 465,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                            variant: "outline",
+                                                            size: "sm",
+                                                            onClick: ()=>setIsEditingProfile(false),
+                                                            className: "text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]",
+                                                            children: "Annuler"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/app/dashboard/page.tsx",
+                                                            lineNumber: 474,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 464,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 449,
+                                            columnNumber: 19
+                                        }, this)
+                                    }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 290,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-2 mb-4",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                type: "checkbox",
-                                                id: "isPublic",
-                                                checked: stackDetails.isPublic,
-                                                onChange: (e)=>handleDetailsChange({
-                                                        isPublic: e.target.checked
-                                                    }),
-                                                className: "h-4 w-4 rounded text-primary-500 focus:ring-primary-500 border-gray-300 bg-zinc-700"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 345,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                htmlFor: "isPublic",
-                                                className: "text-sm text-gray-300",
-                                                children: "Rendre cette stack publique"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 354,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 344,
+                                        lineNumber: 422,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 286,
+                                lineNumber: 399,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-between items-center mb-6",
+                                className: "lg:col-span-2 flex flex-col gap-8",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                        className: "text-2xl font-bold text-white",
-                                        children: "Votre Stack Technologique"
-                                    }, void 0, false, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "bg-[var(--card)] p-4 rounded-lg shadow",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                className: "text-xl font-semibold mb-3 text-[var(--card-foreground)]",
+                                                children: "Mes Stacks"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/page.tsx",
+                                                lineNumber: 490,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex flex-wrap gap-2 mb-4",
+                                                children: userStacks.map((stack)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                        variant: activeStackId === stack.id ? "default" : "outline",
+                                                        onClick: ()=>setActiveStackId(stack.id),
+                                                        className: activeStackId !== stack.id ? "text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]" : "",
+                                                        children: stack.name
+                                                    }, stack.id, false, {
+                                                        fileName: "[project]/app/dashboard/page.tsx",
+                                                        lineNumber: 495,
+                                                        columnNumber: 21
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/page.tsx",
+                                                lineNumber: 493,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex gap-2 items-center",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                        type: "text",
+                                                        value: newStackName,
+                                                        onChange: (e)=>setNewStackName(e.target.value),
+                                                        placeholder: "Nom de la nouvelle stack...",
+                                                        className: "flex-grow p-2 rounded bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/dashboard/page.tsx",
+                                                        lineNumber: 512,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                        onClick: ()=>{
+                                                            if (newStackName.trim()) {
+                                                                handleCreateNewStack(newStackName.trim());
+                                                                setNewStackName("");
+                                                            }
+                                                        },
+                                                        className: "bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90",
+                                                        children: "Créer Stack"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/app/dashboard/page.tsx",
+                                                        lineNumber: 519,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/dashboard/page.tsx",
+                                                lineNumber: 511,
+                                                columnNumber: 17
+                                            }, this),
+                                            userStacks.length === 0 && !isLoadingInitialData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-[var(--muted-foreground)] mt-2 text-sm",
+                                                children: "Aucune stack pour le moment. Créez-en une !"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/page.tsx",
+                                                lineNumber: 532,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 361,
+                                        lineNumber: 489,
                                         columnNumber: 15
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$add$2d$tech$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddTechForm"], {
-                                        onAddTech: handleAddTech
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex justify-between items-center mb-6",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                                className: "text-2xl font-bold text-[var(--foreground)]",
+                                                children: "Votre Stack Technologique"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/page.tsx",
+                                                lineNumber: 539,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$add$2d$tech$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddTechForm"], {
+                                                onAddTech: handleAddTech
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/page.tsx",
+                                                lineNumber: 542,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 538,
+                                        columnNumber: 15
+                                    }, this),
+                                    activeStack && technologies.length === 0 && !isLoadingInitialData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-center py-12 bg-[var(--card)] rounded-lg shadow",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-[var(--muted-foreground)]",
+                                                children: [
+                                                    'Aucune technologie dans la stack "',
+                                                    activeStack.name,
+                                                    '".'
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/app/dashboard/page.tsx",
+                                                lineNumber: 549,
+                                                columnNumber: 21
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: "text-[var(--muted-foreground)]",
+                                                children: 'Cliquez sur "Ajouter" pour commencer.'
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/dashboard/page.tsx",
+                                                lineNumber: 552,
+                                                columnNumber: 21
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 548,
+                                        columnNumber: 19
+                                    }, this),
+                                    activeStack && technologies.length > 0 && !isLoadingInitialData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "w-full bg-[var(--card)] p-4 rounded-lg shadow",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$stack$2d$grid$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            technologies: technologies,
+                                            onRemoveTech: handleRemoveTech,
+                                            onUpdateTech: handleUpdateTech
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 562,
+                                            columnNumber: 21
+                                        }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 364,
-                                        columnNumber: 15
+                                        lineNumber: 561,
+                                        columnNumber: 19
+                                    }, this),
+                                    !activeStack && !isLoadingInitialData && userStacks.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "text-center py-12 bg-[var(--card)] rounded-lg shadow",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-[var(--muted-foreground)]",
+                                            children: "Veuillez sélectionner une stack pour voir ses technologies."
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 574,
+                                            columnNumber: 21
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 573,
+                                        columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 360,
+                                lineNumber: 488,
                                 columnNumber: 13
-                            }, this),
-                            technologies.length === 0 && !isLoadingInitialData ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-center py-12",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-500",
-                                        children: "Aucune technologie dans votre stack."
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 369,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-gray-500",
-                                        children: 'Cliquez sur "Ajouter" pour commencer.'
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 372,
-                                        columnNumber: 17
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 368,
-                                columnNumber: 15
-                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "w-full",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$stack$2d$grid$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                    technologies: technologies,
-                                    onRemoveTech: handleRemoveTech,
-                                    onUpdateTech: handleUpdateTech
-                                }, void 0, false, {
-                                    fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 378,
-                                    columnNumber: 17
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 377,
-                                columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 285,
+                        lineNumber: 398,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 275,
+                lineNumber: 388,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 274,
+            lineNumber: 387,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 273,
+        lineNumber: 386,
         columnNumber: 5
     }, this);
 }
-_s(Dashboard, "vj0FrXuCf1A6MRZ2gzMfl64KCJs=", false, function() {
+_s(Dashboard, "o1ZRPZPLry00zMYinUOtuu4f6LE=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSession"]
     ];

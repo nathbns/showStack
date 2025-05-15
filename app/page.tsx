@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="relative overflow-hidden mx-auto max-w-4xl">
+    <div className="relative overflow-hidden mx-auto max-w-7xl">
       {/* Fond abstrait avec animation légère */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black via-gray-900 to-black">
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>

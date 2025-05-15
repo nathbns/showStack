@@ -14,6 +14,7 @@ export const signUpSchema = z.object({
     .string()
     .min(8, { message: "Password must be at least 8 characters long." }),
   // confirmPassword: z.string(), // Vous pouvez décommenter et ajouter une logique de correspondance si nécessaire
+  profileImage: z.string().optional(), // URL de l'image de profil (optionnelle)
 });
 // .refine((data) => data.password === data.confirmPassword, { // Exemple de validation pour confirmPassword
 //   message: "Passwords do not match",

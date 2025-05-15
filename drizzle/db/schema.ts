@@ -15,8 +15,20 @@ export const user = pgTable("user", {
   email: text("email").notNull().unique(),
   emailVerified: boolean("email_verified").notNull(),
   image: text("image"),
+  description: text("description"),
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
+});
+
+// Nouvelle table pour les tags utilisateur
+export const userTag = pgTable("user_tag", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  color: text("color").notNull().default("#3B82F6"), // Couleur par défaut (bleu)
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const session = pgTable("session", {
@@ -90,6 +102,7 @@ export const userRelations = relations(user, ({ many }) => ({
   accounts: many(account),
   stackTechnologies: many(userStackTechnologies),
   techStacks: many(techStack),
+  tags: many(userTag), // Nouvelle relation
 }));
 
 export const userStackTechnologiesRelations = relations(
@@ -108,8 +121,6 @@ export const techStack = pgTable("tech_stack", {
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
   name: text("name"),
-  description: text("description"),
-  isPublic: boolean("is_public").default(false).notNull(),
   upvotes: integer("upvotes").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -145,6 +156,13 @@ export const stackTechnologyItemRelations = relations(
     }),
   })
 );
+
+export const userTagRelations = relations(userTag, ({ one }) => ({
+  user: one(user, {
+    fields: [userTag.userId],
+    references: [user.id],
+  }),
+}));
 
 /*
 // Requête préparée pour récupérer les technologies d'une stack avec toutes les colonnes

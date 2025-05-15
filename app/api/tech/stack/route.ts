@@ -32,18 +32,15 @@ export async function GET(request: Request) {
       with: {
         technologies: true,
       },
+      orderBy: (techStack, { asc }) => [asc(techStack.createdAt)],
     });
 
-    const firstUserStack =
-      userStacksResults.length > 0 ? userStacksResults[0] : null;
-
-    return NextResponse.json(
-      firstUserStack || { userId: session.user.id, technologies: [] }
-    );
+    // Retourner toutes les stacks trouvées pour l'utilisateur
+    return NextResponse.json(userStacksResults);
   } catch (error) {
-    console.error("Erreur lors de la récupération de la stack:", error);
+    console.error("Erreur lors de la récupération des stacks:", error);
     return NextResponse.json(
-      { error: "Erreur lors de la récupération de la stack" },
+      { error: "Erreur lors de la récupération des stacks" },
       { status: 500 }
     );
   }
@@ -61,34 +58,28 @@ export async function POST(request: Request) {
       );
     }
 
-    const { name, description, isPublic, technologies } =
-      (await request.json()) as {
-        name: string;
-        description?: string;
-        isPublic: boolean;
-        technologies: ApiTechItem[];
-      };
-    console.log("Technologies reçues dans l'API:", technologies);
+    const { id, name, technologies } = (await request.json()) as {
+      id?: number; // ID de la techStack existante (optionnel)
+      name: string;
+      technologies: ApiTechItem[];
+    };
 
-    let currentStack = await db.query.techStack.findFirst({
-      where: eq(techStack.userId, session.user.id),
-    });
+    let currentStack: typeof techStack.$inferSelect | undefined | null;
 
     const stackData = {
       userId: session.user.id,
-      name: name || currentStack?.name || "Ma Stack",
-      description: description || currentStack?.description || null,
-      isPublic:
-        isPublic !== undefined ? isPublic : currentStack?.isPublic || false,
+      name: name,
       updatedAt: new Date(),
     };
 
-    if (currentStack) {
-      await db
-        .update(techStack)
-        .set(stackData)
-        .where(eq(techStack.id, currentStack.id));
+    if (id) {
+      // Mise à jour d'une stack existante
+      await db.update(techStack).set(stackData).where(eq(techStack.id, id));
+      currentStack = await db.query.techStack.findFirst({
+        where: eq(techStack.id, id),
+      });
     } else {
+      // Création d'une nouvelle stack
       const newStacks = await db
         .insert(techStack)
         .values({ ...stackData, createdAt: new Date() })
@@ -161,7 +152,7 @@ export async function POST(request: Request) {
   }
 }
 
-// Supprimer une technologie spécifique de la stack de l'utilisateur
+// Supprimer une technologie spécifique ou une stack entière
 export async function DELETE(request: Request) {
   try {
     const session = await auth.api.getSession({ headers: request.headers });
@@ -174,46 +165,86 @@ export async function DELETE(request: Request) {
     }
 
     const { searchParams } = new URL(request.url);
-    const stackTechnologyItemId = searchParams.get("id");
+    const itemId = searchParams.get("id");
 
-    if (!stackTechnologyItemId) {
-      return NextResponse.json(
-        { error: "ID de la technologie manquant" },
-        { status: 400 }
-      );
+    if (!itemId) {
+      return NextResponse.json({ error: "ID manquant" }, { status: 400 });
     }
 
-    // Vérifier que l'item appartient bien à une stack de l'utilisateur actuel pour la sécurité
-    // Cela nécessite une jointure ou une requête imbriquée pour être sûr.
-    // Pour simplifier ici, on assume que si l'utilisateur est connecté, il ne peut supprimer que ses items.
-    // Une vérification plus robuste serait : trouver le techStackId de l'item, puis vérifier que techStack.userId === session.user.id.
-
-    // Tentative de conversion en nombre, car l'ID dans la DB est serial (nombre)
-    const itemIdAsNumber = parseInt(stackTechnologyItemId, 10);
-    if (isNaN(itemIdAsNumber)) {
-      return NextResponse.json(
-        { error: "ID de la technologie invalide" },
-        { status: 400 }
-      );
+    // Tentative de conversion en nombre
+    const idAsNumber = parseInt(itemId, 10);
+    if (isNaN(idAsNumber)) {
+      return NextResponse.json({ error: "ID invalide" }, { status: 400 });
     }
 
-    const deletedItems = await db
-      .delete(stackTechnologyItem)
-      .where(eq(stackTechnologyItem.id, itemIdAsNumber))
-      .returning(); // returning() pour confirmer la suppression
+    // Vérifier si le paramètre stackId est présent pour savoir si on supprime une stack entière
+    const isStack = searchParams.has("stackId");
 
-    if (deletedItems.length === 0) {
-      return NextResponse.json(
-        { error: "Technologie non trouvée ou déjà supprimée" },
-        { status: 404 }
-      );
+    if (isStack) {
+      // Vérifier que la stack appartient bien à l'utilisateur
+      const stack = await db.query.techStack.findFirst({
+        where: (techStack) =>
+          eq(techStack.id, idAsNumber) && eq(techStack.userId, session.user.id),
+      });
+
+      if (!stack) {
+        return NextResponse.json(
+          { error: "Stack non trouvée ou vous n'avez pas les droits" },
+          { status: 404 }
+        );
+      }
+
+      // Supprimer la stack (les technologies associées seront supprimées automatiquement grâce à onDelete: "cascade")
+      const deletedStacks = await db
+        .delete(techStack)
+        .where(eq(techStack.id, idAsNumber))
+        .returning();
+
+      if (deletedStacks.length === 0) {
+        return NextResponse.json(
+          { error: "Stack non trouvée ou déjà supprimée" },
+          { status: 404 }
+        );
+      }
+
+      return NextResponse.json({ message: "Stack supprimée avec succès" });
+    } else {
+      // Vérifier que l'item appartient bien à une stack de l'utilisateur actuel
+      const item = await db.query.stackTechnologyItem.findFirst({
+        where: eq(stackTechnologyItem.id, idAsNumber),
+        with: {
+          techStack: true,
+        },
+      });
+
+      if (!item || item.techStack.userId !== session.user.id) {
+        return NextResponse.json(
+          { error: "Technologie non trouvée ou vous n'avez pas les droits" },
+          { status: 404 }
+        );
+      }
+
+      // Supprimer la technologie
+      const deletedItems = await db
+        .delete(stackTechnologyItem)
+        .where(eq(stackTechnologyItem.id, idAsNumber))
+        .returning();
+
+      if (deletedItems.length === 0) {
+        return NextResponse.json(
+          { error: "Technologie non trouvée ou déjà supprimée" },
+          { status: 404 }
+        );
+      }
+
+      return NextResponse.json({
+        message: "Technologie supprimée avec succès",
+      });
     }
-
-    return NextResponse.json({ message: "Technologie supprimée avec succès" });
   } catch (error) {
-    console.error("Erreur lors de la suppression de la technologie:", error);
+    console.error("Erreur lors de la suppression:", error);
     return NextResponse.json(
-      { error: "Erreur lors de la suppression de la technologie" },
+      { error: "Erreur lors de la suppression" },
       { status: 500 }
     );
   }
