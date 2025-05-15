@@ -9,6 +9,7 @@ export type Tech = {
   color: string;
   icon: React.ReactNode;
   category?: string;
+  technologyId?: string;
 };
 
 type TechStackGridProps = {

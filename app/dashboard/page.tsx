@@ -34,8 +34,9 @@ export default function Dashboard() {
 
   const hydrateTechnologies = useCallback((rawTechs: any[]): Tech[] => {
     return rawTechs.map((rawTech) => {
-      const originalTechId = rawTech.technologyId;
-      const techIdToLookup = originalTechId ? originalTechId.toLowerCase() : "";
+      const techIdToLookup = rawTech.technologyId
+        ? rawTech.technologyId.toLowerCase()
+        : "";
       const icon = iconMap[techIdToLookup] || getDefaultIcon(rawTech.name);
 
       return {
@@ -43,6 +44,8 @@ export default function Dashboard() {
         name: rawTech.name,
         color: rawTech.color,
         icon: icon,
+        technologyId: rawTech.technologyId,
+        category: rawTech.category,
       };
     });
   }, []);
@@ -61,11 +64,17 @@ export default function Dashboard() {
           name: tech.name,
           color: tech.color,
           technologyId:
-            allTechnologies.find((t) => t.id === tech.id)?.id || tech.id, // Utiliser tech.id pour chercher dans allTechnologies
+            tech.technologyId ||
+            allTechnologies.find(
+              (t) => t.id.toLowerCase() === tech.id.toLowerCase()
+            )?.id ||
+            tech.id, // Utiliser tech.technologyId en priorité s'il existe
           category:
-            tech.category || // Utiliser la catégorie déjà présente sur l'objet Tech si possible
-            allTechnologies.find((t) => t.id === tech.id)?.category || // Sinon, essayer de la retrouver via allTechnologies
-            "Custom", // En dernier recours
+            tech.category ||
+            allTechnologies.find(
+              (t) => t.id.toLowerCase() === tech.id.toLowerCase()
+            )?.category ||
+            "Custom",
         }));
 
         const response = await fetch("/api/tech/stack", {

@@ -47,6 +47,8 @@ export function AddTechForm({ onAddTech }: AddTechFormProps) {
       name: techName,
       color: techColor,
       icon: <span className="text-xl">{techName.charAt(0)}</span>,
+      technologyId: techName.toLowerCase().replace(/\s+/g, "-"), // Convertir le nom en un id technique valide
+      category: "Custom",
     });
 
     // Réinitialiser le formulaire
@@ -59,7 +61,11 @@ export function AddTechForm({ onAddTech }: AddTechFormProps) {
   };
 
   const handleTechSelect = (tech: Tech) => {
-    onAddTech(tech);
+    // S'assurer que le technologyId est correctement défini
+    onAddTech({
+      ...tech,
+      technologyId: tech.id, // Utiliser l'id original comme technologyId
+    });
     setOpen(false);
   };
 

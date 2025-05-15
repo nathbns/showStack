@@ -93,7 +93,7 @@ export async function POST(request: Request) {
     if (technologies && technologies.length > 0) {
       const techItems = technologies.map((tech: any) => ({
         techStackId: currentStack!.id,
-        technologyId: tech.id,
+        technologyId: tech.technologyId || tech.id,
         name: tech.name,
         color: tech.color,
         category: tech.category || "Custom",
