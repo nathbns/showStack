@@ -7,6 +7,7 @@ import {
   serial,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -123,6 +124,8 @@ export const stackTechnologyItem = pgTable("stack_technology_item", {
   name: text("name").notNull(),
   color: text("color").notNull(),
   category: text("category").notNull(), // ex: "Frontend", "Backend", "Custom"
+  gridCols: integer("grid_cols").default(1),
+  gridRows: integer("grid_rows").default(1),
 });
 
 export const techStackRelations = relations(techStack, ({ one, many }) => ({
@@ -142,3 +145,16 @@ export const stackTechnologyItemRelations = relations(
     }),
   })
 );
+
+/*
+// Requête préparée pour récupérer les technologies d'une stack avec toutes les colonnes
+export const getTechStackWithTechnologies = (db) => async (stackId) => {
+  const result = await db.query.techStack.findFirst({
+    where: eq(techStack.id, stackId),
+    with: {
+      technologies: true
+    },
+  });
+  return result;
+};
+*/

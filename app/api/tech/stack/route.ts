@@ -5,6 +5,16 @@ import { db } from "@/drizzle/db";
 import { techStack, stackTechnologyItem } from "@/drizzle/db/schema";
 import { eq } from "drizzle-orm";
 
+interface ApiTechItem {
+  id: string; // Correspond à stackTechnologyItem.id si existant, ou tech.id du frontend pour les nouveaux
+  name: string;
+  color: string;
+  technologyId: string; // L'ID de la technologie (ex: "typescript", "react")
+  category: string;
+  gridCols: number;
+  gridRows: number;
+}
+
 // Obtenir la stack technologique de l'utilisateur connecté
 export async function GET(request: Request) {
   try {
@@ -51,7 +61,14 @@ export async function POST(request: Request) {
       );
     }
 
-    const { name, description, isPublic, technologies } = await request.json();
+    const { name, description, isPublic, technologies } =
+      (await request.json()) as {
+        name: string;
+        description?: string;
+        isPublic: boolean;
+        technologies: ApiTechItem[];
+      };
+    console.log("Technologies reçues dans l'API:", technologies);
 
     let currentStack = await db.query.techStack.findFirst({
       where: eq(techStack.userId, session.user.id),
@@ -91,22 +108,48 @@ export async function POST(request: Request) {
       .where(eq(stackTechnologyItem.techStackId, currentStack.id));
 
     if (technologies && technologies.length > 0) {
-      const techItems = technologies.map((tech: any) => ({
+      // Log pour vérifier les données avant insertion
+      console.log(
+        "Données des technologies à insérer:",
+        technologies.map((tech: ApiTechItem) => ({
+          techStackId: currentStack!.id,
+          technologyId: tech.technologyId || tech.id,
+          name: tech.name,
+          color: tech.color,
+          category: tech.category || "Custom",
+          gridCols: tech.gridCols,
+          gridRows: tech.gridRows,
+        }))
+      );
+
+      const techItems = technologies.map((tech: ApiTechItem) => ({
         techStackId: currentStack!.id,
         technologyId: tech.technologyId || tech.id,
         name: tech.name,
         color: tech.color,
         category: tech.category || "Custom",
+        gridCols: tech.gridCols || 1,
+        gridRows: tech.gridRows || 1,
       }));
       await db.insert(stackTechnologyItem).values(techItems);
     }
 
-    const updatedStackWithTechnologies = await db.query.techStack.findFirst({
-      where: eq(techStack.id, currentStack.id),
-      with: {
-        technologies: true,
-      },
+    // Utiliser une requête manuelle pour s'assurer que toutes les colonnes sont incluses
+    const techItems = await db.query.stackTechnologyItem.findMany({
+      where: eq(stackTechnologyItem.techStackId, currentStack.id),
     });
+
+    console.log("Technologies récupérées directement:", techItems);
+
+    const updatedStackWithTechnologies = {
+      ...currentStack,
+      technologies: techItems,
+    };
+
+    console.log(
+      "Technologies renvoyées par l'API:",
+      updatedStackWithTechnologies.technologies
+    );
 
     return NextResponse.json(updatedStackWithTechnologies);
   } catch (error) {

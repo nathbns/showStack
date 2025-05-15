@@ -33,11 +33,32 @@ export default function Dashboard() {
   }>({ name: "Ma Stack", description: "", isPublic: false });
 
   const hydrateTechnologies = useCallback((rawTechs: any[]): Tech[] => {
+    console.log("Données brutes des technologies:", rawTechs);
+
     return rawTechs.map((rawTech) => {
       const techIdToLookup = rawTech.technologyId
         ? rawTech.technologyId.toLowerCase()
         : "";
       const icon = iconMap[techIdToLookup] || getDefaultIcon(rawTech.name);
+
+      // Vérifier les valeurs des propriétés gridCols et gridRows
+      const gridCols = parseInt(rawTech.gridCols || "1", 10);
+      const gridRows = parseInt(rawTech.gridRows || "1", 10);
+
+      console.log(
+        `Tech ${rawTech.name} - gridCols: ${gridCols}, gridRows: ${gridRows}`
+      );
+
+      // Créer l'objet gridSpan s'il y a des valeurs personnalisées
+      const gridSpan =
+        gridCols > 1 || gridRows > 1
+          ? {
+              cols: gridCols as 1 | 2 | 3,
+              rows: gridRows as 1 | 2,
+            }
+          : undefined;
+
+      console.log(`Tech ${rawTech.name} - gridSpan:`, gridSpan);
 
       return {
         id: rawTech.id.toString(),
@@ -46,6 +67,7 @@ export default function Dashboard() {
         icon: icon,
         technologyId: rawTech.technologyId,
         category: rawTech.category,
+        gridSpan: gridSpan,
       };
     });
   }, []);
@@ -59,23 +81,32 @@ export default function Dashboard() {
       try {
         // Avant de sauvegarder, s'assurer que les technologies ont le bon format pour l'API
         // L'API s'attend à technologyId, name, color, category
-        const technologiesToSave = currentTechnologies.map((tech) => ({
-          id: tech.id, // Ceci est l'id de la stackTechnologyItem si elle existe déjà, ou un nouveau pour les nouvelles techs
-          name: tech.name,
-          color: tech.color,
-          technologyId:
-            tech.technologyId ||
-            allTechnologies.find(
-              (t) => t.id.toLowerCase() === tech.id.toLowerCase()
-            )?.id ||
-            tech.id, // Utiliser tech.technologyId en priorité s'il existe
-          category:
-            tech.category ||
-            allTechnologies.find(
-              (t) => t.id.toLowerCase() === tech.id.toLowerCase()
-            )?.category ||
-            "Custom",
-        }));
+        const technologiesToSave = currentTechnologies.map((tech) => {
+          const techData = {
+            id: tech.id, // Ceci est l'id de la stackTechnologyItem si elle existe déjà, ou un nouveau pour les nouvelles techs
+            name: tech.name,
+            color: tech.color,
+            technologyId:
+              tech.technologyId ||
+              allTechnologies.find(
+                (t) => t.id.toLowerCase() === tech.id.toLowerCase()
+              )?.id ||
+              tech.id, // Utiliser tech.technologyId en priorité s'il existe
+            category:
+              tech.category ||
+              allTechnologies.find(
+                (t) => t.id.toLowerCase() === tech.id.toLowerCase()
+              )?.category ||
+              "Custom",
+            // Envoyer les propriétés directement plutôt que dans un objet gridSpan
+            gridCols: tech.gridSpan?.cols || 1,
+            gridRows: tech.gridSpan?.rows || 1,
+          };
+          console.log(`Tech ${tech.name} à sauvegarder:`, techData);
+          return techData;
+        });
+
+        console.log("Technologies à sauvegarder:", technologiesToSave);
 
         const response = await fetch("/api/tech/stack", {
           method: "POST",
@@ -200,6 +231,21 @@ export default function Dashboard() {
     setStackDetails(updatedDetails);
     // Les technologies actuelles sont déjà hydratées, saveStack s'en chargera
     saveStack(technologies, updatedDetails);
+  };
+
+  const handleUpdateTech = (id: string, updates: Partial<Tech>) => {
+    console.log(`Mise à jour de la tech ${id} avec:`, updates);
+
+    // Mettre à jour la technologie dans l'état local
+    const updatedTechnologies = technologies.map((tech) =>
+      tech.id === id ? { ...tech, ...updates } : tech
+    );
+
+    console.log("Technologies après mise à jour:", updatedTechnologies);
+
+    // Mettre à jour l'état et sauvegarder
+    setTechnologies(updatedTechnologies);
+    saveStack(updatedTechnologies, stackDetails);
   };
 
   if (isPending || isLoadingInitialData) {
@@ -328,10 +374,13 @@ export default function Dashboard() {
                 </p>
               </div>
             ) : (
-              <TechStackGrid
-                technologies={technologies}
-                onRemoveTech={handleRemoveTech}
-              />
+              <div className="w-full">
+                <TechStackGrid
+                  technologies={technologies}
+                  onRemoveTech={handleRemoveTech}
+                  onUpdateTech={handleUpdateTech}
+                />
+              </div>
             )}
           </main>
         </div>

@@ -277,7 +277,9 @@ const stackTechnologyItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
     technologyId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("technology_id").notNull(),
     name: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("name").notNull(),
     color: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("color").notNull(),
-    category: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("category").notNull()
+    category: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("category").notNull(),
+    gridCols: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("grid_cols").default(1),
+    gridRows: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("grid_rows").default(1)
 });
 const techStackRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(techStack, ({ one, many })=>({
         user: one(user, {
@@ -299,7 +301,18 @@ const stackTechnologyItemRelations = (0, __TURBOPACK__imported__module__$5b$proj
                 techStack.id
             ]
         })
-    }));
+    })); /*
+// Requête préparée pour récupérer les technologies d'une stack avec toutes les colonnes
+export const getTechStackWithTechnologies = (db) => async (stackId) => {
+  const result = await db.query.techStack.findFirst({
+    where: eq(techStack.id, stackId),
+    with: {
+      technologies: true
+    },
+  });
+  return result;
+};
+*/ 
 }}),
 "[project]/drizzle/db/index.ts [app-route] (ecmascript)": ((__turbopack_context__) => {
 "use strict";

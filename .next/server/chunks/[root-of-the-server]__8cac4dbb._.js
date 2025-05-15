@@ -285,7 +285,9 @@ const stackTechnologyItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
     technologyId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("technology_id").notNull(),
     name: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("name").notNull(),
     color: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("color").notNull(),
-    category: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("category").notNull()
+    category: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("category").notNull(),
+    gridCols: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("grid_cols").default(1),
+    gridRows: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("grid_rows").default(1)
 });
 const techStackRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(techStack, ({ one, many })=>({
         user: one(user, {
@@ -307,7 +309,18 @@ const stackTechnologyItemRelations = (0, __TURBOPACK__imported__module__$5b$proj
                 techStack.id
             ]
         })
-    }));
+    })); /*
+// Requête préparée pour récupérer les technologies d'une stack avec toutes les colonnes
+export const getTechStackWithTechnologies = (db) => async (stackId) => {
+  const result = await db.query.techStack.findFirst({
+    where: eq(techStack.id, stackId),
+    with: {
+      technologies: true
+    },
+  });
+  return result;
+};
+*/ 
 }}),
 "[project]/drizzle/db/index.ts [app-route] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
@@ -439,6 +452,7 @@ async function POST(request) {
             });
         }
         const { name, description, isPublic, technologies } = await request.json();
+        console.log("Technologies reçues dans l'API:", technologies);
         let currentStack = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.techStack.findFirst({
             where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].userId, session.user.id)
         });
@@ -467,21 +481,37 @@ async function POST(request) {
         }
         await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].delete(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].techStackId, currentStack.id));
         if (technologies && technologies.length > 0) {
+            // Log pour vérifier les données avant insertion
+            console.log("Données des technologies à insérer:", technologies.map((tech)=>({
+                    techStackId: currentStack.id,
+                    technologyId: tech.technologyId || tech.id,
+                    name: tech.name,
+                    color: tech.color,
+                    category: tech.category || "Custom",
+                    gridCols: tech.gridCols,
+                    gridRows: tech.gridRows
+                })));
             const techItems = technologies.map((tech)=>({
                     techStackId: currentStack.id,
                     technologyId: tech.technologyId || tech.id,
                     name: tech.name,
                     color: tech.color,
-                    category: tech.category || "Custom"
+                    category: tech.category || "Custom",
+                    gridCols: tech.gridCols || 1,
+                    gridRows: tech.gridRows || 1
                 }));
             await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].insert(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).values(techItems);
         }
-        const updatedStackWithTechnologies = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.techStack.findFirst({
-            where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].id, currentStack.id),
-            with: {
-                technologies: true
-            }
+        // Utiliser une requête manuelle pour s'assurer que toutes les colonnes sont incluses
+        const techItems = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.stackTechnologyItem.findMany({
+            where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].techStackId, currentStack.id)
         });
+        console.log("Technologies récupérées directement:", techItems);
+        const updatedStackWithTechnologies = {
+            ...currentStack,
+            technologies: techItems
+        };
+        console.log("Technologies renvoyées par l'API:", updatedStackWithTechnologies.technologies);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(updatedStackWithTechnologies);
     } catch (error) {
         console.error("Erreur lors de l'enregistrement de la stack:", error);
