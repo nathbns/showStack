@@ -439,7 +439,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] pt-20 mx-auto max-w-7xl">
+    <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl">
       <div className="flex-grow">
         <div className="mx-auto px-6 py-8">
           <header className="flex flex-col gap-1 mb-12">

@@ -53,10 +53,10 @@ export default function Header() {
         className="fixed top-3 left-0 w-full z-50 flex justify-center transition-opacity duration-300"
         style={{ opacity }}
       >
-        <nav className="max-w-7xl w-full filter backdrop-blur-sm bg-background/80 rounded-lg border-2 border-[var(--sidebar-border)]">
-          <div className="px-4 py-4">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="text-2xl font-bold">
+        <nav className="max-w-4xl h-12 w-full filter backdrop-blur-sm bg-background/80 rounded-lg border-2 border-[var(--sidebar-border)]">
+          <div className="px-4 h-full">
+            <div className="flex items-center justify-between h-full">
+              <Link href="/" className="text-2md font-bold">
                 SpreadStack
               </Link>
               <div className="flex items-center space-x-4">
@@ -68,31 +68,42 @@ export default function Header() {
                   </>
                 )}
                 <Link href="/explore" className="hover:text-primary">
-                  Explorer
+                  Explore
                 </Link>
                 {isLoggedIn ? (
                   <button
                     onClick={handleSignOut}
-                    className="font-semibold border border-primary rounded px-3 py-1 "
+                    className="flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)]"
                   >
-                    Se déconnecter
+                    <span>Sign Out</span>
+                    <span className="ml-2 text-xs opacity-50 px-1.5 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
+                      O
+                    </span>
                   </button>
                 ) : (
                   <>
                     <Link
                       href="/auth/signin"
-                      className="font-semibold border border-primary rounded px-3 py-1 transition-colors hover:bg-primary"
+                      className="flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)]"
                     >
-                      Se connecter
+                      <span>Sign In</span>
+                      <span className="ml-2 text-xs opacity-50 px-0.5 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
+                        S
+                      </span>
                     </Link>
                     <Link
                       href="/auth/signup"
-                      className="font-semibold border border-primary rounded px-3 py-1 transition-colors hover:bg-primary"
+                      className="flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)]"
                     >
-                      S'inscrire
+                      <span>Sign Up</span>
+                      <span className="ml-2 text-xs opacity-50 px-1.5 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
+                        U
+                      </span>
                     </Link>
                   </>
                 )}
+              </div>
+              <div className="flex items-center">
                 <ModeToggle />
               </div>
             </div>

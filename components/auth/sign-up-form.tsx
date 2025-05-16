@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RiGithubFill } from "@remixicon/react";
@@ -22,7 +23,7 @@ import {
 
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { ImageUpload } from "../profile/image-upload";
+import { UploadButton } from "@/lib/uploadthing";
 
 export function SignUpForm() {
   const router = useRouter();
@@ -61,11 +62,6 @@ export function SignUpForm() {
     } finally {
       setLoadingButtons((prevState) => ({ ...prevState, [provider]: false }));
     }
-  };
-
-  const handleImageUpload = (imageUrl: string) => {
-    setProfileImage(imageUrl);
-    setValue("profileImage", imageUrl);
   };
 
   const handleSignUpEmail = async (data: SignUpFormData) => {
@@ -125,12 +121,62 @@ export function SignUpForm() {
                 Or continue with email
               </span>
             </div>
-            <div className="flex justify-center my-2">
-              <ImageUpload
-                onImageUpload={handleImageUpload}
-                initialImage={profileImage}
-                isRegister={true}
+            <div className="grid gap-2 items-center justify-center text-center">
+              <Label
+                htmlFor="profileImageUpload"
+                className="mb-1 text-sm font-medium"
+              >
+                Profile Picture (Optional)
+              </Label>
+              <div className="w-32 h-32 rounded-full overflow-hidden bg-muted mx-auto mb-2 border border-border flex items-center justify-center">
+                {profileImage ? (
+                  <Image
+                    src={profileImage}
+                    alt="Profile Preview"
+                    width={128}
+                    height={128}
+                    className="object-cover"
+                  />
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-muted-foreground"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                )}
+              </div>
+              <UploadButton
+                endpoint="signupProfileImageUploader"
+                onClientUploadComplete={(res) => {
+                  if (res && res.length > 0) {
+                    const uploadedFileUrl = res[0].url;
+                    setProfileImage(uploadedFileUrl);
+                    setValue("profileImage", uploadedFileUrl);
+                    toast.success("Profile image uploaded!");
+                    console.log("Files: ", res);
+                    console.log("Upload Completed");
+                  }
+                }}
+                onUploadError={(error: Error) => {
+                  toast.error(`ERROR! ${error.message}`);
+                }}
+                className="mt-0 ut-button:bg-primary ut-button:text-primary-foreground ut-button:hover:bg-primary/90 ut-allowed-content:text-muted-foreground"
               />
+              {errors.profileImage && (
+                <p className="text-sm text-red-500">
+                  {errors.profileImage.message}
+                </p>
+              )}
             </div>
             <div className="grid gap-4">
               <div className="grid gap-2">

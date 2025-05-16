@@ -87,14 +87,12 @@ export default function TechStackGrid({
                   variant="destructive"
                   onClick={() => onRemoveTech && onRemoveTech(tech.id)}
                 >
-                  Supprimer
+                  Remove
                 </ContextMenuItem>
                 <ContextMenuSeparator />
 
                 <ContextMenuSub>
-                  <ContextMenuSubTrigger>
-                    Taille en colonnes
-                  </ContextMenuSubTrigger>
+                  <ContextMenuSubTrigger>Column Span</ContextMenuSubTrigger>
                   <ContextMenuSubContent>
                     <ContextMenuRadioGroup
                       value={String(tech.gridSpan?.cols || 1)}
@@ -108,22 +106,20 @@ export default function TechStackGrid({
                       }}
                     >
                       <ContextMenuRadioItem value="1">
-                        1 colonne
+                        1 Column
                       </ContextMenuRadioItem>
                       <ContextMenuRadioItem value="2">
-                        2 colonnes
+                        2 Columns
                       </ContextMenuRadioItem>
                       <ContextMenuRadioItem value="3">
-                        Pleine largeur
+                        Full Width
                       </ContextMenuRadioItem>
                     </ContextMenuRadioGroup>
                   </ContextMenuSubContent>
                 </ContextMenuSub>
 
                 <ContextMenuSub>
-                  <ContextMenuSubTrigger>
-                    Taille en lignes
-                  </ContextMenuSubTrigger>
+                  <ContextMenuSubTrigger>Row Span</ContextMenuSubTrigger>
                   <ContextMenuSubContent>
                     <ContextMenuRadioGroup
                       value={String(tech.gridSpan?.rows || 1)}
@@ -137,10 +133,10 @@ export default function TechStackGrid({
                       }}
                     >
                       <ContextMenuRadioItem value="1">
-                        1 ligne
+                        1 Row
                       </ContextMenuRadioItem>
                       <ContextMenuRadioItem value="2">
-                        2 lignes
+                        2 Rows
                       </ContextMenuRadioItem>
                     </ContextMenuRadioGroup>
                   </ContextMenuSubContent>

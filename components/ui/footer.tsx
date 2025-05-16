@@ -3,8 +3,8 @@ import { GithubIcon } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] py-6 mt-10 max-w-7xl mx-auto">
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <footer className="border-t border-[var(--border)] py-6 mt-10 max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-6 flex items-center justify-between">
         <div>
           <p className="text-sm text-gray-500">
             © {new Date().getFullYear()} ShowStack. Tous droits réservés.
@@ -12,7 +12,7 @@ export function Footer() {
         </div>
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com/yourusername/showstack"
+            href="https://github.com/nathbns"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-gray-500 hover:text-gray-300 transition-colors"

@@ -191,7 +191,7 @@ export const techsByCategory: Record<string, Tech[]> = {
     {
       id: "expo",
       name: "Expo",
-      color: "#000020",
+      color: "#020240",
       icon: <Expo />,
       category: "Mobile",
     },

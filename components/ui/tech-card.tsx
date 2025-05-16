@@ -33,8 +33,8 @@ export default function TechCard({
 
   return (
     <div
-      className="relative rounded-lg border-2 p-6 group overflow-hidden h-full w-full flex flex-col"
-      style={{ borderColor: `${color}50` }}
+      className="relative rounded-lg border-2 p-4 group overflow-hidden h-full w-full flex flex-col"
+      style={{ borderColor: `${color}50`, ...styleProps }}
     >
       {/* Arrière-plan avec effet de flou */}
       <div
@@ -53,49 +53,49 @@ export default function TechCard({
       )}
 
       {/* Contenu (reste net) */}
-      <div className="relative z-10 flex flex-grow items-start h-full">
-        <div className="flex flex-col w-full h-full">
-          <div className="flex items-center gap-3 mb-2">
-            <div
-              className={`flex items-center justify-center ${
-                isActuallyExpanded ? "w-10 h-10" : "w-12 h-12"
-              } transition-all`}
-            >
-              {icon}
-            </div>
-            <div className="flex items-center gap-2">
-              <div
-                className="w-3 h-3 rounded-full"
-                style={{ backgroundColor: color }}
-              />
-              <span
-                className={`text-sm font-medium ${
-                  isActuallyExpanded ? "md:text-base" : ""
-                }`}
-              >
-                {name}
-              </span>
-            </div>
+      <div className="relative z-10 flex flex-col flex-grow h-full">
+        <div className="flex items-center gap-3 mb-2">
+          <div
+            className={`flex items-center justify-center shrink-0 ${
+              isActuallyExpanded ? "w-10 h-10" : "w-8 h-8"
+            } transition-all`}
+          >
+            {icon}
           </div>
-
-          {/* Espace pour expansion potentielle en hauteur ou largeur */}
-          {isActuallyExpanded && (
-            <div className="text-xs text-gray-400 mt-2 flex-grow flex flex-col justify-center">
-              <p className="leading-tight">
-                Technologie : <strong>{name}</strong>
-              </p>
-              <p className="mt-1 leading-tight">
-                {gridSpan?.cols === 3
-                  ? "Occupe toute la largeur, idéal pour les éléments phares."
-                  : gridSpan?.cols === 2
-                  ? "S'étend sur deux colonnes pour plus d'impact."
-                  : gridSpan?.rows === 2
-                  ? "Plus de hauteur pour des détails supplémentaires."
-                  : "Description par défaut."}
-              </p>
-            </div>
-          )}
+          <div className="flex items-center gap-2 min-w-0">
+            <div
+              className="w-3 h-3 rounded-full shrink-0"
+              style={{ backgroundColor: color }}
+            />
+            <span
+              className={`text-sm font-medium ${
+                isActuallyExpanded ? "md:text-base" : ""
+              }`}
+            >
+              {name}
+            </span>
+          </div>
         </div>
+
+        {/* Espace pour expansion potentielle en hauteur ou largeur */}
+        {isActuallyExpanded ? (
+          <div className="text-xs text-gray-400 mt-2 flex-grow flex flex-col justify-center">
+            <p className="leading-tight">
+              Technology: <strong>{name}</strong>
+            </p>
+            <p className="mt-1 leading-tight">
+              {gridSpan?.cols === 3
+                ? "Spans the full width, ideal for featured items."
+                : gridSpan?.cols === 2
+                ? "Spans two columns for more impact."
+                : gridSpan?.rows === 2
+                ? "More height for additional details."
+                : "Default description."}
+            </p>
+          </div>
+        ) : (
+          <div className="flex-grow min-h-[40px]"></div>
+        )}
       </div>
     </div>
   );

@@ -1,115 +1,109 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Code2, LayoutGrid, Zap } from "lucide-react";
+import React from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { RiArrowRightLine } from "@remixicon/react";
 
-export default function Home() {
+export default function HeroSection() {
   return (
-    <div className="relative overflow-hidden mx-auto max-w-7xl">
-      {/* Fond abstrait avec animation légère */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black via-gray-900 to-black">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 via-transparent to-blue-900/30"></div>
-        <div className="absolute inset-0 opacity-50 mix-blend-overlay ">
-          <svg className="h-full w-full">
-            <defs>
-              <pattern
-                id="grid"
-                width="60"
-                height="60"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M.5 60V.5H60"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.1)"
-                  strokeDasharray="1 0"
-                ></path>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)"></rect>
-          </svg>
-        </div>
-      </div>
+    <main className="bg-background min-h-screen w-full relative overflow-hidden">
+      {/* Grille de fond subtile */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800A_1px,transparent_1px),linear-gradient(to_bottom,#8080800A_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
 
-      {/* Hero Section */}
-      <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-          <div className="inline-flex items-center rounded-full border border-gray-700 bg-gray-800/50 px-3 py-1 text-sm font-medium text-gray-300 backdrop-blur mb-8">
-            <span className="flex h-2 w-2 rounded-full bg-blue-400 mr-2"></span>
-            <span>Version 1.0 disponible maintenant</span>
+      <div className="container mx-auto px-4 py-20 md:py-32 lg:py-40 relative z-10">
+        {/* Badge disponibilité */}
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm border-primary/30 bg-background shadow-sm">
+            <span className="size-2 rounded-full bg-green-500 mr-2"></span>
+            <span className="font-medium">Available for New Projects</span>
           </div>
+        </div>
 
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl mb-6">
-            <span className="block">Votre Stack</span>
-            <span className="block bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-              Technologique
-            </span>
+        {/* Titre principal avec effet d'encadrement */}
+        <div className="text-center">
+          <h1 className="text-[clamp(2.5rem,8vw,5.5rem)] font-bold tracking-tight leading-[1.1] mb-8">
+            <div className="block mb-1">SHOWCASE YOUR</div>
+            <div className="relative inline-block">
+              <div className="relative z-10 px-4">TECH STACK</div>
+              <div className="absolute inset-0 border-2 border-primary/40 rounded-lg -z-0 scale-110"></div>
+            </div>
           </h1>
 
-          <p className="max-w-2xl text-xl text-gray-300 mb-8">
-            Explorez, organisez et partagez toutes vos technologies préférées.
-            Créez une vitrine personnalisée de votre stack technique et partagez
-            votre expertise.
+          <p className="text-xl md:text-2xl text-muted-foreground mb-14 max-w-2xl mx-auto">
+            We don't just display technologies, we solve your developer branding
+            challenges.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Link href="/dashboard">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-6 rounded-xl text-lg font-medium">
-                Commencer
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Button
-              variant="outline"
-              className="bg-gray-800/50 text-white border-gray-700 hover:border-gray-500 hover:bg-gray-800 px-6 py-6 rounded-xl text-lg font-medium"
+          {/* Bouton principal centré et large */}
+          <div className="flex justify-center mb-32">
+            <Link
+              href="/auth/signup"
+              className="flex items-center font-medium bg-green-500 hover:bg-green-600 text-white rounded-lg px-8 py-3 text-lg shadow-lg shadow-blue-500/20 transition-all duration-200"
             >
-              En savoir plus
-            </Button>
+              <span>Get Started</span>
+              <RiArrowRightLine className="ml-2" size={20} />
+              <span className="ml-2 text-xs opacity-70 px-1.5 py-0.5 bg-green-600 rounded">
+                G
+              </span>
+            </Link>
           </div>
         </div>
 
-        {/* Points forts */}
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="relative rounded-2xl border border-gray-800 bg-gray-900/70 p-8 backdrop-blur-sm">
-            <div className="absolute top-0 right-0 -mt-4 -mr-4 h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center">
-              <Zap size={18} className="text-white" />
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3">
-              Présentation visuelle
-            </h3>
-            <p className="text-gray-400">
-              Créez une vitrine interactive et visuelle pour toutes vos
-              technologies préférées.
-            </p>
-          </div>
+        {/* Image de présentation */}
+        <div className="max-w-5xl mx-auto relative rounded-xl overflow-hidden shadow-2xl border border-primary/20">
+          <Image
+            className="w-full hidden dark:block"
+            src="/uploads/darkPresentation.png"
+            alt="ShowStack App Demonstration"
+            width={2700}
+            height={1440}
+            priority
+          />
+          <Image
+            className="w-full dark:hidden"
+            src="/uploads/lightPresentation.png"
+            alt="ShowStack App Demonstration"
+            width={2700}
+            height={1440}
+            priority
+          />
+        </div>
 
-          <div className="relative rounded-2xl border border-gray-800 bg-gray-900/70 p-8 backdrop-blur-sm">
-            <div className="absolute top-0 right-0 -mt-4 -mr-4 h-8 w-8 rounded-full bg-purple-600 flex items-center justify-center">
-              <LayoutGrid size={18} className="text-white" />
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3">
-              Organisation flexible
-            </h3>
-            <p className="text-gray-400">
-              Organisez votre stack selon vos préférences avec une disposition
-              personnalisable.
-            </p>
+        {/* Statistiques */}
+        <div className="grid grid-cols-3 max-w-3xl mx-auto mt-24 mb-12">
+          <div className="text-center">
+            <p className="text-5xl font-bold mb-1">500+</p>
+            <p className="text-muted-foreground">Tech stacks</p>
           </div>
+          <div className="text-center">
+            <p className="text-5xl font-bold mb-1">150+</p>
+            <p className="text-muted-foreground">Technologies</p>
+          </div>
+          <div className="text-center">
+            <p className="text-5xl font-bold mb-1">1000+</p>
+            <p className="text-muted-foreground">Developers</p>
+          </div>
+        </div>
 
-          <div className="relative rounded-2xl border border-gray-800 bg-gray-900/70 p-8 backdrop-blur-sm">
-            <div className="absolute top-0 right-0 -mt-4 -mr-4 h-8 w-8 rounded-full bg-indigo-600 flex items-center justify-center">
-              <Code2 size={18} className="text-white" />
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-3">
-              Pour les développeurs
-            </h3>
-            <p className="text-gray-400">
-              Conçu par des développeurs pour des développeurs, avec une
-              attention aux détails.
-            </p>
-          </div>
+        {/* Appel à l'action final */}
+        <div className="text-center mt-32 mb-20">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6">
+            If you scrolled this far, it's time to LEVEL UP
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            Join the developer community that showcases their skills
+          </p>
+          <Link
+            href="/auth/signup"
+            className="flex items-center max-w-2xl mx-auto justify-center font-medium bg-white/10 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-6 py-2 border border-slate-300/50 dark:border-slate-700/50 shadow-lg shadow-slate-200/10 dark:shadow-slate-900/20 transition-all duration-200"
+          >
+            <span>Join the Elite Club</span>
+            <span className="ml-2 text-xs opacity-50 px-1.5 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
+              J
+            </span>
+          </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
