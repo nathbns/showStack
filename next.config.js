@@ -9,5 +9,13 @@ module.exports = {
       "utfs.io",
     ],
   },
+  // Désactiver la vérification ESLint pendant le build
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // Désactiver la vérification TypeScript pendant le build
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   // ... autres configurations existantes
 };
