@@ -9,11 +9,18 @@ export default function Header() {
   const [opacity, setOpacity] = React.useState(1);
   const [showScrollTop, setShowScrollTop] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     const checkLogin = async () => {
-      const loggedIn = await getSession();
-      setIsLoggedIn(loggedIn.data?.user.id !== undefined);
+      try {
+        const loggedIn = await getSession();
+        setIsLoggedIn(loggedIn.data?.user.id !== undefined);
+      } catch (error) {
+        console.error("Erreur lors de la vérification de la session:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     checkLogin();
   }, []);
@@ -46,6 +53,26 @@ export default function Header() {
     setIsLoggedIn(false);
     window.location.reload();
   };
+
+  // Si le composant est en cours de chargement, on affiche une version minimale
+  if (isLoading) {
+    return (
+      <div className="fixed top-3 left-0 w-full z-50 flex justify-center">
+        <nav className="max-w-4xl h-12 w-full filter backdrop-blur-sm bg-background/80 rounded-lg border-2 border-[var(--sidebar-border)]">
+          <div className="px-4 h-full">
+            <div className="flex items-center justify-between h-full">
+              <Link href="/" className="text-2md font-bold">
+                SpreadStack
+              </Link>
+              <div className="flex items-center">
+                <ModeToggle />
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    );
+  }
 
   return (
     <>
