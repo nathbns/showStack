@@ -1,14 +1,26 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { RiArrowRightLine } from "@remixicon/react";
 
 export default function HeroSection() {
   return (
     <main className="bg-background min-h-screen w-full relative overflow-hidden">
       {/* Grille de fond subtile */}
-      {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800A_1px,transparent_1px),linear-gradient(to_bottom,#8080800A_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div> */}
+      <div
+        className="
+          mx-auto max-w-4xl absolute inset-0 pointer-events-none
+          bg-[linear-gradient(to_right,rgba(60,60,60,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(60,60,60,0.08)_1px,transparent_1px)]
+          bg-[size:24px_24px]
+          dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.12)_1px,transparent_1px)]
+        "
+      >
+        {/* Effet de blur vers le bas */}
+        <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-background/80 via-background/40 to-transparent blur-md pointer-events-none" />
+        {/* Flou sur les côtés */}
+        <div className="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-background/60 via-background/40 to-transparent blur-md pointer-events-none" />
+        <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-background/60 via-background/40 to-transparent blur-md pointer-events-none" />
+      </div>
 
       <div className="container mx-auto px-4 py-20 md:py-32 lg:py-40 relative z-10">
         {/* Badge disponibilité */}
@@ -42,7 +54,7 @@ export default function HeroSection() {
             >
               <span>Get Started</span>
               <RiArrowRightLine className="ml-2" size={20} />
-              <span className="ml-2 text-xs opacity-70 px-1.5 py-0.5 bg-green-600 rounded">
+              <span className="ml-2 text-xs opacity-70 px-1.5 py-0.5 bg-green-700  rounded">
                 G
               </span>
             </Link>
@@ -50,7 +62,7 @@ export default function HeroSection() {
         </div>
 
         {/* Image de présentation */}
-        <div className="max-w-5xl mx-auto relative rounded-xl overflow-hidden shadow-2xl border border-primary/20">
+        <div className="max-w-4xl mx-auto relative rounded-xl overflow-hidden shadow-2xl border border-primary/20">
           <Image
             className="w-full hidden dark:block"
             src="/uploads/darkPresentation.png"
@@ -68,7 +80,6 @@ export default function HeroSection() {
             priority
           />
         </div>
-
         {/* Statistiques */}
         <div className="grid grid-cols-3 max-w-3xl mx-auto mt-24 mb-12">
           <div className="text-center">

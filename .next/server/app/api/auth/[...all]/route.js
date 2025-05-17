@@ -1,12 +1,12 @@
 const CHUNK_PUBLIC_PATH = "server/app/api/auth/[...all]/route.js";
 const runtime = require("../../../../chunks/[turbopack]_runtime.js");
-runtime.loadChunk("server/chunks/node_modules_next_headers_67cfbcb6.js");
+runtime.loadChunk("server/chunks/node_modules_next_headers_5fc71372.js");
 runtime.loadChunk("server/chunks/node_modules_next_dist_0d2a95be._.js");
-runtime.loadChunk("server/chunks/node_modules_better-auth_dist_b7143bc6._.js");
+runtime.loadChunk("server/chunks/node_modules_better-auth_dist_098a01dc._.js");
 runtime.loadChunk("server/chunks/node_modules_better-call_dist_index_5d513ab4.js");
 runtime.loadChunk("server/chunks/node_modules_zod_lib_index_mjs_a0234164._.js");
 runtime.loadChunk("server/chunks/3aad8_jose_dist_node_esm_2e4e7ab2._.js");
-runtime.loadChunk("server/chunks/node_modules_kysely_dist_esm_cf383f62._.js");
+runtime.loadChunk("server/chunks/node_modules_kysely_dist_esm_37ebfac0._.js");
 runtime.loadChunk("server/chunks/node_modules_drizzle-orm_a90d175b._.js");
 runtime.loadChunk("server/chunks/node_modules_086431a5._.js");
 runtime.loadChunk("server/chunks/[root-of-the-server]__8b719a4c._.js");
