@@ -1,3 +1,4 @@
+"use client";
 import TechCard from "../ui/tech-card";
 import * as React from "react";
 import { useState, useEffect } from "react";
@@ -23,7 +24,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { Button } from "@/components/ui/button";
 import { GripVerticalIcon, Trash2Icon } from "lucide-react";
 
-// Définition du type Tech avec la taille de la carte
+// Definition of the Tech type with card size
 export type Tech = {
   id: string;
   name: string;
@@ -35,9 +36,9 @@ export type Tech = {
     cols?: 1 | 2 | 3;
     rows?: 1 | 2;
   };
-  // Ajout d'un champ pour la position
+  // Add a field for position
   order?: number;
-  // Champs pour les projets
+  // Fields for projects
   isProject?: boolean;
   favicon?: string;
   url?: string;
@@ -51,7 +52,7 @@ type TechStackGridProps = {
   onReorderTechs?: (reorderedTechs: Tech[]) => void;
 };
 
-// Props pour SortableItem étendues
+// Extended props for SortableItem
 interface SortableItemProps {
   id: string;
   tech: Tech;
@@ -59,7 +60,7 @@ interface SortableItemProps {
   onUpdateTech?: (id: string, updates: Partial<Tech>) => void;
 }
 
-// Composant pour un élément draggable individuel
+// Component for an individual draggable item
 function SortableItem({
   id,
   tech,
@@ -76,7 +77,6 @@ function SortableItem({
   } = useSortable({ id });
 
   const style: React.CSSProperties = {
-    transform: CSS.Transform.toString(transform),
     transition,
     zIndex: isDragging ? 100 : undefined,
     visibility: isDragging ? "hidden" : "visible",
@@ -97,14 +97,22 @@ function SortableItem({
     }
   };
 
-  const colSpanToApply = tech.gridSpan?.cols || 1;
-  const rowSpanToApply = tech.gridSpan?.rows || 1;
+  // This block of code dynamically determines the Tailwind CSS classes to apply to each grid item,
+  // based on the size (span) of the technology on the grid (how many columns and rows it occupies).
+  // This allows each "tech" to be displayed in the grid according to its `gridSpan` properties.
+
+  const colSpanToApply = tech.gridSpan?.cols || 1; // Number of columns to occupy (default 1)
+  const rowSpanToApply = tech.gridSpan?.rows || 1; // Number of rows to occupy (default 1)
+
+  // Generate the corresponding Tailwind class for column span
   const colSpanClass =
     colSpanToApply === 3
       ? "col-span-3"
       : colSpanToApply === 2
       ? "col-span-2"
       : "col-span-1";
+
+  // Generate the corresponding Tailwind class for row span
   const rowSpanClass = rowSpanToApply === 2 ? "row-span-2" : "row-span-1";
 
   return (
@@ -196,7 +204,7 @@ function SortableItem({
   );
 }
 
-// Composant simple pour l'affichage dans DragOverlay
+// Simple component for display in DragOverlay
 function DragOverlayItem({ tech }: { tech: Tech }) {
   const colSpanToApply = tech.gridSpan?.cols || 1;
   const rowSpanToApply = tech.gridSpan?.rows || 1;
@@ -208,10 +216,11 @@ function DragOverlayItem({ tech }: { tech: Tech }) {
       : "col-span-1";
   const rowSpanClass = rowSpanToApply === 2 ? "row-span-2" : "row-span-1";
 
-  // Style pour l'overlay pour qu'il ait l'air "flottant"
+  // Style for the overlay to make it look "floating"
   const overlayStyle: React.CSSProperties = {
     zIndex: 1000,
     boxShadow: "0px 10px 25px rgba(0,0,0,0.3)",
+    position: "absolute",
   };
 
   return (
@@ -288,7 +297,7 @@ export default function TechStackGrid({
 
       if (oldIndexInCurrentItems === -1 || newIndexInCurrentItems === -1) {
         console.error(
-          "Item actif ou survolé non trouvé dans handleDragEnd avec les items actuels."
+          "Active or hovered item not found in handleDragEnd with current items."
         );
         return;
       }
@@ -314,7 +323,7 @@ export default function TechStackGrid({
       if (finalActiveItemIndex !== -1) {
         reorderedItems[finalActiveItemIndex] = {
           ...reorderedItems[finalActiveItemIndex],
-          gridSpan: overInitialSpan,
+          gridSpan: activeInitialSpan,
         };
       }
       if (finalOverItemIndex !== -1) {
@@ -349,9 +358,9 @@ export default function TechStackGrid({
     return (
       <div className="space-y-4">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold">Mode réorganisation</h3>
+          <h3 className="text-lg font-semibold">Reorder mode</h3>
           <Button onClick={() => setIsEditMode(false)} variant="outline">
-            Terminer
+            Done
           </Button>
         </div>
 
@@ -394,7 +403,7 @@ export default function TechStackGrid({
           variant="outline"
           className="text-sm"
         >
-          Réorganiser
+          Reorder
         </Button>
       </div>
 

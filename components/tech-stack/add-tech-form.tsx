@@ -12,7 +12,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { PlusCircle, Globe, ExternalLink, Loader2 } from "lucide-react";
-import { techsByCategory, allTechnologies } from "./tech-data";
+import { techsByCategory } from "./tech-data";
 import { type Tech } from "./tech-stack-grid";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -79,7 +79,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
           const urlObj = new URL(cleanedUrl);
           // On utilise Google Favicon Service qui est généralement le plus fiable
           // et qui contourne les problèmes de CORS
-          const faviconUrl = `https://www.google.com/s2/favicons?domain=${urlObj.hostname}&sz=64`;
+          const faviconUrl = `https://www.google.com/s2/favicons?domain=${urlObj.hostname}&sz=128`;
 
           // On vérifie que le service renvoie bien une image
           const img = new Image();
@@ -144,12 +144,12 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
           <img
             src={favicon}
             alt={projectName}
-            width={18}
-            height={18}
+            width={24}
+            height={24}
             style={{ maxWidth: "100%", maxHeight: "100%" }}
           />
         ) : (
-          <ExternalLink size={18} />
+          <ExternalLink size={24} />
         ),
         category: "Project", // Marquer comme projet
         technologyId: newId,
@@ -199,9 +199,9 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
           Ajouter
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-[95%] max-w-[500px] bg-background border-[var(--border)] text-[var(--foreground)] p-0 overflow-hidden">
-        <div className="flex flex-col h-[600px]">
-          <DialogHeader className="p-4 pb-0">
+      <DialogContent className="bg-background border-[var(--border)] text-[var(--foreground)] p-0 overflow-hidden">
+        <div className="flex flex-col h-[600px] ">
+          <DialogHeader className="p-4 pb-0 max-w-[500px]">
             <DialogTitle className="text-xl font-bold text-[var(--foreground)]">
               Ajouter à votre profil
             </DialogTitle>
@@ -214,10 +214,10 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
           <Tabs
             value={activeTab}
             onValueChange={(v) => setActiveTab(v as "technologies" | "projets")}
-            className="flex-1 flex flex-col"
+            className="flex-1 flex flex-col w-full max-w-[500px] mx-auto"
           >
             <div className="px-4">
-              <TabsList className="grid grid-cols-2 w-full my-3">
+              <TabsList className="grid grid-cols-2 w-full max-w-[500px] mx-auto">
                 <TabsTrigger
                   value="technologies"
                   className="data-[state=active]:bg-[var(--primary)] data-[state=active]:text-[var(--primary-foreground)]"
@@ -237,14 +237,14 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
               {/* Contenu de l'onglet Technologies */}
               <TabsContent
                 value="technologies"
-                className="h-full flex flex-col overflow-hidden"
+                className="h-full p-4 overflow-y-auto"
               >
                 <div className="flex-1 overflow-hidden flex flex-col">
                   <Tabs
-                    defaultValue="Frontend"
+                    defaultValue="Backend"
                     value={activeCategory}
                     onValueChange={setActiveCategory}
-                    className="flex-1 flex flex-col overflow-hidden"
+                    className="flex-1 flex flex-col"
                   >
                     <div className="px-4">
                       <TabsList className="flex overflow-x-auto w-full bg-background border-b border-[var(--border)]">

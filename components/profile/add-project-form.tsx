@@ -14,18 +14,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { PlusCircle } from "lucide-react";
 
-// TODO: Définir le type pour un projet
-// type Project = {
-//   id: string;
-//   url: string;
-//   description: string;
-//   imageUrl?: string;
-//   title?: string;
-// };
-
 type AddProjectFormProps = {
-  // onAddProject: (project: Project) => void; // Sera utilisé pour la soumission
-  userId: string; // Ou l'id de l'utilisateur connecté
+  userId: string;
 };
 
 export function AddProjectForm({ userId }: AddProjectFormProps) {
@@ -39,31 +29,6 @@ export function AddProjectForm({ userId }: AddProjectFormProps) {
     if (!projectUrl.trim() || !projectDescription.trim()) return;
 
     setIsSubmitting(true);
-    // TODO: Logique de soumission à l'API backend
-    // try {
-    //   const response = await fetch('/api/projects', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({
-    //       url: projectUrl,
-    //       description: projectDescription,
-    //       userId
-    //     }),
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error('Failed to add project');
-    //   }
-    //   const newProject = await response.json();
-    //   // onAddProject(newProject); // Mettre à jour l'UI
-    //   setOpen(false); // Fermer la modale
-    //   setProjectUrl("");
-    //   setProjectDescription("");
-    // } catch (error) {
-    //   console.error("Error submitting project:", error);
-    //   // TODO: Afficher un message d'erreur à l'utilisateur
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
     console.log("Soumission du projet :", {
       projectUrl,
       projectDescription,

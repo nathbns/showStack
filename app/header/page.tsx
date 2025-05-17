@@ -70,7 +70,7 @@ function Header() {
                     onClick={handleSignOut}
                     className="flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)]"
                   >
-                    <span>Sign Out</span>
+                    <span>Sign out</span>
                     <span className="ml-2 text-xs opacity-50 px-1.5 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
                       O
                     </span>
@@ -81,7 +81,7 @@ function Header() {
                       href="/auth/signin"
                       className="flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)]"
                     >
-                      <span>Sign In</span>
+                      <span>Sign in</span>
                       <span className="ml-2 text-xs opacity-50 px-0.5 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
                         S
                       </span>

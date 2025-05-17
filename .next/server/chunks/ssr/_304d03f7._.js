@@ -169,10 +169,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tech$2d$
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@dnd-kit/core/dist/core.esm.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$sortable$2f$dist$2f$sortable$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@dnd-kit/sortable/dist/sortable.esm.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$utilities$2f$dist$2f$utilities$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@dnd-kit/utilities/dist/utilities.esm.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$grip$2d$vertical$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__GripVerticalIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/grip-vertical.js [app-ssr] (ecmascript) <export default as GripVerticalIcon>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2Icon$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-ssr] (ecmascript) <export default as Trash2Icon>");
+"use client";
 ;
 ;
 ;
@@ -180,14 +180,12 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 ;
 ;
-;
-// Composant pour un élément draggable individuel
+// Component for an individual draggable item
 function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$sortable$2f$dist$2f$sortable$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSortable"])({
         id
     });
     const style = {
-        transform: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$utilities$2f$dist$2f$utilities$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CSS"].Transform.toString(transform),
         transition,
         zIndex: isDragging ? 100 : undefined,
         visibility: isDragging ? "hidden" : "visible"
@@ -206,9 +204,14 @@ function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
             });
         }
     };
-    const colSpanToApply = tech.gridSpan?.cols || 1;
-    const rowSpanToApply = tech.gridSpan?.rows || 1;
+    // This block of code dynamically determines the Tailwind CSS classes to apply to each grid item,
+    // based on the size (span) of the technology on the grid (how many columns and rows it occupies).
+    // This allows each "tech" to be displayed in the grid according to its `gridSpan` properties.
+    const colSpanToApply = tech.gridSpan?.cols || 1; // Number of columns to occupy (default 1)
+    const rowSpanToApply = tech.gridSpan?.rows || 1; // Number of rows to occupy (default 1)
+    // Generate the corresponding Tailwind class for column span
     const colSpanClass = colSpanToApply === 3 ? "col-span-3" : colSpanToApply === 2 ? "col-span-2" : "col-span-1";
+    // Generate the corresponding Tailwind class for row span
     const rowSpanClass = rowSpanToApply === 2 ? "row-span-2" : "row-span-1";
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         ref: setNodeRef,
@@ -226,17 +229,17 @@ function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
                         size: 14
                     }, void 0, false, {
                         fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                        lineNumber: 128,
+                        lineNumber: 136,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                    lineNumber: 122,
+                    lineNumber: 130,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                lineNumber: 120,
+                lineNumber: 128,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -247,12 +250,12 @@ function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
                     size: 16
                 }, void 0, false, {
                     fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                    lineNumber: 138,
+                    lineNumber: 146,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                lineNumber: 133,
+                lineNumber: 141,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -269,7 +272,7 @@ function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
                                 children: "C1"
                             }, void 0, false, {
                                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                                lineNumber: 143,
+                                lineNumber: 151,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -280,7 +283,7 @@ function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
                                 children: "C2"
                             }, void 0, false, {
                                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                                lineNumber: 151,
+                                lineNumber: 159,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -291,13 +294,13 @@ function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
                                 children: "C3"
                             }, void 0, false, {
                                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                                lineNumber: 159,
+                                lineNumber: 167,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                        lineNumber: 142,
+                        lineNumber: 150,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -311,7 +314,7 @@ function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
                                 children: "R1"
                             }, void 0, false, {
                                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                                lineNumber: 169,
+                                lineNumber: 177,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -322,19 +325,19 @@ function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
                                 children: "R2"
                             }, void 0, false, {
                                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                                lineNumber: 177,
+                                lineNumber: 185,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                        lineNumber: 168,
+                        lineNumber: 176,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                lineNumber: 141,
+                lineNumber: 149,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tech$2d$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -345,26 +348,27 @@ function SortableItem({ id, tech, onRemoveTech, onUpdateTech }) {
                 gridSpan: tech.gridSpan
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                lineNumber: 188,
+                lineNumber: 196,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-        lineNumber: 111,
+        lineNumber: 119,
         columnNumber: 5
     }, this);
 }
-// Composant simple pour l'affichage dans DragOverlay
+// Simple component for display in DragOverlay
 function DragOverlayItem({ tech }) {
     const colSpanToApply = tech.gridSpan?.cols || 1;
     const rowSpanToApply = tech.gridSpan?.rows || 1;
     const colSpanClass = colSpanToApply === 3 ? "col-span-3" : colSpanToApply === 2 ? "col-span-2" : "col-span-1";
     const rowSpanClass = rowSpanToApply === 2 ? "row-span-2" : "row-span-1";
-    // Style pour l'overlay pour qu'il ait l'air "flottant"
+    // Style for the overlay to make it look "floating"
     const overlayStyle = {
         zIndex: 1000,
-        boxShadow: "0px 10px 25px rgba(0,0,0,0.3)"
+        boxShadow: "0px 10px 25px rgba(0,0,0,0.3)",
+        position: "absolute"
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         style: overlayStyle,
@@ -377,12 +381,12 @@ function DragOverlayItem({ tech }) {
             gridSpan: tech.gridSpan
         }, void 0, false, {
             fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-            lineNumber: 222,
+            lineNumber: 231,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-        lineNumber: 218,
+        lineNumber: 227,
         columnNumber: 5
     }, this);
 }
@@ -424,7 +428,7 @@ function TechStackGrid({ technologies, onRemoveTech, onUpdateTech, onReorderTech
             const oldIndexInCurrentItems = items.findIndex((item)=>String(item.id) === activeId);
             const newIndexInCurrentItems = items.findIndex((item)=>String(item.id) === overId);
             if (oldIndexInCurrentItems === -1 || newIndexInCurrentItems === -1) {
-                console.error("Item actif ou survolé non trouvé dans handleDragEnd avec les items actuels.");
+                console.error("Active or hovered item not found in handleDragEnd with current items.");
                 return;
             }
             const activeItemInitial = items[oldIndexInCurrentItems];
@@ -437,7 +441,7 @@ function TechStackGrid({ technologies, onRemoveTech, onUpdateTech, onReorderTech
             if (finalActiveItemIndex !== -1) {
                 reorderedItems[finalActiveItemIndex] = {
                     ...reorderedItems[finalActiveItemIndex],
-                    gridSpan: overInitialSpan
+                    gridSpan: activeInitialSpan
                 };
             }
             if (finalOverItemIndex !== -1) {
@@ -479,25 +483,25 @@ function TechStackGrid({ technologies, onRemoveTech, onUpdateTech, onReorderTech
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                             className: "text-lg font-semibold",
-                            children: "Mode réorganisation"
+                            children: "Reorder mode"
                         }, void 0, false, {
                             fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                            lineNumber: 352,
+                            lineNumber: 361,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                             onClick: ()=>setIsEditMode(false),
                             variant: "outline",
-                            children: "Terminer"
+                            children: "Done"
                         }, void 0, false, {
                             fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                            lineNumber: 353,
+                            lineNumber: 362,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                    lineNumber: 351,
+                    lineNumber: 360,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DndContext"], {
@@ -519,17 +523,17 @@ function TechStackGrid({ technologies, onRemoveTech, onUpdateTech, onReorderTech
                                         onRemoveTech: onRemoveTech
                                     }, tech.id, false, {
                                         fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                                        lineNumber: 371,
+                                        lineNumber: 380,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                                lineNumber: 369,
+                                lineNumber: 378,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                            lineNumber: 365,
+                            lineNumber: 374,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DragOverlay"], {
@@ -538,24 +542,24 @@ function TechStackGrid({ technologies, onRemoveTech, onUpdateTech, onReorderTech
                                 tech: activeDragItem
                             }, void 0, false, {
                                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                                lineNumber: 382,
+                                lineNumber: 391,
                                 columnNumber: 31
                             }, this) : null
                         }, void 0, false, {
                             fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                            lineNumber: 381,
+                            lineNumber: 390,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                    lineNumber: 358,
+                    lineNumber: 367,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-            lineNumber: 350,
+            lineNumber: 359,
             columnNumber: 7
         }, this);
     }
@@ -568,15 +572,15 @@ function TechStackGrid({ technologies, onRemoveTech, onUpdateTech, onReorderTech
                     onClick: ()=>setIsEditMode(true),
                     variant: "outline",
                     className: "text-sm",
-                    children: "Réorganiser"
+                    children: "Reorder"
                 }, void 0, false, {
                     fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                    lineNumber: 392,
+                    lineNumber: 401,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                lineNumber: 391,
+                lineNumber: 400,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -598,29 +602,29 @@ function TechStackGrid({ technologies, onRemoveTech, onUpdateTech, onReorderTech
                                 gridSpan: tech.gridSpan
                             }, void 0, false, {
                                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                                lineNumber: 420,
+                                lineNumber: 429,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                            lineNumber: 419,
+                            lineNumber: 428,
                             columnNumber: 15
                         }, this)
                     }, String(tech.id), false, {
                         fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                        lineNumber: 415,
+                        lineNumber: 424,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-                lineNumber: 401,
+                lineNumber: 410,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/tech-stack/tech-stack-grid.tsx",
-        lineNumber: 390,
+        lineNumber: 399,
         columnNumber: 5
     }, this);
 }
