@@ -1,17 +1,19 @@
 "use client";
-import { ModeToggle } from "@/components/ui/mode-toggle";
 
 import Link from "next/link";
-import React from "react";
+import { useState, useEffect } from "react";
 import { signOut, getSession } from "@/lib/auth-client";
+function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-export default function Header() {
-  const [opacity, setOpacity] = React.useState(1);
-  const [showScrollTop, setShowScrollTop] = React.useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const handleSignOut = async () => {
+    await signOut();
+    setIsLoggedIn(false);
+    window.location.reload();
+  };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const checkLogin = async () => {
       try {
         const loggedIn = await getSession();
@@ -25,36 +27,6 @@ export default function Header() {
     checkLogin();
   }, []);
 
-  React.useEffect(() => {
-    const handleScroll = () => {
-      // On commence à faire disparaître la navbar après 20px de scroll, jusqu'à 120px (opacity 0)
-      const scrollY = window.scrollY;
-      const minScroll = 20;
-      const maxScroll = 120;
-      let newOpacity = 1;
-      if (scrollY > minScroll) {
-        newOpacity =
-          1 - Math.min((scrollY - minScroll) / (maxScroll - minScroll), 1);
-      }
-      setOpacity(newOpacity);
-      setShowScrollTop(newOpacity < 0.2 && scrollY > 120);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleScrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleSignOut = async () => {
-    await signOut();
-    setIsLoggedIn(false);
-    window.location.reload();
-  };
-
-  // Si le composant est en cours de chargement, on affiche une version minimale
   if (isLoading) {
     return (
       <div className="fixed top-3 left-0 w-full z-50 flex justify-center">
@@ -64,9 +36,6 @@ export default function Header() {
               <Link href="/" className="text-2md font-bold">
                 SpreadStack
               </Link>
-              <div className="flex items-center">
-                <ModeToggle />
-              </div>
             </div>
           </div>
         </nav>
@@ -76,10 +45,7 @@ export default function Header() {
 
   return (
     <>
-      <div
-        className="fixed top-3 left-0 w-full z-50 flex justify-center transition-opacity duration-300"
-        style={{ opacity }}
-      >
+      <div className="fixed top-3 left-0 w-full z-50 flex justify-center transition-opacity duration-300">
         <nav className="max-w-4xl h-12 w-full filter backdrop-blur-sm bg-background/80 rounded-lg border-2 border-[var(--sidebar-border)]">
           <div className="px-4 h-full">
             <div className="flex items-center justify-between h-full">
@@ -92,11 +58,13 @@ export default function Header() {
                     <Link href="/dashboard" className="hover:text-primary">
                       Dashboard
                     </Link>
+                    <Link href="/explore" className="hover:text-primary">
+                      Explore
+                    </Link>
                   </>
                 )}
-                <Link href="/explore" className="hover:text-primary">
-                  Explore
-                </Link>
+              </div>
+              <div className="flex items-center gap-2">
                 {isLoggedIn ? (
                   <button
                     onClick={handleSignOut}
@@ -130,33 +98,12 @@ export default function Header() {
                   </>
                 )}
               </div>
-              <div className="flex items-center">
-                <ModeToggle />
-              </div>
             </div>
           </div>
         </nav>
       </div>
-      {showScrollTop && (
-        <button
-          onClick={handleScrollTop}
-          className="fixed bottom-6 right-6 z-50 bg-white/80 dark:bg-gray-800/80 border border-white/30 dark:border-gray-200/20 shadow-xl rounded-full p-3 hover:bg-white/90 dark:hover:bg-gray-700/90 transition-colors backdrop-blur-lg"
-          aria-label="Remonter en haut"
-        >
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-gray-900 dark:text-gray-100"
-          >
-            <path d="M18 15l-6-6-6 6" />
-          </svg>
-        </button>
-      )}
     </>
   );
 }
+
+export default Header;

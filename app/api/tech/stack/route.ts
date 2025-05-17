@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { db } from "@/drizzle/db";
 import { techStack, stackTechnologyItem } from "@/drizzle/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, and, notInArray } from "drizzle-orm";
 
 interface ApiTechItem {
   id: string; // Correspond à stackTechnologyItem.id si existant, ou tech.id du frontend pour les nouveaux
@@ -13,6 +13,11 @@ interface ApiTechItem {
   category: string;
   gridCols: number;
   gridRows: number;
+  isProject?: boolean; // Pour les projets
+  favicon?: string; // URL du favicon pour les projets
+  url?: string; // URL du projet
+  description?: string; // Description du projet
+  order?: number; // Ordre pour le tri
 }
 
 // Obtenir la stack technologique de l'utilisateur connecté
@@ -94,35 +99,98 @@ export async function POST(request: Request) {
       );
     }
 
-    await db
-      .delete(stackTechnologyItem)
-      .where(eq(stackTechnologyItem.techStackId, currentStack.id));
+    const finalItemDbIds: number[] = [];
 
     if (technologies && technologies.length > 0) {
-      // Log pour vérifier les données avant insertion
-      console.log(
-        "Données des technologies à insérer:",
-        technologies.map((tech: ApiTechItem) => ({
-          techStackId: currentStack!.id,
-          technologyId: tech.technologyId || tech.id,
-          name: tech.name,
-          color: tech.color,
-          category: tech.category || "Custom",
-          gridCols: tech.gridCols,
-          gridRows: tech.gridRows,
-        }))
-      );
+      for (const tech of technologies) {
+        const existingItemId = tech.id ? parseInt(tech.id) : NaN;
 
-      const techItems = technologies.map((tech: ApiTechItem) => ({
-        techStackId: currentStack!.id,
-        technologyId: tech.technologyId || tech.id,
-        name: tech.name,
-        color: tech.color,
-        category: tech.category || "Custom",
-        gridCols: tech.gridCols || 1,
-        gridRows: tech.gridRows || 1,
-      }));
-      await db.insert(stackTechnologyItem).values(techItems);
+        if (!isNaN(existingItemId)) {
+          // C'est un élément existant, on le met à jour
+          await db
+            .update(stackTechnologyItem)
+            .set({
+              name: tech.name,
+              color: tech.color,
+              technologyId: tech.technologyId,
+              category: tech.category || "Custom",
+              gridCols: tech.gridCols || 1,
+              gridRows: tech.gridRows || 1,
+              isProject: tech.isProject || false,
+              favicon: tech.favicon || null,
+              url: tech.url || null,
+              description: tech.description || null,
+              order: tech.order !== undefined ? tech.order : 0,
+            })
+            .where(eq(stackTechnologyItem.id, existingItemId));
+          finalItemDbIds.push(existingItemId);
+        } else {
+          // C'est un nouvel élément, on l'insère
+          // tech.id ici est l'identifiant de la technologie (ex: "react") ou un ID temporaire.
+          // L'ID réel de stackTechnologyItem sera auto-généré.
+          const newDbItems = await db
+            .insert(stackTechnologyItem)
+            .values({
+              techStackId: currentStack!.id,
+              technologyId: tech.technologyId, // Assurez-vous que cela est correctement fourni par le client
+              name: tech.name,
+              color: tech.color,
+              category: tech.category || "Custom",
+              gridCols: tech.gridCols || 1,
+              gridRows: tech.gridRows || 1,
+              isProject: tech.isProject || false,
+              favicon: tech.favicon || null,
+              url: tech.url || null,
+              description: tech.description || null,
+              order: tech.order !== undefined ? tech.order : 0,
+            })
+            .returning({ insertedId: stackTechnologyItem.id });
+
+          if (newDbItems && newDbItems[0] && newDbItems[0].insertedId) {
+            finalItemDbIds.push(newDbItems[0].insertedId);
+          } else {
+            console.error(
+              "Impossible d'insérer la nouvelle technologie ou d'obtenir son ID:",
+              tech
+            );
+            // Vous pourriez vouloir retourner une erreur ici si l'insertion est critique
+          }
+        }
+      }
+
+      // Supprimer les items de la DB qui n'étaient pas dans la liste finale (finalItemDbIds)
+      // Cela gère les suppressions faites côté client.
+      // `finalItemDbIds` contient les ID de DB de tous les items qui doivent exister (mis à jour ou nouvellement insérés).
+      if (currentStack?.id) {
+        if (finalItemDbIds.length > 0) {
+          await db
+            .delete(stackTechnologyItem)
+            .where(
+              and(
+                eq(stackTechnologyItem.techStackId, currentStack.id),
+                notInArray(stackTechnologyItem.id, finalItemDbIds)
+              )
+            );
+        } else {
+          // Si finalItemDbIds est vide mais technologies avait des items (qui ont échoué à l'insertion?),
+          // ou si technologies était vide initialement, on supprime tout pour cette stack.
+          // Ce dernier cas est couvert par le `else` plus bas. Si technologies n'est pas vide
+          // mais finalItemDbIds l'est, cela indique un problème d'insertion.
+          // Le comportement actuel de supprimer tout si finalItemDbIds est vide peut être trop agressif
+          // si des insertions ont échoué. Pour l'instant, on garde la logique de suppression si
+          // la liste finale d'IDs à conserver est vide.
+          await db
+            .delete(stackTechnologyItem)
+            .where(eq(stackTechnologyItem.techStackId, currentStack.id));
+        }
+      }
+    } else {
+      // Si le tableau `technologies` est vide, supprimer tous les items associés à cette stack
+      if (currentStack?.id) {
+        await db
+          .delete(stackTechnologyItem)
+          .where(eq(stackTechnologyItem.techStackId, currentStack.id));
+      }
     }
 
     // Utiliser une requête manuelle pour s'assurer que toutes les colonnes sont incluses

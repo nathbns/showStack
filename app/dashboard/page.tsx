@@ -72,29 +72,85 @@ export default function Dashboard() {
   }, [sessionData]);
 
   const hydrateTechnologies = useCallback((rawTechs: any[]): Tech[] => {
-    console.log("Données brutes des technologies pour hydratation:", rawTechs);
-    if (!rawTechs) return []; // Vérifier si rawTechs est undefined ou null
-    return rawTechs.map((rawTech) => {
-      const techIdToLookup = rawTech.technologyId
-        ? rawTech.technologyId.toLowerCase()
-        : "";
-      const icon = iconMap[techIdToLookup] || getDefaultIcon(rawTech.name);
+    console.log(
+      "Dashboard hydrateTechnologies: Raw tech data for hydration:",
+      JSON.parse(
+        JSON.stringify(
+          rawTechs.map((t) => ({ id: t.id, name: t.name, order: t.order }))
+        )
+      )
+    );
+    if (!rawTechs) return [];
+    const hydrated = rawTechs.map((rawTech, index) => {
+      let icon;
+      let isProject = false;
+      let favicon = undefined;
+      let url = undefined;
+      let description = undefined;
+
+      if (rawTech.isProject && rawTech.favicon) {
+        isProject = true;
+        favicon = rawTech.favicon;
+        url = rawTech.url;
+        description = rawTech.description;
+        icon = (
+          <img
+            src={rawTech.favicon}
+            alt={rawTech.name}
+            width={18}
+            height={18}
+            style={{ maxWidth: "100%", maxHeight: "100%" }}
+          />
+        );
+      } else {
+        const techIdToLookup = rawTech.technologyId
+          ? rawTech.technologyId.toLowerCase()
+          : "";
+        icon = iconMap[techIdToLookup] || getDefaultIcon(rawTech.name);
+      }
+
       const gridCols = parseInt(rawTech.gridCols || "1", 10);
       const gridRows = parseInt(rawTech.gridRows || "1", 10);
       const gridSpan =
         gridCols > 1 || gridRows > 1
           ? { cols: gridCols as 1 | 2 | 3, rows: gridRows as 1 | 2 }
           : undefined;
-      return {
-        id: rawTech.id.toString(), // ID de stackTechnologyItem
+
+      const techItem: Tech = {
+        id: String(rawTech.id),
         name: rawTech.name,
         color: rawTech.color,
         icon: icon,
         technologyId: rawTech.technologyId,
         category: rawTech.category,
         gridSpan: gridSpan,
+        order: rawTech.order !== undefined ? rawTech.order : index, // Fallback to index
+        isProject: isProject,
+        favicon: favicon,
+        url: url,
+        description: description,
       };
+      console.log(
+        `Dashboard hydrateTechnologies: Hydrated item (index ${index}):`,
+        JSON.parse(
+          JSON.stringify({
+            id: techItem.id,
+            name: techItem.name,
+            order: techItem.order,
+          })
+        )
+      );
+      return techItem;
     });
+    console.log(
+      "Dashboard hydrateTechnologies: All hydrated technologies:",
+      JSON.parse(
+        JSON.stringify(
+          hydrated.map((t) => ({ id: t.id, name: t.name, order: t.order }))
+        )
+      )
+    );
+    return hydrated;
   }, []);
 
   // Modifié pour sauvegarder la stack active
@@ -108,27 +164,65 @@ export default function Dashboard() {
         toast.error("Aucune stack active à sauvegarder.");
         return;
       }
+      console.log(
+        "Dashboard saveActiveStack: Stack being prepared for API:",
+        JSON.parse(
+          JSON.stringify(
+            stackToSave.technologies.map((t) => ({
+              id: t.id,
+              name: t.name,
+              order: t.order,
+            }))
+          )
+        )
+      );
 
       try {
-        const technologiesToSave = stackToSave.technologies.map((tech) => ({
-          id: tech.id,
-          name: tech.name,
-          color: tech.color,
-          technologyId:
-            tech.technologyId ||
-            allTechnologies.find(
-              (t) => t.id.toLowerCase() === tech.id.toLowerCase()
-            )?.id ||
-            tech.id,
-          category:
-            tech.category ||
-            allTechnologies.find(
-              (t) => t.id.toLowerCase() === tech.id.toLowerCase()
-            )?.category ||
-            "Custom",
-          gridCols: tech.gridSpan?.cols || 1,
-          gridRows: tech.gridSpan?.rows || 1,
-        }));
+        const technologiesToSave = stackToSave.technologies.map(
+          (tech, index) => {
+            const isProject = (tech as any).isProject || false;
+            const favicon = (tech as any).favicon || undefined;
+            const url = (tech as any).url || undefined;
+            const description = (tech as any).description || undefined;
+
+            const apiTechItem = {
+              id: tech.id,
+              name: tech.name,
+              color: tech.color,
+              technologyId:
+                tech.technologyId ||
+                allTechnologies.find(
+                  (t) => t.id.toLowerCase() === tech.id.toLowerCase() // This seems problematic if tech.id is a DB id
+                )?.id ||
+                tech.id, // Fallback to tech.id if no match
+              category:
+                tech.category ||
+                allTechnologies.find(
+                  (t) => t.id.toLowerCase() === tech.id.toLowerCase()
+                )?.category ||
+                "Custom",
+              gridCols: tech.gridSpan?.cols || 1,
+              gridRows: tech.gridSpan?.rows || 1,
+              isProject,
+              favicon,
+              url,
+              description,
+              order: tech.order,
+            };
+            console.log(
+              `Dashboard saveActiveStack: Tech item (index ${index}) being sent to API:`,
+              JSON.parse(
+                JSON.stringify({
+                  id: apiTechItem.id,
+                  name: apiTechItem.name,
+                  order: apiTechItem.order,
+                  technologyId: apiTechItem.technologyId,
+                })
+              )
+            );
+            return apiTechItem;
+          }
+        );
 
         const response = await fetch("/api/tech/stack", {
           method: "POST",
@@ -149,15 +243,42 @@ export default function Dashboard() {
 
         const savedStackData = await response.json();
 
+        // Log pour le debug de la duplication
+        console.log(
+          "Dashboard saveActiveStack: Raw technologies from API response:",
+          JSON.parse(
+            JSON.stringify(
+              savedStackData.technologies.map((t: any) => ({
+                id: t.id,
+                name: t.name,
+                order: t.order,
+              }))
+            )
+          )
+        );
+        const hydratedFromApi = hydrateTechnologies(
+          savedStackData.technologies || []
+        );
+        console.log(
+          "Dashboard saveActiveStack: Technologies hydrated from API:",
+          JSON.parse(
+            JSON.stringify(
+              hydratedFromApi.map((t: Tech) => ({
+                id: t.id,
+                name: t.name,
+                order: t.order,
+              }))
+            )
+          )
+        );
+
         // Mettre à jour la stack dans l'état userStacks
         setUserStacks((prevStacks) =>
           prevStacks.map((s) =>
             s.id === savedStackData.id
               ? {
                   ...savedStackData,
-                  technologies: hydrateTechnologies(
-                    savedStackData.technologies || []
-                  ),
+                  technologies: hydratedFromApi,
                 }
               : s
           )
@@ -309,6 +430,11 @@ export default function Dashboard() {
       );
       return;
     }
+
+    // Vérifier si c'est un projet avec un favicon
+    const isProject = (newTechFromForm as any).isProject;
+    const favicon = (newTechFromForm as any).favicon;
+
     const updatedTechnologies = [...activeStack.technologies, newTechFromForm];
     const updatedStack = { ...activeStack, technologies: updatedTechnologies };
 
@@ -414,6 +540,68 @@ export default function Dashboard() {
     saveActiveStack(updatedStack);
   };
 
+  const handleReorderTechs = (reorderedTechs: Tech[]) => {
+    console.log(
+      "Dashboard handleReorderTechs: Technologies received with new order:",
+      JSON.parse(
+        JSON.stringify(
+          reorderedTechs.map((t: Tech) => ({
+            id: t.id,
+            name: t.name,
+            order: t.order,
+          }))
+        )
+      )
+    );
+    if (!activeStack) {
+      console.error("Dashboard handleReorderTechs: No active stack!");
+      return;
+    }
+
+    const updatedStack = { ...activeStack, technologies: reorderedTechs };
+    console.log(
+      "Dashboard handleReorderTechs: Updated stack to be saved (structure for saveActiveStack):",
+      JSON.parse(
+        JSON.stringify(
+          updatedStack.technologies.map((t: Tech) => ({
+            id: t.id,
+            name: t.name,
+            order: t.order,
+          }))
+        )
+      )
+    );
+
+    setUserStacks((prevStacks) => {
+      const newStacks = prevStacks.map((s) =>
+        s.id === activeStackId ? updatedStack : s
+      );
+      console.log(
+        "Dashboard handleReorderTechs: setUserStacks called with (showing only active stack technologies for brevity if active):"
+      );
+      const activeStackInNew = newStacks.find((s) => s.id === activeStackId);
+      if (activeStackInNew) {
+        console.log(
+          JSON.parse(
+            JSON.stringify(
+              activeStackInNew.technologies.map((t: Tech) => ({
+                id: t.id,
+                name: t.name,
+                order: t.order,
+              }))
+            )
+          )
+        );
+      } else {
+        console.log(
+          "Active stack not found in newStacks after reorder update."
+        );
+      }
+      return newStacks;
+    });
+    saveActiveStack(updatedStack);
+  };
+
   if (isPending || isLoadingInitialData) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-[var(--background)] text-[var(--foreground)]">
@@ -441,18 +629,9 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl">
       <div className="flex-grow">
-        <div className="mx-auto px-6 py-8">
-          <header className="flex flex-col gap-1 mb-12">
-            <h1 className="text-3xl font-bold text-[var(--foreground)] text-center">
-              Tableau de Bord de {sessionData.user.name || "Développeur"}
-            </h1>
-            <p className="text-[var(--muted-foreground)] text-lg text-center">
-              Gérez votre profil et votre stack technologique ici.
-            </p>
-          </header>
-
+        <div className="mx-auto py-8">
           <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="relative lg:col-span-1 bg-[var(--card)] p-6 rounded-lg shadow flex flex-col gap-6">
+            <div className="relative lg:col-span-1 bg-[var(--card)] p-6 rounded-lg border border-[var(--border)] flex flex-col gap-6">
               <GlowingEffect className="rounded-lg" />
               <div>
                 <h2 className="text-2xl font-semibold mb-4 text-[var(--card-foreground)]">
@@ -545,7 +724,7 @@ export default function Dashboard() {
               {!isEditingProfile && sessionData?.user?.id && (
                 <div className="mt-0">
                   <h4 className="text-md font-semibold text-[var(--card-foreground)] mb-2">
-                    Mes Tags
+                    Tags
                   </h4>
                   <TagManager userId={sessionData.user.id} />
                 </div>
@@ -553,7 +732,7 @@ export default function Dashboard() {
             </div>
 
             <div className="lg:col-span-2 flex flex-col gap-8">
-              <div className="relative bg-[var(--card)] p-4 rounded-lg shadow">
+              <div className="relative bg-[var(--card)] p-4 rounded-lg border border-[var(--border)]">
                 <GlowingEffect className="rounded-lg" />
                 <h3 className="text-xl font-semibold mb-3 text-[var(--card-foreground)]">
                   Mes Stacks
@@ -645,13 +824,16 @@ export default function Dashboard() {
               </div>
 
               {activeStack && (
-                <div className="relative w-full bg-[var(--card)] p-4 rounded-lg shadow">
+                <div className="relative w-full bg-[var(--card)] p-4 rounded-lg border border-[var(--border)]">
                   <GlowingEffect className="rounded-lg" />
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-[var(--foreground)]">
-                      Votre Stack Technologique
+                      Your Bento Grig.
                     </h2>
-                    <AddTechForm onAddTech={handleAddTech} />
+                    <AddTechForm
+                      onAddTech={handleAddTech}
+                      userId={sessionData.user.id}
+                    />
                   </div>
 
                   {technologies.length === 0 && !isLoadingInitialData && (
@@ -670,6 +852,7 @@ export default function Dashboard() {
                       technologies={technologies}
                       onRemoveTech={handleRemoveTech}
                       onUpdateTech={handleUpdateTech}
+                      onReorderTechs={handleReorderTechs}
                     />
                   )}
                 </div>

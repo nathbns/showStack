@@ -58,6 +58,37 @@ export default function UserProfilePage() {
   const hydrateTechnologies = useCallback((rawTechs: any[]): Tech[] => {
     if (!rawTechs) return [];
     return rawTechs.map((rawTech) => {
+      // Vérifier si c'est un projet avec favicon
+      if (rawTech.isProject && rawTech.favicon) {
+        // Pour les projets, on utilise le favicon comme icône
+        return {
+          id: rawTech.id?.toString() || Math.random().toString(),
+          name: rawTech.name || "Unnamed Project",
+          color: rawTech.color || "#808080",
+          icon: (
+            <img
+              src={rawTech.favicon}
+              alt={rawTech.name}
+              width={18}
+              height={18}
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+            />
+          ),
+          technologyId: rawTech.technologyId,
+          category: rawTech.category,
+          gridSpan: {
+            cols: parseInt(rawTech.gridCols || "2", 10) as 1 | 2 | 3,
+            rows: parseInt(rawTech.gridRows || "1", 10) as 1 | 2,
+          },
+          isProject: true,
+          favicon: rawTech.favicon,
+          url: rawTech.url,
+          description: rawTech.description,
+          order: rawTech.order ?? 0,
+        };
+      }
+
+      // Pour les technologies normales
       const techIdToLookup =
         rawTech.technologyId?.toLowerCase() ||
         rawTech.name?.toLowerCase() ||
@@ -79,6 +110,7 @@ export default function UserProfilePage() {
         technologyId: rawTech.technologyId,
         category: rawTech.category,
         gridSpan: gridSpan,
+        order: rawTech.order ?? 0,
       };
     });
   }, []);

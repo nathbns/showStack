@@ -13,7 +13,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 py-20 md:py-32 lg:py-40 relative z-10">
         {/* Badge disponibilité */}
         <div className="flex justify-center mb-16">
-          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm border-primary/30 bg-background shadow-sm">
+          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm border-primary/30 bg-background">
             <span className="size-2 rounded-full bg-green-500 mr-2"></span>
             <span className="font-medium">Available for New Projects</span>
           </div>

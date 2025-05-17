@@ -1,12 +1,35 @@
+const { hostname } = require("os");
+
 module.exports = {
   images: {
-    domains: [
-      "avatars.githubusercontent.com",
-      "localhost",
-      "127.0.0.1",
-      "ik.imagekit.io",
-      "html.tailus.io",
-      "utfs.io",
+    remotePatterns: [
+      {
+        hostname: "utfs.io",
+      },
+      {
+        hostname: "avatars.githubusercontent.com",
+      },
+      {
+        hostname: "localhost",
+      },
+      {
+        hostname: "127.0.0.1",
+      },
+      {
+        hostname: "ik.imagekit.io",
+      },
+      {
+        hostname: "html.tailus.io",
+      },
+      {
+        hostname: "utfs.io",
+      },
+      {
+        protocol: "https",
+        hostname: "pbs.twimg.com",
+        port: "",
+        pathname: "/profile_images/**",
+      },
     ],
   },
   // Désactiver la vérification ESLint pendant le build

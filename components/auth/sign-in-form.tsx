@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RiGithubFill } from "@remixicon/react";
+import { RiGithubFill, RiTwitterFill } from "@remixicon/react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -20,15 +20,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-
 export function SignInForm() {
   const router = useRouter();
   const [loadingButtons, setLoadingButtons] = useState({
-    google: false,
-    email: false,
     github: false,
+    twitter: false,
   });
 
   const {
@@ -45,7 +41,7 @@ export function SignInForm() {
     setLoadingButtons((prevState) => ({ ...prevState, [provider]: true }));
     try {
       await signIn.social({
-        provider: provider as "google" | "github",
+        provider: provider as "github" | "twitter",
         callbackURL: "/dashboard",
       });
     } catch (error) {
@@ -144,63 +140,16 @@ export function SignInForm() {
               <RiGithubFill className="me-1" size={16} aria-hidden="true" />
               {loadingButtons.github ? "Loading..." : "Login with GitHub"}
             </Button>
-
-            <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-              <span className="bg-background text-muted-foreground relative z-10 px-2">
-                Or continue with
-              </span>
-            </div>
-            <div className="grid gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  {...register("email")}
-                  placeholder="m@example.com"
-                  className="w-full"
-                />
-                {errors.email && (
-                  <p className="text-sm text-red-500">{errors.email.message}</p>
-                )}
-              </div>
-              <div className="grid gap-2">
-                <div className="flex flex-wrap items-center justify-between gap-1">
-                  <Label htmlFor="password">Password</Label>
-                  <Link
-                    href="/forgot-password"
-                    className="text-xs underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </Link>
-                </div>
-                <Input
-                  id="password"
-                  type="password"
-                  {...register("password")}
-                  className="w-full"
-                />
-                {errors.password && (
-                  <p className="text-sm text-red-500">
-                    {errors.password.message}
-                  </p>
-                )}
-              </div>
-
-              {generalError && (
-                <p className="text-center text-sm text-red-500">
-                  {generalError}
-                </p>
-              )}
-              <Button
-                type="submit"
-                className="w-full cursor-pointer"
-                disabled={loadingButtons.email}
-              >
-                {loadingButtons.email ? "Logging in..." : "Login"}
-              </Button>
-            </div>
-
+            <Button
+              className="w-full cursor-pointer"
+              variant="outline"
+              type="button"
+              onClick={() => handleLogin("twitter")}
+              disabled={loadingButtons.twitter}
+            >
+              <RiTwitterFill className="me-1" size={16} aria-hidden="true" />
+              {loadingButtons.twitter ? "Loading..." : "Login with Twitter"}
+            </Button>
             <div className="text-muted-foreground text-center text-sm">
               Don&apos;t have an account?{" "}
               <Link

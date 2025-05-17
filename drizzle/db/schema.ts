@@ -137,6 +137,11 @@ export const stackTechnologyItem = pgTable("stack_technology_item", {
   category: text("category").notNull(), // ex: "Frontend", "Backend", "Custom"
   gridCols: integer("grid_cols").default(1),
   gridRows: integer("grid_rows").default(1),
+  isProject: boolean("is_project").default(false),
+  favicon: text("favicon"),
+  url: text("url"),
+  description: text("description"),
+  order: integer("order").default(0),
 });
 
 export const techStackRelations = relations(techStack, ({ one, many }) => ({

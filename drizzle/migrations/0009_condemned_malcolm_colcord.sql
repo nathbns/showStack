@@ -1,0 +1,1 @@
+ALTER TABLE "stack_technology_item" ADD COLUMN "order" integer DEFAULT 0;

@@ -298,7 +298,12 @@ const stackTechnologyItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
     color: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("color").notNull(),
     category: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("category").notNull(),
     gridCols: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("grid_cols").default(1),
-    gridRows: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("grid_rows").default(1)
+    gridRows: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("grid_rows").default(1),
+    isProject: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$boolean$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["boolean"])("is_project").default(false),
+    favicon: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("favicon"),
+    url: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("url"),
+    description: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("description"),
+    order: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("order").default(0)
 });
 const techStackRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(techStack, ({ one, many })=>({
         user: one(user, {
@@ -387,13 +392,17 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 const auth = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$better$2d$auth$2f$dist$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$locals$3e$__["betterAuth"])({
     emailAndPassword: {
-        enabled: true,
+        enabled: false,
         autoSignIn: false
     },
     socialProviders: {
         github: {
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET
+        },
+        twitter: {
+            clientId: process.env.TWITTER_CLIENT_ID,
+            clientSecret: process.env.TWITTER_CLIENT_SECRET
         }
     },
     database: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$better$2d$auth$2f$dist$2f$adapters$2f$drizzle$2d$adapter$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["drizzleAdapter"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"], {
@@ -500,28 +509,76 @@ async function POST(request) {
                 status: 500
             });
         }
-        await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].delete(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].techStackId, currentStack.id));
+        const finalItemDbIds = [];
         if (technologies && technologies.length > 0) {
-            // Log pour vérifier les données avant insertion
-            console.log("Données des technologies à insérer:", technologies.map((tech)=>({
-                    techStackId: currentStack.id,
-                    technologyId: tech.technologyId || tech.id,
-                    name: tech.name,
-                    color: tech.color,
-                    category: tech.category || "Custom",
-                    gridCols: tech.gridCols,
-                    gridRows: tech.gridRows
-                })));
-            const techItems = technologies.map((tech)=>({
-                    techStackId: currentStack.id,
-                    technologyId: tech.technologyId || tech.id,
-                    name: tech.name,
-                    color: tech.color,
-                    category: tech.category || "Custom",
-                    gridCols: tech.gridCols || 1,
-                    gridRows: tech.gridRows || 1
-                }));
-            await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].insert(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).values(techItems);
+            for (const tech of technologies){
+                const existingItemId = tech.id ? parseInt(tech.id) : NaN;
+                if (!isNaN(existingItemId)) {
+                    // C'est un élément existant, on le met à jour
+                    await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].update(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).set({
+                        name: tech.name,
+                        color: tech.color,
+                        technologyId: tech.technologyId,
+                        category: tech.category || "Custom",
+                        gridCols: tech.gridCols || 1,
+                        gridRows: tech.gridRows || 1,
+                        isProject: tech.isProject || false,
+                        favicon: tech.favicon || null,
+                        url: tech.url || null,
+                        description: tech.description || null,
+                        order: tech.order !== undefined ? tech.order : 0
+                    }).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].id, existingItemId));
+                    finalItemDbIds.push(existingItemId);
+                } else {
+                    // C'est un nouvel élément, on l'insère
+                    // tech.id ici est l'identifiant de la technologie (ex: "react") ou un ID temporaire.
+                    // L'ID réel de stackTechnologyItem sera auto-généré.
+                    const newDbItems = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].insert(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).values({
+                        techStackId: currentStack.id,
+                        technologyId: tech.technologyId,
+                        name: tech.name,
+                        color: tech.color,
+                        category: tech.category || "Custom",
+                        gridCols: tech.gridCols || 1,
+                        gridRows: tech.gridRows || 1,
+                        isProject: tech.isProject || false,
+                        favicon: tech.favicon || null,
+                        url: tech.url || null,
+                        description: tech.description || null,
+                        order: tech.order !== undefined ? tech.order : 0
+                    }).returning({
+                        insertedId: __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].id
+                    });
+                    if (newDbItems && newDbItems[0] && newDbItems[0].insertedId) {
+                        finalItemDbIds.push(newDbItems[0].insertedId);
+                    } else {
+                        console.error("Impossible d'insérer la nouvelle technologie ou d'obtenir son ID:", tech);
+                    // Vous pourriez vouloir retourner une erreur ici si l'insertion est critique
+                    }
+                }
+            }
+            // Supprimer les items de la DB qui n'étaient pas dans la liste finale (finalItemDbIds)
+            // Cela gère les suppressions faites côté client.
+            // `finalItemDbIds` contient les ID de DB de tous les items qui doivent exister (mis à jour ou nouvellement insérés).
+            if (currentStack?.id) {
+                if (finalItemDbIds.length > 0) {
+                    await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].delete(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["and"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].techStackId, currentStack.id), (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["notInArray"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].id, finalItemDbIds)));
+                } else {
+                    // Si finalItemDbIds est vide mais technologies avait des items (qui ont échoué à l'insertion?),
+                    // ou si technologies était vide initialement, on supprime tout pour cette stack.
+                    // Ce dernier cas est couvert par le `else` plus bas. Si technologies n'est pas vide
+                    // mais finalItemDbIds l'est, cela indique un problème d'insertion.
+                    // Le comportement actuel de supprimer tout si finalItemDbIds est vide peut être trop agressif
+                    // si des insertions ont échoué. Pour l'instant, on garde la logique de suppression si
+                    // la liste finale d'IDs à conserver est vide.
+                    await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].delete(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].techStackId, currentStack.id));
+                }
+            }
+        } else {
+            // Si le tableau `technologies` est vide, supprimer tous les items associés à cette stack
+            if (currentStack?.id) {
+                await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].delete(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].techStackId, currentStack.id));
+            }
         }
         // Utiliser une requête manuelle pour s'assurer que toutes les colonnes sont incluses
         const techItems = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.stackTechnologyItem.findMany({

@@ -3,8 +3,8 @@
     chunks: [
   "static/chunks/node_modules_@remixicon_react_index_mjs_971ddb18._.js",
   "static/chunks/node_modules_zod_lib_index_mjs_ee760afb._.js",
-  "static/chunks/node_modules_ca5c62bb._.js",
-  "static/chunks/_34152ea3._.js"
+  "static/chunks/node_modules_7a21ab47._.js",
+  "static/chunks/_1f395574._.js"
 ],
     source: "dynamic"
 });

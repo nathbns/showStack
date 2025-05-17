@@ -1,5 +1,6 @@
 import React from "react";
-import { GithubIcon } from "lucide-react";
+import { RiGithubFill, RiTwitterFill } from "@remixicon/react";
+import { ModeToggle } from "./mode-toggle";
 
 export function Footer() {
   return (
@@ -17,9 +18,19 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
           >
-            <GithubIcon className="h-5 w-5" />
+            <RiGithubFill className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
           </a>
+          <a
+            href="https://x.com/Nattend_CS"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
+          >
+            <RiTwitterFill className="h-5 w-5" />
+            <span className="sr-only">Twitter</span>
+          </a>
+          <ModeToggle />
         </div>
       </div>
     </footer>

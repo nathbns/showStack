@@ -57,6 +57,20 @@
       "when": 1747326792383,
       "tag": "0007_open_nightmare",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1747475629145,
+      "tag": "0008_thankful_proudstar",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1747475944396,
+      "tag": "0009_condemned_malcolm_colcord",
+      "breakpoints": true
     }
   ]
 }
