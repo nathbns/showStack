@@ -99,7 +99,7 @@ export function TagManager({ userId }: TagManagerProps) {
   return (
     <div className="mt-4">
       <h4 className="text-md font-semibold text-[var(--card-foreground)] mb-2">
-        Mes tags
+        Tags
       </h4>
 
       {/* Affichage des tags existants */}

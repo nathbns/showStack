@@ -3655,7 +3655,7 @@ function TagManager({ userId }) {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
                 className: "text-md font-semibold text-[var(--card-foreground)] mb-2",
-                children: "Mes tags"
+                children: "Tags"
             }, void 0, false, {
                 fileName: "[project]/components/profile/tag-manager.tsx",
                 lineNumber: 101,
@@ -4045,7 +4045,6 @@ function Dashboard() {
     const [activeStackId, setActiveStackId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isLoadingInitialData, setIsLoadingInitialData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     const [userProfileDescription, setUserProfileDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
-    const [newStackName, setNewStackName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [isEditingProfile, setIsEditingProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [editingDescription, setEditingDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     // Déclaration de isPageEditMode AVANT son utilisation dans les handlers
@@ -4096,20 +4095,14 @@ function Dashboard() {
     ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         if (sessionData?.user) {
-            // @ts-ignore
             const currentDesc = sessionData.user.description || "";
             setUserProfileDescription(currentDesc);
-            setEditingDescription(currentDesc); // Also initialize the editing description
+            setEditingDescription(currentDesc);
         }
     }, [
         sessionData
     ]);
     const hydrateTechnologies = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((rawTechs)=>{
-        console.log("Dashboard hydrateTechnologies: Raw tech data for hydration:", JSON.parse(JSON.stringify(rawTechs.map((t)=>({
-                id: t.id,
-                name: t.name,
-                order: t.order
-            })))));
         if (!rawTechs) return [];
         const hydrated = rawTechs.map((rawTech, index)=>{
             let icon;
@@ -4135,7 +4128,7 @@ function Dashboard() {
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 264,
+                        lineNumber: 254,
                         columnNumber: 13
                     }, this);
                 } else {
@@ -4143,7 +4136,7 @@ function Dashboard() {
                         size: 24
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 273,
+                        lineNumber: 263,
                         columnNumber: 18
                     }, this);
                 }
@@ -4171,18 +4164,8 @@ function Dashboard() {
                 url: url,
                 description: description
             };
-            console.log(`Dashboard hydrateTechnologies: Hydrated item (index ${index}):`, JSON.parse(JSON.stringify({
-                id: techItem.id,
-                name: techItem.name,
-                order: techItem.order
-            })));
             return techItem;
         });
-        console.log("Dashboard hydrateTechnologies: All hydrated technologies:", JSON.parse(JSON.stringify(hydrated.map((t)=>({
-                id: t.id,
-                name: t.name,
-                order: t.order
-            })))));
         return hydrated;
     }, []);
     // Modified to save the active stack
@@ -4195,11 +4178,6 @@ function Dashboard() {
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("No active stack to save.");
             return;
         }
-        console.log("Dashboard saveActiveStack: Stack being prepared for API:", JSON.parse(JSON.stringify(stackToSave.technologies.map((t)=>({
-                id: t.id,
-                name: t.name,
-                order: t.order
-            })))));
         try {
             const technologiesToSave = stackToSave.technologies.map((tech, index)=>{
                 const isProject = tech.isProject || false;
@@ -4220,12 +4198,6 @@ function Dashboard() {
                     description,
                     order: tech.order
                 };
-                console.log(`Dashboard saveActiveStack: Tech item (index ${index}) being sent to API:`, JSON.parse(JSON.stringify({
-                    id: apiTechItem.id,
-                    name: apiTechItem.name,
-                    order: apiTechItem.order,
-                    technologyId: apiTechItem.technologyId
-                })));
                 return apiTechItem;
             });
             const response = await fetch("/api/tech/stack", {
@@ -4244,19 +4216,7 @@ function Dashboard() {
                 throw new Error(errorData.error || "Error while saving the stack");
             }
             const savedStackData = await response.json();
-            // Log for duplication debug
-            console.log("Dashboard saveActiveStack: Raw technologies from API response:", JSON.parse(JSON.stringify(savedStackData.technologies.map((t)=>({
-                    id: t.id,
-                    name: t.name,
-                    order: t.order
-                })))));
             const hydratedFromApi = hydrateTechnologies(savedStackData.technologies || []);
-            console.log("Dashboard saveActiveStack: Technologies hydrated from API:", JSON.parse(JSON.stringify(hydratedFromApi.map((t)=>({
-                    id: t.id,
-                    name: t.name,
-                    order: t.order
-                })))));
-            // Update the stack in userStacks state
             setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === savedStackData.id ? {
                         ...savedStackData,
                         technologies: hydratedFromApi
@@ -4266,7 +4226,6 @@ function Dashboard() {
             }
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success(`Stack '${savedStackData.name}' saved successfully!`);
         } catch (error) {
-            console.error("Error saving stack:", error);
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Unable to save the stack.");
         }
     }, [
@@ -4293,7 +4252,6 @@ function Dashboard() {
                         setActiveStackId(null);
                     }
                 } catch (error) {
-                    console.error("Error loading stacks:", error);
                     __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Unable to load your stacks.");
                     setUserStacks([]);
                     setActiveStackId(null);
@@ -4346,7 +4304,6 @@ function Dashboard() {
             setActiveStackId(hydratedNewStack.id);
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success(`Stack '${hydratedNewStack.name}' created successfully!`);
         } catch (error) {
-            console.error("Error creating stack:", error);
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Unable to create the stack.");
         }
     };
@@ -4366,16 +4323,13 @@ function Dashboard() {
                 const errorData = await response.json();
                 throw new Error(errorData.error || "Error while deleting the stack");
             }
-            // Update local state
             const updatedStacks = userStacks.filter((stack)=>stack.id !== stackId);
             setUserStacks(updatedStacks);
-            // If the deleted stack was the active one, select the first available or null
             if (activeStackId === stackId) {
                 setActiveStackId(updatedStacks.length > 0 ? updatedStacks[0].id : null);
             }
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Stack deleted successfully!");
         } catch (error) {
-            console.error("Error deleting stack:", error);
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Unable to delete the stack.");
         }
     };
@@ -4384,9 +4338,6 @@ function Dashboard() {
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("Please select a stack to add a technology.");
             return;
         }
-        // Check if it's a project with a favicon
-        const isProject = newTechFromForm.isProject;
-        const favicon = newTechFromForm.favicon;
         const updatedTechnologies = [
             ...activeStack.technologies,
             newTechFromForm
@@ -4396,11 +4347,10 @@ function Dashboard() {
             technologies: updatedTechnologies
         };
         setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
-        saveActiveStack(updatedStack); // Save the modified active stack
+        saveActiveStack(updatedStack);
     };
     const handleRemoveTech = async (stackTechnologyItemId)=>{
         if (!activeStack) return;
-        // Deletion is done via API using the stackTechnologyItem ID
         try {
             const response = await fetch(`/api/tech/stack?id=${stackTechnologyItemId}`, {
                 method: "DELETE"
@@ -4415,14 +4365,11 @@ function Dashboard() {
                 technologies: updatedTechnologies
             };
             setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
-            // No need to call saveActiveStack here if the API already made the persistent change and the deletion affects stackTechnologyItem globally
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Technology removed from the active stack!");
         } catch (error) {
-            console.error("Error deleting tech:", error);
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Unable to delete the technology.");
         }
     };
-    // Handles name changes for the ACTIVE stack
     const handleActiveStackNameChange = (newName)=>{
         if (!activeStack) return;
         const updatedStack = {
@@ -4433,9 +4380,7 @@ function Dashboard() {
         saveActiveStack(updatedStack);
     };
     const handleProfileDescriptionChange = async (newDescription)=>{
-        // Optimistic UI update
         setUserProfileDescription(newDescription);
-        // Exit edit mode after saving
         setIsEditingProfile(false);
         if (!sessionData?.user?.id) {
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("You must be logged in to save your description.");
@@ -4456,12 +4401,8 @@ function Dashboard() {
                 throw new Error(errorData.error || "Error while saving the description.");
             }
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Profile description saved!");
-        // Optionally: refresh session data if the description is stored there and useSession doesn't do it automatically
-        // For example: refetchSession(); or similar logic if your useSession hook allows it
         } catch (error) {
-            console.error("Error saving profile description:", error);
             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Unable to save the description.");
-        // Optimistic rollback if needed, or re-fetch user data
         }
     };
     const handleUpdateTech = (id, updates)=>{
@@ -4478,50 +4419,45 @@ function Dashboard() {
         saveActiveStack(updatedStack);
     };
     const handleReorderTechs = (reorderedTechs)=>{
-        console.log("Dashboard handleReorderTechs: Technologies received with new order:", JSON.parse(JSON.stringify(reorderedTechs.map((t)=>({
-                id: t.id,
-                name: t.name,
-                order: t.order
-            })))));
-        if (!activeStack) {
-            console.error("Dashboard handleReorderTechs: No active stack!");
-            return;
-        }
+        if (!activeStack) return;
         const updatedStack = {
             ...activeStack,
             technologies: reorderedTechs
         };
-        console.log("Dashboard handleReorderTechs: Updated stack to be saved (structure for saveActiveStack):", JSON.parse(JSON.stringify(updatedStack.technologies.map((t)=>({
-                id: t.id,
-                name: t.name,
-                order: t.order
-            })))));
-        setUserStacks((prevStacks)=>{
-            const newStacks = prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s);
-            console.log("Dashboard handleReorderTechs: setUserStacks called with (showing only active stack technologies for brevity if active):");
-            const activeStackInNew = newStacks.find((s)=>s.id === activeStackId);
-            if (activeStackInNew) {
-                console.log(JSON.parse(JSON.stringify(activeStackInNew.technologies.map((t)=>({
-                        id: t.id,
-                        name: t.name,
-                        order: t.order
-                    })))));
-            } else {
-                console.log("Active stack not found in newStacks after reorder update.");
-            }
-            return newStacks;
-        });
+        setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
         saveActiveStack(updatedStack);
     };
+    // Fonction pour charger manuellement la description de l'utilisateur
+    const refreshUserProfileData = async ()=>{
+        try {
+            const response = await fetch("/api/user/profile");
+            if (!response.ok) throw new Error("Failed to fetch user profile data");
+            const userData = await response.json();
+            if (userData.description) {
+                setUserProfileDescription(userData.description);
+                setEditingDescription(userData.description);
+            }
+        } catch (error) {
+        // Silently fail
+        }
+    };
+    // Charger la description au chargement initial
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (sessionData?.user?.id) {
+            refreshUserProfileData();
+        }
+    }, [
+        sessionData?.user?.id
+    ]);
     // --- Composants de Section (contenu réel) ---
     const ProfileSection = ({ currentSessionData, isEditing, setIsEditing, currentDescription, editingDesc, setEditingDesc, onDescriptionChange })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "relative bg-[var(--card)] p-6 rounded-lg border border-[var(--border)] flex flex-col gap-6 h-full",
+            className: "relative bg-[var(--card)] p-6 rounded-lg border-1 border-[var(--border)] flex flex-col gap-6 h-full",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$glowing$2d$effect$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["GlowingEffect"], {
                     className: "rounded-lg"
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 778,
+                    lineNumber: 653,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4531,7 +4467,7 @@ function Dashboard() {
                             children: "My Profile"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 780,
+                            lineNumber: 655,
                             columnNumber: 9
                         }, this),
                         currentSessionData?.user?.image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4544,12 +4480,12 @@ function Dashboard() {
                                 className: "rounded-full"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 785,
+                                lineNumber: 660,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 784,
+                            lineNumber: 659,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -4557,7 +4493,7 @@ function Dashboard() {
                             children: currentSessionData?.user?.name || "Anonymous User"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 794,
+                            lineNumber: 669,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4565,13 +4501,13 @@ function Dashboard() {
                             children: currentSessionData?.user?.email
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 797,
+                            lineNumber: 672,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 779,
+                    lineNumber: 654,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4583,7 +4519,7 @@ function Dashboard() {
                                 children: "My description"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 805,
+                                lineNumber: 680,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4591,7 +4527,7 @@ function Dashboard() {
                                 children: currentDescription || "No description yet."
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 808,
+                                lineNumber: 683,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4605,13 +4541,13 @@ function Dashboard() {
                                 children: "Edit description"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 815,
+                                lineNumber: 690,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 804,
+                        lineNumber: 679,
                         columnNumber: 11
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         children: [
@@ -4621,7 +4557,7 @@ function Dashboard() {
                                 children: "Edit my description"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 829,
+                                lineNumber: 704,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -4633,7 +4569,7 @@ function Dashboard() {
                                 placeholder: "Introduce yourself in a few words..."
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 835,
+                                lineNumber: 710,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4646,7 +4582,7 @@ function Dashboard() {
                                         children: "Save"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 844,
+                                        lineNumber: 719,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4657,73 +4593,105 @@ function Dashboard() {
                                         children: "Cancel"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 851,
+                                        lineNumber: 726,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 843,
+                                lineNumber: 718,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 828,
+                        lineNumber: 703,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 802,
+                    lineNumber: 677,
                     columnNumber: 7
                 }, this),
                 !isEditing && currentSessionData?.user?.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "mt-0",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                            className: "text-md font-semibold text-[var(--card-foreground)] mb-2",
-                            children: "Tags"
-                        }, void 0, false, {
-                            fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 866,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$profile$2f$tag$2d$manager$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TagManager"], {
-                            userId: currentSessionData.user.id
-                        }, void 0, false, {
-                            fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 869,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$profile$2f$tag$2d$manager$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TagManager"], {
+                        userId: currentSessionData.user.id
+                    }, void 0, false, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 741,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 865,
+                    lineNumber: 740,
+                    columnNumber: 9
+                }, this),
+                !isEditing && currentSessionData?.user?.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mt-auto pt-6",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                        variant: "destructive",
+                        size: "sm",
+                        onClick: async ()=>{
+                            if (confirm("Are you sure you want to delete your account? This action is irreversible and all your data will be lost.")) {
+                                try {
+                                    const response = await fetch("/api/user/delete", {
+                                        method: "DELETE"
+                                    });
+                                    if (response.ok) {
+                                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].success("Account deleted successfully. Redirecting...");
+                                        // Déconnecter l'utilisateur et le rediriger
+                                        // Idéalement, utilisez une fonction de déconnexion de better-auth/react si disponible
+                                        // ou s'assurer que le cookie est effacé par le serveur et rediriger.
+                                        // authClient.signOut() ou similaire
+                                        window.location.href = "/"; // Redirection vers la page d'accueil
+                                    } else {
+                                        const errorData = await response.json();
+                                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error(errorData.error || "Failed to delete account.");
+                                    }
+                                } catch (error) {
+                                    console.error("Error calling delete account API:", error);
+                                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["toast"].error("An error occurred while deleting the account.");
+                                }
+                            }
+                        },
+                        className: "w-full",
+                        children: "Delete My Account"
+                    }, void 0, false, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 747,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/app/dashboard/page.tsx",
+                    lineNumber: 746,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 777,
+            lineNumber: 652,
             columnNumber: 5
         }, this);
-    const StacksSection = ({ userStacks, activeStackId, newStackName, setNewStackName, handleCreateNewStack, setActiveStackId, handleDeleteStack, saveActiveStack })=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+    const StacksSection = ({ userStacks, activeStackId, handleCreateNewStack, setActiveStackId, handleDeleteStack, saveActiveStack })=>{
+        const [inputValue, setInputValue] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "relative bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] flex flex-col h-full",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$glowing$2d$effect$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["GlowingEffect"], {
                     className: "rounded-lg"
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 895,
-                    columnNumber: 7
+                    lineNumber: 807,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                     className: "text-xl font-semibold mb-3 text-[var(--card-foreground)]",
                     children: "My Stacks"
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 896,
-                    columnNumber: 7
+                    lineNumber: 808,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "flex-grow mb-4",
@@ -4744,13 +4712,13 @@ function Dashboard() {
                                                 children: stack.name
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 906,
-                                                columnNumber: 21
+                                                lineNumber: 818,
+                                                columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 905,
-                                            columnNumber: 19
+                                            lineNumber: 817,
+                                            columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ContextMenuContent"], {
                                             children: [
@@ -4760,13 +4728,13 @@ function Dashboard() {
                                                     children: "Delete"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/dashboard/page.tsx",
-                                                    lineNumber: 921,
-                                                    columnNumber: 21
+                                                    lineNumber: 833,
+                                                    columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ContextMenuSeparator"], {}, void 0, false, {
                                                     fileName: "[project]/app/dashboard/page.tsx",
-                                                    lineNumber: 927,
-                                                    columnNumber: 21
+                                                    lineNumber: 839,
+                                                    columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ContextMenuItem"], {
                                                     onClick: ()=>{
@@ -4781,30 +4749,30 @@ function Dashboard() {
                                                     children: "Rename"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/dashboard/page.tsx",
-                                                    lineNumber: 928,
-                                                    columnNumber: 21
+                                                    lineNumber: 840,
+                                                    columnNumber: 23
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 920,
-                                            columnNumber: 19
+                                            lineNumber: 832,
+                                            columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 904,
-                                    columnNumber: 17
+                                    lineNumber: 816,
+                                    columnNumber: 19
                                 }, this)
                             }, stack.id, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 903,
-                                columnNumber: 15
+                                lineNumber: 815,
+                                columnNumber: 17
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 901,
-                        columnNumber: 11
+                        lineNumber: 813,
+                        columnNumber: 13
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "h-full flex items-center justify-center",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4812,58 +4780,65 @@ function Dashboard() {
                             children: "No stacks yet. Create one to get started!"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 955,
-                            columnNumber: 13
+                            lineNumber: 867,
+                            columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 954,
-                        columnNumber: 11
+                        lineNumber: 866,
+                        columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 899,
-                    columnNumber: 7
+                    lineNumber: 811,
+                    columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "flex flex-col sm:flex-row gap-2 items-stretch sm:items-center",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                             type: "text",
-                            value: newStackName,
-                            onChange: (e)=>setNewStackName(e.target.value),
+                            value: inputValue,
+                            onChange: (e)=>setInputValue(e.target.value),
                             placeholder: "New stack name...",
                             className: "w-full sm:flex-grow p-2 rounded bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 962,
-                            columnNumber: 9
+                            lineNumber: 874,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                            onClick: ()=>{
-                                if (newStackName.trim()) {
-                                    handleCreateNewStack(newStackName.trim());
+                            onClick: async ()=>{
+                                if (inputValue.trim()) {
+                                    try {
+                                        await handleCreateNewStack(inputValue.trim());
+                                        setInputValue("");
+                                    } catch (error) {
+                                    // L'erreur est gérée par le toast dans handleCreateNewStack du parent
+                                    // L'input n'est pas vidé pour permettre la correction
+                                    }
                                 }
                             },
                             className: "w-full sm:w-auto bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90",
                             children: "Create Stack"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 969,
-                            columnNumber: 9
+                            lineNumber: 881,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 961,
-                    columnNumber: 7
+                    lineNumber: 873,
+                    columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 894,
-            columnNumber: 5
+            lineNumber: 806,
+            columnNumber: 7
         }, this);
+    };
     const BentoGridSection = ({ activeStack, technologies, isLoadingInitialData, handleAddTech, sessionUserId, handleRemoveTech, handleUpdateTech, handleReorderTechs })=>{
         if (!sessionUserId) return null; // Garde pour sessionUserId
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -4875,7 +4850,7 @@ function Dashboard() {
                             className: "rounded-lg"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1007,
+                            lineNumber: 926,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4886,7 +4861,7 @@ function Dashboard() {
                                     children: "Your Bento Grid."
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1009,
+                                    lineNumber: 928,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$add$2d$tech$2d$form$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AddTechForm"], {
@@ -4894,13 +4869,13 @@ function Dashboard() {
                                     userId: sessionUserId
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1012,
+                                    lineNumber: 931,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1008,
+                            lineNumber: 927,
                             columnNumber: 13
                         }, this),
                         technologies.length === 0 && !isLoadingInitialData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4915,7 +4890,7 @@ function Dashboard() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1017,
+                                    lineNumber: 936,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4923,13 +4898,13 @@ function Dashboard() {
                                     children: 'Click "Add" to get started.'
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1020,
+                                    lineNumber: 939,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1016,
+                            lineNumber: 935,
                             columnNumber: 15
                         }, this),
                         technologies.length > 0 && !isLoadingInitialData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4941,18 +4916,18 @@ function Dashboard() {
                                 onReorderTechs: handleReorderTechs
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1028,
+                                lineNumber: 947,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1027,
+                            lineNumber: 946,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1006,
+                    lineNumber: 925,
                     columnNumber: 11
                 }, this),
                 !activeStack && !isLoadingInitialData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4962,12 +4937,12 @@ function Dashboard() {
                         children: "Please select a stack to view its technologies or create a new one."
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1041,
+                        lineNumber: 960,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1040,
+                    lineNumber: 959,
                     columnNumber: 11
                 }, this)
             ]
@@ -4988,22 +4963,20 @@ function Dashboard() {
                     onDescriptionChange: handleProfileDescriptionChange
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1057,
+                    lineNumber: 976,
                     columnNumber: 11
                 }, this);
             case "stacks":
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StacksSection, {
                     userStacks: userStacks,
                     activeStackId: activeStackId,
-                    newStackName: newStackName,
-                    setNewStackName: setNewStackName,
                     handleCreateNewStack: handleCreateNewStack,
                     setActiveStackId: setActiveStackId,
                     handleDeleteStack: handleDeleteStack,
                     saveActiveStack: saveActiveStack
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1069,
+                    lineNumber: 988,
                     columnNumber: 11
                 }, this);
             default:
@@ -5025,12 +4998,12 @@ function Dashboard() {
                         children: renderSectionContent("profile")
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1100,
+                        lineNumber: 1017,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1096,
+                    lineNumber: 1013,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5045,12 +5018,12 @@ function Dashboard() {
                                 children: renderSectionContent("stacks")
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1112,
+                                lineNumber: 1029,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1108,
+                            lineNumber: 1025,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5066,24 +5039,24 @@ function Dashboard() {
                                 handleReorderTechs: handleReorderTechs
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1120,
+                                lineNumber: 1037,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1119,
+                            lineNumber: 1036,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1107,
+                    lineNumber: 1024,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1089,
+            lineNumber: 1006,
             columnNumber: 7
         }, this);
     } else {
@@ -5103,17 +5076,17 @@ function Dashboard() {
                             children: renderSectionContent("stacks")
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1147,
+                            lineNumber: 1064,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1146,
+                        lineNumber: 1063,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1145,
+                    lineNumber: 1062,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5127,17 +5100,17 @@ function Dashboard() {
                             children: renderSectionContent("profile")
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1157,
+                            lineNumber: 1074,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1156,
+                        lineNumber: 1073,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1155,
+                    lineNumber: 1072,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5155,23 +5128,23 @@ function Dashboard() {
                             handleReorderTechs: handleReorderTechs
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1167,
+                            lineNumber: 1084,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1166,
+                        lineNumber: 1083,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1165,
+                    lineNumber: 1082,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1138,
+            lineNumber: 1055,
             columnNumber: 7
         }, this);
     }
@@ -5181,7 +5154,7 @@ function Dashboard() {
             children: "Loading your dashboard..."
         }, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1185,
+            lineNumber: 1102,
             columnNumber: 7
         }, this);
     }
@@ -5194,7 +5167,7 @@ function Dashboard() {
                     children: "Please sign in to access your dashboard."
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1194,
+                    lineNumber: 1111,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5203,13 +5176,13 @@ function Dashboard() {
                     children: "Sign in"
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1195,
+                    lineNumber: 1112,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1193,
+            lineNumber: 1110,
             columnNumber: 7
         }, this);
     }
@@ -5236,26 +5209,26 @@ function Dashboard() {
                                         className: "mr-2"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1221,
+                                        lineNumber: 1138,
                                         columnNumber: 17
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2d$line$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit3$3e$__["Edit3"], {
                                         size: 18,
                                         className: "mr-2"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1223,
+                                        lineNumber: 1140,
                                         columnNumber: 17
                                     }, this),
                                     isPageEditMode ? "Done Editing" : "Edit Layout"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1215,
+                                lineNumber: 1132,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1214,
+                            lineNumber: 1131,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5263,18 +5236,18 @@ function Dashboard() {
                             children: mainContent
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1229,
+                            lineNumber: 1146,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1213,
+                    lineNumber: 1130,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 1212,
+                lineNumber: 1129,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DragOverlay"], {
@@ -5283,18 +5256,18 @@ function Dashboard() {
                     children: renderSectionContent(activeDragId)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1234,
+                    lineNumber: 1151,
                     columnNumber: 11
                 }, this) : null
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 1232,
+                lineNumber: 1149,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 1206,
+        lineNumber: 1123,
         columnNumber: 5
     }, this);
 }

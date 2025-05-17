@@ -1,42 +1,82 @@
-import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth"; // Import de l'instance auth de better-auth
-import { db } from "@/drizzle/db"; // Supposant l\'accès à l\'instance db de Drizzle
-import { user } from "@/drizzle/db/schema"; // Importer le schéma utilisateur
+import { auth } from "@/lib/auth";
+import { db } from "@/drizzle/db";
+import { user } from "@/drizzle/db/schema";
 import { eq } from "drizzle-orm";
+import { NextResponse } from "next/server";
 
-export async function PUT(request: Request) {
-  // Récupérer la session en utilisant la méthode de better-auth
-  const session = await auth.api.getSession({
-    headers: request.headers, // Utiliser request.headers directement
-  });
-
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
-  }
-
+export async function GET(req: Request) {
   try {
-    const { description } = await request.json();
+    // Obtenir la session de l'utilisateur
+    const session = await auth.api.getSession({ headers: req.headers });
 
-    if (typeof description !== "string") {
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Non authentifié" }, { status: 401 });
+    }
+
+    // Récupérer les données de l'utilisateur
+    const userData = await db
+      .select({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        image: user.image,
+        description: user.description,
+      })
+      .from(user)
+      .where(eq(user.id, session.user.id))
+      .then((res) => res[0]);
+
+    if (!userData) {
       return NextResponse.json(
-        { error: "Description invalide" },
+        { error: "Utilisateur non trouvé" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(userData, { status: 200 });
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des données utilisateur:",
+      error
+    );
+    return NextResponse.json(
+      { error: "Erreur lors de la récupération des données utilisateur" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(req: Request) {
+  try {
+    // Obtenir la session de l'utilisateur
+    const session = await auth.api.getSession({ headers: req.headers });
+
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Non authentifié" }, { status: 401 });
+    }
+
+    // Extraire la description du corps de la requête
+    const body = await req.json();
+    const { description } = body;
+
+    if (description === undefined) {
+      return NextResponse.json(
+        { error: "La description est requise" },
         { status: 400 }
       );
     }
 
-    // S'assurer que session.user.id est bien une string pour la comparaison avec le schéma
-    const userId = String(session.user.id);
-
+    // Mettre à jour la description de l'utilisateur dans la base de données
     await db
       .update(user)
-      .set({ description: description, updatedAt: new Date() })
-      .where(eq(user.id, userId));
+      .set({ description })
+      .where(eq(user.id, session.user.id));
 
-    return NextResponse.json({ message: "Profil mis à jour avec succès" });
+    return NextResponse.json({ success: true, description }, { status: 200 });
   } catch (error) {
-    console.error("Erreur lors de la mise à jour du profil:", error);
+    console.error("Erreur lors de la mise à jour de la description:", error);
     return NextResponse.json(
-      { error: "Erreur interne du serveur" },
+      { error: "Erreur lors de la mise à jour de la description" },
       { status: 500 }
     );
   }

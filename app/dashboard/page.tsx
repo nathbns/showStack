@@ -149,7 +149,6 @@ export default function Dashboard() {
   const [activeStackId, setActiveStackId] = useState<number | null>(null);
   const [isLoadingInitialData, setIsLoadingInitialData] = useState(true);
   const [userProfileDescription, setUserProfileDescription] = useState("");
-  const [newStackName, setNewStackName] = useState("");
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [editingDescription, setEditingDescription] = useState("");
 
@@ -229,22 +228,13 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (sessionData?.user) {
-      // @ts-ignore
       const currentDesc = (sessionData.user as any).description || "";
       setUserProfileDescription(currentDesc);
-      setEditingDescription(currentDesc); // Also initialize the editing description
+      setEditingDescription(currentDesc);
     }
   }, [sessionData]);
 
   const hydrateTechnologies = useCallback((rawTechs: any[]): Tech[] => {
-    console.log(
-      "Dashboard hydrateTechnologies: Raw tech data for hydration:",
-      JSON.parse(
-        JSON.stringify(
-          rawTechs.map((t) => ({ id: t.id, name: t.name, order: t.order }))
-        )
-      )
-    );
     if (!rawTechs) return [];
     const hydrated = rawTechs.map((rawTech, index) => {
       let icon;
@@ -294,32 +284,14 @@ export default function Dashboard() {
         technologyId: rawTech.technologyId,
         category: rawTech.category,
         gridSpan: gridSpan,
-        order: rawTech.order !== undefined ? rawTech.order : index, // Fallback to index
+        order: rawTech.order !== undefined ? rawTech.order : index,
         isProject: isProject,
         favicon: favicon,
         url: url,
         description: description,
       };
-      console.log(
-        `Dashboard hydrateTechnologies: Hydrated item (index ${index}):`,
-        JSON.parse(
-          JSON.stringify({
-            id: techItem.id,
-            name: techItem.name,
-            order: techItem.order,
-          })
-        )
-      );
       return techItem;
     });
-    console.log(
-      "Dashboard hydrateTechnologies: All hydrated technologies:",
-      JSON.parse(
-        JSON.stringify(
-          hydrated.map((t) => ({ id: t.id, name: t.name, order: t.order }))
-        )
-      )
-    );
     return hydrated;
   }, []);
 
@@ -334,18 +306,6 @@ export default function Dashboard() {
         toast.error("No active stack to save.");
         return;
       }
-      console.log(
-        "Dashboard saveActiveStack: Stack being prepared for API:",
-        JSON.parse(
-          JSON.stringify(
-            stackToSave.technologies.map((t) => ({
-              id: t.id,
-              name: t.name,
-              order: t.order,
-            }))
-          )
-        )
-      );
 
       try {
         const technologiesToSave = stackToSave.technologies.map(
@@ -379,17 +339,6 @@ export default function Dashboard() {
               description,
               order: tech.order,
             };
-            console.log(
-              `Dashboard saveActiveStack: Tech item (index ${index}) being sent to API:`,
-              JSON.parse(
-                JSON.stringify({
-                  id: apiTechItem.id,
-                  name: apiTechItem.name,
-                  order: apiTechItem.order,
-                  technologyId: apiTechItem.technologyId,
-                })
-              )
-            );
             return apiTechItem;
           }
         );
@@ -410,37 +359,10 @@ export default function Dashboard() {
         }
 
         const savedStackData = await response.json();
-
-        // Log for duplication debug
-        console.log(
-          "Dashboard saveActiveStack: Raw technologies from API response:",
-          JSON.parse(
-            JSON.stringify(
-              savedStackData.technologies.map((t: any) => ({
-                id: t.id,
-                name: t.name,
-                order: t.order,
-              }))
-            )
-          )
-        );
         const hydratedFromApi = hydrateTechnologies(
           savedStackData.technologies || []
         );
-        console.log(
-          "Dashboard saveActiveStack: Technologies hydrated from API:",
-          JSON.parse(
-            JSON.stringify(
-              hydratedFromApi.map((t: Tech) => ({
-                id: t.id,
-                name: t.name,
-                order: t.order,
-              }))
-            )
-          )
-        );
 
-        // Update the stack in userStacks state
         setUserStacks((prevStacks) =>
           prevStacks.map((s) =>
             s.id === savedStackData.id
@@ -456,7 +378,6 @@ export default function Dashboard() {
         }
         toast.success(`Stack '${savedStackData.name}' saved successfully!`);
       } catch (error) {
-        console.error("Error saving stack:", error);
         toast.error((error as Error).message || "Unable to save the stack.");
       }
     },
@@ -485,7 +406,6 @@ export default function Dashboard() {
             setActiveStackId(null);
           }
         } catch (error) {
-          console.error("Error loading stacks:", error);
           toast.error("Unable to load your stacks.");
           setUserStacks([]);
           setActiveStackId(null);
@@ -533,7 +453,6 @@ export default function Dashboard() {
       setActiveStackId(hydratedNewStack.id);
       toast.success(`Stack '${hydratedNewStack.name}' created successfully!`);
     } catch (error) {
-      console.error("Error creating stack:", error);
       toast.error((error as Error).message || "Unable to create the stack.");
     }
   };
@@ -565,18 +484,15 @@ export default function Dashboard() {
         throw new Error(errorData.error || "Error while deleting the stack");
       }
 
-      // Update local state
       const updatedStacks = userStacks.filter((stack) => stack.id !== stackId);
       setUserStacks(updatedStacks);
 
-      // If the deleted stack was the active one, select the first available or null
       if (activeStackId === stackId) {
         setActiveStackId(updatedStacks.length > 0 ? updatedStacks[0].id : null);
       }
 
       toast.success("Stack deleted successfully!");
     } catch (error) {
-      console.error("Error deleting stack:", error);
       toast.error((error as Error).message || "Unable to delete the stack.");
     }
   };
@@ -587,22 +503,17 @@ export default function Dashboard() {
       return;
     }
 
-    // Check if it's a project with a favicon
-    const isProject = (newTechFromForm as any).isProject;
-    const favicon = (newTechFromForm as any).favicon;
-
     const updatedTechnologies = [...activeStack.technologies, newTechFromForm];
     const updatedStack = { ...activeStack, technologies: updatedTechnologies };
 
     setUserStacks((prevStacks) =>
       prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
     );
-    saveActiveStack(updatedStack); // Save the modified active stack
+    saveActiveStack(updatedStack);
   };
 
   const handleRemoveTech = async (stackTechnologyItemId: string) => {
     if (!activeStack) return;
-    // Deletion is done via API using the stackTechnologyItem ID
     try {
       const response = await fetch(
         `/api/tech/stack?id=${stackTechnologyItemId}`,
@@ -623,17 +534,14 @@ export default function Dashboard() {
       setUserStacks((prevStacks) =>
         prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
       );
-      // No need to call saveActiveStack here if the API already made the persistent change and the deletion affects stackTechnologyItem globally
       toast.success("Technology removed from the active stack!");
     } catch (error) {
-      console.error("Error deleting tech:", error);
       toast.error(
         (error as Error).message || "Unable to delete the technology."
       );
     }
   };
 
-  // Handles name changes for the ACTIVE stack
   const handleActiveStackNameChange = (newName: string) => {
     if (!activeStack) return;
 
@@ -645,9 +553,7 @@ export default function Dashboard() {
   };
 
   const handleProfileDescriptionChange = async (newDescription: string) => {
-    // Optimistic UI update
     setUserProfileDescription(newDescription);
-    // Exit edit mode after saving
     setIsEditingProfile(false);
 
     if (!sessionData?.user?.id) {
@@ -669,14 +575,10 @@ export default function Dashboard() {
         );
       }
       toast.success("Profile description saved!");
-      // Optionally: refresh session data if the description is stored there and useSession doesn't do it automatically
-      // For example: refetchSession(); or similar logic if your useSession hook allows it
     } catch (error) {
-      console.error("Error saving profile description:", error);
       toast.error(
         (error as Error).message || "Unable to save the description."
       );
-      // Optimistic rollback if needed, or re-fetch user data
     }
   };
 
@@ -695,66 +597,39 @@ export default function Dashboard() {
   };
 
   const handleReorderTechs = (reorderedTechs: Tech[]) => {
-    console.log(
-      "Dashboard handleReorderTechs: Technologies received with new order:",
-      JSON.parse(
-        JSON.stringify(
-          reorderedTechs.map((t: Tech) => ({
-            id: t.id,
-            name: t.name,
-            order: t.order,
-          }))
-        )
-      )
-    );
-    if (!activeStack) {
-      console.error("Dashboard handleReorderTechs: No active stack!");
-      return;
-    }
+    if (!activeStack) return;
 
     const updatedStack = { ...activeStack, technologies: reorderedTechs };
-    console.log(
-      "Dashboard handleReorderTechs: Updated stack to be saved (structure for saveActiveStack):",
-      JSON.parse(
-        JSON.stringify(
-          updatedStack.technologies.map((t: Tech) => ({
-            id: t.id,
-            name: t.name,
-            order: t.order,
-          }))
-        )
-      )
-    );
 
-    setUserStacks((prevStacks) => {
-      const newStacks = prevStacks.map((s) =>
-        s.id === activeStackId ? updatedStack : s
-      );
-      console.log(
-        "Dashboard handleReorderTechs: setUserStacks called with (showing only active stack technologies for brevity if active):"
-      );
-      const activeStackInNew = newStacks.find((s) => s.id === activeStackId);
-      if (activeStackInNew) {
-        console.log(
-          JSON.parse(
-            JSON.stringify(
-              activeStackInNew.technologies.map((t: Tech) => ({
-                id: t.id,
-                name: t.name,
-                order: t.order,
-              }))
-            )
-          )
-        );
-      } else {
-        console.log(
-          "Active stack not found in newStacks after reorder update."
-        );
-      }
-      return newStacks;
-    });
+    setUserStacks((prevStacks) =>
+      prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
+    );
     saveActiveStack(updatedStack);
   };
+
+  // Fonction pour charger manuellement la description de l'utilisateur
+  const refreshUserProfileData = async () => {
+    try {
+      const response = await fetch("/api/user/profile");
+      if (!response.ok) throw new Error("Failed to fetch user profile data");
+
+      const userData = await response.json();
+
+      if (userData.description) {
+        setUserProfileDescription(userData.description);
+        setEditingDescription(userData.description);
+      }
+    } catch (error) {
+      // Silently fail
+    }
+  };
+
+  // Charger la description au chargement initial
+  useEffect(() => {
+    if (sessionData?.user?.id) {
+      refreshUserProfileData();
+    }
+  }, [sessionData?.user?.id]);
 
   // --- Composants de Section (contenu réel) ---
   const ProfileSection = ({
@@ -774,7 +649,7 @@ export default function Dashboard() {
     setEditingDesc: (val: string) => void;
     onDescriptionChange: (newDesc: string) => void;
   }) => (
-    <div className="relative bg-[var(--card)] p-6 rounded-lg border border-[var(--border)] flex flex-col gap-6 h-full">
+    <div className="relative bg-[var(--card)] p-6 rounded-lg border-1 border-[var(--border)] flex flex-col gap-6 h-full">
       <GlowingEffect className="rounded-lg" />
       <div>
         <h2 className="text-2xl font-semibold mb-4 text-[var(--card-foreground)]">
@@ -863,10 +738,48 @@ export default function Dashboard() {
 
       {!isEditing && currentSessionData?.user?.id && (
         <div className="mt-0">
-          <h4 className="text-md font-semibold text-[var(--card-foreground)] mb-2">
-            Tags
-          </h4>
           <TagManager userId={currentSessionData.user.id} />
+        </div>
+      )}
+
+      {!isEditing && currentSessionData?.user?.id && (
+        <div className="mt-auto pt-6">
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={async () => {
+              if (
+                confirm(
+                  "Are you sure you want to delete your account? This action is irreversible and all your data will be lost."
+                )
+              ) {
+                try {
+                  const response = await fetch("/api/user/delete", {
+                    method: "DELETE",
+                  });
+                  if (response.ok) {
+                    toast.success(
+                      "Account deleted successfully. Redirecting..."
+                    );
+                    // Déconnecter l'utilisateur et le rediriger
+                    // Idéalement, utilisez une fonction de déconnexion de better-auth/react si disponible
+                    // ou s'assurer que le cookie est effacé par le serveur et rediriger.
+                    // authClient.signOut() ou similaire
+                    window.location.href = "/"; // Redirection vers la page d'accueil
+                  } else {
+                    const errorData = await response.json();
+                    toast.error(errorData.error || "Failed to delete account.");
+                  }
+                } catch (error) {
+                  console.error("Error calling delete account API:", error);
+                  toast.error("An error occurred while deleting the account.");
+                }
+              }
+            }}
+            className="w-full"
+          >
+            Delete My Account
+          </Button>
         </div>
       )}
     </div>
@@ -875,8 +788,6 @@ export default function Dashboard() {
   const StacksSection = ({
     userStacks,
     activeStackId,
-    newStackName,
-    setNewStackName,
     handleCreateNewStack,
     setActiveStackId,
     handleDeleteStack,
@@ -884,101 +795,109 @@ export default function Dashboard() {
   }: {
     userStacks: UserStack[];
     activeStackId: number | null;
-    newStackName: string;
-    setNewStackName: (value: string) => void;
-    handleCreateNewStack: (name: string) => void;
+    handleCreateNewStack: (name: string) => Promise<void>;
     setActiveStackId: (id: number | null) => void;
     handleDeleteStack: (id: number) => void;
     saveActiveStack: (stack: UserStack) => void;
-  }) => (
-    <div className="relative bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] flex flex-col h-full">
-      <GlowingEffect className="rounded-lg" />
-      <h3 className="text-xl font-semibold mb-3 text-[var(--card-foreground)]">
-        My Stacks
-      </h3>
-      <div className="flex-grow mb-4">
-        {userStacks.length > 0 ? (
-          <div className="flex flex-wrap gap-2" style={{ minHeight: "80px" }}>
-            {userStacks.map((stack) => (
-              <div key={stack.id} className="flex items-center">
-                <ContextMenu>
-                  <ContextMenuTrigger>
-                    <Button
-                      variant={
-                        activeStackId === stack.id ? "default" : "outline"
-                      }
-                      onClick={() => setActiveStackId(stack.id)}
-                      className={
-                        activeStackId !== stack.id
-                          ? "text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
-                          : ""
-                      }
-                    >
-                      {stack.name}
-                    </Button>
-                  </ContextMenuTrigger>
-                  <ContextMenuContent>
-                    <ContextMenuItem
-                      variant="destructive"
-                      onClick={() => handleDeleteStack(stack.id)}
-                    >
-                      Delete
-                    </ContextMenuItem>
-                    <ContextMenuSeparator />
-                    <ContextMenuItem
-                      onClick={() => {
-                        const newNamePrompt = prompt(
-                          "New name for this stack:",
-                          stack.name
-                        );
-                        if (
-                          newNamePrompt &&
-                          newNamePrompt.trim() &&
-                          newNamePrompt !== stack.name
-                        ) {
-                          saveActiveStack({
-                            ...stack,
-                            name: newNamePrompt.trim(),
-                          });
+  }) => {
+    const [inputValue, setInputValue] = useState("");
+
+    return (
+      <div className="relative bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] flex flex-col h-full">
+        <GlowingEffect className="rounded-lg" />
+        <h3 className="text-xl font-semibold mb-3 text-[var(--card-foreground)]">
+          My Stacks
+        </h3>
+        <div className="flex-grow mb-4">
+          {userStacks.length > 0 ? (
+            <div className="flex flex-wrap gap-2" style={{ minHeight: "80px" }}>
+              {userStacks.map((stack) => (
+                <div key={stack.id} className="flex items-center">
+                  <ContextMenu>
+                    <ContextMenuTrigger>
+                      <Button
+                        variant={
+                          activeStackId === stack.id ? "default" : "outline"
                         }
-                      }}
-                    >
-                      Rename
-                    </ContextMenuItem>
-                  </ContextMenuContent>
-                </ContextMenu>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="h-full flex items-center justify-center">
-            <p className="text-[var(--muted-foreground)] text-sm">
-              No stacks yet. Create one to get started!
-            </p>
-          </div>
-        )}
+                        onClick={() => setActiveStackId(stack.id)}
+                        className={
+                          activeStackId !== stack.id
+                            ? "text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+                            : ""
+                        }
+                      >
+                        {stack.name}
+                      </Button>
+                    </ContextMenuTrigger>
+                    <ContextMenuContent>
+                      <ContextMenuItem
+                        variant="destructive"
+                        onClick={() => handleDeleteStack(stack.id)}
+                      >
+                        Delete
+                      </ContextMenuItem>
+                      <ContextMenuSeparator />
+                      <ContextMenuItem
+                        onClick={() => {
+                          const newNamePrompt = prompt(
+                            "New name for this stack:",
+                            stack.name
+                          );
+                          if (
+                            newNamePrompt &&
+                            newNamePrompt.trim() &&
+                            newNamePrompt !== stack.name
+                          ) {
+                            saveActiveStack({
+                              ...stack,
+                              name: newNamePrompt.trim(),
+                            });
+                          }
+                        }}
+                      >
+                        Rename
+                      </ContextMenuItem>
+                    </ContextMenuContent>
+                  </ContextMenu>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="h-full flex items-center justify-center">
+              <p className="text-[var(--muted-foreground)] text-sm">
+                No stacks yet. Create one to get started!
+              </p>
+            </div>
+          )}
+        </div>
+        <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="New stack name..."
+            className="w-full sm:flex-grow p-2 rounded bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]"
+          />
+          <Button
+            onClick={async () => {
+              if (inputValue.trim()) {
+                try {
+                  await handleCreateNewStack(inputValue.trim());
+                  setInputValue("");
+                } catch (error) {
+                  // L'erreur est gérée par le toast dans handleCreateNewStack du parent
+                  // L'input n'est pas vidé pour permettre la correction
+                }
+              }
+            }}
+            className="w-full sm:w-auto bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90"
+          >
+            Create Stack
+          </Button>
+        </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-        <input
-          type="text"
-          value={newStackName}
-          onChange={(e) => setNewStackName(e.target.value)}
-          placeholder="New stack name..."
-          className="w-full sm:flex-grow p-2 rounded bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]"
-        />
-        <Button
-          onClick={() => {
-            if (newStackName.trim()) {
-              handleCreateNewStack(newStackName.trim());
-            }
-          }}
-          className="w-full sm:w-auto bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90"
-        >
-          Create Stack
-        </Button>
-      </div>
-    </div>
-  );
+    );
+  };
 
   const BentoGridSection = ({
     activeStack,
@@ -1069,8 +988,6 @@ export default function Dashboard() {
           <StacksSection
             userStacks={userStacks}
             activeStackId={activeStackId}
-            newStackName={newStackName}
-            setNewStackName={setNewStackName}
             handleCreateNewStack={handleCreateNewStack}
             setActiveStackId={setActiveStackId}
             handleDeleteStack={handleDeleteStack}

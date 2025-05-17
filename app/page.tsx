@@ -8,7 +8,7 @@ export default function HeroSection() {
   return (
     <main className="bg-background min-h-screen w-full relative overflow-hidden">
       {/* Grille de fond subtile */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800A_1px,transparent_1px),linear-gradient(to_bottom,#8080800A_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+      {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800A_1px,transparent_1px),linear-gradient(to_bottom,#8080800A_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div> */}
 
       <div className="container mx-auto px-4 py-20 md:py-32 lg:py-40 relative z-10">
         {/* Badge disponibilité */}

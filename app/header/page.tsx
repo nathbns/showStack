@@ -46,7 +46,7 @@ function Header() {
   return (
     <>
       <div className="fixed top-3 left-0 w-full z-50 flex justify-center transition-opacity duration-300">
-        <nav className="max-w-4xl h-12 w-full filter backdrop-blur-sm bg-background/80 rounded-lg border-2 border-[var(--sidebar-border)]">
+        <nav className="max-w-4xl h-12 w-full filter backdrop-blur-sm bg-background/80 rounded-lg border-1 border-[var(--sidebar-border)] border-dashed">
           <div className="px-4 h-full">
             <div className="flex items-center justify-between h-full">
               <Link href="/" className="text-2md font-bold">

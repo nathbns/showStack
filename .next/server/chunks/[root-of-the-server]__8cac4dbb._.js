@@ -398,16 +398,66 @@ const auth = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f
     socialProviders: {
         github: {
             clientId: process.env.GITHUB_CLIENT_ID,
-            clientSecret: process.env.GITHUB_CLIENT_SECRET
+            clientSecret: process.env.GITHUB_CLIENT_SECRET,
+            overrideUserInfoOnSignIn: true,
+            scope: [
+                "user:email",
+                "read:user"
+            ],
+            mapProfileToUser: (profile)=>{
+                console.log("GitHub Profile Bio:", profile.bio);
+                if (profile.bio) {
+                    setTimeout(async ()=>{
+                        try {
+                            await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].execute(`
+                UPDATE "user" 
+                SET description = '${profile.bio.replace(/'/g, "''")}'
+                WHERE email = '${profile.email}'
+              `);
+                            console.log("✅ Description mise à jour manuellement en DB");
+                        } catch (e) {
+                            console.error("❌ Erreur lors de la mise à jour manuelle:", e);
+                        }
+                    }, 1000);
+                }
+                return {
+                    description: profile.bio
+                };
+            }
         },
         twitter: {
             clientId: process.env.TWITTER_CLIENT_ID,
-            clientSecret: process.env.TWITTER_CLIENT_SECRET
+            clientSecret: process.env.TWITTER_CLIENT_SECRET,
+            overrideUserInfoOnSignIn: true,
+            mapProfileToUser: (profile)=>{
+                console.log("Twitter Profile Data:", JSON.stringify(profile, null, 2));
+                const customData = {};
+                if (profile.description) {
+                    customData.description = profile.description;
+                } else if (profile.data && profile.data.description) {
+                    customData.description = profile.data.description;
+                }
+                return customData;
+            }
         }
     },
     database: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$better$2d$auth$2f$dist$2f$adapters$2f$drizzle$2d$adapter$2f$index$2e$mjs__$5b$app$2d$route$5d$__$28$ecmascript$29$__["drizzleAdapter"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"], {
         provider: "pg"
-    })
+    }),
+    callbacks: {
+        session: ({ session, user })=>{
+            console.log("SESSION CALLBACK - USER:", JSON.stringify(user, null, 2));
+            console.log("SESSION CALLBACK - ORIGINAL SESSION:", JSON.stringify(session, null, 2));
+            if (user && user.description) {
+                session.user.description = user.description;
+                console.log("✅ Description ajoutée à la session:", user.description);
+            } else {
+                console.log("❌ Pas de description dans l'objet user");
+            }
+            console.log("SESSION CALLBACK - SESSION FINALE:", JSON.stringify(session, null, 2));
+            return session;
+        }
+    }
 });
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, false);}),
