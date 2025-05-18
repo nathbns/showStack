@@ -7,7 +7,6 @@
   "/api/user/profile/route": "app/api/user/profile/route.js",
   "/api/users/route": "app/api/users/route.js",
   "/auth/signin/page": "app/auth/signin/page.js",
-  "/auth/signup/page": "app/auth/signup/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/explore/page": "app/explore/page.js",
   "/page": "app/page.js",

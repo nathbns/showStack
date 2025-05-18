@@ -803,9 +803,9 @@ export default function Dashboard() {
 
   // Nouveau composant ProfileHeader
   const ProfileHeader = () => (
-    <div className="flex flex-col items-center justify-center py-8">
+    <div className="flex flex-col items-center justify-center py-12 text-center">
       {sessionData?.user?.image && (
-        <div className="relative w-24 h-24 mb-4">
+        <div className="relative w-28 h-28 mb-5 shadow-lg rounded-full">
           <Image
             src={sessionData.user.image}
             alt={sessionData.user.name || "Avatar utilisateur"}
@@ -815,105 +815,149 @@ export default function Dashboard() {
           />
         </div>
       )}
-      <h2 className="text-2xl font-semibold text-[var(--foreground)]">
+      <h1 className="text-3xl font-bold text-[var(--foreground)] tracking-tight">
         {sessionData?.user?.name || "Utilisateur anonyme"}
-      </h2>
+      </h1>
+      {/* Vous pouvez ajouter une bio ou d'autres infos ici si disponibles */}
+      {/* <p className="text-md text-[var(--muted-foreground)] mt-2">Bio de l'utilisateur...</p> */}
     </div>
   );
 
-  // Composant StacksSelector simplifié
+  // Composant StacksSelector modernisé
   const StacksSelector = () => {
-    const [inputValue, setInputValue] = useState("");
+    const [newStackName, setNewStackName] = useState("");
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
+    const openCreateModal = () => {
+      setNewStackName(""); // Réinitialiser le nom lors de l'ouverture
+      setIsCreateModalOpen(true);
+    };
+
+    const closeCreateModal = () => {
+      setIsCreateModalOpen(false);
+    };
+
+    const handleCreateAndClose = async () => {
+      if (newStackName.trim()) {
+        try {
+          await handleCreateNewStack(newStackName.trim());
+          closeCreateModal();
+        } catch (error) {
+          // L'erreur est gérée par le toast dans handleCreateNewStack
+          // On pourrait ajouter un feedback spécifique au modal si besoin
+        }
+      }
+    };
 
     return (
-      <div className="flex flex-col items-center gap-4 py-4">
-        <div className="flex flex-wrap justify-center gap-2">
+      <>
+        <div className="flex flex-wrap justify-center items-center gap-4 px-4 py-6 mb-8">
           {userStacks.map((stack) => (
-            <div key={stack.id} className="flex items-center">
-              <ContextMenu>
-                <ContextMenuTrigger>
-                  <Button
-                    variant={activeStackId === stack.id ? "default" : "outline"}
-                    onClick={() => setActiveStackId(stack.id)}
-                    className={
-                      activeStackId !== stack.id
-                        ? "text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
-                        : ""
+            <ContextMenu key={stack.id}>
+              <ContextMenuTrigger asChild>
+                <button
+                  onClick={() => setActiveStackId(stack.id)}
+                  className={`
+                    px-4 py-1 rounded-lg
+                    border-1 
+                    ${
+                      activeStackId === stack.id
+                        ? "bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)]"
+                        : "bg-[var(--card)] text-[var(--foreground)] border-[var(--border)] hover:bg-[var(--accent)] hover:border-[var(--primary)]"
                     }
-                  >
-                    {stack.name}
-                  </Button>
-                </ContextMenuTrigger>
-                <ContextMenuContent>
-                  <ContextMenuItem
-                    variant="destructive"
-                    onClick={() => handleDeleteStack(stack.id)}
-                  >
-                    Delete
-                  </ContextMenuItem>
-                  <ContextMenuSeparator />
-                  <ContextMenuItem
-                    onClick={() => {
-                      const newNamePrompt = prompt(
-                        "New name for this stack:",
-                        stack.name
-                      );
-                      if (
-                        newNamePrompt &&
-                        newNamePrompt.trim() &&
-                        newNamePrompt !== stack.name
-                      ) {
-                        saveActiveStack({
-                          ...stack,
-                          name: newNamePrompt.trim(),
-                        });
-                      }
-                    }}
-                  >
-                    Rename
-                  </ContextMenuItem>
-                </ContextMenuContent>
-              </ContextMenu>
-            </div>
+                  `}
+                >
+                  <span className="text-lg font-semibold">{stack.name}</span>
+                  {/* Possibilité d'ajouter un compte de technos : <span className="text-xs block">{stack.technologies.length} techs</span> */}
+                </button>
+              </ContextMenuTrigger>
+              <ContextMenuContent>
+                <ContextMenuItem
+                  variant="destructive"
+                  onClick={() => handleDeleteStack(stack.id)}
+                  className="cursor-pointer"
+                >
+                  Delete
+                </ContextMenuItem>
+                <ContextMenuSeparator />
+                <ContextMenuItem
+                  onClick={() => {
+                    const newNamePrompt = prompt(
+                      "New name for this grid:",
+                      stack.name
+                    );
+                    if (
+                      newNamePrompt &&
+                      newNamePrompt.trim() &&
+                      newNamePrompt !== stack.name
+                    ) {
+                      saveActiveStack?.({
+                        // Utilisation de l'optional chaining pour saveActiveStack
+                        ...stack,
+                        name: newNamePrompt.trim(),
+                      });
+                    }
+                  }}
+                  className="cursor-pointer"
+                >
+                  Rename
+                </ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
           ))}
+
+          {/* Carte pour créer une nouvelle stack */}
+          <button
+            onClick={openCreateModal}
+            className="
+              px-4 py-1 rounded-lg shadow-md transition-all duration-200 ease-in-out
+              border-1 border-dashed border-[var(--muted-foreground)] text-[var(--muted-foreground)]
+              hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]
+              flex flex-col items-center justify-center
+            "
+          >
+            {/* <span className="text-2xl font-semibold mb-1">+</span> */}
+            <span className="text-sm"> + New Stack</span>
+          </button>
         </div>
 
-        {showAddStackForm ? (
-          <div className="flex flex-col sm:flex-row gap-2 items-center">
-            <input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="New stack name..."
-              className="w-full sm:w-64 p-2 rounded bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]"
-            />
-            <Button
-              onClick={async () => {
-                if (inputValue.trim()) {
-                  try {
-                    await handleCreateNewStack(inputValue.trim());
-                    setInputValue("");
-                    setShowAddStackForm(false);
-                  } catch (error) {
-                    // L'erreur est gérée par le toast dans handleCreateNewStack
-                  }
-                }
-              }}
-              className="bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90"
-            >
-              Create
-            </Button>
+        {/* Modal pour créer une nouvelle stack */}
+        {isCreateModalOpen && (
+          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="bg-[var(--card)] p-6 sm:p-8 rounded-xl shadow-2xl mx-auto max-w-sm">
+              <h3 className="text-2xl font-semibold text-[var(--foreground)] mb-6 text-center">
+                Create a New Stack
+              </h3>
+              <input
+                type="text"
+                value={newStackName}
+                onChange={(e) => setNewStackName(e.target.value)}
+                placeholder="Enter stack name..."
+                className="p-3 rounded-md bg-[var(--input)] border border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] mb-6 focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)] outline-none"
+                autoFocus
+                onKeyPress={(e) => e.key === "Enter" && handleCreateAndClose()}
+              />
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  onClick={handleCreateAndClose}
+                  className="w-full sm:flex-1 bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90 py-3 text-base"
+                  disabled={!newStackName.trim()}
+                >
+                  Create
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={closeCreateModal}
+                  className="w-full sm:flex-1 text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] border-[var(--border)] py-3 text-base"
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
           </div>
-        ) : (
-          <Button
-            variant="ghost"
-            onClick={() => setShowAddStackForm(true)}
-            className="text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
-          >
-            + Add Stack
-          </Button>
         )}
-      </div>
+      </>
     );
   };
 
