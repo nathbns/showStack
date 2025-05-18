@@ -1773,11 +1773,13 @@ __turbopack_context__.s({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth-client.ts [app-ssr] (ecmascript)"); // Pour vérifier si le visiteur est le propriétaire
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth-client.ts [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/tech-stack/tech-data.tsx [app-ssr] (ecmascript)"); // Pour l'hydratation des icônes
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/tech-stack/tech-data.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/external-link.js [app-ssr] (ecmascript) <export default as ExternalLink>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/logo-card.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 "use client";
 ;
 ;
@@ -1786,59 +1788,212 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$
 ;
 ;
 ;
-// Copié et adapté de la page Dashboard pour l'hydratation des icônes
+;
+;
+// --- Fin Interfaces ---
 const iconMap = {};
 __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["allTechnologies"].forEach((tech)=>{
-    if (tech.id) {
-        iconMap[tech.id.toLowerCase()] = tech.icon;
-    }
+    iconMap[tech.id.toLowerCase()] = tech.icon;
 });
 const getDefaultIcon = (name)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-        className: "flex items-center justify-center w-full h-full text-sm font-bold bg-muted text-muted-foreground rounded-sm",
+        className: "flex items-center justify-center w-full h-full text-sm font-bold bg-[var(--muted)] text-[var(--muted-foreground)] rounded-sm",
         children: name?.charAt(0)?.toUpperCase() || "?"
     }, void 0, false, {
         fileName: "[project]/app/profile/[userId]/page.tsx",
-        lineNumber: 50,
+        lineNumber: 43,
         columnNumber: 3
     }, this);
+function TechDisplayCard({ tech, gridMax }) {
+    const colSpan = tech.gridSpan?.cols || 1;
+    const rowSpan = tech.gridSpan?.rows || 1;
+    let colSpanClass = "col-span-1";
+    if (colSpan === 2) {
+        colSpanClass = "col-span-1 md:col-span-2";
+    } else if (colSpan === 3) {
+        colSpanClass = "col-span-1 md:col-span-2 lg:col-span-3";
+    }
+    const rowSpanClass = rowSpan === 2 ? "row-span-2" : "row-span-1";
+    const gapPx = 16;
+    let minHeight = rowSpan * 150 + (rowSpan - 1) * gapPx;
+    const isGithubProject = tech.isProject && tech.url && tech.url.startsWith("https://github.com/");
+    const CardContent = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "bento-card h-full p-4 rounded-2xl border border-[var(--border)] flex flex-col items-start backdrop-blur-md relative overflow-hidden group transition-shadow hover:shadow-lg hover:border-[var(--primary)]",
+        style: {
+            minHeight
+        },
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-0 pointer-events-none z-0",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "absolute -top-8 -left-8 w-32 h-32 rounded-full blur-2xl",
+                    style: {
+                        background: `radial-gradient(circle, ${tech.color}55 0%, transparent 80%)`
+                    }
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 78,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/profile/[userId]/page.tsx",
+                lineNumber: 77,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex items-center gap-2 mb-2 relative z-10",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "w-8 h-8 flex items-center justify-center",
+                        children: tech.icon
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 86,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "font-semibold text-lg text-[var(--text-foreground)]",
+                        children: tech.name
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 89,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/profile/[userId]/page.tsx",
+                lineNumber: 85,
+                columnNumber: 7
+            }, this),
+            tech.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: `text-xs text-[var(--muted-foreground)] mt-1 relative z-10 flex-grow`,
+                children: tech.description
+            }, void 0, false, {
+                fileName: "[project]/app/profile/[userId]/page.tsx",
+                lineNumber: 94,
+                columnNumber: 9
+            }, this),
+            isGithubProject && (tech.stars !== undefined || tech.forks !== undefined) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex gap-4 items-center mt-auto pt-2 text-xs text-[var(--muted-foreground)] relative z-10 self-start",
+                children: [
+                    tech.stars !== undefined && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        title: "Stars",
+                        children: [
+                            "⭐ ",
+                            tech.stars ?? 0
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 104,
+                        columnNumber: 15
+                    }, this),
+                    tech.forks !== undefined && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        title: "Forks",
+                        children: [
+                            "🍴 ",
+                            tech.forks ?? 0
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 107,
+                        columnNumber: 15
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/profile/[userId]/page.tsx",
+                lineNumber: 102,
+                columnNumber: 11
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/app/profile/[userId]/page.tsx",
+        lineNumber: 73,
+        columnNumber: 5
+    }, this);
+    const WrapperElement = tech.url && tech.isProject ? "a" : "div";
+    const wrapperProps = {
+        className: `relative group ${colSpanClass} ${rowSpanClass} block`
+    };
+    if (WrapperElement === "a") {
+        wrapperProps.href = tech.url;
+        wrapperProps.target = "_blank";
+        wrapperProps.rel = "noopener noreferrer";
+        wrapperProps["aria-label"] = `Voir le projet ${tech.name}`;
+        wrapperProps.tabIndex = 0;
+    }
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(WrapperElement, {
+        ...wrapperProps,
+        children: CardContent
+    }, void 0, false, {
+        fileName: "[project]/app/profile/[userId]/page.tsx",
+        lineNumber: 127,
+        columnNumber: 10
+    }, this);
+}
 function UserProfilePage() {
     const params = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useParams"])();
     const userId = params.userId;
-    const { data: sessionData } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSession"])();
+    const { data: sessionData, isPending: sessionIsPending } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useSession"])();
     const [profileData, setProfileData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
-    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [userStacks, setUserStacks] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [activeStackId, setActiveStackId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [isLoadingProfile, setIsLoadingProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const activeStack = userStacks.find((stack)=>stack.id === activeStackId);
+    const technologies = activeStack?.technologies || [];
     const hydrateTechnologies = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((rawTechs)=>{
         if (!rawTechs) return [];
-        return rawTechs.map((rawTech)=>{
-            // Vérifier si c'est un projet avec favicon
-            if (rawTech.isProject && rawTech.favicon) {
-                // Pour les projets, on utilise le favicon comme icône
-                return {
-                    id: rawTech.id?.toString() || Math.random().toString(),
-                    name: rawTech.name || "Unnamed Project",
-                    color: rawTech.color || "#808080",
-                    icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                        src: rawTech.favicon,
-                        alt: rawTech.name,
-                        width: 18,
-                        height: 18,
+        console.log("[Profile Page] Hydrating technologies, rawTechs received:", rawTechs);
+        return rawTechs.map((rawTech, index)=>{
+            console.log(`[Profile Page] Processing rawTech (${rawTech.name || "No Name"}):`, {
+                isProject: rawTech.isProject,
+                url: rawTech.url,
+                id: rawTech.id,
+                technologyId: rawTech.technologyId
+            });
+            let icon;
+            const isProject = rawTech.isProject || false;
+            const url = rawTech.url || undefined;
+            const favicon = rawTech.favicon || undefined;
+            if (isProject) {
+                if (url && typeof url === "string" && url.startsWith("https://github.com/")) {
+                    icon = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                        width: 24,
+                        height: 24
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 174,
+                        columnNumber: 18
+                    }, this);
+                } else if (favicon) {
+                    icon = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                        src: favicon,
+                        alt: rawTech.name || "Favicon",
+                        width: 24,
+                        height: 24,
                         style: {
-                            maxWidth: "100%",
-                            maxHeight: "100%"
+                            objectFit: "contain"
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/profile/[userId]/page.tsx",
-                        lineNumber: 76,
+                        lineNumber: 177,
                         columnNumber: 13
-                    }, this),
-                    technologyId: rawTech.technologyId
-                };
+                    }, this);
+                } else {
+                    icon = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
+                        size: 24
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 186,
+                        columnNumber: 18
+                    }, this);
+                }
+            } else {
+                const techIdToLookup = rawTech.technologyId?.toLowerCase() || rawTech.name?.toLowerCase() || "";
+                icon = iconMap[techIdToLookup] || getDefaultIcon(rawTech.name || "Unknown");
+                if (!iconMap[techIdToLookup]) {
+                    console.log(`[Profile Page] Icon not found in iconMap for '${techIdToLookup}', using default icon for '${rawTech.name || "Unknown"}'.`);
+                }
             }
-            // Pour les technologies normales
-            const techIdToLookup = rawTech.technologyId?.toLowerCase() || rawTech.name?.toLowerCase() || "";
-            const icon = iconMap[techIdToLookup] || getDefaultIcon(rawTech.name || "Unknown");
             const gridCols = parseInt(rawTech.gridCols || "1", 10);
             const gridRows = parseInt(rawTech.gridRows || "1", 10);
             const gridSpan = gridCols > 1 || gridRows > 1 ? {
@@ -1846,308 +2001,325 @@ function UserProfilePage() {
                 rows: gridRows
             } : undefined;
             return {
-                id: rawTech.id?.toString() || Math.random().toString(),
-                name: rawTech.name || "Unnamed Tech",
+                id: String(rawTech.id),
+                name: rawTech.name || "Unnamed Item",
                 color: rawTech.color || "#808080",
                 icon: icon,
                 technologyId: rawTech.technologyId,
+                category: rawTech.category,
                 gridSpan: gridSpan,
-                order: rawTech.order ?? 0,
-                description: rawTech.description
+                order: rawTech.order ?? index,
+                isProject: isProject,
+                favicon: favicon,
+                url: url,
+                description: rawTech.description,
+                stars: rawTech.stars,
+                forks: rawTech.forks
             };
         });
     }, []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        async function fetchProfileData() {
-            setLoading(true);
+        const fetchPublicProfileData = async ()=>{
+            if (!userId) {
+                setError("User ID not found in URL.");
+                setIsLoadingProfile(false);
+                return;
+            }
+            setIsLoadingProfile(true);
             setError(null);
             try {
-                const res = await fetch(`/api/profile/${userId}`);
-                if (!res.ok) throw new Error("Failed to fetch profile data");
-                const data = await res.json();
-                // Hydrate les stacks
+                const response = await fetch(`/api/profile/${userId}`);
+                if (!response.ok) {
+                    const errorData = await response.json().catch(()=>({
+                            error: "Failed to parse error response"
+                        }));
+                    throw new Error(errorData.error || `Failed to fetch profile (status: ${response.status})`);
+                }
+                const data = await response.json();
+                setProfileData(data);
                 const hydratedStacks = (data.stacks || []).map((stack)=>({
                         ...stack,
                         technologies: hydrateTechnologies(stack.technologies || [])
                     }));
-                setProfileData({
-                    user: data.user,
-                    stacks: hydratedStacks
-                });
-                setActiveStackId(hydratedStacks[0]?.id ?? null);
+                setUserStacks(hydratedStacks);
+                if (hydratedStacks.length > 0) {
+                    setActiveStackId(hydratedStacks[0].id);
+                } else {
+                    setActiveStackId(null);
+                }
             } catch (err) {
-                setError(err.message || "Unknown error");
+                setError(err.message);
             } finally{
-                setLoading(false);
+                setIsLoadingProfile(false);
             }
-        }
-        fetchProfileData();
+        };
+        fetchPublicProfileData();
     }, [
         userId,
         hydrateTechnologies
     ]);
-    if (loading) {
+    const ProfileHeader = ()=>{
+        if (!profileData?.user) return null;
+        const user = profileData.user;
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex justify-center items-center min-h-screen bg-background text-foreground",
-            children: "Chargement du profil…"
-        }, void 0, false, {
-            fileName: "[project]/app/profile/[userId]/page.tsx",
-            lineNumber: 144,
-            columnNumber: 7
-        }, this);
-    }
-    if (error || !profileData || !profileData.user) {
-        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex justify-center items-center min-h-screen bg-background text-foreground",
+            className: "flex flex-col items-center justify-center py-12 text-center",
             children: [
-                "Erreur lors du chargement du profil : ",
-                error || "Données manquantes"
-            ]
-        }, void 0, true, {
-            fileName: "[project]/app/profile/[userId]/page.tsx",
-            lineNumber: 151,
-            columnNumber: 7
-        }, this);
-    }
-    // Composant profil (lecture seule)
-    const ProfileHeader = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex flex-col items-center justify-center py-8",
-            children: [
-                profileData.user.image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "relative w-24 h-24 mb-4",
+                user.image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "relative w-28 h-28 mb-5 shadow-lg rounded-full",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                        src: profileData.user.image,
-                        alt: profileData.user.name || "Avatar utilisateur",
+                        src: user.image,
+                        alt: user.name || "Avatar",
                         layout: "fill",
                         objectFit: "cover",
                         className: "rounded-full"
                     }, void 0, false, {
                         fileName: "[project]/app/profile/[userId]/page.tsx",
-                        lineNumber: 162,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 161,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                    className: "text-2xl font-semibold text-[var(--foreground)]",
-                    children: profileData.user.name || "Utilisateur anonyme"
-                }, void 0, false, {
-                    fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 171,
-                    columnNumber: 7
-                }, this),
-                profileData.user.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "mt-2 text-[var(--muted-foreground)] text-center whitespace-pre-line",
-                    children: profileData.user.description
-                }, void 0, false, {
-                    fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 175,
-                    columnNumber: 9
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/app/profile/[userId]/page.tsx",
-            lineNumber: 159,
-            columnNumber: 5
-        }, this);
-    // Sélecteur de stacks (lecture seule)
-    const StacksSelector = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex flex-col items-center gap-4 py-4",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-wrap justify-center gap-2",
-                children: profileData.stacks.map((stack)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                        variant: activeStackId === stack.id ? "default" : "outline",
-                        onClick: ()=>setActiveStackId(stack.id),
-                        className: activeStackId !== stack.id ? "text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]" : "",
-                        children: stack.name
-                    }, stack.id, false, {
-                        fileName: "[project]/app/profile/[userId]/page.tsx",
-                        lineNumber: 187,
-                        columnNumber: 11
-                    }, this))
-            }, void 0, false, {
-                fileName: "[project]/app/profile/[userId]/page.tsx",
-                lineNumber: 185,
-                columnNumber: 7
-            }, this)
-        }, void 0, false, {
-            fileName: "[project]/app/profile/[userId]/page.tsx",
-            lineNumber: 184,
-            columnNumber: 5
-        }, this);
-    // Grille Bento (lecture seule)
-    const BentoGridSection = ()=>{
-        const activeStack = profileData.stacks.find((s)=>s.id === activeStackId);
-        const technologies = activeStack?.technologies || [];
-        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "relative w-full bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] min-h-[50vh] mt-8",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex justify-between items-center mb-6",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "text-2xl font-bold text-[var(--foreground)]",
-                        children: "Your Bento Grid."
-                    }, void 0, false, {
-                        fileName: "[project]/app/profile/[userId]/page.tsx",
-                        lineNumber: 211,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 210,
-                    columnNumber: 9
-                }, this),
-                technologies.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "text-center py-12 flex-grow flex flex-col justify-center items-center",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-[var(--muted-foreground)]",
-                        children: [
-                            'No technology in the stack "',
-                            activeStack?.name,
-                            '".'
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/app/profile/[userId]/page.tsx",
-                        lineNumber: 217,
+                        lineNumber: 280,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 216,
+                    lineNumber: 279,
                     columnNumber: 11
-                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "grid grid-cols-3 gap-4",
-                    style: {
-                        gridAutoRows: "150px"
-                    },
-                    children: technologies.sort((a, b)=>(a.order ?? 0) - (b.order ?? 0)).map((tech)=>{
-                        const colSpan = tech.gridSpan?.cols || 1;
-                        const rowSpan = tech.gridSpan?.rows || 1;
-                        const colSpanClass = colSpan === 3 ? "col-span-3" : colSpan === 2 ? "col-span-2" : "col-span-1";
-                        const rowSpanClass = rowSpan === 2 ? "row-span-2" : "row-span-1";
-                        const gapPx = 16;
-                        const minHeight = rowSpan * 150 + (rowSpan - 1) * gapPx;
-                        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: `relative group ${colSpanClass} ${rowSpanClass}`,
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden",
-                                style: {
-                                    minHeight
-                                },
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "absolute inset-0 pointer-events-none z-0",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "absolute -top-8 -left-8 w-32 h-32 rounded-full blur-2xl",
-                                            style: {
-                                                background: `radial-gradient(circle, ${tech.color}55 0%, transparent 80%)`
-                                            }
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/profile/[userId]/page.tsx",
-                                            lineNumber: 251,
-                                            columnNumber: 25
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/profile/[userId]/page.tsx",
-                                        lineNumber: 250,
-                                        columnNumber: 23
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-2 mb-2 relative z-10",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-8 h-8 flex items-center justify-center",
-                                                children: tech.icon
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/profile/[userId]/page.tsx",
-                                                lineNumber: 259,
-                                                columnNumber: 25
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "font-semibold text-lg text-[--text-foreground]",
-                                                children: tech.name
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/profile/[userId]/page.tsx",
-                                                lineNumber: 262,
-                                                columnNumber: 25
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/app/profile/[userId]/page.tsx",
-                                        lineNumber: 258,
-                                        columnNumber: 23
-                                    }, this),
-                                    tech.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-xs text-[--text-foreground] mt-1 relative z-10",
-                                        children: tech.description
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/profile/[userId]/page.tsx",
-                                        lineNumber: 267,
-                                        columnNumber: 25
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/profile/[userId]/page.tsx",
-                                lineNumber: 246,
-                                columnNumber: 21
-                            }, this)
-                        }, tech.id, false, {
-                            fileName: "[project]/app/profile/[userId]/page.tsx",
-                            lineNumber: 242,
-                            columnNumber: 19
-                        }, this);
-                    })
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                    className: "text-3xl font-bold text-[var(--foreground)] tracking-tight",
+                    children: user.name || "Anonymous User"
                 }, void 0, false, {
                     fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 222,
+                    lineNumber: 289,
+                    columnNumber: 9
+                }, this),
+                user.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "text-md text-[var(--muted-foreground)] mt-3 max-w-2xl whitespace-pre-line",
+                    children: user.description
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 293,
+                    columnNumber: 11
+                }, this),
+                sessionData?.user?.id === userId && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                    asChild: true,
+                    variant: "outline",
+                    className: "mt-6",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                        href: "/dashboard",
+                        children: "Edit Your Profile & Stacks"
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 299,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 298,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/profile/[userId]/page.tsx",
-            lineNumber: 209,
+            lineNumber: 277,
             columnNumber: 7
         }, this);
     };
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex-grow",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "mx-auto py-2 md:py-8 px-4 md:px-0",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileHeader, {}, void 0, false, {
-                        fileName: "[project]/app/profile/[userId]/page.tsx",
-                        lineNumber: 285,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StacksSelector, {}, void 0, false, {
-                        fileName: "[project]/app/profile/[userId]/page.tsx",
-                        lineNumber: 286,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(BentoGridSection, {}, void 0, false, {
-                        fileName: "[project]/app/profile/[userId]/page.tsx",
-                        lineNumber: 287,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
+    const StacksSelector = ()=>{
+        if (!userStacks || userStacks.length === 0) {
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "text-center py-4 text-[var(--muted-foreground)]",
+                children: "This user has not created any stacks yet."
+            }, void 0, false, {
                 fileName: "[project]/app/profile/[userId]/page.tsx",
-                lineNumber: 284,
+                lineNumber: 309,
                 columnNumber: 9
-            }, this)
+            }, this);
+        }
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex flex-wrap justify-center items-center gap-3 px-4 py-6 mb-8 max-w-4xl mx-auto",
+            children: userStacks.map((stack)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                    variant: activeStackId === stack.id ? "default" : "outline",
+                    onClick: ()=>setActiveStackId(stack.id),
+                    className: `px-5 py-2 rounded-lg shadow-sm transition-all border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)] ${activeStackId === stack.id ? "bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)] scale-105" : "bg-[var(--card)] text-[var(--foreground)] border-[var(--border)] hover:bg-[var(--accent)] hover:border-[var(--primary)]"}`,
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "text-md font-medium",
+                        children: stack.name
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 327,
+                        columnNumber: 13
+                    }, this)
+                }, stack.id, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 317,
+                    columnNumber: 11
+                }, this))
         }, void 0, false, {
             fileName: "[project]/app/profile/[userId]/page.tsx",
-            lineNumber: 283,
+            lineNumber: 315,
+            columnNumber: 7
+        }, this);
+    };
+    const BentoGridSection = ()=>{
+        if (!activeStack) {
+            if (userStacks && userStacks.length > 0) {
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "text-center py-12 bg-[var(--card)] rounded-lg shadow h-full flex flex-col justify-center items-center min-h-[300px]",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-[var(--muted-foreground)]",
+                        children: "Select a stack to view its technologies."
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 339,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 338,
+                    columnNumber: 11
+                }, this);
+            }
+            return null;
+        }
+        const gridMax = {
+            cols: 3,
+            rows: 2
+        };
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "relative w-full bg-[var(--card)] p-4 sm:p-6 rounded-xl border border-[var(--border)] flex flex-col max-w-4xl mx-auto",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex justify-between items-center mb-6",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                        className: "text-2xl sm:text-3xl font-bold text-[var(--foreground)]",
+                        children: activeStack.name
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 353,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 352,
+                    columnNumber: 9
+                }, this),
+                technologies.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "text-center py-12 flex-grow flex flex-col justify-center items-center min-h-[200px]",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-[var(--muted-foreground)]",
+                        children: "This stack is empty."
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 359,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 358,
+                    columnNumber: 11
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+                    children: technologies.sort((a, b)=>(a.order ?? 0) - (b.order ?? 0)).map((tech)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(TechDisplayCard, {
+                            tech: tech,
+                            gridMax: gridMax
+                        }, tech.id, false, {
+                            fileName: "[project]/app/profile/[userId]/page.tsx",
+                            lineNumber: 368,
+                            columnNumber: 17
+                        }, this))
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 364,
+                    columnNumber: 11
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/app/profile/[userId]/page.tsx",
+            lineNumber: 351,
+            columnNumber: 7
+        }, this);
+    };
+    if (isLoadingProfile) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex justify-center items-center min-h-screen bg-[var(--background)] text-[var(--foreground)]",
+            children: "Loading profile..."
+        }, void 0, false, {
+            fileName: "[project]/app/profile/[userId]/page.tsx",
+            lineNumber: 378,
+            columnNumber: 7
+        }, this);
+    }
+    if (error || !profileData?.user) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex flex-col justify-center items-center min-h-screen bg-[var(--background)] text-[var(--foreground)] p-4 text-center",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "text-xl text-destructive mb-2",
+                    children: "Error Loading Profile"
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 387,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "text-sm text-[var(--muted-foreground)]",
+                    children: error || "User data could not be found. The profile may not exist or there was an issue fetching it."
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 388,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                    asChild: true,
+                    variant: "outline",
+                    className: "mt-6",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                        href: "/",
+                        children: "Go to Homepage"
+                    }, void 0, false, {
+                        fileName: "[project]/app/profile/[userId]/page.tsx",
+                        lineNumber: 393,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 392,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/app/profile/[userId]/page.tsx",
+            lineNumber: 386,
+            columnNumber: 7
+        }, this);
+    }
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)]",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex-grow container mx-auto px-4 py-8",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileHeader, {}, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 402,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StacksSelector, {}, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 403,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(BentoGridSection, {}, void 0, false, {
+                    fileName: "[project]/app/profile/[userId]/page.tsx",
+                    lineNumber: 404,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/app/profile/[userId]/page.tsx",
+            lineNumber: 401,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/profile/[userId]/page.tsx",
-        lineNumber: 282,
+        lineNumber: 400,
         columnNumber: 5
     }, this);
 }

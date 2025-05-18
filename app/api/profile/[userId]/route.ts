@@ -38,26 +38,94 @@ export async function GET(
       where: eq(techStack.userId, userId),
       with: {
         technologies: {
-          // Ici, stackTechnologyItem est la table de jonction qui contient les détails de la techno dans la stack
-          // Assurez-vous que les relations sont correctement définies dans Drizzle pour que cela fonctionne.
-          // On récupère tous les champs de stackTechnologyItem. L'hydratation côté client se chargera des icônes etc.
           columns: {
             id: true,
             name: true,
             color: true,
-            technologyId: true, // L'ID de la technologie globale (ex: 'react', 'javascript')
+            technologyId: true,
             category: true,
             gridCols: true,
             gridRows: true,
+            url: true,
+            isProject: true,
+            description: true,
+            favicon: true,
+            order: true,
           },
+          orderBy: (stackTechnologyItem, { asc }) => [
+            asc(stackTechnologyItem.order),
+          ],
         },
       },
       orderBy: (techStack, { asc }) => [asc(techStack.createdAt)],
     });
 
+    // Enrichir les technologies avec les données GitHub si applicable
+    const processedStacks = await Promise.all(
+      userStacks.map(async (stack) => {
+        const processedTechnologies = await Promise.all(
+          (stack.technologies || []).map(async (techItem: any) => {
+            if (
+              techItem.isProject &&
+              techItem.url &&
+              typeof techItem.url === "string" &&
+              techItem.url.startsWith("https://github.com/")
+            ) {
+              try {
+                const match = techItem.url.match(
+                  /github\.com\/([^/]+)\/([^/]+)/
+                );
+                if (match) {
+                  const owner = match[1];
+                  const repoName = match[2].replace(/\.git$/, "");
+
+                  const githubRes = await fetch(
+                    `https://api.github.com/repos/${owner}/${repoName}`,
+                    {}
+                  );
+
+                  if (githubRes.ok) {
+                    const githubData = await githubRes.json();
+                    return {
+                      ...techItem,
+                      description:
+                        githubData.description || techItem.description,
+                      stars: githubData.stargazers_count,
+                      forks: githubData.forks_count,
+                    };
+                  } else {
+                    console.warn(
+                      `Failed to fetch GitHub data for ${techItem.url}: ${
+                        githubRes.status
+                      } ${await githubRes.text()}`
+                    );
+                  }
+                }
+              } catch (ghError) {
+                console.error(
+                  `Error fetching GitHub data for ${techItem.url}:`,
+                  ghError
+                );
+              }
+            }
+            return {
+              ...techItem,
+              isProject: techItem.isProject || false,
+              url: techItem.url || undefined,
+              description: techItem.description || undefined,
+              favicon: techItem.favicon || undefined,
+              stars: techItem.stars || undefined,
+              forks: techItem.forks || undefined,
+            };
+          })
+        );
+        return { ...stack, technologies: processedTechnologies };
+      })
+    );
+
     return NextResponse.json({
       user: userInfo,
-      stacks: userStacks,
+      stacks: processedStacks,
     });
   } catch (error) {
     console.error(`Error fetching profile data for user ${userId}:`, error);

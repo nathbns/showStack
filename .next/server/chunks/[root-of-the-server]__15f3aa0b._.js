@@ -371,9 +371,6 @@ async function GET(request, { params }) {
             where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].userId, userId),
             with: {
                 technologies: {
-                    // Ici, stackTechnologyItem est la table de jonction qui contient les détails de la techno dans la stack
-                    // Assurez-vous que les relations sont correctement définies dans Drizzle pour que cela fonctionne.
-                    // On récupère tous les champs de stackTechnologyItem. L'hydratation côté client se chargera des icônes etc.
                     columns: {
                         id: true,
                         name: true,
@@ -381,17 +378,66 @@ async function GET(request, { params }) {
                         technologyId: true,
                         category: true,
                         gridCols: true,
-                        gridRows: true
-                    }
+                        gridRows: true,
+                        url: true,
+                        isProject: true,
+                        description: true,
+                        favicon: true,
+                        order: true
+                    },
+                    orderBy: (stackTechnologyItem, { asc })=>[
+                            asc(stackTechnologyItem.order)
+                        ]
                 }
             },
             orderBy: (techStack, { asc })=>[
                     asc(techStack.createdAt)
                 ]
         });
+        // Enrichir les technologies avec les données GitHub si applicable
+        const processedStacks = await Promise.all(userStacks.map(async (stack)=>{
+            const processedTechnologies = await Promise.all((stack.technologies || []).map(async (techItem)=>{
+                if (techItem.isProject && techItem.url && typeof techItem.url === "string" && techItem.url.startsWith("https://github.com/")) {
+                    try {
+                        const match = techItem.url.match(/github\.com\/([^/]+)\/([^/]+)/);
+                        if (match) {
+                            const owner = match[1];
+                            const repoName = match[2].replace(/\.git$/, "");
+                            const githubRes = await fetch(`https://api.github.com/repos/${owner}/${repoName}`, {});
+                            if (githubRes.ok) {
+                                const githubData = await githubRes.json();
+                                return {
+                                    ...techItem,
+                                    description: githubData.description || techItem.description,
+                                    stars: githubData.stargazers_count,
+                                    forks: githubData.forks_count
+                                };
+                            } else {
+                                console.warn(`Failed to fetch GitHub data for ${techItem.url}: ${githubRes.status} ${await githubRes.text()}`);
+                            }
+                        }
+                    } catch (ghError) {
+                        console.error(`Error fetching GitHub data for ${techItem.url}:`, ghError);
+                    }
+                }
+                return {
+                    ...techItem,
+                    isProject: techItem.isProject || false,
+                    url: techItem.url || undefined,
+                    description: techItem.description || undefined,
+                    favicon: techItem.favicon || undefined,
+                    stars: techItem.stars || undefined,
+                    forks: techItem.forks || undefined
+                };
+            }));
+            return {
+                ...stack,
+                technologies: processedTechnologies
+            };
+        }));
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             user: userInfo,
-            stacks: userStacks
+            stacks: processedStacks
         });
     } catch (error) {
         console.error(`Error fetching profile data for user ${userId}:`, error);
