@@ -1,5 +1,12 @@
 import { createAuthClient } from "better-auth/react";
 
+const getBaseUrl = () => {
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    return `https://${process.env.NEXT_PUBLIC_APP_URL}`;
+  }
+  return "http://localhost:3000";
+};
+
 export const {
   signIn,
   signUp,
@@ -11,5 +18,5 @@ export const {
   //   forgetPassword,
   //   resetPassword,
 } = createAuthClient({
-  baseURL: "http://localhost:3000",
+  baseURL: getBaseUrl(),
 });
