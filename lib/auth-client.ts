@@ -1,8 +1,13 @@
 import { createAuthClient } from "better-auth/react";
 
 const getBaseUrl = () => {
-  if (process.env.NEXT_PUBLIC_APP_URL) {
-    return `https://${process.env.NEXT_PUBLIC_APP_URL}`;
+  let appUrl = process.env.NEXT_PUBLIC_APP_URL;
+  if (appUrl) {
+    // Remove any scheme (http:// or https://)
+    appUrl = appUrl.replace(/^https?:\/\//, "");
+    // Remove any trailing slash
+    appUrl = appUrl.replace(/\/$/, "");
+    return `https://${appUrl}`;
   }
   return "http://localhost:3000";
 };

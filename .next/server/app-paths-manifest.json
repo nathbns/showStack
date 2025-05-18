@@ -4,7 +4,6 @@
   "/api/tech/stack/route": "app/api/tech/stack/route.js",
   "/api/user/profile/route": "app/api/user/profile/route.js",
   "/api/user/tag/route": "app/api/user/tag/route.js",
-  "/auth/signin/page": "app/auth/signin/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/page": "app/page.js"
 }
