@@ -43,6 +43,8 @@ export type Tech = {
   favicon?: string;
   url?: string;
   description?: string;
+  stars?: number;
+  forks?: number;
 };
 
 type TechStackGridProps = {

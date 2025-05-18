@@ -1,16 +1,13 @@
 "use client";
 
-import { /* useEffect, */ useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { RiGithubFill, RiTwitterFill } from "@remixicon/react";
-import { useForm } from "react-hook-form";
+import { RiGithubFill } from "@remixicon/react";
 import { toast } from "sonner";
 
 import { signIn } from "@/lib/auth-client";
-import { SignInFormData, signInSchema } from "@/lib/validations/auth";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,93 +21,27 @@ export function SignInForm() {
   const router = useRouter();
   const [loadingButtons, setLoadingButtons] = useState({
     github: false,
-    twitter: false,
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignInFormData>({
-    resolver: zodResolver(signInSchema),
   });
 
   const [generalError, setGeneralError] = useState<string | null>(null);
 
-  const handleLogin = async (provider: string) => {
+  const handleLoginSocial = async (provider: "github") => {
     setLoadingButtons((prevState) => ({ ...prevState, [provider]: true }));
+    setGeneralError(null);
     try {
       await signIn.social({
-        provider: provider as "github" | "twitter",
-        callbackURL: "/dashboard",
+        provider: provider,
       });
+      toast.success(`Attempting to sign in with ${provider}...`);
     } catch (error) {
-      setGeneralError(
-        error instanceof Error ? error.message : "An error occurred"
-      );
-      toast.error(error instanceof Error ? error.message : "An error occurred");
-    } finally {
-      setLoadingButtons((prevState) => ({ ...prevState, [provider]: false }));
-    }
-  };
-
-  const handleLoginEmail = async (data: SignInFormData) => {
-    const options = {
-      email: data.email,
-      password: data.password,
-      callbackURL: "/dashboard",
-    };
-
-    try {
-      setLoadingButtons((prevState) => ({ ...prevState, email: true }));
-      setGeneralError(null);
-
-      const response = await signIn.email(options);
-      console.log(
-        "Auth Response (Bad Password Scenario):",
-        JSON.stringify(response, null, 2)
-      );
-
-      if (response && response.error) {
-        let errorMessage =
-          "The email or password you entered is incorrect. Please try again.";
-        if (response.error.message) {
-          if (response.error.code === "INVALID_EMAIL_OR_PASSWORD") {
-            errorMessage =
-              "Invalid email or password. Please check your credentials and try again.";
-          } else if (response.error.code === "USER_NOT_FOUND") {
-            errorMessage =
-              "No account found with that email address. Please sign up or try a different email.";
-          } else {
-            errorMessage = response.error.message;
-          }
-        }
-        setGeneralError(errorMessage);
-        toast.error(errorMessage);
-      } else if (response && response.data) {
-        toast.success("Successfully signed in!");
-        router.push("/dashboard");
-      } else {
-        console.error("Unexpected auth response structure:", response);
-        setGeneralError("An unexpected issue occurred. Please try again.");
-        toast.error("An unexpected issue occurred. Please try again.");
-      }
-    } catch (error: any) {
-      console.error(
-        "Auth Error Caught in Catch Block:",
-        JSON.stringify(error, null, 2)
-      );
-      let errorMessage = "An unexpected error occurred. Please try again.";
-      if (error && typeof error.message === "string") {
-        errorMessage =
-          error.message.length < 150
-            ? error.message
-            : "An error occurred during login.";
-      }
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "An error occurred during social sign-in";
       setGeneralError(errorMessage);
       toast.error(errorMessage);
     } finally {
-      setLoadingButtons((prevState) => ({ ...prevState, email: false }));
+      setLoadingButtons((prevState) => ({ ...prevState, [provider]: false }));
     }
   };
 
@@ -119,47 +50,28 @@ export function SignInForm() {
       <Card className="w-full rounded-md shadow-none">
         <CardHeader className="flex flex-col items-center gap-2 px-4 sm:px-6">
           <CardTitle className="text-center text-xl sm:text-2xl">
-            Welcome back
+            Sign In
           </CardTitle>
           <CardDescription className="text-center">
-            Sign in to your account to continue
+            Connect with your GitHub account to continue
           </CardDescription>
         </CardHeader>
         <CardContent className="px-4 pb-6 sm:px-6">
-          <form
-            onSubmit={handleSubmit(handleLoginEmail)}
-            className="flex flex-col gap-4"
-          >
+          {generalError && (
+            <p className="text-sm text-red-500 text-center">{generalError}</p>
+          )}
+          <div className="flex flex-col gap-4">
             <Button
               className="w-full cursor-pointer"
               variant="outline"
               type="button"
-              onClick={() => handleLogin("github")}
+              onClick={() => handleLoginSocial("github")}
               disabled={loadingButtons.github}
             >
               <RiGithubFill className="me-1" size={16} aria-hidden="true" />
-              {loadingButtons.github ? "Loading..." : "Login with GitHub"}
+              {loadingButtons.github ? "Signing in..." : "Sign In with GitHub"}
             </Button>
-            <Button
-              className="w-full cursor-pointer"
-              variant="outline"
-              type="button"
-              onClick={() => handleLogin("twitter")}
-              disabled={loadingButtons.twitter}
-            >
-              <RiTwitterFill className="me-1" size={16} aria-hidden="true" />
-              {loadingButtons.twitter ? "Loading..." : "Login with Twitter"}
-            </Button>
-            <div className="text-muted-foreground text-center text-sm">
-              Don&apos;t have an account?{" "}
-              <Link
-                href="/sign-up"
-                className="text-primary underline-offset-4 hover:underline"
-              >
-                Sign up
-              </Link>
-            </div>
-          </form>
+          </div>
         </CardContent>
       </Card>
       <div className="text-muted-foreground [&_a]:hover:text-primary px-4 text-center text-xs text-balance [&_a]:underline [&_a]:underline-offset-4">

@@ -21,17 +21,6 @@ export const user = pgTable("user", {
   layoutConfig: text("layout_config"),
 });
 
-// Nouvelle table pour les tags utilisateur
-export const userTag = pgTable("user_tag", {
-  id: serial("id").primaryKey(),
-  userId: text("user_id")
-    .notNull()
-    .references(() => user.id, { onDelete: "cascade" }),
-  name: text("name").notNull(),
-  color: text("color").notNull().default("#3B82F6"), // Couleur par défaut (bleu)
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-});
-
 export const session = pgTable("session", {
   id: text("id").primaryKey(),
   expiresAt: timestamp("expires_at").notNull(),
@@ -103,7 +92,6 @@ export const userRelations = relations(user, ({ many }) => ({
   accounts: many(account),
   stackTechnologies: many(userStackTechnologies),
   techStacks: many(techStack),
-  tags: many(userTag), // Nouvelle relation
 }));
 
 export const userStackTechnologiesRelations = relations(
@@ -143,6 +131,8 @@ export const stackTechnologyItem = pgTable("stack_technology_item", {
   url: text("url"),
   description: text("description"),
   order: integer("order").default(0),
+  stars: integer("stars").default(0),
+  forks: integer("forks").default(0),
 });
 
 export const techStackRelations = relations(techStack, ({ one, many }) => ({
@@ -162,13 +152,6 @@ export const stackTechnologyItemRelations = relations(
     }),
   })
 );
-
-export const userTagRelations = relations(userTag, ({ one }) => ({
-  user: one(user, {
-    fields: [userTag.userId],
-    references: [user.id],
-  }),
-}));
 
 /*
 // Requête préparée pour récupérer les technologies d'une stack avec toutes les colonnes

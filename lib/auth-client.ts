@@ -14,7 +14,6 @@ const getBaseUrl = () => {
 
 export const {
   signIn,
-  signUp,
   useSession,
   signOut,
   getSession,

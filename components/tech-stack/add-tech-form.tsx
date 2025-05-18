@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,7 +11,14 @@ import {
   DialogTrigger,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { PlusCircle, Globe, ExternalLink, Loader2 } from "lucide-react";
+import {
+  PlusCircle,
+  Globe,
+  ExternalLink,
+  Loader2,
+  RefreshCw,
+} from "lucide-react";
+import GitHubLogo from "@/components/logo-card";
 import { techsByCategory } from "./tech-data";
 import { type Tech } from "./tech-stack-grid";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -27,11 +34,16 @@ interface ProjectTech extends Tech {
   description: string;
   isProject: boolean;
   favicon?: string;
+  stars: number;
+  forks: number;
 }
 
 export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
   const [open, setOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("Frontend");
+  const [githubRepos, setGithubRepos] = useState<any[]>([]);
+  const [isLoadingGithub, setIsLoadingGithub] = useState(false);
+  const projectFormRef = useRef<HTMLFormElement>(null);
 
   // États pour l'ajout de projet
   const [projectUrl, setProjectUrl] = useState("");
@@ -46,6 +58,28 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
   const [activeTab, setActiveTab] = useState<"technologies" | "projets">(
     "technologies"
   );
+
+  // Charger les repos GitHub quand l'onglet Projets est ouvert
+  useEffect(() => {
+    if (activeTab === "projets" && !githubRepos.length) {
+      fetchGithubRepos();
+    }
+  }, [activeTab]);
+
+  const fetchGithubRepos = async () => {
+    setIsLoadingGithub(true);
+    try {
+      const response = await fetch("/api/github/repos");
+      if (!response.ok)
+        throw new Error("Erreur lors de la récupération des repos");
+      const data = await response.json();
+      setGithubRepos(data);
+    } catch (error) {
+      console.error("Erreur lors du chargement des repos GitHub:", error);
+    } finally {
+      setIsLoadingGithub(false);
+    }
+  };
 
   // Nettoyage de l'URL pour éviter les problèmes CORS
   const cleanUrl = (url: string) => {
@@ -161,6 +195,8 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
           cols: 2, // Par défaut, les projets prennent 2 colonnes
           rows: 1,
         },
+        stars: 0,
+        forks: 0,
       };
 
       // Ajouter le projet à la grille en utilisant la même fonction que pour les technologies
@@ -176,6 +212,20 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
       console.error("Erreur lors de l'ajout du projet :", error);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  // Bouton fixe qui soumettra le formulaire via la référence
+  const submitProjectForm = () => {
+    if (
+      projectFormRef.current &&
+      projectName &&
+      projectUrl &&
+      projectDescription
+    ) {
+      projectFormRef.current.dispatchEvent(
+        new Event("submit", { cancelable: true, bubbles: true })
+      );
     }
   };
 
@@ -200,7 +250,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-background border-[var(--border)] text-[var(--foreground)] p-0 overflow-hidden">
-        <div className="flex flex-col h-[600px] ">
+        <div className="flex flex-col h-[750px] ">
           <DialogHeader className="p-4 pb-0 max-w-[500px]">
             <DialogTitle className="text-xl font-bold text-[var(--foreground)]">
               Ajouter à votre profil
@@ -233,7 +283,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
               </TabsList>
             </div>
 
-            <div className="flex-1 overflow-hidden">
+            <div className="flex-1 flex flex-col">
               {/* Contenu de l'onglet Technologies */}
               <TabsContent
                 value="technologies"
@@ -241,7 +291,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
               >
                 <div className="flex-1 overflow-hidden flex flex-col">
                   <Tabs
-                    defaultValue="Backend"
+                    defaultValue="Frontend"
                     value={activeCategory}
                     onValueChange={setActiveCategory}
                     className="flex-1 flex flex-col"
@@ -252,7 +302,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
                           <TabsTrigger
                             key={category}
                             value={category}
-                            className="px-3 py-1.5 data-[state=active]:bg-[var(--muted)] data-[state=active]:text-[var(--primary)] data-[state=active]:shadow-sm"
+                            className="px-3 py-1.5  data-[state=active]:bg-[var(--muted)] data-[state=active]:text-[var(--primary)] data-[state=active]:shadow-sm"
                           >
                             {category}
                           </TabsTrigger>
@@ -266,13 +316,13 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
                           <TabsContent
                             key={category}
                             value={category}
-                            className="h-full overflow-y-auto p-4"
+                            className="overflow-y-auto p-4"
                           >
                             <div className="grid grid-cols-2 gap-2">
                               {techs.map((tech) => (
                                 <div
                                   key={tech.id}
-                                  className="flex items-center gap-2 p-2 rounded hover:bg-background/90 cursor-pointer border border-[var(--border)]"
+                                  className="flex items-center gap-2 p-6 rounded hover:bg-background/90 cursor-pointer border border-[var(--border)]"
                                   onClick={() => handleTechSelect(tech)}
                                 >
                                   <div className="flex items-center justify-center h-6 w-6">
@@ -297,113 +347,183 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
               </TabsContent>
 
               {/* Contenu de l'onglet Projets */}
-              <TabsContent
-                value="projets"
-                className="h-full p-4 overflow-y-auto"
-              >
-                <form onSubmit={handleProjectSubmit} className="space-y-4">
-                  <div>
-                    <Label
-                      htmlFor="projectName"
-                      className="text-[var(--muted-foreground)]"
-                    >
-                      Nom du projet
-                    </Label>
-                    <Input
-                      id="projectName"
-                      value={projectName}
-                      onChange={(e) => setProjectName(e.target.value)}
-                      placeholder="Mon Projet"
-                      className="bg-background border-[var(--border)] text-[var(--foreground)]"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Label
-                      htmlFor="projectUrl"
-                      className="text-[var(--muted-foreground)]"
-                    >
-                      URL du projet
-                    </Label>
-                    <div className="flex">
-                      <span className="inline-flex items-center justify-center px-3 bg-[var(--muted)] border border-r-0 border-[var(--border)] rounded-l-md w-10">
-                        {isFetchingFavicon ? (
-                          <Loader2
-                            size={16}
-                            className="text-[var(--muted-foreground)] animate-spin"
-                          />
-                        ) : favicon ? (
-                          <img
-                            src={favicon}
-                            alt="Site favicon"
-                            width={16}
-                            height={16}
-                          />
-                        ) : (
-                          <Globe
-                            size={16}
-                            className="text-[var(--muted-foreground)]"
-                          />
-                        )}
-                      </span>
+              <TabsContent value="projets" className="flex-1 flex flex-col">
+                <div className="flex-1 p-4 space-y-4 overflow-y-auto">
+                  {/* État de chargement ou liste des repos GitHub */}
+                  {isLoadingGithub ? (
+                    <div className="mb-4 flex justify-center">
+                      <Loader2 className="h-6 w-6 animate-spin text-[var(--muted-foreground)]" />
+                    </div>
+                  ) : (
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-sm font-medium">
+                          Vos projets GitHub
+                        </h3>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={fetchGithubRepos}
+                          disabled={isLoadingGithub}
+                          className="h-8 px-2"
+                        >
+                          <RefreshCw size={14} className="mr-1" />
+                          Rafraîchir
+                        </Button>
+                      </div>
+                      {githubRepos.length > 0 ? (
+                        <div className="grid gap-2">
+                          {githubRepos.map((repo) => (
+                            <div
+                              key={repo.id}
+                              className="flex items-center gap-2 p-2 rounded hover:bg-background/90 cursor-pointer border border-[var(--border)]"
+                              onClick={() => {
+                                const newProject: ProjectTech = {
+                                  id: repo.id.toString(),
+                                  name: repo.name,
+                                  color: "#24292e", // Couleur GitHub
+                                  icon: <GitHubLogo width={20} height={20} />,
+                                  category: "Project",
+                                  technologyId: repo.id.toString(),
+                                  url: repo.html_url,
+                                  description:
+                                    repo.description || "Projet GitHub",
+                                  isProject: true,
+                                  gridSpan: {
+                                    cols: 2,
+                                    rows: 1,
+                                  },
+                                  stars: repo.stargazers_count,
+                                  forks: repo.forks_count,
+                                };
+                                onAddTech(newProject);
+                                setOpen(false);
+                              }}
+                            >
+                              <div className="flex items-center justify-center h-6 w-6">
+                                <GitHubLogo width={20} height={20} />
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-sm">{repo.name}</span>
+                                <span className="text-xs text-[var(--muted-foreground)]">
+                                  {repo.description || "Pas de description"}
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  )}
+
+                  <form
+                    ref={projectFormRef}
+                    onSubmit={handleProjectSubmit}
+                    className="space-y-4"
+                  >
+                    <div>
+                      <Label
+                        htmlFor="projectName"
+                        className="text-[var(--muted-foreground)] mb-2"
+                      >
+                        Project Name:
+                      </Label>
                       <Input
-                        id="projectUrl"
-                        type="url"
-                        value={projectUrl}
-                        onChange={(e) => setProjectUrl(e.target.value)}
-                        placeholder="https://monprojetincroyable.com"
-                        className="bg-background border-[var(--border)] text-[var(--foreground)] rounded-l-none"
+                        id="projectName"
+                        value={projectName}
+                        onChange={(e) => setProjectName(e.target.value)}
+                        placeholder="Mon Projet"
+                        className="bg-background border-[var(--border)] text-[var(--foreground)]"
                         required
                       />
                     </div>
-                  </div>
-                  <div>
-                    <Label
-                      htmlFor="projectDescription"
-                      className="text-[var(--muted-foreground)]"
-                    >
-                      Description
-                    </Label>
-                    <Textarea
-                      id="projectDescription"
-                      value={projectDescription}
-                      onChange={(e) => setProjectDescription(e.target.value)}
-                      placeholder="Décrivez votre projet en quelques mots..."
-                      className="bg-background border-[var(--border)] text-[var(--foreground)]"
-                      rows={3}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <Label className="text-[var(--muted-foreground)]">
-                      Couleur
-                    </Label>
-                    <div className="grid grid-cols-8 gap-1 mt-1">
-                      {availableColors.map((color) => (
-                        <button
-                          key={color}
-                          type="button"
-                          className={`w-6 h-6 rounded-full border-2 transition-transform ${
-                            projectColor === color
-                              ? "border-[var(--foreground)] scale-110"
-                              : "border-transparent"
-                          }`}
-                          style={{ backgroundColor: color }}
-                          onClick={() => setProjectColor(color)}
+                    <div>
+                      <Label
+                        htmlFor="projectUrl"
+                        className="text-[var(--muted-foreground)] mb-2"
+                      >
+                        Project URL:
+                      </Label>
+                      <div className="flex">
+                        <span className="inline-flex items-center justify-center px-3 bg-[var(--muted)] border border-r-0 border-[var(--border)] rounded-l-md w-10">
+                          {isFetchingFavicon ? (
+                            <Loader2
+                              size={16}
+                              className="text-[var(--muted-foreground)] animate-spin"
+                            />
+                          ) : favicon ? (
+                            <img
+                              src={favicon}
+                              alt="Site favicon"
+                              width={16}
+                              height={16}
+                            />
+                          ) : (
+                            <Globe
+                              size={16}
+                              className="text-[var(--muted-foreground)]"
+                            />
+                          )}
+                        </span>
+                        <Input
+                          id="projectUrl"
+                          type="url"
+                          value={projectUrl}
+                          onChange={(e) => setProjectUrl(e.target.value)}
+                          placeholder="https://monprojetincroyable.com"
+                          className="bg-background border-[var(--border)] text-[var(--foreground)] rounded-l-none"
+                          required
                         />
-                      ))}
+                      </div>
                     </div>
-                  </div>
+                    <div>
+                      <Label
+                        htmlFor="projectDescription"
+                        className="text-[var(--muted-foreground)] mb-2"
+                      >
+                        Description:
+                      </Label>
+                      <Textarea
+                        id="projectDescription"
+                        value={projectDescription}
+                        onChange={(e) => setProjectDescription(e.target.value)}
+                        placeholder="Décrivez votre projet en quelques mots..."
+                        className="bg-background border-[var(--border)] text-[var(--foreground)]"
+                        rows={3}
+                        required
+                      />
+                    </div>
 
-                  <Button
-                    type="submit"
-                    className="w-full bg-[var(--primary)] hover:bg-[var(--primary)]/90 text-[var(--primary-foreground)]"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Ajout en cours..." : "Ajouter le projet"}
-                  </Button>
-                </form>
+                    <div>
+                      <Label className="text-[var(--muted-foreground)] mb-2">
+                        Color:
+                      </Label>
+                      <div className="grid grid-cols-8 gap-1 mt-1">
+                        {availableColors.map((color) => (
+                          <button
+                            key={color}
+                            type="button"
+                            className={`w-6 h-6 rounded-full border-2 transition-transform ${
+                              projectColor === color
+                                ? "border-[var(--foreground)] scale-110"
+                                : "border-transparent"
+                            }`}
+                            style={{ backgroundColor: color }}
+                            onClick={() => setProjectColor(color)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="w-full bg-[var(--primary)] hover:bg-[var(--primary)]/90 text-[var(--primary-foreground)]"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Ajout en cours..." : "Ajouter le projet"}
+                    </Button>
+                  </form>
+                </div>
               </TabsContent>
             </div>
           </Tabs>

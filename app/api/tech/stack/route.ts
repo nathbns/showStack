@@ -18,6 +18,8 @@ interface ApiTechItem {
   url?: string; // URL du projet
   description?: string; // Description du projet
   order?: number; // Ordre pour le tri
+  stars?: number;
+  forks?: number;
 }
 
 // Obtenir la stack technologique de l'utilisateur connecté
@@ -103,9 +105,23 @@ export async function POST(request: Request) {
 
     if (technologies && technologies.length > 0) {
       for (const tech of technologies) {
-        const existingItemId = tech.id ? parseInt(tech.id) : NaN;
+        let shouldInsert = true;
+        let existingItemId = NaN;
 
-        if (!isNaN(existingItemId)) {
+        if (tech.id) {
+          const parsedId = parseInt(tech.id, 10);
+          if (!isNaN(parsedId)) {
+            existingItemId = parsedId;
+            const found = await db.query.stackTechnologyItem.findFirst({
+              where: eq(stackTechnologyItem.id, existingItemId),
+            });
+            if (found) {
+              shouldInsert = false;
+            }
+          }
+        }
+
+        if (!shouldInsert && !isNaN(existingItemId)) {
           // C'est un élément existant, on le met à jour
           await db
             .update(stackTechnologyItem)
@@ -121,18 +137,18 @@ export async function POST(request: Request) {
               url: tech.url || null,
               description: tech.description || null,
               order: tech.order !== undefined ? tech.order : 0,
+              stars: tech.stars || 0,
+              forks: tech.forks || 0,
             })
             .where(eq(stackTechnologyItem.id, existingItemId));
           finalItemDbIds.push(existingItemId);
         } else {
-          // C'est un nouvel élément, on l'insère
-          // tech.id ici est l'identifiant de la technologie (ex: "react") ou un ID temporaire.
-          // L'ID réel de stackTechnologyItem sera auto-généré.
+          // C'est un nouvel élément ou l'ID existant n'était pas valide/trouvé, on l'insère
           const newDbItems = await db
             .insert(stackTechnologyItem)
             .values({
               techStackId: currentStack!.id,
-              technologyId: tech.technologyId, // Assurez-vous que cela est correctement fourni par le client
+              technologyId: tech.technologyId,
               name: tech.name,
               color: tech.color,
               category: tech.category || "Custom",
@@ -143,6 +159,8 @@ export async function POST(request: Request) {
               url: tech.url || null,
               description: tech.description || null,
               order: tech.order !== undefined ? tech.order : 0,
+              stars: tech.stars || 0,
+              forks: tech.forks || 0,
             })
             .returning({ insertedId: stackTechnologyItem.id });
 
@@ -153,14 +171,10 @@ export async function POST(request: Request) {
               "Impossible d'insérer la nouvelle technologie ou d'obtenir son ID:",
               tech
             );
-            // Vous pourriez vouloir retourner une erreur ici si l'insertion est critique
           }
         }
       }
 
-      // Supprimer les items de la DB qui n'étaient pas dans la liste finale (finalItemDbIds)
-      // Cela gère les suppressions faites côté client.
-      // `finalItemDbIds` contient les ID de DB de tous les items qui doivent exister (mis à jour ou nouvellement insérés).
       if (currentStack?.id) {
         if (finalItemDbIds.length > 0) {
           await db
@@ -172,20 +186,12 @@ export async function POST(request: Request) {
               )
             );
         } else {
-          // Si finalItemDbIds est vide mais technologies avait des items (qui ont échoué à l'insertion?),
-          // ou si technologies était vide initialement, on supprime tout pour cette stack.
-          // Ce dernier cas est couvert par le `else` plus bas. Si technologies n'est pas vide
-          // mais finalItemDbIds l'est, cela indique un problème d'insertion.
-          // Le comportement actuel de supprimer tout si finalItemDbIds est vide peut être trop agressif
-          // si des insertions ont échoué. Pour l'instant, on garde la logique de suppression si
-          // la liste finale d'IDs à conserver est vide.
           await db
             .delete(stackTechnologyItem)
             .where(eq(stackTechnologyItem.techStackId, currentStack.id));
         }
       }
     } else {
-      // Si le tableau `technologies` est vide, supprimer tous les items associés à cette stack
       if (currentStack?.id) {
         await db
           .delete(stackTechnologyItem)
@@ -193,22 +199,14 @@ export async function POST(request: Request) {
       }
     }
 
-    // Utiliser une requête manuelle pour s'assurer que toutes les colonnes sont incluses
     const techItems = await db.query.stackTechnologyItem.findMany({
       where: eq(stackTechnologyItem.techStackId, currentStack.id),
     });
-
-    console.log("Technologies récupérées directement:", techItems);
 
     const updatedStackWithTechnologies = {
       ...currentStack,
       technologies: techItems,
     };
-
-    console.log(
-      "Technologies renvoyées par l'API:",
-      updatedStackWithTechnologies.technologies
-    );
 
     return NextResponse.json(updatedStackWithTechnologies);
   } catch (error) {
@@ -239,17 +237,14 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: "ID manquant" }, { status: 400 });
     }
 
-    // Tentative de conversion en nombre
     const idAsNumber = parseInt(itemId, 10);
     if (isNaN(idAsNumber)) {
       return NextResponse.json({ error: "ID invalide" }, { status: 400 });
     }
 
-    // Vérifier si le paramètre stackId est présent pour savoir si on supprime une stack entière
     const isStack = searchParams.has("stackId");
 
     if (isStack) {
-      // Vérifier que la stack appartient bien à l'utilisateur
       const stack = await db.query.techStack.findFirst({
         where: (techStack) =>
           eq(techStack.id, idAsNumber) && eq(techStack.userId, session.user.id),
@@ -262,7 +257,6 @@ export async function DELETE(request: Request) {
         );
       }
 
-      // Supprimer la stack (les technologies associées seront supprimées automatiquement grâce à onDelete: "cascade")
       const deletedStacks = await db
         .delete(techStack)
         .where(eq(techStack.id, idAsNumber))
@@ -277,7 +271,6 @@ export async function DELETE(request: Request) {
 
       return NextResponse.json({ message: "Stack supprimée avec succès" });
     } else {
-      // Vérifier que l'item appartient bien à une stack de l'utilisateur actuel
       const item = await db.query.stackTechnologyItem.findFirst({
         where: eq(stackTechnologyItem.id, idAsNumber),
         with: {
@@ -292,7 +285,6 @@ export async function DELETE(request: Request) {
         );
       }
 
-      // Supprimer la technologie
       const deletedItems = await db
         .delete(stackTechnologyItem)
         .where(eq(stackTechnologyItem.id, idAsNumber))

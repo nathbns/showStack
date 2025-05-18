@@ -1,11 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/drizzle/db";
-import {
-  user,
-  techStack,
-  stackTechnologyItem,
-  userTag,
-} from "@/drizzle/db/schema";
+import { user, techStack, stackTechnologyItem } from "@/drizzle/db/schema";
 import { eq, asc } from "drizzle-orm";
 
 export async function GET(
@@ -60,21 +55,9 @@ export async function GET(
       orderBy: (techStack, { asc }) => [asc(techStack.createdAt)],
     });
 
-    // 3. Récupérer les tags utilisateur
-    const tags = await db.query.userTag.findMany({
-      where: eq(userTag.userId, userId),
-      columns: {
-        id: true,
-        name: true,
-        color: true,
-      },
-      orderBy: (userTag, { asc }) => [asc(userTag.id)],
-    });
-
     return NextResponse.json({
       user: userInfo,
       stacks: userStacks,
-      tags,
     });
   } catch (error) {
     console.error(`Error fetching profile data for user ${userId}:`, error);

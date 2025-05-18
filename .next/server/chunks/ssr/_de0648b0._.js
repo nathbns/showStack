@@ -3402,7 +3402,6 @@ function UserProfilePage() {
                         layoutConfig: undefined
                     },
                     stacks: stacks,
-                    tags: tags,
                     layoutConfig: layoutConfig,
                     readOnly: true
                 }, void 0, false, {

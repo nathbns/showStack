@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/nathan/Desktop/showStack/app/auth/signup/page.tsx"],"sourcesContent":["\"use client\";\nimport { SignUpForm } from \"@/components/auth/sign-up-form\";\n\nexport default function SignUpPage() {\n  return (\n    <div className=\"flex min-h-screen flex-col items-center justify-center p-4\">\n      <SignUpForm />\n    </div>\n  );\n}\n"],"names":[],"mappings":";;;;;;;;;AAAA;;;AAGe,SAAS;IACtB,qBACE,6LAAC;QAAI,WAAU;kBACb,cAAA,6LAAC;;;;;;;;;;AAGP;KANwB","debugId":null}}]
+}

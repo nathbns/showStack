@@ -2,13 +2,18 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSession } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
-import TechStackGrid from "@/components/tech-stack/tech-stack-grid";
 import { AddTechForm } from "@/components/tech-stack/add-tech-form";
 import { type Tech } from "@/components/tech-stack/tech-stack-grid";
 import { toast } from "sonner";
 import { allTechnologies } from "@/components/tech-stack/tech-data";
 import Image from "next/image";
-import { ExternalLink, GripVertical, Edit3, CheckSquare } from "lucide-react";
+import {
+  ExternalLink,
+  GripVertical,
+  RefreshCw,
+  X as XIcon,
+  Trash2 as TrashIcon,
+} from "lucide-react";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -16,22 +21,24 @@ import {
   ContextMenuSeparator,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
-import { TagManager } from "@/components/profile/tag-manager";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-
 import {
   DndContext,
-  closestCenter,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
   DragEndEvent,
-  useDraggable,
   useDroppable,
-  DragOverlay,
 } from "@dnd-kit/core";
-import { CSS } from "@dnd-kit/utilities";
+import {
+  SortableContext,
+  useSortable,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+} from "@dnd-kit/sortable";
+import GitHubLogo from "@/components/logo-card";
 
 // Initialisation de iconMap au niveau du module
 const iconMap: Record<string, React.ReactNode> = {};
@@ -45,6 +52,44 @@ const getDefaultIcon = (name: string) => (
   </span>
 );
 
+const TRASH_ID = "trash-can-droppable-id"; // ID unique pour la zone droppable
+
+function DroppableTrash({ isVisible }: { isVisible: boolean }) {
+  const { setNodeRef, isOver } = useDroppable({
+    id: TRASH_ID,
+  });
+
+  if (!isVisible) {
+    return null;
+  }
+
+  return (
+    <div
+      ref={setNodeRef}
+      className={`mt-8 p-6 border-2 ${
+        isOver
+          ? "border-red-500 bg-red-500/10"
+          : "border-dashed border-[var(--border)]"
+      } rounded-lg flex flex-col items-center justify-center transition-all`}
+      style={{ minHeight: "100px" }}
+    >
+      <TrashIcon
+        size={32}
+        className={`${
+          isOver ? "text-red-500" : "text-[var(--muted-foreground)]"
+        } mb-2`}
+      />
+      <p
+        className={`text-sm ${
+          isOver ? "text-red-500" : "text-[var(--muted-foreground)]"
+        }`}
+      >
+        {isOver ? "Relâcher pour supprimer" : "Glisser ici pour supprimer"}
+      </p>
+    </div>
+  );
+}
+
 // Interface for a complete stack (details + technologies)
 export interface UserStack {
   id: number; // techStack ID
@@ -54,93 +99,211 @@ export interface UserStack {
   updatedAt?: string;
 }
 
-// Types pour les sections déplaçables et le layout simplifié
-type DraggableSectionId = "profile" | "stacks";
-type DroppableZoneId = "zoneLeft" | "zoneTopRight";
-
-interface DashboardSectionDefinition {
-  id: DraggableSectionId;
-  title: string;
-}
-
-// Uniquement les sections déplaçables
-const DRAGGABLE_SECTIONS: Record<
-  DraggableSectionId,
-  DashboardSectionDefinition
-> = {
-  profile: { id: "profile", title: "My Profile" },
-  stacks: { id: "stacks", title: "My Stacks" },
-};
-
-interface DashboardLayout {
-  zoneLeft: DraggableSectionId;
-  zoneTopRight: DraggableSectionId;
-  // zoneBottomRight est implicitement pour "bento"
-}
-
-function DraggableDashboardSection({
-  sectionId,
-  children,
+function SortableTechCard({
+  tech,
   isPageEditMode,
+  isResizeMode,
+  onRemoveTech,
+  onUpdateTech,
+  gridMax,
 }: {
-  sectionId: DraggableSectionId;
-  children: React.ReactNode;
+  tech: Tech;
   isPageEditMode: boolean;
+  isResizeMode: boolean;
+  onRemoveTech: (id: string) => void;
+  onUpdateTech: (id: string, updates: Partial<Tech>) => void;
+  gridMax: { cols: number; rows: number };
 }) {
-  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
-    id: sectionId,
-    disabled: !isPageEditMode,
-  });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: tech.id });
 
   const style = {
-    zIndex: isDragging ? 100 : undefined,
-    opacity: isDragging ? 0.75 : 1,
-    height: "100%",
+    transform: transform
+      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      : undefined,
+    transition,
+    zIndex: isDragging ? 50 : undefined,
+    opacity: isDragging ? 0.7 : 1,
   };
 
-  return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...(isPageEditMode ? attributes : {})}
-      className="relative h-full"
-    >
-      {isPageEditMode && (
-        <button
-          {...listeners}
-          className="absolute top-2 right-2 p-1 cursor-grab active:cursor-grabbing opacity-60 hover:opacity-100 z-20 bg-background/50 rounded-sm"
-        >
-          <GripVertical size={20} />
-        </button>
-      )}
-      {children}
-    </div>
-  );
-}
+  const colSpan = tech.gridSpan?.cols || 1;
+  const rowSpan = tech.gridSpan?.rows || 1;
 
-function DroppableZone({
-  zoneId,
-  children,
-  className,
-}: {
-  zoneId: DroppableZoneId;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const { setNodeRef, isOver } = useDroppable({ id: zoneId });
-  return (
+  // Logique de colSpan responsive
+  let colSpanClass = "col-span-1"; // Par défaut pour mobile (grille à 1 colonne)
+  if (colSpan === 2) {
+    colSpanClass = "col-span-1 md:col-span-2"; // Prend 2 colonnes sur md+, sinon 1
+  } else if (colSpan === 3) {
+    colSpanClass = "col-span-1 md:col-span-2 lg:col-span-3"; // Prend 3 sur lg+, 2 sur md+, sinon 1
+  }
+  // Pour colSpan === 1, reste col-span-1 sur toutes les tailles implicitement
+
+  // Pour rowSpan, c'est généralement moins problématique, mais on peut standardiser
+  const rowSpanClass = rowSpan === 2 ? "row-span-2" : "row-span-1";
+
+  const maxCols = gridMax.cols;
+  const maxRows = gridMax.rows;
+  const showControls = isResizeMode;
+  const gapPx = 16;
+  let minHeight = rowSpan * 150 + (rowSpan - 1) * gapPx;
+  // if (isResizeMode) {
+  //   minHeight += 70;
+  // }
+
+  const isGithubProject =
+    tech.isProject && tech.url && tech.url.startsWith("https://github.com/");
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const handleRefreshGithubStats = async () => {
+    if (!tech.url) return;
+    setIsRefreshing(true);
+    try {
+      const match = tech.url.match(/github.com\/([^/]+)\/([^/]+)/);
+      if (!match) return;
+      const owner = match[1];
+      const repo = match[2];
+      const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
+      if (!res.ok) throw new Error("Erreur lors du fetch GitHub");
+      const data = await res.json();
+      onUpdateTech(tech.id, {
+        stars: data.stargazers_count,
+        forks: data.forks_count,
+      });
+    } catch (e) {
+      // Gérer l'erreur
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  const CardContent = (
     <div
-      ref={setNodeRef}
-      className={`p-1 border-2 border-dashed rounded-lg ${className || ""} ${
-        isOver
-          ? "border-[var(--primary)] bg-[var(--primary)]/10"
-          : "border-transparent"
-      } flex flex-col`}
-      style={{ minHeight: "150px" }}
+      className="bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden group transition-shadow hover:shadow-lg hover:border-[var(--primary)]"
+      style={{ minHeight }}
     >
-      {children}
+      {/* Halo lumineux décoratif */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div
+          className="absolute -top-8 -left-8 w-32 h-32 rounded-full blur-2xl"
+          style={{
+            background: `radial-gradient(circle, ${tech.color}55 0%, transparent 80%)`,
+          }}
+        />
+      </div>
+      <div className="flex items-center gap-2 mb-2 relative z-10">
+        <div className="w-8 h-8 flex items-center justify-center">
+          {tech.icon}
+        </div>
+        <span className="font-semibold text-lg text-[--text-foreground]">
+          {tech.name}
+        </span>
+        {isGithubProject && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleRefreshGithubStats();
+            }}
+            disabled={isRefreshing}
+            className="ml-2 p-1 rounded hover:bg-[var(--muted)] transition-colors"
+            title="Rafraîchir les stats GitHub"
+            aria-label="Rafraîchir les stats GitHub"
+            type="button"
+          >
+            <RefreshCw
+              size={16}
+              className={isRefreshing ? "animate-spin" : ""}
+            />
+          </button>
+        )}
+      </div>
+      {/* Cacher la description si en mode Resize */}
+      {tech.description && !isResizeMode && (
+        <div className={`text-xs text-[--text-foreground] mt-1 relative z-10`}>
+          {tech.description}
+        </div>
+      )}
+      {/* Cacher les stats GitHub si en mode Resize */}
+      {isGithubProject && !isResizeMode && (
+        <div className="flex gap-4 items-center mt-2 text-xs text-[var(--muted-foreground)]">
+          <span title="Stars">⭐ {tech.stars ?? 0}</span>
+          <span title="Forks">🍴 {tech.forks ?? 0}</span>
+        </div>
+      )}
+      {showControls && (
+        <div className="mt-2 flex flex-col gap-1 w-full relative z-10">
+          <div className="flex gap-1 items-center">
+            <span className="text-xs">Largeur :</span>
+            {[1, 2, 3].map((c) => (
+              <Button
+                key={c}
+                size="sm"
+                variant={colSpan === c ? "secondary" : "outline"}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onUpdateTech(tech.id, {
+                    gridSpan: { ...tech.gridSpan, cols: c as 1 | 2 | 3 },
+                  });
+                }}
+                disabled={c > maxCols}
+                className="px-2 py-0.5 text-xs h-auto min-w-[24px]"
+              >
+                {c}
+              </Button>
+            ))}
+          </div>
+          <div className="flex gap-1 items-center">
+            <span className="text-xs">Hauteur :</span>
+            {[1, 2].map((r) => (
+              <Button
+                key={r}
+                size="sm"
+                variant={rowSpan === r ? "secondary" : "outline"}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onUpdateTech(tech.id, {
+                    gridSpan: { ...tech.gridSpan, rows: r as 1 | 2 },
+                  });
+                }}
+                disabled={r > maxRows}
+                className="px-2 py-0.5 text-xs h-auto min-w-[24px]"
+              >
+                {r}
+              </Button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
+
+  const WrapperElement =
+    isGithubProject && !isPageEditMode && !isResizeMode ? "a" : "div";
+
+  const wrapperProps: any = {
+    ref: setNodeRef,
+    style: style,
+    className: `relative group ${colSpanClass} ${rowSpanClass} ${
+      isPageEditMode ? "cursor-grab active:cursor-grabbing" : ""
+    }`,
+    ...(isPageEditMode ? { ...attributes, ...listeners } : {}),
+  };
+
+  if (WrapperElement === "a") {
+    wrapperProps.href = tech.url;
+    wrapperProps.target = "_blank";
+    wrapperProps.rel = "noopener noreferrer";
+    wrapperProps["aria-label"] = `Voir le repo GitHub ${tech.name}`;
+    wrapperProps.tabIndex = 0;
+  }
+
+  return <WrapperElement {...wrapperProps}>{CardContent}</WrapperElement>;
 }
 
 export default function Dashboard() {
@@ -151,90 +314,13 @@ export default function Dashboard() {
   const [userProfileDescription, setUserProfileDescription] = useState("");
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [editingDescription, setEditingDescription] = useState("");
-
-  // Déclaration de isPageEditMode AVANT son utilisation dans les handlers
+  const [showAddStackForm, setShowAddStackForm] = useState(false);
   const [isPageEditMode, setIsPageEditMode] = useState(false);
+  const [isResizeMode, setIsResizeMode] = useState(false);
+  const [orderedTechIds, setOrderedTechIds] = useState<string[]>([]);
 
   const activeStack = userStacks.find((stack) => stack.id === activeStackId);
   const technologies = activeStack?.technologies || [];
-
-  const [layout, setLayout] = useState<DashboardLayout>(() => {
-    const savedLayout =
-      typeof window !== "undefined"
-        ? localStorage.getItem("dashboardFixedBentoLayout")
-        : null;
-    if (savedLayout) {
-      try {
-        const parsed = JSON.parse(savedLayout);
-        if (
-          parsed.zoneLeft &&
-          parsed.zoneTopRight &&
-          (parsed.zoneLeft === "profile" || parsed.zoneLeft === "stacks") &&
-          (parsed.zoneTopRight === "profile" ||
-            parsed.zoneTopRight === "stacks") &&
-          parsed.zoneLeft !== parsed.zoneTopRight
-        ) {
-          return parsed as DashboardLayout;
-        }
-      } catch (e) {
-        console.error("Failed to parse layout from localStorage", e);
-      }
-    }
-    return { zoneLeft: "profile", zoneTopRight: "stacks" };
-  });
-
-  const [activeDragId, setActiveDragId] = useState<DraggableSectionId | null>(
-    null
-  );
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor)
-  );
-
-  const handleDragStart = (event: DragEndEvent) => {
-    if (!isPageEditMode) return; // Vérification ici
-    setActiveDragId(event.active.id as DraggableSectionId);
-  };
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    if (!isPageEditMode) return; // Vérification ici
-    setActiveDragId(null);
-    const { active, over } = event;
-    if (!over || !active || active.id === over.id) return;
-    const activeItemId = active.id as DraggableSectionId;
-    const targetZoneId = over.id as DroppableZoneId;
-    setLayout((prevLayout) => {
-      if (
-        (activeItemId === prevLayout.zoneLeft &&
-          targetZoneId === "zoneTopRight") ||
-        (activeItemId === prevLayout.zoneTopRight &&
-          targetZoneId === "zoneLeft")
-      ) {
-        return {
-          zoneLeft: prevLayout.zoneTopRight,
-          zoneTopRight: prevLayout.zoneLeft,
-        };
-      }
-      return prevLayout;
-    });
-  };
-
-  useEffect(() => {
-    if (isPageEditMode) {
-      // Sauvegarde conditionnelle dans le localStorage
-      localStorage.setItem("dashboardFixedBentoLayout", JSON.stringify(layout));
-    }
-    // Sauvegarde côté serveur (API)
-    if (sessionData?.user?.id) {
-      fetch("/api/user/profile", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          layoutConfig: JSON.stringify({ zoneLeft: layout.zoneLeft }),
-        }),
-      });
-    }
-  }, [layout, isPageEditMode, sessionData?.user?.id]);
 
   useEffect(() => {
     if (sessionData?.user) {
@@ -244,6 +330,45 @@ export default function Dashboard() {
     }
   }, [sessionData]);
 
+  useEffect(() => {
+    if (technologies.length > 0) {
+      setOrderedTechIds(technologies.map((t) => t.id));
+    }
+  }, [technologies]);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && over.id === TRASH_ID) {
+      // Si déposé sur la poubelle
+      console.log(`[DEBUG] DragEnd - Item ${active.id} dropped on TRASH`);
+      handleRemoveTech(active.id as string);
+      return; // Fin du traitement pour la suppression
+    }
+
+    // Logique de réorganisation existante
+    if (over && active.id !== over.id) {
+      const oldIndex = orderedTechIds.indexOf(active.id as string);
+      const newIndex = orderedTechIds.indexOf(over.id as string);
+      // Vérifier si oldIndex et newIndex sont valides (parfois over.id peut être la poubelle si mal géré plus haut)
+      if (oldIndex !== -1 && newIndex !== -1) {
+        const newOrder = arrayMove(orderedTechIds, oldIndex, newIndex);
+        setOrderedTechIds(newOrder);
+        const reorderedTechs = newOrder
+          .map((id) => technologies.find((t) => t.id === id))
+          .filter(Boolean) as Tech[];
+        handleReorderTechs(reorderedTechs);
+      }
+    }
+  };
+
   const hydrateTechnologies = useCallback((rawTechs: any[]): Tech[] => {
     if (!rawTechs) return [];
     const hydrated = rawTechs.map((rawTech, index) => {
@@ -252,14 +377,24 @@ export default function Dashboard() {
       let favicon = undefined;
       let url = undefined;
       let description = undefined;
+      let stars = 0;
+      let forks = 0;
 
       if (rawTech.isProject) {
         isProject = true;
         url = rawTech.url;
         description = rawTech.description;
         favicon = rawTech.favicon;
+        stars = rawTech.stars;
+        forks = rawTech.forks;
 
-        if (rawTech.favicon) {
+        if (
+          url &&
+          typeof url === "string" &&
+          url.startsWith("https://github.com/")
+        ) {
+          icon = <GitHubLogo width={24} height={24} />;
+        } else if (favicon) {
           icon = (
             <img
               src={rawTech.favicon}
@@ -299,6 +434,8 @@ export default function Dashboard() {
         favicon: favicon,
         url: url,
         description: description,
+        stars,
+        forks,
       };
       return techItem;
     });
@@ -310,13 +447,14 @@ export default function Dashboard() {
     async (stackToSave: UserStack) => {
       if (!sessionData?.user?.id) {
         toast.error("You must be logged in to save.");
-        return;
+        return null;
       }
       if (!stackToSave) {
         toast.error("No active stack to save.");
-        return;
+        return null;
       }
 
+      console.log("[DEBUG] saveActiveStack - stackToSave:", stackToSave);
       try {
         const technologiesToSave = stackToSave.technologies.map(
           (tech, index) => {
@@ -348,6 +486,8 @@ export default function Dashboard() {
               url,
               description,
               order: tech.order,
+              stars: tech.stars,
+              forks: tech.forks,
             };
             return apiTechItem;
           }
@@ -373,22 +513,22 @@ export default function Dashboard() {
           savedStackData.technologies || []
         );
 
+        const finalStack = {
+          ...savedStackData,
+          technologies: hydratedFromApi,
+        };
+
         setUserStacks((prevStacks) =>
-          prevStacks.map((s) =>
-            s.id === savedStackData.id
-              ? {
-                  ...savedStackData,
-                  technologies: hydratedFromApi,
-                }
-              : s
-          )
+          prevStacks.map((s) => (s.id === savedStackData.id ? finalStack : s))
         );
         if (activeStackId === null && savedStackData.id) {
           setActiveStackId(savedStackData.id);
         }
         toast.success(`Stack '${savedStackData.name}' saved successfully!`);
+        return finalStack;
       } catch (error) {
         toast.error((error as Error).message || "Unable to save the stack.");
+        return null;
       }
     },
     [sessionData, hydrateTechnologies, activeStackId]
@@ -507,7 +647,7 @@ export default function Dashboard() {
     }
   };
 
-  const handleAddTech = (newTechFromForm: Tech) => {
+  const handleAddTech = async (newTechFromForm: Tech) => {
     if (!activeStack) {
       toast.error("Please select a stack to add a technology.");
       return;
@@ -516,10 +656,18 @@ export default function Dashboard() {
     const updatedTechnologies = [...activeStack.technologies, newTechFromForm];
     const updatedStack = { ...activeStack, technologies: updatedTechnologies };
 
+    // Optimistic update (optionnel)
     setUserStacks((prevStacks) =>
       prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
     );
-    saveActiveStack(updatedStack);
+
+    // Synchroniser avec la version serveur (pour avoir les bons ids)
+    const savedStack = await saveActiveStack(updatedStack);
+    if (savedStack) {
+      setUserStacks((prevStacks) =>
+        prevStacks.map((s) => (s.id === savedStack.id ? { ...savedStack } : s))
+      );
+    }
   };
 
   const handleRemoveTech = async (stackTechnologyItemId: string) => {
@@ -600,10 +748,22 @@ export default function Dashboard() {
     );
     const updatedStack = { ...activeStack, technologies: updatedTechnologies };
 
+    console.log("[DEBUG] handleUpdateTech - id:", id, "updates:", updates);
     setUserStacks((prevStacks) =>
       prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
     );
-    saveActiveStack(updatedStack);
+
+    // Si on met à jour les stars ou forks, on persiste
+    if (
+      typeof updates.stars !== "undefined" ||
+      typeof updates.forks !== "undefined"
+    ) {
+      console.log(
+        "[DEBUG] handleUpdateTech - saveActiveStack called with:",
+        updatedStack
+      );
+      saveActiveStack(updatedStack);
+    }
   };
 
   const handleReorderTechs = (reorderedTechs: Tech[]) => {
@@ -641,270 +801,118 @@ export default function Dashboard() {
     }
   }, [sessionData?.user?.id]);
 
-  // --- Composants de Section (contenu réel) ---
-  const ProfileSection = ({
-    currentSessionData,
-    isEditing,
-    setIsEditing,
-    currentDescription,
-    editingDesc,
-    setEditingDesc,
-    onDescriptionChange,
-  }: {
-    currentSessionData: typeof sessionData;
-    isEditing: boolean;
-    setIsEditing: (val: boolean) => void;
-    currentDescription: string;
-    editingDesc: string;
-    setEditingDesc: (val: string) => void;
-    onDescriptionChange: (newDesc: string) => void;
-  }) => (
-    <div className="relative bg-[var(--card)] p-6 rounded-lg border-1 border-[var(--border)] flex flex-col gap-6 h-full">
-      <GlowingEffect className="rounded-lg" />
-      <div>
-        <h2 className="text-2xl font-semibold mb-4 text-[var(--card-foreground)]">
-          My Profile
-        </h2>
-        {currentSessionData?.user?.image && (
-          <div className="mb-4 relative w-32 h-32 mx-auto">
-            <Image
-              src={currentSessionData.user.image}
-              alt={currentSessionData.user.name || "User avatar"}
-              layout="fill"
-              objectFit="cover"
-              className="rounded-full"
-            />
-          </div>
-        )}
-        <h3 className="text-xl font-medium text-center text-[var(--card-foreground)] mb-1">
-          {currentSessionData?.user?.name || "Anonymous User"}
-        </h3>
-        <p className="text-sm text-[var(--muted-foreground)] text-center mb-4">
-          {currentSessionData?.user?.email}
-        </p>
-      </div>
-
-      <div className="mt-0">
-        {!isEditing ? (
-          <div>
-            <h4 className="text-md font-semibold text-[var(--card-foreground)] mb-1">
-              My description
-            </h4>
-            <p
-              className={`text-sm text-[var(--muted-foreground)] whitespace-pre-wrap min-h-[60px] ${
-                !currentDescription && "italic"
-              }`}
-            >
-              {currentDescription || "No description yet."}
-            </p>
-            <Button
-              variant="outline"
-              size="sm"
-              className="mt-2 text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
-              onClick={() => {
-                setEditingDesc(currentDescription);
-                setIsEditing(true);
-              }}
-            >
-              Edit description
-            </Button>
-          </div>
-        ) : (
-          <div>
-            <label
-              htmlFor="profileDescriptionTextarea"
-              className="block text-sm font-medium text-[var(--muted-foreground)] mb-1"
-            >
-              Edit my description
-            </label>
-            <textarea
-              id="profileDescriptionTextarea"
-              value={editingDesc}
-              onChange={(e) => setEditingDesc(e.target.value)}
-              rows={4}
-              className="w-full p-2 rounded bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]"
-              placeholder="Introduce yourself in a few words..."
-            />
-            <div className="mt-2 flex gap-2">
-              <Button
-                size="sm"
-                onClick={() => onDescriptionChange(editingDesc)}
-                className="bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90"
-              >
-                Save
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsEditing(false)}
-                className="text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
-              >
-                Cancel
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {!isEditing && currentSessionData?.user?.id && (
-        <div className="mt-0">
-          <TagManager userId={currentSessionData.user.id} />
+  // Nouveau composant ProfileHeader
+  const ProfileHeader = () => (
+    <div className="flex flex-col items-center justify-center py-8">
+      {sessionData?.user?.image && (
+        <div className="relative w-24 h-24 mb-4">
+          <Image
+            src={sessionData.user.image}
+            alt={sessionData.user.name || "Avatar utilisateur"}
+            layout="fill"
+            objectFit="cover"
+            className="rounded-full"
+          />
         </div>
       )}
-
-      {!isEditing && currentSessionData?.user?.id && (
-        <div className="mt-auto pt-6">
-          <Button
-            variant="destructive"
-            size="sm"
-            onClick={async () => {
-              if (
-                confirm(
-                  "Are you sure you want to delete your account? This action is irreversible and all your data will be lost."
-                )
-              ) {
-                try {
-                  const response = await fetch("/api/user/delete", {
-                    method: "DELETE",
-                  });
-                  if (response.ok) {
-                    toast.success(
-                      "Account deleted successfully. Redirecting..."
-                    );
-                    // Déconnecter l'utilisateur et le rediriger
-                    // Idéalement, utilisez une fonction de déconnexion de better-auth/react si disponible
-                    // ou s'assurer que le cookie est effacé par le serveur et rediriger.
-                    // authClient.signOut() ou similaire
-                    window.location.href = "/"; // Redirection vers la page d'accueil
-                  } else {
-                    const errorData = await response.json();
-                    toast.error(errorData.error || "Failed to delete account.");
-                  }
-                } catch (error) {
-                  console.error("Error calling delete account API:", error);
-                  toast.error("An error occurred while deleting the account.");
-                }
-              }
-            }}
-            className="w-full"
-          >
-            Delete My Account
-          </Button>
-        </div>
-      )}
+      <h2 className="text-2xl font-semibold text-[var(--foreground)]">
+        {sessionData?.user?.name || "Utilisateur anonyme"}
+      </h2>
     </div>
   );
 
-  const StacksSection = ({
-    userStacks,
-    activeStackId,
-    handleCreateNewStack,
-    setActiveStackId,
-    handleDeleteStack,
-    saveActiveStack,
-  }: {
-    userStacks: UserStack[];
-    activeStackId: number | null;
-    handleCreateNewStack: (name: string) => Promise<void>;
-    setActiveStackId: (id: number | null) => void;
-    handleDeleteStack: (id: number) => void;
-    saveActiveStack: (stack: UserStack) => void;
-  }) => {
+  // Composant StacksSelector simplifié
+  const StacksSelector = () => {
     const [inputValue, setInputValue] = useState("");
 
     return (
-      <div className="relative bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] flex flex-col h-full">
-        <GlowingEffect className="rounded-lg" />
-        <h3 className="text-xl font-semibold mb-3 text-[var(--card-foreground)]">
-          My Stacks
-        </h3>
-        <div className="flex-grow mb-4">
-          {userStacks.length > 0 ? (
-            <div className="flex flex-wrap gap-2" style={{ minHeight: "80px" }}>
-              {userStacks.map((stack) => (
-                <div key={stack.id} className="flex items-center">
-                  <ContextMenu>
-                    <ContextMenuTrigger>
-                      <Button
-                        variant={
-                          activeStackId === stack.id ? "default" : "outline"
-                        }
-                        onClick={() => setActiveStackId(stack.id)}
-                        className={
-                          activeStackId !== stack.id
-                            ? "text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
-                            : ""
-                        }
-                      >
-                        {stack.name}
-                      </Button>
-                    </ContextMenuTrigger>
-                    <ContextMenuContent>
-                      <ContextMenuItem
-                        variant="destructive"
-                        onClick={() => handleDeleteStack(stack.id)}
-                      >
-                        Delete
-                      </ContextMenuItem>
-                      <ContextMenuSeparator />
-                      <ContextMenuItem
-                        onClick={() => {
-                          const newNamePrompt = prompt(
-                            "New name for this stack:",
-                            stack.name
-                          );
-                          if (
-                            newNamePrompt &&
-                            newNamePrompt.trim() &&
-                            newNamePrompt !== stack.name
-                          ) {
-                            saveActiveStack({
-                              ...stack,
-                              name: newNamePrompt.trim(),
-                            });
-                          }
-                        }}
-                      >
-                        Rename
-                      </ContextMenuItem>
-                    </ContextMenuContent>
-                  </ContextMenu>
-                </div>
-              ))}
+      <div className="flex flex-col items-center gap-4 py-4">
+        <div className="flex flex-wrap justify-center gap-2">
+          {userStacks.map((stack) => (
+            <div key={stack.id} className="flex items-center">
+              <ContextMenu>
+                <ContextMenuTrigger>
+                  <Button
+                    variant={activeStackId === stack.id ? "default" : "outline"}
+                    onClick={() => setActiveStackId(stack.id)}
+                    className={
+                      activeStackId !== stack.id
+                        ? "text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+                        : ""
+                    }
+                  >
+                    {stack.name}
+                  </Button>
+                </ContextMenuTrigger>
+                <ContextMenuContent>
+                  <ContextMenuItem
+                    variant="destructive"
+                    onClick={() => handleDeleteStack(stack.id)}
+                  >
+                    Delete
+                  </ContextMenuItem>
+                  <ContextMenuSeparator />
+                  <ContextMenuItem
+                    onClick={() => {
+                      const newNamePrompt = prompt(
+                        "New name for this stack:",
+                        stack.name
+                      );
+                      if (
+                        newNamePrompt &&
+                        newNamePrompt.trim() &&
+                        newNamePrompt !== stack.name
+                      ) {
+                        saveActiveStack({
+                          ...stack,
+                          name: newNamePrompt.trim(),
+                        });
+                      }
+                    }}
+                  >
+                    Rename
+                  </ContextMenuItem>
+                </ContextMenuContent>
+              </ContextMenu>
             </div>
-          ) : (
-            <div className="h-full flex items-center justify-center">
-              <p className="text-[var(--muted-foreground)] text-sm">
-                No stacks yet. Create one to get started!
-              </p>
-            </div>
-          )}
+          ))}
         </div>
-        <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="New stack name..."
-            className="w-full sm:flex-grow p-2 rounded bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]"
-          />
-          <Button
-            onClick={async () => {
-              if (inputValue.trim()) {
-                try {
-                  await handleCreateNewStack(inputValue.trim());
-                  setInputValue("");
-                } catch (error) {
-                  // L'erreur est gérée par le toast dans handleCreateNewStack du parent
-                  // L'input n'est pas vidé pour permettre la correction
+
+        {showAddStackForm ? (
+          <div className="flex flex-col sm:flex-row gap-2 items-center">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="New stack name..."
+              className="w-full sm:w-64 p-2 rounded bg-[var(--input)] border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]"
+            />
+            <Button
+              onClick={async () => {
+                if (inputValue.trim()) {
+                  try {
+                    await handleCreateNewStack(inputValue.trim());
+                    setInputValue("");
+                    setShowAddStackForm(false);
+                  } catch (error) {
+                    // L'erreur est gérée par le toast dans handleCreateNewStack
+                  }
                 }
-              }
-            }}
-            className="w-full sm:w-auto bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90"
+              }}
+              className="bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90"
+            >
+              Create
+            </Button>
+          </div>
+        ) : (
+          <Button
+            variant="ghost"
+            onClick={() => setShowAddStackForm(true)}
+            className="text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
           >
-            Create Stack
+            + Add Stack
           </Button>
-        </div>
+        )}
       </div>
     );
   };
@@ -918,6 +926,7 @@ export default function Dashboard() {
     handleRemoveTech,
     handleUpdateTech,
     handleReorderTechs,
+    saveActiveStack,
   }: {
     activeStack: UserStack | undefined;
     technologies: Tech[];
@@ -927,20 +936,54 @@ export default function Dashboard() {
     handleRemoveTech: (id: string) => void;
     handleUpdateTech: (id: string, updates: Partial<Tech>) => void;
     handleReorderTechs: (reorderedTechs: Tech[]) => void;
+    saveActiveStack?: (stack: UserStack) => Promise<any>;
   }) => {
-    if (!sessionUserId) return null; // Garde pour sessionUserId
+    if (!sessionUserId) return null;
+    // Limites de la grille
+    const gridMax = { cols: 3, rows: 2 };
+    // Limite à 5 lignes (3x5=15 emplacements max)
+    // (On peut améliorer la logique pour empêcher le dépassement total si besoin)
     return (
       <>
         {activeStack && (
-          <div className="relative w-full bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] h-full flex flex-col">
+          <div
+            className={`relative w-full bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] h-full flex flex-col ${
+              isPageEditMode || isResizeMode
+                ? "border-2 border-dashed border-[var(--primary)]"
+                : ""
+            }`}
+          >
             <GlowingEffect className="rounded-lg" />
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-[var(--foreground)]">
                 Your Bento Grid.
               </h2>
-              <AddTechForm onAddTech={handleAddTech} userId={sessionUserId} />
+              <div className="flex gap-2">
+                <Button
+                  variant={isPageEditMode ? "secondary" : "outline"}
+                  onClick={() => {
+                    setIsPageEditMode(!isPageEditMode);
+                    if (!isPageEditMode) setIsResizeMode(false);
+                  }}
+                  className="text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+                  disabled={isResizeMode}
+                >
+                  {isPageEditMode ? "Done Editing" : "Reorder"}
+                </Button>
+                <Button
+                  variant={isResizeMode ? "secondary" : "outline"}
+                  onClick={() => {
+                    setIsResizeMode(!isResizeMode);
+                    if (!isResizeMode) setIsPageEditMode(false);
+                  }}
+                  className="text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+                  disabled={isPageEditMode}
+                >
+                  {isResizeMode ? "Done Resizing" : "Resize"}
+                </Button>
+                <AddTechForm onAddTech={handleAddTech} userId={sessionUserId} />
+              </div>
             </div>
-
             {technologies.length === 0 && !isLoadingInitialData && (
               <div className="text-center py-12 flex-grow flex flex-col justify-center items-center">
                 <p className="text-[var(--muted-foreground)]">
@@ -951,20 +994,68 @@ export default function Dashboard() {
                 </p>
               </div>
             )}
-
-            {technologies.length > 0 && !isLoadingInitialData && (
-              <div className="flex-grow overflow-auto">
-                <TechStackGrid
-                  technologies={technologies}
-                  onRemoveTech={handleRemoveTech}
-                  onUpdateTech={handleUpdateTech}
-                  onReorderTechs={handleReorderTechs}
-                />
-              </div>
-            )}
+            {technologies.length > 0 &&
+              !isLoadingInitialData &&
+              (isPageEditMode ? (
+                <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+                  <SortableContext
+                    items={orderedTechIds}
+                    strategy={rectSortingStrategy}
+                  >
+                    <div
+                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+                      // style={{ gridAutoRows: "150px" }} // COMMENTÉ POUR TEST
+                    >
+                      {orderedTechIds.map((id) => {
+                        const tech = technologies.find((t) => t.id === id);
+                        if (!tech) return null;
+                        return (
+                          <SortableTechCard
+                            key={tech.id}
+                            tech={tech}
+                            isPageEditMode={true}
+                            isResizeMode={false}
+                            onRemoveTech={handleRemoveTech}
+                            onUpdateTech={(id, updates) => {
+                              handleUpdateTech(id, { ...updates });
+                            }}
+                            gridMax={gridMax}
+                          />
+                        );
+                      })}
+                    </div>
+                  </SortableContext>
+                  {/* Affiche la poubelle en dessous de la grille si en mode édition */}
+                  {isPageEditMode && (
+                    <DroppableTrash isVisible={isPageEditMode} />
+                  )}
+                </DndContext>
+              ) : (
+                <div
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+                  // style={{ gridAutoRows: "150px" }} // COMMENTÉ POUR TEST
+                >
+                  {orderedTechIds.map((id) => {
+                    const tech = technologies.find((t) => t.id === id);
+                    if (!tech) return null;
+                    return (
+                      <SortableTechCard
+                        key={tech.id}
+                        tech={tech}
+                        isPageEditMode={false}
+                        isResizeMode={isResizeMode}
+                        onRemoveTech={handleRemoveTech}
+                        onUpdateTech={(id, updates) => {
+                          handleUpdateTech(id, { ...updates });
+                        }}
+                        gridMax={gridMax}
+                      />
+                    );
+                  })}
+                </div>
+              ))}
           </div>
         )}
-
         {!activeStack && !isLoadingInitialData && (
           <div className="text-center py-12 bg-[var(--card)] rounded-lg shadow h-full flex flex-col justify-center items-center">
             <p className="text-[var(--muted-foreground)]">
@@ -976,136 +1067,6 @@ export default function Dashboard() {
       </>
     );
   };
-
-  // Fonction pour rendre le contenu de la section (pour DragOverlay et sections)
-  const renderSectionContent = (sectionId: DraggableSectionId | null) => {
-    if (!sectionId) return null;
-    switch (sectionId) {
-      case "profile":
-        return (
-          <ProfileSection
-            currentSessionData={sessionData}
-            isEditing={isEditingProfile}
-            setIsEditing={setIsEditingProfile}
-            currentDescription={userProfileDescription}
-            editingDesc={editingDescription}
-            setEditingDesc={setEditingDescription}
-            onDescriptionChange={handleProfileDescriptionChange}
-          />
-        );
-      case "stacks":
-        return (
-          <StacksSection
-            userStacks={userStacks}
-            activeStackId={activeStackId}
-            handleCreateNewStack={handleCreateNewStack}
-            setActiveStackId={setActiveStackId}
-            handleDeleteStack={handleDeleteStack}
-            saveActiveStack={saveActiveStack}
-          />
-        );
-      default:
-        return null;
-    }
-  };
-
-  let mainContent;
-  if (layout.zoneLeft === "profile") {
-    // Configuration: Profile à gauche, Stacks & Bento à droite
-    mainContent = (
-      <main
-        className={`grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch ${
-          isPageEditMode
-            ? "outline-dashed outline-2 outline-[var(--primary)] p-2 rounded-lg"
-            : ""
-        }`}
-      >
-        <DroppableZone
-          zoneId="zoneLeft"
-          className="lg:col-span-1 h-full flex flex-col"
-        >
-          <DraggableDashboardSection
-            sectionId="profile"
-            isPageEditMode={isPageEditMode}
-          >
-            {renderSectionContent("profile")}
-          </DraggableDashboardSection>
-        </DroppableZone>
-        <div className="lg:col-span-2 flex flex-col gap-8">
-          <DroppableZone
-            zoneId="zoneTopRight"
-            className="flex flex-col flex-grow h-full"
-          >
-            <DraggableDashboardSection
-              sectionId="stacks"
-              isPageEditMode={isPageEditMode}
-            >
-              {renderSectionContent("stacks")}
-            </DraggableDashboardSection>
-          </DroppableZone>
-          <div className="relative w-full bg-[var(--card)] p-4 rounded-lg border border-[var(--border)]">
-            <BentoGridSection
-              activeStack={activeStack}
-              technologies={technologies}
-              isLoadingInitialData={isLoadingInitialData}
-              handleAddTech={handleAddTech}
-              sessionUserId={sessionData?.user?.id}
-              handleRemoveTech={handleRemoveTech}
-              handleUpdateTech={handleUpdateTech}
-              handleReorderTechs={handleReorderTechs}
-            />
-          </div>
-        </div>
-      </main>
-    );
-  } else {
-    // layout.zoneLeft === "stacks"
-    // Configuration: Stacks à gauche, Profile à droite HAUT, Bento en bas PLEINE LARGEUR
-    mainContent = (
-      <main
-        className={`grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch ${
-          isPageEditMode
-            ? "outline-dashed outline-2 outline-[var(--primary)] p-2 rounded-lg"
-            : ""
-        }`}
-      >
-        <div className="lg:col-span-1 flex flex-col">
-          <DroppableZone zoneId="zoneLeft" className="h-full flex flex-col">
-            <DraggableDashboardSection
-              sectionId="stacks"
-              isPageEditMode={isPageEditMode}
-            >
-              {renderSectionContent("stacks")}
-            </DraggableDashboardSection>
-          </DroppableZone>
-        </div>
-        <div className="lg:col-span-2 flex flex-col">
-          <DroppableZone zoneId="zoneTopRight" className="h-full flex flex-col">
-            <DraggableDashboardSection
-              sectionId="profile"
-              isPageEditMode={isPageEditMode}
-            >
-              {renderSectionContent("profile")}
-            </DraggableDashboardSection>
-          </DroppableZone>
-        </div>
-        <div className="lg:col-span-3">
-          <div className="relative w-full bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] min-h-[50vh]">
-            <BentoGridSection
-              activeStack={activeStack}
-              technologies={technologies}
-              isLoadingInitialData={isLoadingInitialData}
-              handleAddTech={handleAddTech}
-              sessionUserId={sessionData?.user?.id}
-              handleRemoveTech={handleRemoveTech}
-              handleUpdateTech={handleUpdateTech}
-              handleReorderTechs={handleReorderTechs}
-            />
-          </div>
-        </div>
-      </main>
-    );
-  }
 
   if (isPending || isLoadingInitialData) {
     return (
@@ -1130,39 +1091,26 @@ export default function Dashboard() {
   }
 
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCenter}
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
-    >
-      <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl">
-        <div className="flex-grow">
-          <div className="py-4 px-4 md:px-0 flex justify-end">
-            <Button
-              variant="outline"
-              onClick={() => setIsPageEditMode(!isPageEditMode)}
-              className="hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
-            >
-              {isPageEditMode ? (
-                <CheckSquare size={18} className="mr-2" />
-              ) : (
-                <Edit3 size={18} className="mr-2" />
-              )}
-              {isPageEditMode ? "Done Editing" : "Edit Layout"}
-            </Button>
+    <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl">
+      <div className="flex-grow">
+        <div className="mx-auto py-2 md:py-8 px-4 md:px-0">
+          <ProfileHeader />
+          <StacksSelector />
+          <div className="mt-8">
+            <BentoGridSection
+              activeStack={activeStack}
+              technologies={technologies}
+              isLoadingInitialData={isLoadingInitialData}
+              handleAddTech={handleAddTech}
+              sessionUserId={sessionData?.user?.id}
+              handleRemoveTech={handleRemoveTech}
+              handleUpdateTech={handleUpdateTech}
+              handleReorderTechs={handleReorderTechs}
+              saveActiveStack={saveActiveStack}
+            />
           </div>
-
-          <div className="mx-auto py-2 md:py-8 px-4 md:px-0">{mainContent}</div>
         </div>
       </div>
-      <DragOverlay>
-        {activeDragId && isPageEditMode ? (
-          <div className="bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] opacity-90 shadow-2xl cursor-grabbing">
-            {renderSectionContent(activeDragId)}
-          </div>
-        ) : null}
-      </DragOverlay>
-    </DndContext>
+    </div>
   );
 }
