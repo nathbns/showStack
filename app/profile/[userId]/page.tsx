@@ -8,8 +8,15 @@ import TechStackGrid, { Tech } from "@/components/tech-stack/tech-stack-grid";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { allTechnologies } from "@/components/tech-stack/tech-data"; // Pour l'hydratation des icônes
+import { DashboardView } from "@/app/dashboard/DashboardView";
 
-// Types pour les données du profil
+// Configuration de la disposition (similaire à celle du dashboard)
+interface ProfileLayoutConfig {
+  zoneLeft: "profile" | "stacks";
+  // zoneTopRight sera implicitement l'inverse de zoneLeft pour une structure à deux éléments principaux
+}
+
+// Type User étendu
 interface ProfileUser {
   id: string;
   name: string | null;
@@ -17,6 +24,7 @@ interface ProfileUser {
   image: string | null;
   description: string | null;
   createdAt: string | null;
+  layoutConfig?: ProfileLayoutConfig; // Configuration de la disposition, optionnelle
 }
 
 interface ProfileStack {
@@ -44,6 +52,121 @@ const getDefaultIcon = (name: string) => (
     {name?.charAt(0)?.toUpperCase() || "?"}
   </span>
 );
+
+// Composant pour la carte de profil utilisateur
+const UserProfileDisplayCard = ({ user }: { user: ProfileUser }) => (
+  <section className="bg-card border border-border rounded-xl shadow-lg p-6 flex flex-col items-center text-center h-fit">
+    {user.image ? (
+      <div className="w-32 h-32 rounded-full overflow-hidden flex items-center justify-center border-2 border-primary/30 shadow-md mb-4">
+        <Image
+          src={user.image}
+          alt={`${user.name || "User"}\'s avatar`}
+          width={128}
+          height={128}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    ) : (
+      <div className="w-32 h-32 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-5xl font-semibold border-2 border-primary/30 shadow-md mb-4">
+        {user.name?.charAt(0).toUpperCase() || "?"}
+      </div>
+    )}
+    <h1 className="text-2xl font-bold mb-1">{user.name || "Anonymous User"}</h1>
+    {user.email && (
+      <p className="text-sm text-muted-foreground mb-3">{user.email}</p>
+    )}
+    {user.description && (
+      <>
+        <h2 className="text-lg font-semibold mt-4 mb-1 self-start">
+          My description
+        </h2>
+        <p className="text-sm text-foreground/80 text-left whitespace-pre-line">
+          {user.description}
+        </p>
+      </>
+    )}
+    <p className="text-xs text-muted-foreground mt-4">
+      Joined:{" "}
+      {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A"}
+    </p>
+  </section>
+);
+
+// Composant pour la carte de sélection des stacks
+const UserStackSelectorCard = ({
+  stacks,
+  activeStackId,
+  setActiveStackId,
+  isOwner,
+  user,
+  loading,
+}: {
+  stacks: ProfileStack[];
+  activeStackId: number | null;
+  setActiveStackId: (id: number | null) => void;
+  isOwner: boolean;
+  user: ProfileUser;
+  loading: boolean;
+}) => (
+  <section className="bg-card border border-border rounded-xl shadow-lg p-6">
+    <h3 className="text-xl font-semibold mb-4">
+      {isOwner ? "My Tech Stacks" : `${user.name || "User"}\'s Tech Stacks`}
+    </h3>
+    {stacks.length > 0 && (
+      <div className="flex flex-wrap gap-3">
+        {stacks.map((stack) => (
+          <Button
+            key={stack.id}
+            variant={activeStackId === stack.id ? "default" : "secondary"}
+            onClick={() => setActiveStackId(stack.id)}
+            size="sm"
+            className="text-sm"
+          >
+            {stack.name || `Stack ${stack.id}`}
+          </Button>
+        ))}
+      </div>
+    )}
+    {stacks.length === 0 && !loading && (
+      <div className="text-center py-5 text-muted-foreground">
+        <p>This user hasn\'t configured any tech stacks yet.</p>
+      </div>
+    )}
+  </section>
+);
+
+// Composant pour la carte d'affichage de la grille Bento
+const UserBentoGridCard = ({
+  activeStack,
+}: {
+  activeStack: ProfileStack | undefined;
+}) => {
+  if (!activeStack) return null; // Ne rien rendre si aucun stack n'est actif
+
+  return (
+    <section className="bg-card border border-border rounded-xl shadow-lg p-6">
+      <h2 className="text-2xl font-bold mb-4">
+        {activeStack.name || "Selected Stack"}
+      </h2>
+      {activeStack.technologies.length > 0 ? (
+        <div className="mt-0">
+          <TechStackGrid
+            technologies={activeStack.technologies.sort(
+              (a, b) => (a.order ?? 0) - (b.order ?? 0)
+            )}
+            onRemoveTech={() => {}} // No-op
+            onUpdateTech={() => {}} // No-op
+            onReorderTechs={() => {}} // No-op
+          />
+        </div>
+      ) : (
+        <div className="text-center py-10 text-muted-foreground">
+          <p>This stack is empty.</p>
+        </div>
+      )}
+    </section>
+  );
+};
 
 export default function UserProfilePage() {
   const params = useParams();
@@ -159,6 +282,57 @@ export default function UserProfilePage() {
     (stack) => stack.id === activeStackId
   );
 
+  if (!profileData?.user) {
+    return (
+      <div className="container max-w-4xl mx-auto px-4 py-12 text-center">
+        User not found.
+      </div>
+    );
+  }
+
+  // Déplacer la déstructuration et la logique de layout ici, après les gardes
+  const { user, stacks } = profileData;
+  const tags = (profileData as any).tags || [];
+  // Génère un layout complet (zoneLeft + zoneTopRight)
+  const zoneLeft = user.layoutConfig
+    ? typeof user.layoutConfig === "string"
+      ? (JSON.parse(user.layoutConfig).zoneLeft as "profile" | "stacks")
+      : (user.layoutConfig.zoneLeft as "profile" | "stacks")
+    : "profile";
+  const layoutConfig = {
+    zoneLeft,
+    zoneTopRight:
+      zoneLeft === "profile" ? "stacks" : ("profile" as "profile" | "stacks"),
+  };
+
+  const ZoneLeftComponent =
+    layoutConfig.zoneLeft === "profile" ? (
+      <UserProfileDisplayCard user={user} />
+    ) : (
+      <UserStackSelectorCard
+        stacks={stacks}
+        activeStackId={activeStackId}
+        setActiveStackId={setActiveStackId}
+        isOwner={isOwner}
+        user={user}
+        loading={loading}
+      />
+    );
+
+  const ZoneTopRightComponent =
+    layoutConfig.zoneLeft === "profile" ? (
+      <UserStackSelectorCard
+        stacks={stacks}
+        activeStackId={activeStackId}
+        setActiveStackId={setActiveStackId}
+        isOwner={isOwner}
+        user={user}
+        loading={loading}
+      />
+    ) : (
+      <UserProfileDisplayCard user={user} />
+    );
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -170,123 +344,31 @@ export default function UserProfilePage() {
 
   if (error) {
     return (
-      <div className="container mx-auto px-4 py-12 text-center text-red-500 bg-red-500/10 p-6 rounded-lg">
+      <div className="container max-w-4xl mx-auto px-4 py-12 text-center text-red-500 bg-red-500/10 p-6 rounded-lg">
         <p className="text-xl font-semibold">Oops! Something went wrong.</p>
         <p className="text-md mt-2">Error: {error}</p>
       </div>
     );
   }
 
-  if (!profileData?.user) {
-    return (
-      <div className="container mx-auto px-4 py-12 text-center">
-        User not found.
-      </div>
-    );
-  }
-
-  const { user, stacks } = profileData;
-
   return (
-    <main className="container max-w-4xl mx-auto px-4 py-12 md:py-16 min-h-screen">
-      {/* Section Profil Utilisateur */}
-      <section className="mb-12 p-6 bg-card border border-border rounded-xl shadow-lg">
-        <div className="flex flex-col sm:flex-row items-center gap-6">
-          {user.image ? (
-            <div className="w-32 h-32 rounded-full overflow-hidden flex items-center justify-center border-4 border-primary/40 shadow-md">
-              <Image
-                src={user.image}
-                alt={`${user.name || "User"}'s avatar`}
-                width={128}
-                height={128}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ) : (
-            <div className="w-32 h-32 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-5xl font-semibold border-4 border-primary/40 shadow-md">
-              {user.name?.charAt(0).toUpperCase() || "?"}
-            </div>
-          )}
-          <div className="text-center sm:text-left">
-            <h1 className="text-4xl font-bold tracking-tight mb-1">
-              {user.name || "Anonymous User"}
-            </h1>
-            {user.email && (
-              <p className="text-md text-muted-foreground mb-2">{user.email}</p>
-            )}
-            {user.description && (
-              <p className="text-sm text-foreground/80 mb-3">
-                {user.description}
-              </p>
-            )}
-            <p className="text-xs text-muted-foreground">
-              Joined:{" "}
-              {user.createdAt
-                ? new Date(user.createdAt).toLocaleDateString()
-                : "N/A"}
-            </p>
-          </div>
-        </div>
+    <main className="min-h-screen bg-background text-foreground">
+      <div className="container mx-auto px-4 py-8 md:py-12">
         {isOwner && (
-          <div className="mt-6 text-right">
+          <div className="mb-6 text-right max-w-4xl mx-auto">
             <Button asChild variant="outline">
               <Link href="/dashboard">Edit Your Profile & Stacks</Link>
             </Button>
           </div>
         )}
-      </section>
-
-      {/* Section Stacks Technologiques */}
-      <section>
-        <h2 className="text-3xl font-bold mb-6 text-center sm:text-left">
-          {isOwner ? "My Tech Stacks" : `${user.name || "User"}'s Tech Stacks`}
-        </h2>
-        {stacks.length > 0 ? (
-          <>
-            <div className="flex flex-wrap gap-3 mb-6">
-              {stacks.map((stack) => (
-                <Button
-                  key={stack.id}
-                  variant={activeStackId === stack.id ? "default" : "secondary"}
-                  onClick={() => setActiveStackId(stack.id)}
-                  className="text-sm px-3 py-1 h-auto"
-                >
-                  {stack.name || `Stack ${stack.id}`}
-                </Button>
-              ))}
-            </div>
-            {activeStack ? (
-              <div className="p-1 bg-card border border-border rounded-xl shadow-md">
-                <TechStackGrid
-                  technologies={activeStack.technologies as Tech[]} // Cast ici car hydraté
-                  // Pas d'options d'édition pour le mode visiteur
-                  // onRemoveTech={isOwner ? handleRemoveTech : undefined}
-                  // onUpdateTech={isOwner ? handleUpdateTech : undefined}
-                />
-              </div>
-            ) : (
-              <p className="text-center text-muted-foreground py-8">
-                Select a stack to view its technologies.
-              </p>
-            )}
-          </>
-        ) : (
-          <div className="text-center py-10 bg-card border border-border rounded-lg p-8">
-            <p className="text-lg text-muted-foreground">
-              {isOwner
-                ? "You haven't created any tech stacks yet."
-                : `${
-                    user.name || "This user"
-                  } hasn't shared any tech stacks yet.`}
-            </p>
-            {isOwner && (
-              <Button asChild className="mt-4">
-                <Link href="/dashboard">Create Your First Stack</Link>
-              </Button>
-            )}
-          </div>
-        )}
-      </section>
+        <DashboardView
+          user={{ ...user, layoutConfig: undefined }}
+          stacks={stacks}
+          tags={tags}
+          layoutConfig={layoutConfig}
+          readOnly
+        />
+      </div>
     </main>
   );
 }

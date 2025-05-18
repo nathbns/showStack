@@ -71,6 +71,13 @@
       "when": 1747475944396,
       "tag": "0009_condemned_malcolm_colcord",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1747556229402,
+      "tag": "0010_curvy_shaman",
+      "breakpoints": true
     }
   ]
 }

@@ -1,0 +1,1 @@
+ALTER TABLE "user" ADD COLUMN "layout_config" text;

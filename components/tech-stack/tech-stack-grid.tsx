@@ -50,6 +50,7 @@ type TechStackGridProps = {
   onRemoveTech?: (id: string) => void;
   onUpdateTech?: (id: string, updates: Partial<Tech>) => void;
   onReorderTechs?: (reorderedTechs: Tech[]) => void;
+  readOnly?: boolean;
 };
 
 // Extended props for SortableItem
@@ -244,6 +245,7 @@ export default function TechStackGrid({
   onRemoveTech,
   onUpdateTech,
   onReorderTechs,
+  readOnly = false,
 }: TechStackGridProps) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [items, setItems] = useState<Tech[]>([]);
@@ -355,6 +357,7 @@ export default function TechStackGrid({
   };
 
   if (isEditMode) {
+    if (readOnly) return null;
     return (
       <div className="space-y-4">
         <div className="flex justify-between items-center mb-4">
@@ -397,16 +400,17 @@ export default function TechStackGrid({
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-end mb-4">
-        <Button
-          onClick={() => setIsEditMode(true)}
-          variant="outline"
-          className="text-sm"
-        >
-          Reorder
-        </Button>
-      </div>
-
+      {!readOnly && (
+        <div className="flex justify-end mb-4">
+          <Button
+            onClick={() => setIsEditMode(true)}
+            variant="outline"
+            className="text-sm"
+          >
+            Reorder
+          </Button>
+        </div>
+      )}
       <div className="grid grid-cols-3 gap-6">
         {items.map((tech) => {
           const colSpanToApply = tech.gridSpan?.cols || 1;

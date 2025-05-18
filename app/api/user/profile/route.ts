@@ -21,6 +21,7 @@ export async function GET(req: Request) {
         email: user.email,
         image: user.image,
         description: user.description,
+        layoutConfig: user.layoutConfig,
       })
       .from(user)
       .where(eq(user.id, session.user.id))
@@ -55,24 +56,28 @@ export async function PUT(req: Request) {
       return NextResponse.json({ error: "Non authentifié" }, { status: 401 });
     }
 
-    // Extraire la description du corps de la requête
+    // Extraire la description et layoutConfig du corps de la requête
     const body = await req.json();
-    const { description } = body;
+    const { description, layoutConfig } = body;
 
-    if (description === undefined) {
+    if (description === undefined && layoutConfig === undefined) {
       return NextResponse.json(
-        { error: "La description est requise" },
+        {
+          error:
+            "Aucune donnée à mettre à jour (description ou layoutConfig requis)",
+        },
         { status: 400 }
       );
     }
 
-    // Mettre à jour la description de l'utilisateur dans la base de données
-    await db
-      .update(user)
-      .set({ description })
-      .where(eq(user.id, session.user.id));
+    const updateData: any = {};
+    if (description !== undefined) updateData.description = description;
+    if (layoutConfig !== undefined) updateData.layoutConfig = layoutConfig;
 
-    return NextResponse.json({ success: true, description }, { status: 200 });
+    // Mettre à jour la description et/ou layoutConfig de l'utilisateur dans la base de données
+    await db.update(user).set(updateData).where(eq(user.id, session.user.id));
+
+    return NextResponse.json({ success: true, ...updateData }, { status: 200 });
   } catch (error) {
     console.error("Erreur lors de la mise à jour de la description:", error);
     return NextResponse.json(

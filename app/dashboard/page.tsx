@@ -221,10 +221,20 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (isPageEditMode) {
-      // Sauvegarde conditionnelle
+      // Sauvegarde conditionnelle dans le localStorage
       localStorage.setItem("dashboardFixedBentoLayout", JSON.stringify(layout));
     }
-  }, [layout, isPageEditMode]);
+    // Sauvegarde côté serveur (API)
+    if (sessionData?.user?.id) {
+      fetch("/api/user/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          layoutConfig: JSON.stringify({ zoneLeft: layout.zoneLeft }),
+        }),
+      });
+    }
+  }, [layout, isPageEditMode, sessionData?.user?.id]);
 
   useEffect(() => {
     if (sessionData?.user) {

@@ -18,6 +18,7 @@ export const user = pgTable("user", {
   description: text("description"),
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
+  layoutConfig: text("layout_config"),
 });
 
 // Nouvelle table pour les tags utilisateur

@@ -38,24 +38,6 @@ export const auth = betterAuth({
         };
       },
     },
-    twitter: {
-      clientId: process.env.TWITTER_CLIENT_ID as string,
-      clientSecret: process.env.TWITTER_CLIENT_SECRET as string,
-      overrideUserInfoOnSignIn: true,
-      mapProfileToUser: (profile: any) => {
-        console.log("Twitter Profile Data:", JSON.stringify(profile, null, 2));
-
-        const customData: { description?: string } = {};
-
-        if (profile.description) {
-          customData.description = profile.description;
-        } else if (profile.data && profile.data.description) {
-          customData.description = profile.data.description;
-        }
-
-        return customData;
-      },
-    },
   },
   database: drizzleAdapter(db, {
     provider: "pg",
