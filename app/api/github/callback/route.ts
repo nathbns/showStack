@@ -64,9 +64,31 @@ export async function GET(request: Request) {
       repos: JSON.stringify(reposData),
     });
 
-    return NextResponse.redirect(`/dashboard?${redirectParams.toString()}`);
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    const finalRedirectUrl = new URL("/dashboard", appUrl);
+    finalRedirectUrl.search = redirectParams.toString();
+
+    console.log(
+      "[Callback GitHub] NEXT_PUBLIC_APP_URL:",
+      process.env.NEXT_PUBLIC_APP_URL
+    );
+    console.log("[Callback GitHub] appUrl utilisé:", appUrl);
+    console.log(
+      "[Callback GitHub] URL de redirection finale:",
+      finalRedirectUrl.toString()
+    );
+
+    // Rediriger vers une URL absolue construite avec l'URL de base de l'application
+    return NextResponse.redirect(finalRedirectUrl.toString());
   } catch (error) {
     console.error("Erreur lors du callback GitHub:", error);
-    return NextResponse.redirect("/dashboard?error=callback_failed");
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    const errorRedirectUrl = new URL("/dashboard", appUrl);
+    errorRedirectUrl.searchParams.set("error", "callback_failed");
+    console.log(
+      "[Callback GitHub] URL de redirection d'erreur:",
+      errorRedirectUrl.toString()
+    );
+    return NextResponse.redirect(errorRedirectUrl.toString());
   }
 }

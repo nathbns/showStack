@@ -4,7 +4,7 @@ import { useSession } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { AddTechForm } from "@/components/tech-stack/add-tech-form";
 import { type Tech } from "@/components/tech-stack/tech-stack-grid";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { allTechnologies } from "@/components/tech-stack/tech-data";
 import Image from "next/image";
 import {
@@ -579,6 +579,10 @@ export default function Dashboard() {
       toast.error("You must be logged in to create a stack.");
       return;
     }
+    if (userStacks.length >= 5) {
+      toast.error("Vous ne pouvez pas avoir plus de 5 stacks.");
+      return;
+    }
     try {
       const response = await fetch("/api/tech/stack", {
         method: "POST",
@@ -863,7 +867,7 @@ export default function Dashboard() {
                     ${
                       activeStackId === stack.id
                         ? "bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)]"
-                        : "bg-[var(--card)] text-[var(--foreground)] border-[var(--border)] hover:bg-[var(--accent)] hover:border-[var(--primary)]"
+                        : "bg-[var(--card)] text-[var(--foreground)] border-[var(--border)] hover:bg-[var(--accent)] hover:border-[var(--primary)] cursor-pointer"
                     }
                   `}
                 >
@@ -908,24 +912,34 @@ export default function Dashboard() {
 
           {/* Carte pour créer une nouvelle stack */}
           <button
-            onClick={openCreateModal}
-            className="
+            onClick={userStacks.length >= 5 ? undefined : openCreateModal}
+            className={`
               px-4 py-1 rounded-lg shadow-md transition-all duration-200 ease-in-out
               border-1 border-dashed border-[var(--muted-foreground)] text-[var(--muted-foreground)]
-              hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]
               flex flex-col items-center justify-center
-            "
+              ${
+                userStacks.length >= 5
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]"
+              }
+            `}
+            disabled={userStacks.length >= 5}
+            title={userStacks.length >= 5 ? "Limite de 5 stacks atteinte" : ""}
           >
-            {/* <span className="text-2xl font-semibold mb-1">+</span> */}
-            <span className="text-sm"> + New Stack</span>
+            <span className="text-sm cursor-pointer"> + New Stack</span>
           </button>
         </div>
 
         {/* Modal pour créer une nouvelle stack */}
-        {isCreateModalOpen && (
-          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <div className="bg-[var(--card)] p-6 sm:p-8 rounded-xl shadow-2xl mx-auto max-w-sm">
+        {isCreateModalOpen && userStacks.length < 5 && (
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            onClick={closeCreateModal}
+          >
+            <div
+              className="bg-[var(--card)] p-6 sm:p-8 rounded-xl mx-auto max-w-sm border border-[var(--border)]"
+              onClick={(e) => e.stopPropagation()}
+            >
               <h3 className="text-2xl font-semibold text-[var(--foreground)] mb-6 text-center">
                 Create a New Stack
               </h3>
@@ -946,14 +960,31 @@ export default function Dashboard() {
                 >
                   Create
                 </Button>
-                <Button
-                  variant="outline"
-                  onClick={closeCreateModal}
-                  className="w-full sm:flex-1 text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] border-[var(--border)] py-3 text-base"
-                >
-                  Cancel
-                </Button>
               </div>
+            </div>
+          </div>
+        )}
+        {isCreateModalOpen && userStacks.length >= 5 && (
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            onClick={closeCreateModal}
+          >
+            <div
+              className="bg-[var(--card)] p-6 sm:p-8 rounded-xl mx-auto max-w-sm border border-[var(--border)] text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="text-xl font-semibold text-[var(--foreground)] mb-4">
+                Limite atteinte
+              </h3>
+              <p className="text-[var(--muted-foreground)] mb-4">
+                Vous ne pouvez pas créer plus de 5 stacks.
+              </p>
+              <Button
+                onClick={closeCreateModal}
+                className="w-full bg-[var(--primary)] text-[var(--primary-foreground)] mt-2"
+              >
+                Fermer
+              </Button>
             </div>
           </div>
         )}
@@ -1135,26 +1166,29 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl">
-      <div className="flex-grow">
-        <div className="mx-auto py-2 md:py-8 px-4 md:px-0">
-          <ProfileHeader />
-          <StacksSelector />
-          <div className="mt-8">
-            <BentoGridSection
-              activeStack={activeStack}
-              technologies={technologies}
-              isLoadingInitialData={isLoadingInitialData}
-              handleAddTech={handleAddTech}
-              sessionUserId={sessionData?.user?.id}
-              handleRemoveTech={handleRemoveTech}
-              handleUpdateTech={handleUpdateTech}
-              handleReorderTechs={handleReorderTechs}
-              saveActiveStack={saveActiveStack}
-            />
+    <>
+      {/* <Toaster position="bottom-right" richColors /> COMMENTED OUT */}
+      <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl">
+        <div className="flex-grow">
+          <div className="mx-auto py-2 md:py-8 px-4 md:px-0">
+            <ProfileHeader />
+            <StacksSelector />
+            <div className="mt-8">
+              <BentoGridSection
+                activeStack={activeStack}
+                technologies={technologies}
+                isLoadingInitialData={isLoadingInitialData}
+                handleAddTech={handleAddTech}
+                sessionUserId={sessionData?.user?.id}
+                handleRemoveTech={handleRemoveTech}
+                handleUpdateTech={handleUpdateTech}
+                handleReorderTechs={handleReorderTechs}
+                saveActiveStack={saveActiveStack}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,10 +1,98 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { RiGithubFill } from "@remixicon/react";
 import { GlowingEffect } from "@/components/ui/glowing-effect-full";
+import { useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
+// Composant de skeleton pour l'état de chargement/redirection
+function LoadingSkeleton() {
+  return (
+    <div className="min-h-screen w-full flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-4xl space-y-8">
+        {/* Logo/titre skeleton */}
+        <div className="w-48 h-12 rounded-lg mx-auto animate-pulse border-1 border-[var(--border)] border-dashed"></div>
+
+        {/* Texte skeleton */}
+        <div className="space-y-3">
+          <div className="h-6 rounded-lg w-3/4 mx-auto animate-pulse border-1 border-[var(--border)] border-dashed"></div>
+          <div className="h-6 rounded-lg w-1/2 mx-auto animate-pulse border-1 border-[var(--border)] border-dashed"></div>
+        </div>
+
+        {/* Bouton skeleton */}
+        <div className="h-12 rounded-lg w-40 mx-auto animate-pulse border-1 border-[var(--border)] border-dashed"></div>
+
+        {/* Image skeleton */}
+        <div className="h-64 rounded-lg w-full mx-auto mt-8 animate-pulse border-1 border-[var(--border)] border-dashed"></div>
+      </div>
+    </div>
+  );
+}
 
 export default function HeroSection() {
+  // État pour forcer l'affichage du skeleton à chaque chargement de page
+  const [initialLoading, setInitialLoading] = useState(true);
+
+  // Utiliser useSession pour vérifier l'état de connexion
+  const { data: session, isPending } = useSession();
+  const router = useRouter();
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const [forceShowContent, setForceShowContent] = useState(false);
+
+  // Forcer l'affichage du skeleton pendant un court instant au chargement
+  useEffect(() => {
+    const initialLoadTimer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 800); // Afficher le skeleton pendant 800ms minimum
+
+    return () => clearTimeout(initialLoadTimer);
+  }, []);
+
+  // Timeout maximum pour le skeleton - même si isPending reste à true
+  useEffect(() => {
+    const maxSkeletonTimer = setTimeout(() => {
+      setForceShowContent(true);
+    }, 10000); // 10 secondes maximum d'affichage du skeleton
+
+    return () => clearTimeout(maxSkeletonTimer);
+  }, []);
+
+  // Effet pour rediriger vers /dashboard si l'utilisateur est connecté
+  useEffect(() => {
+    // Ne pas rediriger pendant le chargement initial de la session
+    if ((isPending && !forceShowContent) || initialLoading) return;
+
+    // Si l'utilisateur est connecté
+    if (session?.user?.id) {
+      setIsRedirecting(true);
+      // Utiliser un court délai pour éviter les redirections pendant l'hydratation
+      const redirectTimeout = setTimeout(() => {
+        toast.success("Redirection vers votre dashboard...");
+        router.push("/dashboard");
+      }, 300);
+
+      return () => clearTimeout(redirectTimeout);
+    } else {
+      // Si l'utilisateur n'est pas connecté, s'assurer qu'on ne montre pas le skeleton
+      setIsRedirecting(false);
+    }
+  }, [session, isPending, router, forceShowContent, initialLoading]);
+
+  // Afficher le skeleton pendant le chargement initial, le chargement de session,
+  // ou quand l'utilisateur est connecté et en attente de redirection
+  if (
+    initialLoading ||
+    (isPending && !forceShowContent) ||
+    (isRedirecting && session?.user?.id)
+  ) {
+    return <LoadingSkeleton />;
+  }
+
+  // Le reste du composant reste le même pour les utilisateurs non connectés
   return (
     <div className="bg-background min-h-screen w-full relative overflow-hidden pt-24">
       {/* Grille de fond subtile */}
