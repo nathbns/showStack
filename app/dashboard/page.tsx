@@ -51,6 +51,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 // Initialisation de iconMap au niveau du module
 const iconMap: Record<string, React.ReactNode> = {};
@@ -483,10 +484,31 @@ function StripeCard({
   );
 }
 
+// NOUVEAU COMPOSANT POUR GÉRER LES CALLBACKS STRIPE
+function StripeCallbackHandler() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const stripeSuccess = searchParams.get("stripe_success");
+    const stripeError = searchParams.get("stripe_error");
+
+    if (stripeSuccess) {
+      toast.success("Stripe account connected successfully!");
+      router.replace("/dashboard", { scroll: false });
+    }
+    if (stripeError) {
+      toast.error(`Stripe connection failed: ${stripeError}`);
+      router.replace("/dashboard", { scroll: false });
+    }
+  }, [searchParams, router]);
+
+  return null;
+}
+
 export default function Dashboard() {
   const { data: session, isPending: isLoadingSession } = useSession();
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const [activeStackId, setActiveStackId] = useState<number | null>(null);
 
@@ -580,23 +602,6 @@ export default function Dashboard() {
     setHasStripeConnection,
     setIsCheckingStripeConnection,
   ]);
-
-  // useEffect pour les callbacks Stripe (stripe_success, stripe_error)
-  useEffect(() => {
-    const stripeSuccess = searchParams.get("stripe_success");
-    const stripeError = searchParams.get("stripe_error");
-
-    if (stripeSuccess) {
-      toast.success("Stripe account connected successfully!");
-      setHasStripeConnection(true);
-      router.replace("/dashboard", { scroll: false });
-    }
-    if (stripeError) {
-      toast.error(`Stripe connection failed: ${stripeError}`);
-      setHasStripeConnection(false);
-      router.replace("/dashboard", { scroll: false });
-    }
-  }, [searchParams, router]);
 
   const [userProfileDescription, setUserProfileDescription] = useState("");
   const [isEditingProfile, setIsEditingProfile] = useState(false);
@@ -1623,6 +1628,11 @@ export default function Dashboard() {
 
   return (
     <>
+      {/* AJOUT DE SUSPENSE AUTOUR DU NOUVEAU COMPOSANT */}
+      <Suspense fallback={<LoadingSkeleton />}>
+        <StripeCallbackHandler />
+      </Suspense>
+
       <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl">
         <div className="flex-grow">
           <div className="mx-auto py-2 md:py-8 px-4 md:px-0">
