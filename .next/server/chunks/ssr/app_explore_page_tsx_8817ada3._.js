@@ -11,7 +11,13 @@ __turbopack_context__.s({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
+(()=>{
+    const e = new Error("Cannot find module '@/components/loading-skeleton'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 "use client";
+;
 ;
 ;
 ;
@@ -44,7 +50,7 @@ function ExplorePage() {
         fetchUsers();
     }, []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-        className: "container max-w-4xl mx-auto px-4 py-12 md:py-16 min-h-screen",
+        className: "container max-w-4xl mx-auto px-4 py-24 min-h-screen",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                 className: "text-4xl font-bold mb-10 text-center tracking-tight",
@@ -54,29 +60,10 @@ function ExplorePage() {
                 lineNumber: 51,
                 columnNumber: 7
             }, this),
-            loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-center py-10",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"
-                    }, void 0, false, {
-                        fileName: "[project]/app/explore/page.tsx",
-                        lineNumber: 58,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-lg mt-4",
-                        children: "Loading users..."
-                    }, void 0, false, {
-                        fileName: "[project]/app/explore/page.tsx",
-                        lineNumber: 59,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
+            loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LoadingSkeleton, {}, void 0, false, {
                 fileName: "[project]/app/explore/page.tsx",
-                lineNumber: 56,
-                columnNumber: 9
+                lineNumber: 55,
+                columnNumber: 19
             }, this),
             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "text-center py-10 text-red-500 bg-red-500/10 p-6 rounded-lg",
@@ -86,7 +73,7 @@ function ExplorePage() {
                         children: "Oops! Something went wrong."
                     }, void 0, false, {
                         fileName: "[project]/app/explore/page.tsx",
-                        lineNumber: 65,
+                        lineNumber: 59,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -94,13 +81,13 @@ function ExplorePage() {
                         children: error
                     }, void 0, false, {
                         fileName: "[project]/app/explore/page.tsx",
-                        lineNumber: 66,
+                        lineNumber: 60,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/explore/page.tsx",
-                lineNumber: 64,
+                lineNumber: 58,
                 columnNumber: 9
             }, this),
             !loading && !error && users.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -110,12 +97,12 @@ function ExplorePage() {
                     children: "No users found at the moment. Be the first to join!"
                 }, void 0, false, {
                     fileName: "[project]/app/explore/page.tsx",
-                    lineNumber: 72,
+                    lineNumber: 66,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/explore/page.tsx",
-                lineNumber: 71,
+                lineNumber: 65,
                 columnNumber: 9
             }, this),
             !loading && !error && users.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -124,12 +111,12 @@ function ExplorePage() {
                         user: user
                     }, user.id, false, {
                         fileName: "[project]/app/explore/page.tsx",
-                        lineNumber: 81,
+                        lineNumber: 75,
                         columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/app/explore/page.tsx",
-                lineNumber: 79,
+                lineNumber: 73,
                 columnNumber: 9
             }, this)
         ]
@@ -157,19 +144,19 @@ function UserCard({ user }) {
                         className: "w-full h-full object-cover"
                     }, void 0, false, {
                         fileName: "[project]/app/explore/page.tsx",
-                        lineNumber: 102,
+                        lineNumber: 96,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/explore/page.tsx",
-                    lineNumber: 101,
+                    lineNumber: 95,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "w-20 h-20 rounded-full mb-5 bg-muted flex items-center justify-center text-muted-foreground text-4xl font-semibold border-2 border-primary/30 shadow-sm",
                     children: displayName.charAt(0).toUpperCase()
                 }, void 0, false, {
                     fileName: "[project]/app/explore/page.tsx",
-                    lineNumber: 109,
+                    lineNumber: 103,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -178,7 +165,7 @@ function UserCard({ user }) {
                     children: displayName
                 }, void 0, false, {
                     fileName: "[project]/app/explore/page.tsx",
-                    lineNumber: 113,
+                    lineNumber: 107,
                     columnNumber: 9
                 }, this),
                 displayEmail && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -187,18 +174,18 @@ function UserCard({ user }) {
                     children: displayEmail
                 }, void 0, false, {
                     fileName: "[project]/app/explore/page.tsx",
-                    lineNumber: 120,
+                    lineNumber: 114,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/explore/page.tsx",
-            lineNumber: 99,
+            lineNumber: 93,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/explore/page.tsx",
-        lineNumber: 98,
+        lineNumber: 92,
         columnNumber: 5
     }, this);
 }

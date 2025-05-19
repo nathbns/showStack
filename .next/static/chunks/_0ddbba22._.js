@@ -1366,55 +1366,7 @@ const techsByCategory = {
                 columnNumber: 13
             }, this),
             category: "Backend"
-        }
-    ],
-    Mobile: [
-        {
-            id: "flutter",
-            name: "Flutter",
-            color: "#02569B",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Ionic"], {}, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 174,
-                columnNumber: 13
-            }, this),
-            category: "Mobile"
         },
-        {
-            id: "kotlin",
-            name: "Kotlin",
-            color: "#7F52FF",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Kotlin"], {}, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 181,
-                columnNumber: 13
-            }, this),
-            category: "Mobile"
-        },
-        {
-            id: "swift",
-            name: "Swift",
-            color: "#F05138",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Swift"], {}, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 188,
-                columnNumber: 13
-            }, this),
-            category: "Mobile"
-        },
-        {
-            id: "expo",
-            name: "Expo",
-            color: "#020240",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Expo"], {}, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 195,
-                columnNumber: 13
-            }, this),
-            category: "Mobile"
-        }
-    ],
-    "Base de données": [
         {
             id: "mongodb",
             name: "MongoDB",
@@ -1424,10 +1376,10 @@ const techsByCategory = {
                 children: "M"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 204,
+                lineNumber: 172,
                 columnNumber: 13
             }, this),
-            category: "Base de données"
+            category: "Database"
         },
         {
             id: "postgresql",
@@ -1438,10 +1390,10 @@ const techsByCategory = {
                 children: "P"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 211,
+                lineNumber: 179,
                 columnNumber: 13
             }, this),
-            category: "Base de données"
+            category: "Database"
         },
         {
             id: "mysql",
@@ -1452,10 +1404,10 @@ const techsByCategory = {
                 children: "M"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 218,
+                lineNumber: 186,
                 columnNumber: 13
             }, this),
-            category: "Base de données"
+            category: "Database"
         },
         {
             id: "redis",
@@ -1466,10 +1418,10 @@ const techsByCategory = {
                 children: "R"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 225,
+                lineNumber: 193,
                 columnNumber: 13
             }, this),
-            category: "Base de données"
+            category: "Database"
         },
         {
             id: "firebase",
@@ -1477,10 +1429,10 @@ const techsByCategory = {
             color: "#FFCA28",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Firebase"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 232,
+                lineNumber: 200,
                 columnNumber: 13
             }, this),
-            category: "Base de données"
+            category: "Database"
         },
         {
             id: "supabase",
@@ -1491,294 +1443,56 @@ const techsByCategory = {
                 children: "S"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 239,
+                lineNumber: 207,
                 columnNumber: 13
             }, this),
-            category: "Base de données"
-        },
-        {
-            id: "dynamodb",
-            name: "DynamoDB",
-            color: "#4053D6",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "D"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 246,
-                columnNumber: 13
-            }, this),
-            category: "Base de données"
+            category: "Database"
         }
     ],
-    "DevOps & Cloud": [
+    Mobile: [
         {
-            id: "docker",
-            name: "Docker",
-            color: "#2496ED",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "🐳"
-            }, void 0, false, {
+            id: "flutter",
+            name: "Flutter",
+            color: "#02569B",
+            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Ionic"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 255,
+                lineNumber: 216,
                 columnNumber: 13
             }, this),
-            category: "DevOps & Cloud"
+            category: "Mobile"
         },
         {
-            id: "kubernetes",
-            name: "Kubernetes",
-            color: "#326CE5",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "K"
-            }, void 0, false, {
+            id: "kotlin",
+            name: "Kotlin",
+            color: "#7F52FF",
+            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Kotlin"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 262,
+                lineNumber: 223,
                 columnNumber: 13
             }, this),
-            category: "DevOps & Cloud"
+            category: "Mobile"
         },
         {
-            id: "aws",
-            name: "AWS",
-            color: "#FF9900",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "A"
-            }, void 0, false, {
+            id: "swift",
+            name: "Swift",
+            color: "#F05138",
+            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Swift"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 269,
+                lineNumber: 230,
                 columnNumber: 13
             }, this),
-            category: "DevOps & Cloud"
+            category: "Mobile"
         },
         {
-            id: "gcp",
-            name: "Google Cloud",
-            color: "#4285F4",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "G"
-            }, void 0, false, {
+            id: "expo",
+            name: "Expo",
+            color: "#020240",
+            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Expo"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 276,
+                lineNumber: 237,
                 columnNumber: 13
             }, this),
-            category: "DevOps & Cloud"
-        },
-        {
-            id: "azure",
-            name: "Azure",
-            color: "#0078D4",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "A"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 283,
-                columnNumber: 13
-            }, this),
-            category: "DevOps & Cloud"
-        },
-        {
-            id: "vercel",
-            name: "Vercel",
-            color: "#000000",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "V"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 290,
-                columnNumber: 13
-            }, this),
-            category: "DevOps & Cloud"
-        },
-        {
-            id: "netlify",
-            name: "Netlify",
-            color: "#00C7B7",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "N"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 297,
-                columnNumber: 13
-            }, this),
-            category: "DevOps & Cloud"
-        },
-        {
-            id: "github",
-            name: "GitHub Actions",
-            color: "#2088FF",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "G"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 304,
-                columnNumber: 13
-            }, this),
-            category: "DevOps & Cloud"
-        },
-        {
-            id: "gitlab",
-            name: "GitLab CI",
-            color: "#FC6D26",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "G"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 311,
-                columnNumber: 13
-            }, this),
-            category: "DevOps & Cloud"
-        },
-        {
-            id: "terraform",
-            name: "Terraform",
-            color: "#7B42BC",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "T"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 318,
-                columnNumber: 13
-            }, this),
-            category: "DevOps & Cloud"
-        }
-    ],
-    "Tests & Outils": [
-        {
-            id: "jest",
-            name: "Jest",
-            color: "#C21325",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "J"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 327,
-                columnNumber: 13
-            }, this),
-            category: "Tests & Outils"
-        },
-        {
-            id: "cypress",
-            name: "Cypress",
-            color: "#17202C",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "C"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 334,
-                columnNumber: 13
-            }, this),
-            category: "Tests & Outils"
-        },
-        {
-            id: "playwright",
-            name: "Playwright",
-            color: "#2EAD33",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "P"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 341,
-                columnNumber: 13
-            }, this),
-            category: "Tests & Outils"
-        },
-        {
-            id: "storybook",
-            name: "Storybook",
-            color: "#FF4785",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "S"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 348,
-                columnNumber: 13
-            }, this),
-            category: "Tests & Outils"
-        },
-        {
-            id: "webpack",
-            name: "Webpack",
-            color: "#8DD6F9",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "W"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 355,
-                columnNumber: 13
-            }, this),
-            category: "Tests & Outils"
-        },
-        {
-            id: "vite",
-            name: "Vite",
-            color: "#646CFF",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "V"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 362,
-                columnNumber: 13
-            }, this),
-            category: "Tests & Outils"
-        },
-        {
-            id: "eslint",
-            name: "ESLint",
-            color: "#4B32C3",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "E"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 369,
-                columnNumber: 13
-            }, this),
-            category: "Tests & Outils"
-        },
-        {
-            id: "prettier",
-            name: "Prettier",
-            color: "#F7B93E",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "P"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 376,
-                columnNumber: 13
-            }, this),
-            category: "Tests & Outils"
-        },
-        {
-            id: "git",
-            name: "Git",
-            color: "#F05032",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "G"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 383,
-                columnNumber: 13
-            }, this),
-            category: "Tests & Outils"
+            category: "Mobile"
         }
     ]
 };
@@ -2298,13 +2012,10 @@ function UserProfilePage() {
         }, this);
     };
     if (isLoadingProfile) {
-        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex justify-center items-center min-h-screen bg-[var(--background)] text-[var(--foreground)]",
-            children: "Loading profile..."
-        }, void 0, false, {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LoadingSkeleton, {}, void 0, false, {
             fileName: "[project]/app/profile/[userId]/page.tsx",
-            lineNumber: 378,
-            columnNumber: 7
+            lineNumber: 377,
+            columnNumber: 12
         }, this);
     }
     if (error || !profileData?.user) {
@@ -2316,7 +2027,7 @@ function UserProfilePage() {
                     children: "Error Loading Profile"
                 }, void 0, false, {
                     fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 387,
+                    lineNumber: 383,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2324,7 +2035,7 @@ function UserProfilePage() {
                     children: error || "User data could not be found. The profile may not exist or there was an issue fetching it."
                 }, void 0, false, {
                     fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 388,
+                    lineNumber: 384,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2336,18 +2047,18 @@ function UserProfilePage() {
                         children: "Go to Homepage"
                     }, void 0, false, {
                         fileName: "[project]/app/profile/[userId]/page.tsx",
-                        lineNumber: 393,
+                        lineNumber: 389,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 392,
+                    lineNumber: 388,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/profile/[userId]/page.tsx",
-            lineNumber: 386,
+            lineNumber: 382,
             columnNumber: 7
         }, this);
     }
@@ -2358,28 +2069,28 @@ function UserProfilePage() {
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileHeader, {}, void 0, false, {
                     fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 402,
+                    lineNumber: 398,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StacksSelector, {}, void 0, false, {
                     fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 403,
+                    lineNumber: 399,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(BentoGridSection, {}, void 0, false, {
                     fileName: "[project]/app/profile/[userId]/page.tsx",
-                    lineNumber: 404,
+                    lineNumber: 400,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/profile/[userId]/page.tsx",
-            lineNumber: 401,
+            lineNumber: 397,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/profile/[userId]/page.tsx",
-        lineNumber: 400,
+        lineNumber: 396,
         columnNumber: 5
     }, this);
 }

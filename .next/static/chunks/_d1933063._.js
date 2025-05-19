@@ -263,7 +263,7 @@ function HeroSection() {
                 // Utiliser un court délai pour éviter les redirections pendant l'hydratation
                 const redirectTimeout = setTimeout({
                     "HeroSection.useEffect.redirectTimeout": ()=>{
-                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Redirection vers votre dashboard...");
+                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Redirecting to your dashboard...");
                         router.push("/dashboard");
                     }
                 }["HeroSection.useEffect.redirectTimeout"], 300);

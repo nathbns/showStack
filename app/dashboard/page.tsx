@@ -457,7 +457,7 @@ export default function Dashboard() {
 
   // Modified to save the active stack
   const saveActiveStack = useCallback(
-    async (stackToSave: UserStack) => {
+    async (stackToSave: UserStack, showSuccessToast: boolean = true) => {
       if (!sessionData?.user?.id) {
         toast.error("You must be logged in to save.");
         return null;
@@ -537,7 +537,9 @@ export default function Dashboard() {
         if (activeStackId === null && savedStackData.id) {
           setActiveStackId(savedStackData.id);
         }
-        toast.success(`Stack '${savedStackData.name}' saved successfully!`);
+        if (showSuccessToast) {
+          toast.success(`Stack '${savedStackData.name}' saved successfully!`);
+        }
         return finalStack;
       } catch (error) {
         toast.error((error as Error).message || "Unable to save the stack.");
@@ -593,7 +595,7 @@ export default function Dashboard() {
       return;
     }
     if (userStacks.length >= 5) {
-      toast.error("Vous ne pouvez pas avoir plus de 5 stacks.");
+      toast.error("You cannot have more than 5 stacks.");
       return;
     }
     try {
@@ -794,7 +796,7 @@ export default function Dashboard() {
     setUserStacks((prevStacks) =>
       prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
     );
-    saveActiveStack(updatedStack);
+    saveActiveStack(updatedStack, false);
   };
 
   // Fonction pour charger manuellement la description de l'utilisateur
@@ -877,40 +879,32 @@ export default function Dashboard() {
 
     return (
       <>
-        <div className="flex justify-end gap-4">
+        <div className="flex flex-col sm:flex-row sm:justify-end gap-3 mb-6 px-4 sm:px-0">
           <Button
             variant={isStackEditMode ? "secondary" : "outline"}
             onClick={() => setIsStackEditMode(!isStackEditMode)}
-            className="text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+            className="w-full sm:w-auto text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
           >
             {isStackEditMode ? "Done Editing" : "Edit Grid"}
           </Button>
 
-          {/* Carte pour créer une nouvelle stack */}
+          {/* Carte pour créer une nouvelle stack transformée en Button */}
           {!isStackEditMode && (
-            <button
+            <Button
+              variant="outline"
               onClick={openCreateModal}
-              className={`
-            px-4 py-1 rounded-lg shadow-md transition-all duration-200 ease-in-out
-            border-1 border-dashed border-[var(--muted-foreground)] text-[var(--muted-foreground)]
-            flex flex-col items-center justify-center
-            ${
-              userStacks.length >= 5
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]"
-            }
-            `}
+              className="w-full sm:w-auto"
               disabled={userStacks.length >= 5 || isStackEditMode}
               title={
                 userStacks.length >= 5
                   ? "Limite de 5 stacks atteinte"
                   : isStackEditMode
                   ? "Finish editing stacks to add a new one"
-                  : ""
+                  : "Create a new grid"
               }
             >
-              <span className="text-sm cursor-pointer"> + New Grid</span>
-            </button>
+              + New Grid
+            </Button>
           )}
         </div>
         <div className="flex flex-wrap justify-center items-center gap-4 px-4 py-4">
@@ -1105,8 +1099,8 @@ export default function Dashboard() {
           >
             <GlowingEffect className="rounded-lg" />
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-[var(--foreground)]">
-                Your Bento Grid.
+              <h2 className="text-xs sm:text-base md:text-lg lg:text-2xl font-bold text-[var(--foreground)] text-center md:text-left break-words">
+                <span className="hidden sm:inline">Your Bento Grid. </span>
               </h2>
               <div className="flex gap-2">
                 <Button
@@ -1115,7 +1109,7 @@ export default function Dashboard() {
                     setIsPageEditMode(!isPageEditMode);
                     if (!isPageEditMode) setIsResizeMode(false);
                   }}
-                  className="text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+                  className="text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base"
                   disabled={isResizeMode}
                 >
                   {isPageEditMode ? "Done Editing" : "Reorder"}
@@ -1126,12 +1120,17 @@ export default function Dashboard() {
                     setIsResizeMode(!isResizeMode);
                     if (!isResizeMode) setIsPageEditMode(false);
                   }}
-                  className="text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+                  className="hidden sm:inline-flex text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base"
                   disabled={isPageEditMode}
                 >
                   {isResizeMode ? "Done Resizing" : "Resize"}
                 </Button>
-                <AddTechForm onAddTech={handleAddTech} userId={sessionUserId} />
+                <div className="flex items-center">
+                  <AddTechForm
+                    onAddTech={handleAddTech}
+                    userId={sessionUserId}
+                  />
+                </div>
               </div>
             </div>
             {technologies.length === 0 && !isLoadingInitialData && (

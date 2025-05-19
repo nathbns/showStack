@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -45,6 +46,11 @@ function Header() {
           e.preventDefault();
           router.push("/auth/signin");
         }
+        // Échappe pour fermer le menu mobile
+        else if (e.key === "Escape" && isMobileMenuOpen) {
+          e.preventDefault();
+          setIsMobileMenuOpen(false);
+        }
       }
     };
 
@@ -54,7 +60,7 @@ function Header() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isLoggedIn, router, handleSignOut]);
+  }, [isLoggedIn, router, handleSignOut, isMobileMenuOpen]);
 
   if (isLoading) {
     return (
@@ -77,7 +83,7 @@ function Header() {
           <div className="px-4 h-full">
             <div className="flex items-center justify-between h-full">
               <div className="text-2md font-bold">BentoGr.id</div>
-              <div className="flex items-center space-x-4">
+              <div className="hidden md:flex items-center space-x-4">
                 {isLoggedIn && (
                   <>
                     <Link
@@ -119,29 +125,117 @@ function Header() {
                 {isLoggedIn ? (
                   <button
                     onClick={handleSignOut}
-                    className="flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)] cursor-pointer"
+                    className="hidden md:flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)] cursor-pointer"
                   >
                     <span>Sign out</span>
                     <span className="ml-2 text-xs opacity-50 px-1 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
-                      Cmd + O
+                      <span className="hidden sm:inline">Cmd + O</span>
                     </span>
                   </button>
                 ) : (
-                  <>
-                    <Link
-                      href="/auth/signin"
-                      className="flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)]"
-                    >
-                      <span>Sign in</span>
-                      <span className="ml-2 text-xs opacity-50 px-1 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
-                        Cmd + S
-                      </span>
-                    </Link>
-                  </>
+                  <Link
+                    href="/auth/signin"
+                    className="hidden md:flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)]"
+                  >
+                    <span>Sign in</span>
+                    <span className="ml-2 text-xs opacity-50 px-1 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
+                      Cmd + S
+                    </span>
+                  </Link>
                 )}
+                <div className="md:hidden">
+                  <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="p-2 rounded-md text-black dark:text-white"
+                    aria-label="Open main menu"
+                  >
+                    {isMobileMenuOpen ? (
+                      <svg
+                        className="h-6 w-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="h-6 w-6"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 6h16M4 12h16m-7 6h7"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+
+          {isMobileMenuOpen && (
+            <div className="md:hidden absolute right-0 mt-2 w-48 bg-background/80 backdrop-blur-sm rounded-lg border border-[var(--sidebar-border)] py-2">
+              {isLoggedIn && (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="block px-4 py-2 text-sm text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    href="/explore"
+                    className="block px-4 py-2 text-sm text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Explore
+                  </Link>
+                  <hr className="border-gray-300 dark:border-gray-600 my-1" />
+                </>
+              )}
+              {isLoggedIn ? (
+                <button
+                  onClick={() => {
+                    handleSignOut();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left block px-4 py-2 text-sm text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+                >
+                  Sign out
+                  <span className="ml-2 text-xs opacity-50 px-1 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded md:inline hidden">
+                    Cmd + O
+                  </span>
+                </button>
+              ) : (
+                <Link
+                  href="/auth/signin"
+                  className="block px-4 py-2 text-sm text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Sign in
+                  <span className="ml-2 text-xs opacity-50 px-1 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded md:inline hidden">
+                    Cmd + S
+                  </span>
+                </Link>
+              )}
+            </div>
+          )}
         </nav>
       </div>
     </>

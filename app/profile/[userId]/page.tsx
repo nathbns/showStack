@@ -9,7 +9,7 @@ import { ExternalLink, RefreshCw } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import GitHubLogo from "@/components/logo-card";
 import { useParams } from "next/navigation";
-
+import { LoadingSkeleton } from "@/components/ui/skeleton";
 // --- Interfaces pour les données du profil ---
 interface ProfileUser {
   id: string;
@@ -274,7 +274,7 @@ export default function UserProfilePage() {
     if (!profileData?.user) return null;
     const user = profileData.user;
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-center">
+      <div className="flex flex-col items-center justify-center pb-12 text-center">
         {user.image && (
           <div className="relative w-28 h-28 mb-5 shadow-lg rounded-full">
             <Image
@@ -374,11 +374,7 @@ export default function UserProfilePage() {
   };
 
   if (isLoadingProfile) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-        Loading profile...
-      </div>
-    );
+    return <LoadingSkeleton />;
   }
 
   if (error || !profileData?.user) {
@@ -397,8 +393,8 @@ export default function UserProfilePage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <div className="flex-grow container mx-auto px-4 py-8">
+    <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] pt-24">
+      <div className="flex-grow container mx-auto px-4">
         <ProfileHeader />
         <StacksSelector />
         <BentoGridSection />

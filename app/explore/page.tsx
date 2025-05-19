@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-
+import { LoadingSkeleton } from "@/components/ui/skeleton";
 // Type User basé sur le schéma Drizzle (simplifié pour l'affichage actuel)
 // drizzle/db/schema.ts contient: id, name, email, emailVerified, image, description, createdAt, updatedAt
 type User = {
@@ -47,18 +47,12 @@ export default function ExplorePage() {
   }, []);
 
   return (
-    <main className="container max-w-4xl mx-auto px-4 py-12 md:py-16 min-h-screen">
+    <main className="container max-w-4xl mx-auto px-4 py-24 min-h-screen">
       <h1 className="text-4xl font-bold mb-10 text-center tracking-tight">
         Explore Our Community
       </h1>
 
-      {loading && (
-        <div className="text-center py-10">
-          {/* Vous pouvez ajouter un composant Spinner ici si vous en avez un */}
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-          <p className="text-lg mt-4">Loading users...</p>
-        </div>
-      )}
+      {loading && <LoadingSkeleton />}
 
       {error && (
         <div className="text-center py-10 text-red-500 bg-red-500/10 p-6 rounded-lg">

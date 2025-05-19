@@ -47,7 +47,7 @@ export default function HeroSection() {
       setIsRedirecting(true);
       // Utiliser un court délai pour éviter les redirections pendant l'hydratation
       const redirectTimeout = setTimeout(() => {
-        toast.success("Redirection vers votre dashboard...");
+        toast.success("Redirecting to your dashboard...");
         router.push("/dashboard");
       }, 300);
 
