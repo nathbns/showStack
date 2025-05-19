@@ -4,12 +4,12 @@ import { useSession } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { AddTechForm } from "@/components/tech-stack/add-tech-form";
 import { type Tech } from "@/components/tech-stack/tech-stack-grid";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import { allTechnologies } from "@/components/tech-stack/tech-data";
 import Image from "next/image";
+import { LoadingSkeleton } from "@/components/ui/skeleton";
 import {
   ExternalLink,
-  GripVertical,
   RefreshCw,
   X as XIcon,
   Trash2 as TrashIcon,
@@ -39,6 +39,16 @@ import {
   rectSortingStrategy,
 } from "@dnd-kit/sortable";
 import GitHubLogo from "@/components/logo-card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 // Initialisation de iconMap au niveau du module
 const iconMap: Record<string, React.ReactNode> = {};
@@ -239,7 +249,7 @@ function SortableTechCard({
       {showControls && (
         <div className="mt-2 flex flex-col gap-1 w-full relative z-10">
           <div className="flex gap-1 items-center">
-            <span className="text-xs">Largeur :</span>
+            <span className="text-xs">Width :</span>
             {[1, 2, 3].map((c) => (
               <Button
                 key={c}
@@ -259,7 +269,7 @@ function SortableTechCard({
             ))}
           </div>
           <div className="flex gap-1 items-center">
-            <span className="text-xs">Hauteur :</span>
+            <span className="text-xs">Height :</span>
             {[1, 2].map((r) => (
               <Button
                 key={r}
@@ -318,6 +328,9 @@ export default function Dashboard() {
   const [isPageEditMode, setIsPageEditMode] = useState(false);
   const [isResizeMode, setIsResizeMode] = useState(false);
   const [orderedTechIds, setOrderedTechIds] = useState<string[]>([]);
+  const [isStackEditMode, setIsStackEditMode] = useState(false);
+  const [stackToDeleteId, setStackToDeleteId] = useState<number | null>(null);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const activeStack = userStacks.find((stack) => stack.id === activeStackId);
   const technologies = activeStack?.technologies || [];
@@ -616,18 +629,16 @@ export default function Dashboard() {
       toast.error("You must be logged in to delete a stack.");
       return;
     }
+    setStackToDeleteId(stackId);
+    setIsDeleteDialogOpen(true);
+  };
 
-    if (
-      !confirm(
-        "Are you sure you want to delete this stack? This action is irreversible."
-      )
-    ) {
-      return;
-    }
+  const confirmDeleteStack = async () => {
+    if (stackToDeleteId === null) return;
 
     try {
       const response = await fetch(
-        `/api/tech/stack?id=${stackId}&stackId=true`,
+        `/api/tech/stack?id=${stackToDeleteId}&stackId=true`,
         {
           method: "DELETE",
         }
@@ -638,16 +649,21 @@ export default function Dashboard() {
         throw new Error(errorData.error || "Error while deleting the stack");
       }
 
-      const updatedStacks = userStacks.filter((stack) => stack.id !== stackId);
+      const updatedStacks = userStacks.filter(
+        (stack) => stack.id !== stackToDeleteId
+      );
       setUserStacks(updatedStacks);
 
-      if (activeStackId === stackId) {
+      if (activeStackId === stackToDeleteId) {
         setActiveStackId(updatedStacks.length > 0 ? updatedStacks[0].id : null);
       }
 
       toast.success("Stack deleted successfully!");
     } catch (error) {
       toast.error((error as Error).message || "Unable to delete the stack.");
+    } finally {
+      setIsDeleteDialogOpen(false);
+      setStackToDeleteId(null);
     }
   };
 
@@ -807,7 +823,7 @@ export default function Dashboard() {
 
   // Nouveau composant ProfileHeader
   const ProfileHeader = () => (
-    <div className="flex flex-col items-center justify-center py-12 text-center">
+    <div className="flex flex-col items-center justify-center pb-12 text-center pt-24">
       {sessionData?.user?.image && (
         <div className="relative w-28 h-28 mb-5 shadow-lg rounded-full">
           <Image
@@ -833,13 +849,20 @@ export default function Dashboard() {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
     const openCreateModal = () => {
-      setNewStackName(""); // Réinitialiser le nom lors de l'ouverture
+      if (isStackEditMode) return;
+      setNewStackName("");
       setIsCreateModalOpen(true);
     };
 
     const closeCreateModal = () => {
       setIsCreateModalOpen(false);
     };
+
+    useEffect(() => {
+      if (isStackEditMode && isCreateModalOpen) {
+        closeCreateModal();
+      }
+    }, [isStackEditMode, isCreateModalOpen]);
 
     const handleCreateAndClose = async () => {
       if (newStackName.trim()) {
@@ -848,86 +871,138 @@ export default function Dashboard() {
           closeCreateModal();
         } catch (error) {
           // L'erreur est gérée par le toast dans handleCreateNewStack
-          // On pourrait ajouter un feedback spécifique au modal si besoin
         }
       }
     };
 
     return (
       <>
-        <div className="flex flex-wrap justify-center items-center gap-4 px-4 py-6 mb-8">
+        <div className="flex justify-end gap-4">
+          <Button
+            variant={isStackEditMode ? "secondary" : "outline"}
+            onClick={() => setIsStackEditMode(!isStackEditMode)}
+            className="text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+          >
+            {isStackEditMode ? "Done Editing" : "Edit Grid"}
+          </Button>
+
+          {/* Carte pour créer une nouvelle stack */}
+          {!isStackEditMode && (
+            <button
+              onClick={openCreateModal}
+              className={`
+            px-4 py-1 rounded-lg shadow-md transition-all duration-200 ease-in-out
+            border-1 border-dashed border-[var(--muted-foreground)] text-[var(--muted-foreground)]
+            flex flex-col items-center justify-center
+            ${
+              userStacks.length >= 5
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]"
+            }
+            `}
+              disabled={userStacks.length >= 5 || isStackEditMode}
+              title={
+                userStacks.length >= 5
+                  ? "Limite de 5 stacks atteinte"
+                  : isStackEditMode
+                  ? "Finish editing stacks to add a new one"
+                  : ""
+              }
+            >
+              <span className="text-sm cursor-pointer"> + New Grid</span>
+            </button>
+          )}
+        </div>
+        <div className="flex flex-wrap justify-center items-center gap-4 px-4 py-4">
           {userStacks.map((stack) => (
-            <ContextMenu key={stack.id}>
-              <ContextMenuTrigger asChild>
-                <button
-                  onClick={() => setActiveStackId(stack.id)}
+            <div key={stack.id} className="relative group">
+              {isStackEditMode ? (
+                <div
                   className={`
-                    px-4 py-1 rounded-lg
-                    border-1 
+                     px-3 py-1 rounded-lg border-1 flex items-center gap-2
+                    text-[var(--foreground)] bg-[var(--card)] border-[var(--border)]
                     ${
                       activeStackId === stack.id
-                        ? "bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)]"
-                        : "bg-[var(--card)] text-[var(--foreground)] border-[var(--border)] hover:bg-[var(--accent)] hover:border-[var(--primary)] cursor-pointer"
+                        ? "border-[var(--primary)]/50 border-dashed bg-[var(--accent)]/70"
+                        : ""
                     }
                   `}
                 >
-                  <span className="text-lg font-semibold">{stack.name}</span>
-                  {/* Possibilité d'ajouter un compte de technos : <span className="text-xs block">{stack.technologies.length} techs</span> */}
-                </button>
-              </ContextMenuTrigger>
-              <ContextMenuContent>
-                <ContextMenuItem
-                  variant="destructive"
-                  onClick={() => handleDeleteStack(stack.id)}
-                  className="cursor-pointer"
-                >
-                  Delete
-                </ContextMenuItem>
-                <ContextMenuSeparator />
-                <ContextMenuItem
-                  onClick={() => {
-                    const newNamePrompt = prompt(
-                      "New name for this grid:",
-                      stack.name
-                    );
-                    if (
-                      newNamePrompt &&
-                      newNamePrompt.trim() &&
-                      newNamePrompt !== stack.name
-                    ) {
-                      saveActiveStack?.({
-                        // Utilisation de l'optional chaining pour saveActiveStack
-                        ...stack,
-                        name: newNamePrompt.trim(),
-                      });
+                  <span
+                    onClick={() =>
+                      !isStackEditMode && setActiveStackId(stack.id)
                     }
-                  }}
-                  className="cursor-pointer"
-                >
-                  Rename
-                </ContextMenuItem>
-              </ContextMenuContent>
-            </ContextMenu>
+                    className={`${
+                      !isStackEditMode ? "cursor-pointer" : "cursor-default"
+                    } hover:text-[var(--primary)] transition-colors`}
+                  >
+                    {stack.name}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteStack(stack.id)}
+                    className="p-0 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-500/80 hover:text-red-500 transition-colors flex items-center justify-center cursor-pointer"
+                    aria-label={`Delete stack ${stack.name}`}
+                    style={{ width: "24px", height: "24px" }}
+                  >
+                    <XIcon size={14} />
+                  </button>
+                </div>
+              ) : (
+                <ContextMenu>
+                  <ContextMenuTrigger asChild>
+                    <button
+                      onClick={() => setActiveStackId(stack.id)}
+                      className={`
+                        px-4 py-1 rounded-lg
+                        border-1 
+                        ${
+                          activeStackId === stack.id
+                            ? " text-[var(--foreground)] border-[var(--primary)]/30 border-dashed bg-[var(--accent)]/60"
+                            : "hover:bg-[var(--accent)]/40 cursor-pointer"
+                        }
+                      `}
+                    >
+                      <span className="text-[var(--foreground)]">
+                        {stack.name}
+                      </span>
+                    </button>
+                  </ContextMenuTrigger>
+                  <ContextMenuContent>
+                    <ContextMenuItem
+                      variant="destructive"
+                      onClick={() => handleDeleteStack(stack.id)}
+                      className="cursor-pointer"
+                    >
+                      Delete
+                    </ContextMenuItem>
+                    <ContextMenuSeparator />
+                    <ContextMenuItem
+                      onClick={() => {
+                        const newNamePrompt = prompt(
+                          "New name for this grid:",
+                          stack.name
+                        );
+                        if (
+                          newNamePrompt &&
+                          newNamePrompt.trim() &&
+                          newNamePrompt !== stack.name
+                        ) {
+                          saveActiveStack?.({
+                            ...stack,
+                            name: newNamePrompt.trim(),
+                          });
+                        }
+                      }}
+                      className="cursor-pointer"
+                    >
+                      Rename
+                    </ContextMenuItem>
+                  </ContextMenuContent>
+                </ContextMenu>
+              )}
+            </div>
           ))}
-
-          {/* Carte pour créer une nouvelle stack */}
-          <button
-            onClick={userStacks.length >= 5 ? undefined : openCreateModal}
-            className={`
-              px-4 py-1 rounded-lg shadow-md transition-all duration-200 ease-in-out
-              border-1 border-dashed border-[var(--muted-foreground)] text-[var(--muted-foreground)]
-              flex flex-col items-center justify-center
-              ${
-                userStacks.length >= 5
-                  ? "opacity-50 cursor-not-allowed"
-                  : "hover:border-[var(--primary)] hover:text-[var(--primary)] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)]"
-              }
-            `}
-            disabled={userStacks.length >= 5}
-            title={userStacks.length >= 5 ? "Limite de 5 stacks atteinte" : ""}
-          >
-            <span className="text-sm cursor-pointer"> + New Stack</span>
-          </button>
         </div>
 
         {/* Modal pour créer une nouvelle stack */}
@@ -1144,11 +1219,7 @@ export default function Dashboard() {
   };
 
   if (isPending || isLoadingInitialData) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-        Loading your dashboard...
-      </div>
-    );
+    return <LoadingSkeleton />;
   }
 
   if (!sessionData?.user?.id) {
@@ -1188,6 +1259,28 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+        <AlertDialog
+          open={isDeleteDialogOpen}
+          onOpenChange={setIsDeleteDialogOpen}
+        >
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your
+                stack and remove your data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setIsDeleteDialogOpen(false)}>
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={confirmDeleteStack}>
+                Continue
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </>
   );

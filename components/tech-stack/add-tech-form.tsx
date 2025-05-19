@@ -246,17 +246,17 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
       <DialogTrigger asChild>
         <Button className="bg-background hover:bg-background/90 text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-lg flex items-center gap-2">
           <PlusCircle size={18} />
-          Ajouter
+          Add
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-background border-[var(--border)] text-[var(--foreground)] p-0 overflow-hidden">
         <div className="flex flex-col h-[750px] ">
           <DialogHeader className="p-4 pb-0 max-w-[500px]">
-            <DialogTitle className="text-xl font-bold text-[var(--foreground)]">
-              Ajouter à votre profil
+            <DialogTitle className="text-xl font-bold text-[var(--foreground)] text-center">
+              Add to your profile
             </DialogTitle>
-            <DialogDescription className="text-[var(--muted-foreground)] text-center mx-auto">
-              Enrichissez votre profil avec des technologies ou des projets.
+            <DialogDescription className="text-[var(--muted-foreground)] text-center mx-auto mb-4">
+              Enrich your profile with technologies or projects.
             </DialogDescription>
           </DialogHeader>
 
@@ -270,15 +270,15 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
               <TabsList className="grid grid-cols-2 w-full max-w-[500px] mx-auto">
                 <TabsTrigger
                   value="technologies"
-                  className="data-[state=active]:bg-[var(--primary)] data-[state=active]:text-[var(--primary-foreground)]"
+                  className="data-[state=active]:bg-[var(--primary)] data-[state=active]:text-[var(--primary-foreground)] cursor-pointer"
                 >
                   Technologies
                 </TabsTrigger>
                 <TabsTrigger
                   value="projets"
-                  className="data-[state=active]:bg-[var(--primary)] data-[state=active]:text-[var(--primary-foreground)]"
+                  className="data-[state=active]:bg-[var(--primary)] data-[state=active]:text-[var(--primary-foreground)] cursor-pointer"
                 >
-                  Projets
+                  Projects
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -289,7 +289,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
                 value="technologies"
                 className="h-full p-4 overflow-y-auto"
               >
-                <div className="flex-1 overflow-hidden flex flex-col">
+                <div className="flex-1 overflow-hidden flex flex-col w-full">
                   <Tabs
                     defaultValue="Frontend"
                     value={activeCategory}
@@ -297,12 +297,12 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
                     className="flex-1 flex flex-col"
                   >
                     <div className="px-4">
-                      <TabsList className="flex overflow-x-auto w-full bg-background border-b border-[var(--border)]">
+                      <TabsList className="flex overflow-x-auto w-full bg-background border-b border-[var(--border)] px-2">
                         {Object.keys(techsByCategory).map((category) => (
                           <TabsTrigger
                             key={category}
                             value={category}
-                            className="px-3 py-1.5  data-[state=active]:bg-[var(--muted)] data-[state=active]:text-[var(--primary)] data-[state=active]:shadow-sm"
+                            className="flex-shrink-0 px-3 py-1.5 data-[state=active]:bg-[var(--muted)] data-[state=active]:text-[var(--primary)] data-[state=active]:shadow-sm"
                           >
                             {category}
                           </TabsTrigger>
@@ -358,7 +358,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
                     <div className="mb-4">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="text-sm font-medium">
-                          Vos projets GitHub
+                          Your GitHub projects
                         </h3>
                         <Button
                           variant="ghost"
@@ -368,7 +368,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
                           className="h-8 px-2"
                         >
                           <RefreshCw size={14} className="mr-1" />
-                          Rafraîchir
+                          Refresh
                         </Button>
                       </div>
                       {githubRepos.length > 0 ? (
@@ -487,7 +487,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
                         id="projectDescription"
                         value={projectDescription}
                         onChange={(e) => setProjectDescription(e.target.value)}
-                        placeholder="Décrivez votre projet en quelques mots..."
+                        placeholder="Describe your project in a few words..."
                         className="bg-background border-[var(--border)] text-[var(--foreground)]"
                         rows={3}
                         required
@@ -520,7 +520,7 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
                       className="w-full bg-[var(--primary)] hover:bg-[var(--primary)]/90 text-[var(--primary-foreground)]"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Ajout en cours..." : "Ajouter le projet"}
+                      {isSubmitting ? "Adding project..." : "Add project"}
                     </Button>
                   </form>
                 </div>

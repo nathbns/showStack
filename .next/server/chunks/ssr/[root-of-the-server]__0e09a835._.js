@@ -202,7 +202,7 @@ function Footer() {
                         children: [
                             "© ",
                             new Date().getFullYear(),
-                            " ShowStack. Tous droits réservés."
+                            " BentoGr.id. All rights reserved."
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/ui/footer.tsx",
