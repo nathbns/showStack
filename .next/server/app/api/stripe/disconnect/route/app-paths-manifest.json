@@ -1,0 +1,3 @@
+{
+  "/api/stripe/disconnect/route": "app/api/stripe/disconnect/route.js"
+}

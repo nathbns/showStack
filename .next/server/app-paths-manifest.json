@@ -1,13 +1,8 @@
 {
   "/api/auth/[...all]/route": "app/api/auth/[...all]/route.js",
-  "/api/github/repos/route": "app/api/github/repos/route.js",
-  "/api/profile/[userId]/route": "app/api/profile/[userId]/route.js",
+  "/api/stripe/connection-status/route": "app/api/stripe/connection-status/route.js",
+  "/api/stripe/oauth/authorize/route": "app/api/stripe/oauth/authorize/route.js",
   "/api/tech/stack/route": "app/api/tech/stack/route.js",
   "/api/user/profile/route": "app/api/user/profile/route.js",
-  "/api/users/route": "app/api/users/route.js",
-  "/auth/signin/page": "app/auth/signin/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/explore/page": "app/explore/page.js",
-  "/page": "app/page.js",
-  "/profile/[userId]/page": "app/profile/[userId]/page.js"
+  "/dashboard/page": "app/dashboard/page.js"
 }

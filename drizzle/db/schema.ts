@@ -87,13 +87,6 @@ export const userStackTechnologies = pgTable("user_stack_technology", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export const userRelations = relations(user, ({ many }) => ({
-  sessions: many(session),
-  accounts: many(account),
-  stackTechnologies: many(userStackTechnologies),
-  techStacks: many(techStack),
-}));
-
 export const userStackTechnologiesRelations = relations(
   userStackTechnologies,
   ({ one }) => ({
@@ -133,6 +126,8 @@ export const stackTechnologyItem = pgTable("stack_technology_item", {
   order: integer("order").default(0),
   stars: integer("stars").default(0),
   forks: integer("forks").default(0),
+  mrr: integer("mrr"), // Revenu Mensuel Récurrent en centimes
+  mrrCurrency: text("mrr_currency"), // Ex: "USD", "EUR"
 });
 
 export const techStackRelations = relations(techStack, ({ one, many }) => ({
@@ -152,6 +147,43 @@ export const stackTechnologyItemRelations = relations(
     }),
   })
 );
+
+// Table pour les connexions Stripe
+export const stripeConnection = pgTable("stripe_connection", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" })
+    .unique(), // Un utilisateur = une connexion Stripe
+  stripeUserId: text("stripe_user_id").notNull(), // ID du compte Stripe connecté (acct_...)
+  accessToken: text("access_token").notNull(), // DOIT être chiffré en BDD
+  refreshToken: text("refresh_token"), // DOIT être chiffré en BDD
+  scope: text("scope"), // Permissions accordées
+  livemode: boolean("livemode").notNull(),
+  stripePublishableKey: text("stripe_publishable_key"),
+  accessTokenExpiresAt: timestamp("access_token_expires_at"), // Si applicable
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const stripeConnectionRelations = relations(
+  stripeConnection,
+  ({ one }) => ({
+    user: one(user, {
+      fields: [stripeConnection.userId],
+      references: [user.id],
+    }),
+  })
+);
+
+// Mettre à jour les relations utilisateur
+export const userRelations = relations(user, ({ many, one }) => ({
+  sessions: many(session),
+  accounts: many(account),
+  stackTechnologies: many(userStackTechnologies), // Conserver si c'est une table différente/héritée
+  techStacks: many(techStack),
+  stripeConnection: one(stripeConnection), // Ajout de la relation à la connexion Stripe
+}));
 
 /*
 // Requête préparée pour récupérer les technologies d'une stack avec toutes les colonnes

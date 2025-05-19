@@ -1,0 +1,3 @@
+{
+  "/api/stripe/connection-status/route": "app/api/stripe/connection-status/route.js"
+}

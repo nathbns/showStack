@@ -81,6 +81,7 @@
   :root, :host {
     --color-red-500: oklch(63.7% .237 25.331);
     --color-green-500: oklch(72.3% .219 149.579);
+    --color-green-600: oklch(62.7% .194 149.214);
     --color-slate-300: oklch(86.9% .022 252.894);
     --color-slate-700: oklch(37.2% .044 257.287);
     --color-slate-950: oklch(12.9% .042 264.695);
@@ -715,6 +716,10 @@
 
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
+  }
+
+  .mb-3 {
+    margin-bottom: calc(var(--spacing) * 3);
   }
 
   .mb-4 {
@@ -1389,10 +1394,6 @@
     cursor: grab;
   }
 
-  .cursor-not-allowed {
-    cursor: not-allowed;
-  }
-
   .cursor-pointer {
     cursor: pointer;
   }
@@ -1717,10 +1718,6 @@
     border-color: var(--foreground);
   }
 
-  .border-\[var\(--muted-foreground\)\] {
-    border-color: var(--muted-foreground);
-  }
-
   .border-\[var\(--primary\)\] {
     border-color: var(--primary);
   }
@@ -1769,6 +1766,16 @@
 
   .border-green-500 {
     border-color: var(--color-green-500);
+  }
+
+  .border-green-500\/20 {
+    border-color: #00c75833;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-green-500\/20 {
+      border-color: color-mix(in oklab, var(--color-green-500) 20%, transparent);
+    }
   }
 
   .border-input {
@@ -1949,6 +1956,16 @@
 
   .bg-foreground {
     background-color: var(--foreground);
+  }
+
+  .bg-green-500\/10 {
+    background-color: #00c7581a;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-green-500\/10 {
+      background-color: color-mix(in oklab, var(--color-green-500) 10%, transparent);
+    }
   }
 
   .bg-muted {
@@ -2443,6 +2460,10 @@
 
   .text-gray-500 {
     color: var(--color-gray-500);
+  }
+
+  .text-green-600 {
+    color: var(--color-green-600);
   }
 
   .text-muted-foreground {
@@ -3483,10 +3504,6 @@
     --tw-ring-color: var(--ring);
   }
 
-  .focus\:ring-white:focus {
-    --tw-ring-color: var(--color-white);
-  }
-
   .focus\:ring-offset-2:focus {
     --tw-ring-offset-width: 2px;
     --tw-ring-offset-shadow: var(--tw-ring-inset, ) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
@@ -3507,10 +3524,6 @@
   .focus\:outline-none:focus {
     --tw-outline-style: none;
     outline-style: none;
-  }
-
-  .focus\:ring-inset:focus {
-    --tw-ring-inset: inset;
   }
 
   .focus-visible\:z-10:focus-visible {
@@ -4385,12 +4398,6 @@
   }
 
   @media (width >= 40rem) {
-    .sm\:mb-0 {
-      margin-bottom: calc(var(--spacing) * 0);
-    }
-  }
-
-  @media (width >= 40rem) {
     .sm\:block {
       display: block;
     }
@@ -4604,6 +4611,12 @@
   }
 
   @media (width >= 48rem) {
+    .md\:flex-1 {
+      flex: 1;
+    }
+  }
+
+  @media (width >= 48rem) {
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -4612,6 +4625,12 @@
   @media (width >= 48rem) {
     .md\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:flex-row {
+      flex-direction: row;
     }
   }
 

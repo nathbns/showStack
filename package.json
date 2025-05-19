@@ -75,6 +75,7 @@
     "recharts": "^2.15.3",
     "showstack": ".",
     "sonner": "^2.0.3",
+    "stripe": "^18.1.0",
     "tailwind-merge": "^3.3.0",
     "uploadthing": "^7.7.2",
     "uuid": "^11.1.0",
