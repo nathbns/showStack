@@ -1158,7 +1158,7 @@ export default function Dashboard() {
         <div className="relative w-28 h-28 mb-5 shadow-lg rounded-full">
           <Image
             src={session.user.image}
-            alt={session.user.name || "Avatar utilisateur"}
+            alt={session?.user?.name || "Avatar utilisateur"}
             layout="fill"
             objectFit="cover"
             className="rounded-full"
