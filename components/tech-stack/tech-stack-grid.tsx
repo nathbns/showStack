@@ -45,6 +45,9 @@ export type Tech = {
   description?: string;
   stars?: number;
   forks?: number;
+  isStripeCard?: boolean; // Pour identifier la carte Stripe
+  mrr?: number; // MRR en centimes
+  mrrCurrency?: string; // Devise du MRR (par ex. "USD", "EUR")
 };
 
 type TechStackGridProps = {

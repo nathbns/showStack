@@ -1,0 +1,1 @@
+ALTER TABLE "tech_stack" ADD COLUMN "stripe_card_order" integer DEFAULT 0 NOT NULL;

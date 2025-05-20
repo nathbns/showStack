@@ -183,7 +183,8 @@ const user = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f
     description: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("description"),
     createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("created_at").notNull(),
     updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").notNull(),
-    layoutConfig: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("layout_config")
+    layoutConfig: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("layout_config"),
+    shareCount: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("share_count").default(0).notNull()
 });
 const session = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$table$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["pgTable"])("session", {
     id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("id").primaryKey(),
@@ -265,13 +266,17 @@ const userStackTechnologiesRelations = (0, __TURBOPACK__imported__module__$5b$pr
     }));
 const techStack = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$table$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["pgTable"])("tech_stack", {
     id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$serial$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["serial"])("id").primaryKey(),
-    userId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("user_id").notNull().references(()=>user.id, {
+    userId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("user_id").notNull().unique() // Un seul techStack par utilisateur
+    .references(()=>user.id, {
         onDelete: "cascade"
     }),
-    name: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("name"),
     upvotes: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("upvotes").default(0).notNull(),
+    showStripeCard: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$boolean$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["boolean"])("show_stripe_card").default(false).notNull(),
     createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("created_at").defaultNow().notNull(),
-    updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").defaultNow().notNull()
+    updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").defaultNow().notNull(),
+    stripeCardColSpan: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("stripe_card_col_span").default(1).notNull(),
+    stripeCardRowSpan: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("stripe_card_row_span").default(1).notNull(),
+    stripeCardOrder: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("stripe_card_order").default(0).notNull()
 });
 const stackTechnologyItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$table$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["pgTable"])("stack_technology_item", {
     id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$serial$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["serial"])("id").primaryKey(),
@@ -344,7 +349,7 @@ const userRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_m
         sessions: many(session),
         accounts: many(account),
         stackTechnologies: many(userStackTechnologies),
-        techStacks: many(techStack),
+        techStack: one(techStack),
         stripeConnection: one(stripeConnection)
     })); /*
 // Requête préparée pour récupérer les technologies d'une stack avec toutes les colonnes
@@ -494,6 +499,7 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
+const STRIPE_CARD_ID = "internal_stripe_card"; // ID fixe pour la carte Stripe en tant que Tech
 async function GET(request) {
     try {
         const session = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["auth"].api.getSession({
@@ -515,8 +521,54 @@ async function GET(request) {
                     asc(techStack.createdAt)
                 ]
         });
+        // Debug pour vérifier que showStripeCard est bien présent
+        console.log("[DEBUG GET API] Stacks before Stripe-Tech injection:", userStacksResults.map((stack)=>({
+                id: stack.id,
+                name: stack.name,
+                showStripeCard: stack.showStripeCard,
+                stripeCardColSpan: stack.stripeCardColSpan,
+                stripeCardRowSpan: stack.stripeCardRowSpan,
+                stripeCardOrder: stack.stripeCardOrder,
+                numTechs: stack.technologies.length
+            })));
+        const stacksWithPossibleStripeCard = userStacksResults.map((stack)=>{
+            let technologiesWithStripe = [
+                ...stack.technologies
+            ];
+            if (stack.showStripeCard) {
+                const stripeTechItem = {
+                    id: STRIPE_CARD_ID,
+                    name: "Stripe MRR",
+                    color: "#635BFF",
+                    technologyId: STRIPE_CARD_ID,
+                    category: "Services",
+                    gridCols: stack.stripeCardColSpan || 1,
+                    gridRows: stack.stripeCardRowSpan || 1,
+                    isProject: false,
+                    order: stack.stripeCardOrder === null || stack.stripeCardOrder === undefined ? -1 : stack.stripeCardOrder
+                };
+                technologiesWithStripe.push(stripeTechItem); // Cast as any pour simplifier, Tech et ApiTechItem sont proches
+            }
+            // Trier toutes les technologies (y compris Stripe si présente) par leur ordre
+            technologiesWithStripe.sort((a, b)=>(a.order ?? Infinity) - (b.order ?? Infinity));
+            return {
+                ...stack,
+                technologies: technologiesWithStripe
+            };
+        });
+        console.log("[DEBUG GET API] Stacks AFTER Stripe-Tech injection and sort:", stacksWithPossibleStripeCard.map((stack)=>({
+                id: stack.id,
+                name: stack.name,
+                showStripeCard: stack.showStripeCard,
+                numTechs: stack.technologies.length,
+                techs: stack.technologies.map((t)=>({
+                        id: t.id,
+                        name: t.name,
+                        order: t.order
+                    }))
+            })));
         // Retourner toutes les stacks trouvées pour l'utilisateur
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(userStacksResults);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(stacksWithPossibleStripeCard);
     } catch (error) {
         console.error("Erreur lors de la récupération des stacks:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
@@ -538,12 +590,46 @@ async function POST(request) {
                 status: 401
             });
         }
-        const { id, name, technologies } = await request.json();
+        const { id, name, technologies, showStripeCard, stripeCardColSpan, stripeCardRowSpan } = await request.json();
+        // Nouveau: Extraire la carte Stripe des technologies si elle est présente
+        let incomingTechnologies = [
+            ...technologies
+        ]; // Copie pour modification
+        const stripeTechIndex = incomingTechnologies.findIndex((tech)=>tech.id === STRIPE_CARD_ID);
+        let stackShowStripeCard = false;
+        let stackStripeColSpan = 1;
+        let stackStripeRowSpan = 1;
+        let stackStripeOrder = 0; // Valeur par défaut si la carte n'est pas là ou n'a pas d'ordre
+        if (stripeTechIndex > -1) {
+            const stripeTech = incomingTechnologies[stripeTechIndex];
+            stackShowStripeCard = true;
+            stackStripeColSpan = stripeTech.gridCols || 1;
+            stackStripeRowSpan = stripeTech.gridRows || 1;
+            stackStripeOrder = stripeTech.order === undefined ? 0 : stripeTech.order; // Utiliser l'ordre de la carte Stripe
+            // Retirer la carte Stripe du tableau car elle n'est pas un StackTechnologyItem
+            incomingTechnologies.splice(stripeTechIndex, 1);
+            console.log("[DEBUG API POST] Stripe card DEDUCTED from tech list. Order:", stackStripeOrder);
+        } else {
+            // Si STRIPE_CARD_ID n'est pas dans les technologies, on s'assure que showStripeCard est false
+            // Les anciennes valeurs de showStripeCard, stripeCardColSpan, etc. directes sont ignorées
+            stackShowStripeCard = false;
+            console.log("[DEBUG API POST] Stripe card NOT in tech list. showStripeCard will be false.");
+        }
+        console.log("[DEBUG API POST] Effective values for Stripe card: show?", stackShowStripeCard, "ColSpan:", stackStripeColSpan, "RowSpan:", stackStripeRowSpan, "Order:", stackStripeOrder);
+        console.log("[DEBUG API POST] Technologies to save to DB (StackTechnologyItem):", incomingTechnologies.map((t)=>({
+                id: t.id,
+                name: t.name,
+                order: t.order
+            })));
         let currentStack;
         const stackData = {
             userId: session.user.id,
             name: name,
-            updatedAt: new Date()
+            updatedAt: new Date(),
+            showStripeCard: stackShowStripeCard,
+            stripeCardColSpan: stackStripeColSpan,
+            stripeCardRowSpan: stackStripeRowSpan,
+            stripeCardOrder: stackStripeOrder
         };
         if (id) {
             // Mise à jour d'une stack existante
@@ -568,7 +654,7 @@ async function POST(request) {
         }
         const finalItemDbIds = [];
         if (technologies && technologies.length > 0) {
-            for (const tech of technologies){
+            for (const tech of incomingTechnologies){
                 let shouldInsert = true;
                 let existingItemId = NaN;
                 if (tech.id) {
@@ -640,14 +726,41 @@ async function POST(request) {
                 await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].delete(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"]).where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].techStackId, currentStack.id));
             }
         }
-        const techItems = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.stackTechnologyItem.findMany({
-            where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].techStackId, currentStack.id)
+        const finalTechnologiesFromDb = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.stackTechnologyItem.findMany({
+            where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["stackTechnologyItem"].techStackId, currentStack.id),
+            orderBy: (stackTechnologyItem, { asc })=>[
+                    asc(stackTechnologyItem.order)
+                ]
         });
-        const updatedStackWithTechnologies = {
+        let responseTechnologies = [
+            ...finalTechnologiesFromDb
+        ];
+        // Réinjecter la carte Stripe si elle doit être affichée
+        if (currentStack.showStripeCard) {
+            const stripeTechItemForResponse = {
+                id: STRIPE_CARD_ID,
+                name: "Stripe MRR",
+                color: "#635BFF",
+                technologyId: STRIPE_CARD_ID,
+                category: "Services",
+                gridCols: currentStack.stripeCardColSpan || 1,
+                gridRows: currentStack.stripeCardRowSpan || 1,
+                isProject: false,
+                order: currentStack.stripeCardOrder === null || currentStack.stripeCardOrder === undefined ? 0 : currentStack.stripeCardOrder
+            };
+            responseTechnologies.push(stripeTechItemForResponse);
+        }
+        // Trier la liste finale pour la réponse (y compris Stripe si présente)
+        responseTechnologies.sort((a, b)=>(a.order ?? Infinity) - (b.order ?? Infinity));
+        console.log("[DEBUG API POST] Returning stack with Stripe props and (re-injected) StripeTech:", currentStack.showStripeCard, "ColSpan:", currentStack.stripeCardColSpan, "RowSpan:", currentStack.stripeCardRowSpan, "Order:", currentStack.stripeCardOrder, "Techs in response:", responseTechnologies.map((t)=>({
+                id: t.id,
+                name: t.name,
+                order: t.order
+            })));
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             ...currentStack,
-            technologies: techItems
-        };
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(updatedStackWithTechnologies);
+            technologies: responseTechnologies
+        });
     } catch (error) {
         console.error("Erreur lors de l'enregistrement de la stack:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({

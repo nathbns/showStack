@@ -20,6 +20,22 @@ import {
 } from "../logo-card";
 import { type Tech } from "./tech-stack-grid";
 
+// Simple Stripe Icon SVG component
+const StripeIcon = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.4764 7.45119C13.4764 6.54994 14.1659 6.12994 15.2364 6.12994C16.6114 6.12994 18.3889 6.63244 19.7239 7.49994V2.93744C18.2699 2.32494 16.8464 2.06244 15.2364 2.06244C11.3764 2.06244 8.77637 4.24494 8.77637 7.67994C8.77637 13.2349 16.2464 12.141 16.2464 14.8575C16.2464 15.9975 15.3539 16.4175 14.2464 16.4175C12.7414 16.4175 10.7764 15.7485 9.30137 14.7524V19.4324C10.9364 20.1675 12.5939 20.4999 14.2464 20.4999C18.1954 20.4999 20.9989 18.3749 20.9989 14.8575C20.9989 8.89119 13.4764 10.1625 13.4764 7.45119Z"
+      fill="#635BFF"
+    />
+  </svg>
+);
+
 // Un objet qui contient des technologies organisées par catégorie
 export const techsByCategory: Record<string, Tech[]> = {
   Frontend: [
@@ -236,6 +252,15 @@ export const techsByCategory: Record<string, Tech[]> = {
       color: "#020240",
       icon: <Expo />,
       category: "Mobile",
+    },
+  ],
+  Services: [
+    {
+      id: "stripe-mrr",
+      name: "Stripe MRR",
+      color: "#635BFF", // Stripe purple
+      icon: <StripeIcon />,
+      category: "Services",
     },
   ],
 };

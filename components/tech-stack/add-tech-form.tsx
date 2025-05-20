@@ -26,6 +26,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 type AddTechFormProps = {
   onAddTech: (tech: Tech) => void;
   userId: string;
+  hasStripeConnection: boolean;
+  onConnectStripe: () => void;
+  onShowStripeInGrid: () => void;
 };
 
 // Type pour étendre Tech avec des propriétés de projet
@@ -38,7 +41,13 @@ interface ProjectTech extends Tech {
   forks: number;
 }
 
-export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
+export function AddTechForm({
+  onAddTech,
+  userId,
+  hasStripeConnection,
+  onConnectStripe,
+  onShowStripeInGrid,
+}: AddTechFormProps) {
   const [open, setOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("Frontend");
   const [githubRepos, setGithubRepos] = useState<any[]>([]);
@@ -150,12 +159,21 @@ export function AddTechForm({ onAddTech, userId }: AddTechFormProps) {
   }, [projectUrl]);
 
   const handleTechSelect = (tech: Tech) => {
-    // S'assurer que le technologyId est correctement défini
-    onAddTech({
-      ...tech,
-      technologyId: tech.id, // Utiliser l'id original comme technologyId
-    });
-    setOpen(false);
+    if (tech.id === "stripe-mrr") {
+      if (!hasStripeConnection) {
+        onConnectStripe();
+      } else {
+        onShowStripeInGrid();
+      }
+      setOpen(false); // Fermer la modale après l'action Stripe
+    } else {
+      // S'assurer que le technologyId est correctement défini
+      onAddTech({
+        ...tech,
+        technologyId: tech.id, // Utiliser l'id original comme technologyId
+      });
+      setOpen(false);
+    }
   };
 
   const handleProjectSubmit = async (e: React.FormEvent) => {

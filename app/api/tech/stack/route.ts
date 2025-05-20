@@ -5,6 +5,8 @@ import { db } from "@/drizzle/db";
 import { techStack, stackTechnologyItem } from "@/drizzle/db/schema";
 import { eq, and, notInArray } from "drizzle-orm";
 
+const STRIPE_CARD_ID = "internal_stripe_card"; // ID fixe pour la carte Stripe en tant que Tech
+
 interface ApiTechItem {
   id: string; // Correspond à stackTechnologyItem.id si existant, ou tech.id du frontend pour les nouveaux
   name: string;
@@ -42,8 +44,69 @@ export async function GET(request: Request) {
       orderBy: (techStack, { asc }) => [asc(techStack.createdAt)],
     });
 
+    // Debug pour vérifier que showStripeCard est bien présent
+    console.log(
+      "[DEBUG GET API] Stacks before Stripe-Tech injection:",
+      userStacksResults.map((stack) => ({
+        id: stack.id,
+        name: stack.name,
+        showStripeCard: stack.showStripeCard,
+        stripeCardColSpan: stack.stripeCardColSpan,
+        stripeCardRowSpan: stack.stripeCardRowSpan,
+        stripeCardOrder: stack.stripeCardOrder,
+        numTechs: stack.technologies.length,
+      }))
+    );
+
+    const stacksWithPossibleStripeCard = userStacksResults.map((stack) => {
+      let technologiesWithStripe = [...stack.technologies];
+      if (stack.showStripeCard) {
+        const stripeTechItem: ApiTechItem = {
+          id: STRIPE_CARD_ID, // Utiliser l'ID interne défini
+          name: "Stripe MRR",
+          color: "#635BFF", // Couleur Stripe
+          technologyId: STRIPE_CARD_ID, // Peut être le même que l'id pour ce cas spécial
+          category: "Services",
+          gridCols: stack.stripeCardColSpan || 1,
+          gridRows: stack.stripeCardRowSpan || 1,
+          isProject: false, // Ce n'est pas un projet standard
+          order:
+            stack.stripeCardOrder === null ||
+            stack.stripeCardOrder === undefined
+              ? -1
+              : stack.stripeCardOrder, // Mettre au début si pas d'ordre défini
+          // Les autres champs (favicon, url, description, stars, forks) ne sont pas pertinents ici
+        };
+        technologiesWithStripe.push(stripeTechItem as any); // Cast as any pour simplifier, Tech et ApiTechItem sont proches
+      }
+      // Trier toutes les technologies (y compris Stripe si présente) par leur ordre
+      technologiesWithStripe.sort(
+        (a, b) => (a.order ?? Infinity) - (b.order ?? Infinity)
+      );
+
+      return {
+        ...stack,
+        technologies: technologiesWithStripe,
+      };
+    });
+
+    console.log(
+      "[DEBUG GET API] Stacks AFTER Stripe-Tech injection and sort:",
+      stacksWithPossibleStripeCard.map((stack) => ({
+        id: stack.id,
+        name: stack.name,
+        showStripeCard: stack.showStripeCard,
+        numTechs: stack.technologies.length,
+        techs: stack.technologies.map((t) => ({
+          id: t.id,
+          name: t.name,
+          order: t.order,
+        })),
+      }))
+    );
+
     // Retourner toutes les stacks trouvées pour l'utilisateur
-    return NextResponse.json(userStacksResults);
+    return NextResponse.json(stacksWithPossibleStripeCard);
   } catch (error) {
     console.error("Erreur lors de la récupération des stacks:", error);
     return NextResponse.json(
@@ -65,18 +128,82 @@ export async function POST(request: Request) {
       );
     }
 
-    const { id, name, technologies } = (await request.json()) as {
-      id?: number; // ID de la techStack existante (optionnel)
+    const {
+      id,
+      name,
+      technologies,
+      showStripeCard,
+      stripeCardColSpan,
+      stripeCardRowSpan,
+    } = (await request.json()) as {
+      id?: number;
       name: string;
       technologies: ApiTechItem[];
+      showStripeCard?: boolean; // Ce champ sera maintenant déduit de la présence de StripeTech
+      stripeCardColSpan?: number; // Idem
+      stripeCardRowSpan?: number; // Idem
     };
+
+    // Nouveau: Extraire la carte Stripe des technologies si elle est présente
+    let incomingTechnologies = [...technologies]; // Copie pour modification
+    const stripeTechIndex = incomingTechnologies.findIndex(
+      (tech) => tech.id === STRIPE_CARD_ID
+    );
+    let stackShowStripeCard = false;
+    let stackStripeColSpan = 1;
+    let stackStripeRowSpan = 1;
+    let stackStripeOrder = 0; // Valeur par défaut si la carte n'est pas là ou n'a pas d'ordre
+
+    if (stripeTechIndex > -1) {
+      const stripeTech = incomingTechnologies[stripeTechIndex];
+      stackShowStripeCard = true;
+      stackStripeColSpan = stripeTech.gridCols || 1;
+      stackStripeRowSpan = stripeTech.gridRows || 1;
+      stackStripeOrder = stripeTech.order === undefined ? 0 : stripeTech.order; // Utiliser l'ordre de la carte Stripe
+      // Retirer la carte Stripe du tableau car elle n'est pas un StackTechnologyItem
+      incomingTechnologies.splice(stripeTechIndex, 1);
+      console.log(
+        "[DEBUG API POST] Stripe card DEDUCTED from tech list. Order:",
+        stackStripeOrder
+      );
+    } else {
+      // Si STRIPE_CARD_ID n'est pas dans les technologies, on s'assure que showStripeCard est false
+      // Les anciennes valeurs de showStripeCard, stripeCardColSpan, etc. directes sont ignorées
+      stackShowStripeCard = false;
+      console.log(
+        "[DEBUG API POST] Stripe card NOT in tech list. showStripeCard will be false."
+      );
+    }
+
+    console.log(
+      "[DEBUG API POST] Effective values for Stripe card: show?",
+      stackShowStripeCard,
+      "ColSpan:",
+      stackStripeColSpan,
+      "RowSpan:",
+      stackStripeRowSpan,
+      "Order:",
+      stackStripeOrder
+    );
+    console.log(
+      "[DEBUG API POST] Technologies to save to DB (StackTechnologyItem):",
+      incomingTechnologies.map((t) => ({
+        id: t.id,
+        name: t.name,
+        order: t.order,
+      }))
+    );
 
     let currentStack: typeof techStack.$inferSelect | undefined | null;
 
-    const stackData = {
+    const stackData: Partial<typeof techStack.$inferSelect> = {
       userId: session.user.id,
       name: name,
       updatedAt: new Date(),
+      showStripeCard: stackShowStripeCard,
+      stripeCardColSpan: stackStripeColSpan,
+      stripeCardRowSpan: stackStripeRowSpan,
+      stripeCardOrder: stackStripeOrder,
     };
 
     if (id) {
@@ -89,7 +216,11 @@ export async function POST(request: Request) {
       // Création d'une nouvelle stack
       const newStacks = await db
         .insert(techStack)
-        .values({ ...stackData, createdAt: new Date() })
+        .values({
+          ...(stackData as typeof techStack.$inferInsert),
+          createdAt: new Date(),
+          // Les valeurs de stackData (showStripeCard, etc.) sont déjà définies ci-dessus
+        })
         .returning();
       currentStack = newStacks[0];
     }
@@ -104,7 +235,7 @@ export async function POST(request: Request) {
     const finalItemDbIds: number[] = [];
 
     if (technologies && technologies.length > 0) {
-      for (const tech of technologies) {
+      for (const tech of incomingTechnologies) {
         let shouldInsert = true;
         let existingItemId = NaN;
 
@@ -199,16 +330,64 @@ export async function POST(request: Request) {
       }
     }
 
-    const techItems = await db.query.stackTechnologyItem.findMany({
-      where: eq(stackTechnologyItem.techStackId, currentStack.id),
-    });
+    const finalTechnologiesFromDb = await db.query.stackTechnologyItem.findMany(
+      {
+        where: eq(stackTechnologyItem.techStackId, currentStack.id),
+        orderBy: (stackTechnologyItem, { asc }) => [
+          asc(stackTechnologyItem.order),
+        ], // Trier par ordre de la DB initialement
+      }
+    );
 
-    const updatedStackWithTechnologies = {
+    let responseTechnologies: any[] = [...finalTechnologiesFromDb];
+
+    // Réinjecter la carte Stripe si elle doit être affichée
+    if (currentStack.showStripeCard) {
+      const stripeTechItemForResponse = {
+        id: STRIPE_CARD_ID,
+        name: "Stripe MRR",
+        color: "#635BFF",
+        technologyId: STRIPE_CARD_ID,
+        category: "Services",
+        gridCols: currentStack.stripeCardColSpan || 1,
+        gridRows: currentStack.stripeCardRowSpan || 1,
+        isProject: false,
+        order:
+          currentStack.stripeCardOrder === null ||
+          currentStack.stripeCardOrder === undefined
+            ? 0
+            : currentStack.stripeCardOrder,
+        // Autres champs non pertinents pour la réponse ou déjà gérés
+      };
+      responseTechnologies.push(stripeTechItemForResponse);
+    }
+
+    // Trier la liste finale pour la réponse (y compris Stripe si présente)
+    responseTechnologies.sort(
+      (a, b) => (a.order ?? Infinity) - (b.order ?? Infinity)
+    );
+
+    console.log(
+      "[DEBUG API POST] Returning stack with Stripe props and (re-injected) StripeTech:",
+      currentStack.showStripeCard,
+      "ColSpan:",
+      currentStack.stripeCardColSpan,
+      "RowSpan:",
+      currentStack.stripeCardRowSpan,
+      "Order:",
+      currentStack.stripeCardOrder,
+      "Techs in response:",
+      responseTechnologies.map((t) => ({
+        id: t.id,
+        name: t.name,
+        order: t.order,
+      }))
+    );
+
+    return NextResponse.json({
       ...currentStack,
-      technologies: techItems,
-    };
-
-    return NextResponse.json(updatedStackWithTechnologies);
+      technologies: responseTechnologies,
+    });
   } catch (error) {
     console.error("Erreur lors de l'enregistrement de la stack:", error);
     return NextResponse.json(

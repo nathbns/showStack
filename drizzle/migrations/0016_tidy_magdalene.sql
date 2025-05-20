@@ -1,0 +1,1 @@
+ALTER TABLE "tech_stack" ADD COLUMN "show_stripe_card" boolean DEFAULT false NOT NULL;

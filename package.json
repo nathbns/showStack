@@ -72,6 +72,7 @@
     "react-hook-form": "^7.56.3",
     "react-resizable": "^3.0.5",
     "react-resizable-panels": "^3.0.2",
+    "react-textarea-autosize": "^8.5.9",
     "recharts": "^2.15.3",
     "showstack": ".",
     "sonner": "^2.0.3",

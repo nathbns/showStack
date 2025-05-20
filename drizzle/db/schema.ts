@@ -19,6 +19,7 @@ export const user = pgTable("user", {
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
   layoutConfig: text("layout_config"),
+  shareCount: integer("share_count").default(0).notNull(),
 });
 
 export const session = pgTable("session", {
@@ -101,11 +102,15 @@ export const techStack = pgTable("tech_stack", {
   id: serial("id").primaryKey(),
   userId: text("user_id")
     .notNull()
+    .unique() // Un seul techStack par utilisateur
     .references(() => user.id, { onDelete: "cascade" }),
-  name: text("name"),
   upvotes: integer("upvotes").default(0).notNull(),
+  showStripeCard: boolean("show_stripe_card").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  stripeCardColSpan: integer("stripe_card_col_span").default(1).notNull(),
+  stripeCardRowSpan: integer("stripe_card_row_span").default(1).notNull(),
+  stripeCardOrder: integer("stripe_card_order").default(0).notNull(),
 });
 
 export const stackTechnologyItem = pgTable("stack_technology_item", {
@@ -181,7 +186,7 @@ export const userRelations = relations(user, ({ many, one }) => ({
   sessions: many(session),
   accounts: many(account),
   stackTechnologies: many(userStackTechnologies), // Conserver si c'est une table différente/héritée
-  techStacks: many(techStack),
+  techStack: one(techStack), // Un seul techStack par utilisateur
   stripeConnection: one(stripeConnection), // Ajout de la relation à la connexion Stripe
 }));
 

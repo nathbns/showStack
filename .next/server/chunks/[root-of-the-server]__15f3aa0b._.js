@@ -107,6 +107,8 @@ __turbopack_context__.s({
     "sessionRelations": (()=>sessionRelations),
     "stackTechnologyItem": (()=>stackTechnologyItem),
     "stackTechnologyItemRelations": (()=>stackTechnologyItemRelations),
+    "stripeConnection": (()=>stripeConnection),
+    "stripeConnectionRelations": (()=>stripeConnectionRelations),
     "techStack": (()=>techStack),
     "techStackRelations": (()=>techStackRelations),
     "user": (()=>user),
@@ -133,7 +135,8 @@ const user = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f
     description: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("description"),
     createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("created_at").notNull(),
     updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").notNull(),
-    layoutConfig: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("layout_config")
+    layoutConfig: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("layout_config"),
+    shareCount: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("share_count").default(0).notNull()
 });
 const session = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$table$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["pgTable"])("session", {
     id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("id").primaryKey(),
@@ -203,12 +206,6 @@ const userStackTechnologies = (0, __TURBOPACK__imported__module__$5b$project$5d2
     createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("created_at").defaultNow().notNull(),
     updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").defaultNow().notNull()
 });
-const userRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(user, ({ many })=>({
-        sessions: many(session),
-        accounts: many(account),
-        stackTechnologies: many(userStackTechnologies),
-        techStacks: many(techStack)
-    }));
 const userStackTechnologiesRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(userStackTechnologies, ({ one })=>({
         user: one(user, {
             fields: [
@@ -224,10 +221,14 @@ const techStack = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modul
     userId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("user_id").notNull().references(()=>user.id, {
         onDelete: "cascade"
     }),
-    name: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("name"),
+    name: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("name").notNull(),
     upvotes: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("upvotes").default(0).notNull(),
+    showStripeCard: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$boolean$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["boolean"])("show_stripe_card").default(false).notNull(),
     createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("created_at").defaultNow().notNull(),
-    updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").defaultNow().notNull()
+    updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").defaultNow().notNull(),
+    stripeCardColSpan: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("stripe_card_col_span").default(1).notNull(),
+    stripeCardRowSpan: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("stripe_card_row_span").default(1).notNull(),
+    stripeCardOrder: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("stripe_card_order").default(0).notNull()
 });
 const stackTechnologyItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$table$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["pgTable"])("stack_technology_item", {
     id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$serial$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["serial"])("id").primaryKey(),
@@ -246,7 +247,9 @@ const stackTechnologyItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$
     description: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("description"),
     order: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("order").default(0),
     stars: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("stars").default(0),
-    forks: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("forks").default(0)
+    forks: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("forks").default(0),
+    mrr: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$integer$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["integer"])("mrr"),
+    mrrCurrency: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("mrr_currency")
 });
 const techStackRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(techStack, ({ one, many })=>({
         user: one(user, {
@@ -268,6 +271,38 @@ const stackTechnologyItemRelations = (0, __TURBOPACK__imported__module__$5b$proj
                 techStack.id
             ]
         })
+    }));
+const stripeConnection = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$table$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["pgTable"])("stripe_connection", {
+    id: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$serial$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["serial"])("id").primaryKey(),
+    userId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("user_id").notNull().references(()=>user.id, {
+        onDelete: "cascade"
+    }).unique(),
+    stripeUserId: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("stripe_user_id").notNull(),
+    accessToken: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("access_token").notNull(),
+    refreshToken: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("refresh_token"),
+    scope: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("scope"),
+    livemode: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$boolean$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["boolean"])("livemode").notNull(),
+    stripePublishableKey: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$text$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["text"])("stripe_publishable_key"),
+    accessTokenExpiresAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("access_token_expires_at"),
+    createdAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("created_at").defaultNow().notNull(),
+    updatedAt: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$pg$2d$core$2f$columns$2f$timestamp$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["timestamp"])("updated_at").defaultNow().notNull()
+});
+const stripeConnectionRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(stripeConnection, ({ one })=>({
+        user: one(user, {
+            fields: [
+                stripeConnection.userId
+            ],
+            references: [
+                user.id
+            ]
+        })
+    }));
+const userRelations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$relations$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["relations"])(user, ({ many, one })=>({
+        sessions: many(session),
+        accounts: many(account),
+        stackTechnologies: many(userStackTechnologies),
+        techStacks: many(techStack),
+        stripeConnection: one(stripeConnection)
     })); /*
 // Requête préparée pour récupérer les technologies d'une stack avec toutes les colonnes
 export const getTechStackWithTechnologies = (db) => async (stackId) => {
@@ -335,6 +370,7 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 ;
 ;
 ;
+const STRIPE_CARD_ID = "internal_stripe_card"; // Assurez-vous que c'est le même ID qu'ailleurs
 async function GET(request, { params }) {
     const userId = params.userId;
     if (!userId) {
@@ -346,7 +382,7 @@ async function GET(request, { params }) {
     }
     try {
         // 1. Récupérer les informations de l'utilisateur
-        const userInfo = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.user.findFirst({
+        const userInfoFromDb = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.user.findFirst({
             where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["user"].id, userId),
             columns: {
                 id: true,
@@ -355,19 +391,32 @@ async function GET(request, { params }) {
                 image: true,
                 description: true,
                 createdAt: true,
-                layoutConfig: true
+                layoutConfig: true,
+                shareCount: true
             }
         });
-        if (!userInfo) {
+        if (!userInfoFromDb) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: "User not found"
             }, {
                 status: 404
             });
         }
-        // 2. Récupérer les stacks technologiques de l'utilisateur
-        //    Pour l'instant, on récupère toutes les stacks. On pourrait ajouter une notion de "stack publique" plus tard.
-        const userStacks = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.techStack.findMany({
+        // 2. Vérifier la connexion Stripe pour cet utilisateur
+        const stripeConnection = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.account.findFirst({
+            where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["and"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["account"].userId, userId), (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["account"].providerId, "stripe"), (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["isNotNull"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["account"].accessToken)),
+            columns: {
+                id: true
+            }
+        });
+        const hasStripeConnection = !!stripeConnection;
+        // Combiner les informations utilisateur avec le statut de connexion Stripe
+        const userInfo = {
+            ...userInfoFromDb,
+            hasStripeConnection
+        };
+        // 3. Récupérer les stacks technologiques de l'utilisateur
+        const userStacksFromDb = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.techStack.findMany({
             where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].userId, userId),
             with: {
                 technologies: {
@@ -394,9 +443,72 @@ async function GET(request, { params }) {
                     asc(techStack.createdAt)
                 ]
         });
+        // Injecter la carte Stripe si nécessaire
+        const userStacksWithPossibleStripeCard = await Promise.all(userStacksFromDb.map(async (stack)=>{
+            let technologiesWithStripe = stack.technologies.map((tech)=>({
+                    ...tech,
+                    id: String(tech.id)
+                }));
+            if (stack.showStripeCard) {
+                let mrrData = {
+                    total: 0,
+                    currency: "USD"
+                };
+                if (hasStripeConnection) {
+                    // Vérifier si l'utilisateur du profil a une connexion Stripe active
+                    try {
+                        // Note: fetch direct à une autre de nos API. Assurez-vous que l'URL est correcte
+                        // et que la variable d'environnement NEXT_PUBLIC_APP_URL ou similaire est définie
+                        const appUrl = ("TURBOPACK compile-time value", "http://localhost:3000") || "http://localhost:3000";
+                        const mrrResponse = await fetch(`${appUrl}/api/stripe/mrr/${userId}`);
+                        if (mrrResponse.ok) {
+                            const mrrResult = await mrrResponse.json();
+                            mrrData.total = mrrResult.total;
+                            mrrData.currency = mrrResult.currency;
+                        } else {
+                            console.warn(`[API Profile GET] Failed to fetch MRR for user ${userId}: ${mrrResponse.status}`);
+                        }
+                    } catch (mrrError) {
+                        console.error(`[API Profile GET] Error fetching MRR for user ${userId}:`, mrrError);
+                    }
+                }
+                const stripeTechItem = {
+                    id: STRIPE_CARD_ID,
+                    name: "Stripe MRR",
+                    color: "#635BFF",
+                    technologyId: STRIPE_CARD_ID,
+                    category: "Services",
+                    gridCols: stack.stripeCardColSpan || 1,
+                    gridRows: stack.stripeCardRowSpan || 1,
+                    isProject: false,
+                    order: stack.stripeCardOrder === null || stack.stripeCardOrder === undefined ? -1 : stack.stripeCardOrder,
+                    mrr: mrrData.total,
+                    mrrCurrency: mrrData.currency
+                };
+                technologiesWithStripe.push(stripeTechItem);
+            }
+            technologiesWithStripe.sort((a, b)=>(a.order ?? Infinity) - (b.order ?? Infinity));
+            return {
+                ...stack,
+                technologies: technologiesWithStripe
+            };
+        }));
         // Enrichir les technologies avec les données GitHub si applicable
-        const processedStacks = await Promise.all(userStacks.map(async (stack)=>{
+        const processedStacks = await Promise.all(userStacksWithPossibleStripeCard.map(async (stack)=>{
             const processedTechnologies = await Promise.all((stack.technologies || []).map(async (techItem)=>{
+                // S'assurer que techItem.id est une string ici aussi si on ne le fait pas avant
+                // Si l'item est la carte Stripe, on ne veut pas la traiter comme un projet GitHub
+                if (techItem.id === STRIPE_CARD_ID) {
+                    return {
+                        ...techItem,
+                        isProject: techItem.isProject || false,
+                        url: techItem.url || undefined,
+                        description: techItem.description || undefined,
+                        favicon: techItem.favicon || undefined,
+                        stars: techItem.stars || undefined,
+                        forks: techItem.forks || undefined
+                    };
+                }
                 if (techItem.isProject && techItem.url && typeof techItem.url === "string" && techItem.url.startsWith("https://github.com/")) {
                     try {
                         const match = techItem.url.match(/github\.com\/([^/]+)\/([^/]+)/);

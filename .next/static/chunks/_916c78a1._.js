@@ -1413,6 +1413,27 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/logo-card.tsx [app-client] (ecmascript)");
 ;
 ;
+// Simple Stripe Icon SVG component
+const StripeIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+        width: "24",
+        height: "24",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        xmlns: "http://www.w3.org/2000/svg",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+            d: "M13.4764 7.45119C13.4764 6.54994 14.1659 6.12994 15.2364 6.12994C16.6114 6.12994 18.3889 6.63244 19.7239 7.49994V2.93744C18.2699 2.32494 16.8464 2.06244 15.2364 2.06244C11.3764 2.06244 8.77637 4.24494 8.77637 7.67994C8.77637 13.2349 16.2464 12.141 16.2464 14.8575C16.2464 15.9975 15.3539 16.4175 14.2464 16.4175C12.7414 16.4175 10.7764 15.7485 9.30137 14.7524V19.4324C10.9364 20.1675 12.5939 20.4999 14.2464 20.4999C18.1954 20.4999 20.9989 18.3749 20.9989 14.8575C20.9989 8.89119 13.4764 10.1625 13.4764 7.45119Z",
+            fill: "#635BFF"
+        }, void 0, false, {
+            fileName: "[project]/components/tech-stack/tech-data.tsx",
+            lineNumber: 32,
+            columnNumber: 5
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/components/tech-stack/tech-data.tsx",
+        lineNumber: 25,
+        columnNumber: 3
+    }, this);
+_c = StripeIcon;
 const techsByCategory = {
     Frontend: [
         {
@@ -1421,7 +1442,7 @@ const techsByCategory = {
             color: "#3178C6",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TypeScript"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 30,
+                lineNumber: 46,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1432,7 +1453,7 @@ const techsByCategory = {
             color: "#F7DF1E",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["JavaScript"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 37,
+                lineNumber: 53,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1443,7 +1464,7 @@ const techsByCategory = {
             color: "#41B883",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vue"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 44,
+                lineNumber: 60,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1454,7 +1475,7 @@ const techsByCategory = {
             color: "#DD0031",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Angular"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 51,
+                lineNumber: 67,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1465,7 +1486,7 @@ const techsByCategory = {
             color: "#FF3E00",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Svelte"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 58,
+                lineNumber: 74,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1476,7 +1497,7 @@ const techsByCategory = {
             color: "#191919",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["NextJS"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 65,
+                lineNumber: 81,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1487,7 +1508,7 @@ const techsByCategory = {
             color: "#00DC82",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Nuxt"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 72,
+                lineNumber: 88,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1498,7 +1519,7 @@ const techsByCategory = {
             color: "#38B2AC",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TailwindCSS"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 79,
+                lineNumber: 95,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1512,7 +1533,7 @@ const techsByCategory = {
                 children: "💅"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 86,
+                lineNumber: 102,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1523,7 +1544,7 @@ const techsByCategory = {
             color: "#764ABC",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Redux"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 93,
+                lineNumber: 109,
                 columnNumber: 13
             }, this),
             category: "Frontend"
@@ -1536,7 +1557,7 @@ const techsByCategory = {
             color: "#539E43",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Node"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 102,
+                lineNumber: 118,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1547,7 +1568,7 @@ const techsByCategory = {
             color: "#000000",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Expressjs"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 109,
+                lineNumber: 125,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1561,7 +1582,7 @@ const techsByCategory = {
                 children: "N"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 116,
+                lineNumber: 132,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1572,7 +1593,7 @@ const techsByCategory = {
             color: "#E535AB",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["GraphQL"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 123,
+                lineNumber: 139,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1586,7 +1607,7 @@ const techsByCategory = {
                 children: "P"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 130,
+                lineNumber: 146,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1600,7 +1621,7 @@ const techsByCategory = {
                 children: "D"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 137,
+                lineNumber: 153,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1614,7 +1635,7 @@ const techsByCategory = {
                 children: "L"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 144,
+                lineNumber: 160,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1628,7 +1649,7 @@ const techsByCategory = {
                 children: "S"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 151,
+                lineNumber: 167,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1642,7 +1663,7 @@ const techsByCategory = {
                 children: "F"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 158,
+                lineNumber: 174,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1656,7 +1677,7 @@ const techsByCategory = {
                 children: "F"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 165,
+                lineNumber: 181,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1670,7 +1691,7 @@ const techsByCategory = {
                 children: "M"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 172,
+                lineNumber: 188,
                 columnNumber: 13
             }, this),
             category: "Database"
@@ -1684,7 +1705,7 @@ const techsByCategory = {
                 children: "P"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 179,
+                lineNumber: 195,
                 columnNumber: 13
             }, this),
             category: "Database"
@@ -1698,7 +1719,7 @@ const techsByCategory = {
                 children: "M"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 186,
+                lineNumber: 202,
                 columnNumber: 13
             }, this),
             category: "Database"
@@ -1712,7 +1733,7 @@ const techsByCategory = {
                 children: "R"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 193,
+                lineNumber: 209,
                 columnNumber: 13
             }, this),
             category: "Database"
@@ -1723,7 +1744,7 @@ const techsByCategory = {
             color: "#FFCA28",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Firebase"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 200,
+                lineNumber: 216,
                 columnNumber: 13
             }, this),
             category: "Database"
@@ -1737,7 +1758,7 @@ const techsByCategory = {
                 children: "S"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 207,
+                lineNumber: 223,
                 columnNumber: 13
             }, this),
             category: "Database"
@@ -1750,7 +1771,7 @@ const techsByCategory = {
             color: "#02569B",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Ionic"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 216,
+                lineNumber: 232,
                 columnNumber: 13
             }, this),
             category: "Mobile"
@@ -1761,7 +1782,7 @@ const techsByCategory = {
             color: "#7F52FF",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Kotlin"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 223,
+                lineNumber: 239,
                 columnNumber: 13
             }, this),
             category: "Mobile"
@@ -1772,7 +1793,7 @@ const techsByCategory = {
             color: "#F05138",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Swift"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 230,
+                lineNumber: 246,
                 columnNumber: 13
             }, this),
             category: "Mobile"
@@ -1783,10 +1804,23 @@ const techsByCategory = {
             color: "#020240",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Expo"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 237,
+                lineNumber: 253,
                 columnNumber: 13
             }, this),
             category: "Mobile"
+        }
+    ],
+    Services: [
+        {
+            id: "stripe-mrr",
+            name: "Stripe MRR",
+            color: "#635BFF",
+            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StripeIcon, {}, void 0, false, {
+                fileName: "[project]/components/tech-stack/tech-data.tsx",
+                lineNumber: 262,
+                columnNumber: 13
+            }, this),
+            category: "Services"
         }
     ]
 };
@@ -1812,6 +1846,8 @@ const availableColors = [
     "#4285F4",
     "#00C7B7"
 ];
+var _c;
+__turbopack_context__.k.register(_c, "StripeIcon");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
@@ -1917,7 +1953,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function AddTechForm({ onAddTech, userId }) {
+function AddTechForm({ onAddTech, userId, hasStripeConnection, onConnectStripe, onShowStripeInGrid }) {
     _s();
     const [open, setOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [activeCategory, setActiveCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("Frontend");
@@ -2032,12 +2068,21 @@ function AddTechForm({ onAddTech, userId }) {
         projectUrl
     ]);
     const handleTechSelect = (tech)=>{
-        // S'assurer que le technologyId est correctement défini
-        onAddTech({
-            ...tech,
-            technologyId: tech.id
-        });
-        setOpen(false);
+        if (tech.id === "stripe-mrr") {
+            if (!hasStripeConnection) {
+                onConnectStripe();
+            } else {
+                onShowStripeInGrid();
+            }
+            setOpen(false); // Fermer la modale après l'action Stripe
+        } else {
+            // S'assurer que le technologyId est correctement défini
+            onAddTech({
+                ...tech,
+                technologyId: tech.id
+            });
+            setOpen(false);
+        }
     };
     const handleProjectSubmit = async (e)=>{
         e.preventDefault();
@@ -2063,13 +2108,13 @@ function AddTechForm({ onAddTech, userId }) {
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                    lineNumber: 178,
+                    lineNumber: 196,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
                     size: 24
                 }, void 0, false, {
                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                    lineNumber: 186,
+                    lineNumber: 204,
                     columnNumber: 11
                 }, this),
                 category: "Project",
@@ -2132,19 +2177,19 @@ function AddTechForm({ onAddTech, userId }) {
                             size: 18
                         }, void 0, false, {
                             fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                            lineNumber: 248,
+                            lineNumber: 266,
                             columnNumber: 11
                         }, this),
                         "Add"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                    lineNumber: 247,
+                    lineNumber: 265,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                lineNumber: 246,
+                lineNumber: 264,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
@@ -2160,7 +2205,7 @@ function AddTechForm({ onAddTech, userId }) {
                                     children: "Add to your profile"
                                 }, void 0, false, {
                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                    lineNumber: 255,
+                                    lineNumber: 273,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
@@ -2168,13 +2213,13 @@ function AddTechForm({ onAddTech, userId }) {
                                     children: "Enrich your profile with technologies or projects."
                                 }, void 0, false, {
                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                    lineNumber: 258,
+                                    lineNumber: 276,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                            lineNumber: 254,
+                            lineNumber: 272,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tabs"], {
@@ -2193,7 +2238,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                 children: "Technologies"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                lineNumber: 271,
+                                                lineNumber: 289,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
@@ -2202,18 +2247,18 @@ function AddTechForm({ onAddTech, userId }) {
                                                 children: "Projects"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                lineNumber: 277,
+                                                lineNumber: 295,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                        lineNumber: 270,
+                                        lineNumber: 288,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                    lineNumber: 269,
+                                    lineNumber: 287,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2240,17 +2285,17 @@ function AddTechForm({ onAddTech, userId }) {
                                                                         children: category
                                                                     }, category, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 302,
+                                                                        lineNumber: 320,
                                                                         columnNumber: 27
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 300,
+                                                                lineNumber: 318,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                            lineNumber: 299,
+                                                            lineNumber: 317,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2269,7 +2314,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                         children: tech.icon
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                        lineNumber: 328,
+                                                                                        lineNumber: 346,
                                                                                         columnNumber: 35
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2280,7 +2325,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                                 children: tech.name
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                                lineNumber: 332,
+                                                                                                lineNumber: 350,
                                                                                                 columnNumber: 37
                                                                                             }, this),
                                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2290,50 +2335,50 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                                 }
                                                                                             }, void 0, false, {
                                                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                                lineNumber: 333,
+                                                                                                lineNumber: 351,
                                                                                                 columnNumber: 37
                                                                                             }, this)
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                        lineNumber: 331,
+                                                                                        lineNumber: 349,
                                                                                         columnNumber: 35
                                                                                     }, this)
                                                                                 ]
                                                                             }, tech.id, true, {
                                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 323,
+                                                                                lineNumber: 341,
                                                                                 columnNumber: 33
                                                                             }, this))
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 321,
+                                                                        lineNumber: 339,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, category, false, {
                                                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                    lineNumber: 316,
+                                                                    lineNumber: 334,
                                                                     columnNumber: 27
                                                                 }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                            lineNumber: 313,
+                                                            lineNumber: 331,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                    lineNumber: 293,
+                                                    lineNumber: 311,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                lineNumber: 292,
+                                                lineNumber: 310,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                            lineNumber: 288,
+                                            lineNumber: 306,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -2348,12 +2393,12 @@ function AddTechForm({ onAddTech, userId }) {
                                                             className: "h-6 w-6 animate-spin text-[var(--muted-foreground)]"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                            lineNumber: 355,
+                                                            lineNumber: 373,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                        lineNumber: 354,
+                                                        lineNumber: 372,
                                                         columnNumber: 21
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "mb-4",
@@ -2366,7 +2411,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                         children: "Your GitHub projects"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 360,
+                                                                        lineNumber: 378,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2381,20 +2426,20 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                 className: "mr-1"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 370,
+                                                                                lineNumber: 388,
                                                                                 columnNumber: 27
                                                                             }, this),
                                                                             "Refresh"
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 363,
+                                                                        lineNumber: 381,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 359,
+                                                                lineNumber: 377,
                                                                 columnNumber: 23
                                                             }, this),
                                                             githubRepos.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2411,7 +2456,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                     height: 20
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 385,
+                                                                                    lineNumber: 403,
                                                                                     columnNumber: 41
                                                                                 }, void 0),
                                                                                 category: "Project",
@@ -2437,12 +2482,12 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                     height: 20
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 404,
+                                                                                    lineNumber: 422,
                                                                                     columnNumber: 33
                                                                                 }, this)
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 403,
+                                                                                lineNumber: 421,
                                                                                 columnNumber: 31
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2453,7 +2498,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                         children: repo.name
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                        lineNumber: 407,
+                                                                                        lineNumber: 425,
                                                                                         columnNumber: 33
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2461,30 +2506,30 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                         children: repo.description || "Pas de description"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                        lineNumber: 408,
+                                                                                        lineNumber: 426,
                                                                                         columnNumber: 33
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 406,
+                                                                                lineNumber: 424,
                                                                                 columnNumber: 31
                                                                             }, this)
                                                                         ]
                                                                     }, repo.id, true, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 377,
+                                                                        lineNumber: 395,
                                                                         columnNumber: 29
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 375,
+                                                                lineNumber: 393,
                                                                 columnNumber: 25
                                                             }, this) : null
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                        lineNumber: 358,
+                                                        lineNumber: 376,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -2500,7 +2545,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                         children: "Project Name:"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 425,
+                                                                        lineNumber: 443,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2512,13 +2557,13 @@ function AddTechForm({ onAddTech, userId }) {
                                                                         required: true
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 431,
+                                                                        lineNumber: 449,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 424,
+                                                                lineNumber: 442,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2529,7 +2574,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                         children: "Project URL:"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 441,
+                                                                        lineNumber: 459,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2542,7 +2587,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                     className: "text-[var(--muted-foreground)] animate-spin"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 450,
+                                                                                    lineNumber: 468,
                                                                                     columnNumber: 29
                                                                                 }, this) : favicon ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                                                                     src: favicon,
@@ -2551,19 +2596,19 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                     height: 16
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 455,
+                                                                                    lineNumber: 473,
                                                                                     columnNumber: 29
                                                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__["Globe"], {
                                                                                     size: 16,
                                                                                     className: "text-[var(--muted-foreground)]"
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 462,
+                                                                                    lineNumber: 480,
                                                                                     columnNumber: 29
                                                                                 }, this)
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 448,
+                                                                                lineNumber: 466,
                                                                                 columnNumber: 25
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2576,19 +2621,19 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                 required: true
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 468,
+                                                                                lineNumber: 486,
                                                                                 columnNumber: 25
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 447,
+                                                                        lineNumber: 465,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 440,
+                                                                lineNumber: 458,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2599,7 +2644,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                         children: "Description:"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 480,
+                                                                        lineNumber: 498,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -2612,13 +2657,13 @@ function AddTechForm({ onAddTech, userId }) {
                                                                         required: true
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 486,
+                                                                        lineNumber: 504,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 479,
+                                                                lineNumber: 497,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2628,7 +2673,7 @@ function AddTechForm({ onAddTech, userId }) {
                                                                         children: "Color:"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 498,
+                                                                        lineNumber: 516,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2642,18 +2687,18 @@ function AddTechForm({ onAddTech, userId }) {
                                                                                 onClick: ()=>setProjectColor(color)
                                                                             }, color, false, {
                                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 503,
+                                                                                lineNumber: 521,
                                                                                 columnNumber: 27
                                                                             }, this))
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 501,
+                                                                        lineNumber: 519,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 497,
+                                                                lineNumber: 515,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2663,53 +2708,53 @@ function AddTechForm({ onAddTech, userId }) {
                                                                 children: isSubmitting ? "Adding project..." : "Add project"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 518,
+                                                                lineNumber: 536,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                        lineNumber: 419,
+                                                        lineNumber: 437,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                lineNumber: 351,
+                                                lineNumber: 369,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                            lineNumber: 350,
+                                            lineNumber: 368,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                    lineNumber: 286,
+                                    lineNumber: 304,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                            lineNumber: 264,
+                            lineNumber: 282,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                    lineNumber: 253,
+                    lineNumber: 271,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                lineNumber: 252,
+                lineNumber: 270,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-        lineNumber: 245,
+        lineNumber: 263,
         columnNumber: 5
     }, this);
 }
@@ -3477,7 +3522,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/refresh-cw.js [app-client] (ecmascript) <export default as RefreshCw>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/x.js [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trash-2.js [app-client] (ecmascript) <export default as Trash2>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check.js [app-client] (ecmascript) <export default as CheckCircle2>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$credit$2d$card$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CreditCard$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/credit-card.js [app-client] (ecmascript) <export default as CreditCard>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/context-menu.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$glowing$2d$effect$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/glowing-effect.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@dnd-kit/core/dist/core.esm.js [app-client] (ecmascript)");
@@ -3486,8 +3531,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/alert-dialog.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 ;
-var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature();
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature(), _s3 = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -3514,10 +3560,11 @@ const getDefaultIcon = (name)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__
         children: name.charAt(0).toUpperCase()
     }, void 0, false, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 62,
+        lineNumber: 63,
         columnNumber: 3
     }, this);
 const TRASH_ID = "trash-can-droppable-id"; // ID unique pour la zone droppable
+const STRIPE_CARD_ID = "internal_stripe_card"; // ID unique pour la carte Stripe
 function DroppableTrash({ isVisible }) {
     _s();
     const { setNodeRef, isOver } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useDroppable"])({
@@ -3538,7 +3585,7 @@ function DroppableTrash({ isVisible }) {
                 className: `${isOver ? "text-red-500" : "text-[var(--muted-foreground)]"} mb-2`
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 88,
+                lineNumber: 90,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3546,13 +3593,13 @@ function DroppableTrash({ isVisible }) {
                 children: isOver ? "Relâcher pour supprimer" : "Glisser ici pour supprimer"
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 94,
+                lineNumber: 96,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 79,
+        lineNumber: 81,
         columnNumber: 5
     }, this);
 }
@@ -3562,7 +3609,8 @@ _s(DroppableTrash, "DmJTTt6A5xWIX/faBiFge3FOLrw=", false, function() {
     ];
 });
 _c = DroppableTrash;
-function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, onUpdateTech, gridMax }) {
+function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, onUpdateTech, gridMax, // Props Stripe (nécessaires si tech.isStripeCard est true)
+hasStripeConnection, isConnectingStripe, handleConnectStripe, stripeAccountMrr, isLoadingStripeAccountMrr, handleFetchStripeAccountMrr, isDisconnectingStripe, handleDisconnectStripe }) {
     _s1();
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$sortable$2f$dist$2f$sortable$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSortable"])({
         id: tech.id
@@ -3617,7 +3665,7 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
         }
     };
     const CardContent = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden group transition-shadow hover:shadow-lg hover:border-[var(--primary)]",
+        className: "bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden group hover:border-[var(--primary)]",
         style: {
             minHeight
         },
@@ -3631,12 +3679,12 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                     }
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 204,
+                    lineNumber: 229,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 203,
+                lineNumber: 228,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3647,7 +3695,7 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                         children: tech.icon
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 212,
+                        lineNumber: 237,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3655,7 +3703,7 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                         children: tech.name
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 215,
+                        lineNumber: 240,
                         columnNumber: 9
                     }, this),
                     isGithubProject && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3674,18 +3722,18 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                             className: isRefreshing ? "animate-spin" : ""
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 231,
+                            lineNumber: 256,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 219,
+                        lineNumber: 244,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 211,
+                lineNumber: 236,
                 columnNumber: 7
             }, this),
             tech.description && !isResizeMode && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3693,7 +3741,7 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                 children: tech.description
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 240,
+                lineNumber: 265,
                 columnNumber: 9
             }, this),
             isGithubProject && !isResizeMode && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3707,7 +3755,7 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 247,
+                        lineNumber: 272,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3718,13 +3766,13 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 248,
+                        lineNumber: 273,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 246,
+                lineNumber: 271,
                 columnNumber: 9
             }, this),
             showControls && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3738,7 +3786,7 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                                 children: "Width :"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 255,
+                                lineNumber: 280,
                                 columnNumber: 13
                             }, this),
                             [
@@ -3762,13 +3810,13 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                                     children: c
                                 }, c, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 257,
+                                    lineNumber: 282,
                                     columnNumber: 15
                                 }, this))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 254,
+                        lineNumber: 279,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3779,7 +3827,7 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                                 children: "Height :"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 275,
+                                lineNumber: 300,
                                 columnNumber: 13
                             }, this),
                             [
@@ -3802,25 +3850,25 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
                                     children: r
                                 }, r, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 277,
+                                    lineNumber: 302,
                                     columnNumber: 15
                                 }, this))
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 274,
+                        lineNumber: 299,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 253,
+                lineNumber: 278,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 198,
+        lineNumber: 223,
         columnNumber: 5
     }, this);
     const WrapperElement = isGithubProject && !isPageEditMode && !isResizeMode ? "a" : "div";
@@ -3833,19 +3881,65 @@ function SortableTechCard({ tech, isPageEditMode, isResizeMode, onRemoveTech, on
             ...listeners
         } : {}
     };
-    if (WrapperElement === "a") {
+    if (WrapperElement === "a" && !tech.isStripeCard) {
+        // Ne pas faire un lien pour la carte Stripe
         wrapperProps.href = tech.url;
         wrapperProps.target = "_blank";
         wrapperProps.rel = "noopener noreferrer";
         wrapperProps["aria-label"] = `Voir le repo GitHub ${tech.name}`;
         wrapperProps.tabIndex = 0;
     }
+    // Si c'est la carte Stripe, rendre le composant StripeCard
+    if (tech.isStripeCard) {
+        if (hasStripeConnection === undefined || !handleConnectStripe || !handleFetchStripeAccountMrr || !handleDisconnectStripe || !onUpdateTech // Assure que onUpdateTech est disponible pour onUpdateStripeCardSize
+        ) {
+            // Fallback simple si des props cruciales manquent
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                ref: setNodeRef,
+                style: style,
+                ...attributes,
+                ...listeners,
+                className: `${colSpanClass} ${rowSpanClass} bg-red-100 p-2 border border-red-500`,
+                children: [
+                    "Erreur: Props Stripe ou callback manquantes pour StripeCard via SortableTechCard. ID: ",
+                    tech.id
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/dashboard/page.tsx",
+                lineNumber: 356,
+                columnNumber: 9
+            }, this);
+        }
+        console.log("[DEBUG SortableTechCard for Stripe] props.hasStripeConnection:", hasStripeConnection);
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StripeCard, {
+            id: tech.id,
+            ref: setNodeRef,
+            style: style,
+            dndAttributes: isPageEditMode ? attributes : undefined,
+            dndListeners: isPageEditMode ? listeners : undefined,
+            hasStripeConnection: hasStripeConnection,
+            isConnectingStripe: isConnectingStripe || false,
+            handleConnectStripe: handleConnectStripe,
+            mrrData: stripeAccountMrr,
+            onFetchMrr: handleFetchStripeAccountMrr,
+            isFetchingMrr: isLoadingStripeAccountMrr || false,
+            handleDisconnectStripe: handleDisconnectStripe,
+            isDisconnectingStripe: isDisconnectingStripe || false,
+            isPageEditMode: isPageEditMode,
+            isResizeMode: isResizeMode
+        }, void 0, false, {
+            fileName: "[project]/app/dashboard/page.tsx",
+            lineNumber: 373,
+            columnNumber: 7
+        }, this);
+    }
+    // Sinon, rendre le contenu normal de la carte technologique
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(WrapperElement, {
         ...wrapperProps,
         children: CardContent
     }, void 0, false, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 319,
+        lineNumber: 394,
         columnNumber: 10
     }, this);
 }
@@ -3856,14 +3950,22 @@ _s1(SortableTechCard, "nQIrknGhnk90kSmBL0zFOSuxMGI=", false, function() {
 });
 _c1 = SortableTechCard;
 // Après la fonction SortableTechCard, ajoutons une fonction pour créer la carte Stripe
-function StripeCard({ hasStripeConnection, isConnectingStripe, handleConnectStripe, mrrData, onFetchMrr, isFetchingMrr, handleDisconnectStripe, isDisconnectingStripe }) {
-    const colSpanClass = "col-span-1 md:col-span-2";
-    const rowSpanClass = "row-span-1";
-    const minHeight = 150;
+function StripeCard({ id, hasStripeConnection, isConnectingStripe, handleConnectStripe, mrrData, onFetchMrr, isFetchingMrr, handleDisconnectStripe, isDisconnectingStripe, isPageEditMode, isResizeMode, style: dndStyle, ref: dndRef, dndAttributes, dndListeners }) {
+    // Forcer la carte Stripe à être 1x1
+    const colSpanClass = "col-span-1"; // Toujours col-span-1
+    const rowSpanClass = "row-span-1"; // Toujours row-span-1
+    const minHeight = 1 * 150 + (1 - 1) * 16; // Hauteur pour 1 ligne (150px)
+    const showResizeControls = false; // La carte Stripe n'est jamais redimensionnable
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: `${colSpanClass} ${rowSpanClass}`,
+        ref: dndRef,
+        style: dndStyle,
+        className: `${colSpanClass} ${rowSpanClass} ${isPageEditMode ? "cursor-grab active:cursor-grabbing" : ""}`,
+        ...isPageEditMode ? {
+            ...dndAttributes,
+            ...dndListeners
+        } : {},
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden group transition-shadow hover:shadow-lg hover:border-[var(--primary)]",
+            className: "bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden group hover:border-[var(--primary)] h-full",
             style: {
                 minHeight
             },
@@ -3877,12 +3979,12 @@ function StripeCard({ hasStripeConnection, isConnectingStripe, handleConnectStri
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 355,
+                        lineNumber: 453,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 354,
+                    lineNumber: 452,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3901,17 +4003,17 @@ function StripeCard({ hasStripeConnection, isConnectingStripe, handleConnectStri
                                     fill: "#635BFF"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 373,
+                                    lineNumber: 470,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 366,
+                                lineNumber: 463,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 364,
+                            lineNumber: 462,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3919,40 +4021,41 @@ function StripeCard({ hasStripeConnection, isConnectingStripe, handleConnectStri
                             children: "Stripe MRR"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 379,
+                            lineNumber: 476,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 363,
+                    lineNumber: 461,
                     columnNumber: 9
                 }, this),
-                !hasStripeConnection ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                    onClick: handleConnectStripe,
-                    disabled: isConnectingStripe,
-                    className: "mt-2 w-full",
-                    children: isConnectingStripe ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
-                                size: 16,
-                                className: "animate-spin mr-2"
-                            }, void 0, false, {
-                                fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 392,
-                                columnNumber: 17
-                            }, this),
-                            "Connexion..."
-                        ]
-                    }, void 0, true) : "Connecter avec Stripe"
-                }, void 0, false, {
-                    fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 385,
-                    columnNumber: 11
-                }, this) : mrrData ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col w-full",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex-grow w-full flex flex-col",
+                    children: !hasStripeConnection ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                        onClick: handleConnectStripe,
+                        disabled: isConnectingStripe,
+                        className: "mt-2 w-full",
+                        children: isConnectingStripe ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
+                                    size: 16,
+                                    className: "animate-spin mr-2"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/dashboard/page.tsx",
+                                    lineNumber: 490,
+                                    columnNumber: 19
+                                }, this),
+                                "Connexion..."
+                            ]
+                        }, void 0, true) : "Connecter avec Stripe"
+                    }, void 0, false, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 483,
+                        columnNumber: 13
+                    }, this) : mrrData ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-col w-full",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "flex items-center justify-between mb-2",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3965,205 +4068,199 @@ function StripeCard({ hasStripeConnection, isConnectingStripe, handleConnectStri
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 402,
-                                    columnNumber: 15
+                                    lineNumber: 500,
+                                    columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     className: "text-xs text-[var(--muted-foreground)]",
                                     children: "MRR Total"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 410,
-                                    columnNumber: 15
+                                    lineNumber: 508,
+                                    columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 401,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-col md:flex-row gap-2 mt-2",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                    onClick: onFetchMrr,
-                                    disabled: isFetchingMrr || isDisconnectingStripe,
-                                    className: "w-full md:flex-1",
-                                    variant: "outline",
-                                    children: [
-                                        isFetchingMrr ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
-                                            size: 16,
-                                            className: "mr-2 animate-spin"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 422,
-                                            columnNumber: 19
-                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
-                                            size: 16,
-                                            className: "mr-2"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 424,
-                                            columnNumber: 19
-                                        }, this),
-                                        "Rafraîchir"
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 415,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                    variant: "destructive",
-                                    onClick: handleDisconnectStripe,
-                                    disabled: isDisconnectingStripe || isFetchingMrr,
-                                    className: "w-full md:flex-1",
-                                    children: [
-                                        isDisconnectingStripe ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
-                                            size: 16,
-                                            className: "mr-2 animate-spin"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 435,
-                                            columnNumber: 19
-                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                            size: 16,
-                                            className: "mr-2"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 437,
-                                            columnNumber: 19
-                                        }, this),
-                                        "Déconnecter"
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 428,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 414,
-                            columnNumber: 13
+                            lineNumber: 499,
+                            columnNumber: 15
                         }, this)
-                    ]
-                }, void 0, true, {
+                    }, void 0, false, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 498,
+                        columnNumber: 13
+                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-col items-center justify-center flex-grow w-full",
+                        children: isFetchingMrr ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
+                                    size: 20,
+                                    className: "animate-spin my-4"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/dashboard/page.tsx",
+                                    lineNumber: 517,
+                                    columnNumber: 19
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-sm text-[var(--muted-foreground)]",
+                                    children: "Chargement du MRR..."
+                                }, void 0, false, {
+                                    fileName: "[project]/app/dashboard/page.tsx",
+                                    lineNumber: 518,
+                                    columnNumber: 19
+                                }, this)
+                            ]
+                        }, void 0, true) : // Cas où la connexion est établie mais MRR non encore chargé (ou échec précédent)
+                        // On pourrait afficher un message ou un bouton de rafraîchissement manuel ici si souhaité
+                        // Pour l'instant, on affiche un chargement subtil ou rien jusqu'à ce que MRR soit là
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-sm text-[var(--muted-foreground)]",
+                            children: "Actualisation des données Stripe..."
+                        }, void 0, false, {
+                            fileName: "[project]/app/dashboard/page.tsx",
+                            lineNumber: 526,
+                            columnNumber: 17
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 514,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 400,
-                    columnNumber: 11
-                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col items-center justify-center flex-grow w-full",
+                    lineNumber: 481,
+                    columnNumber: 9
+                }, this),
+                showResizeControls && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "mt-auto pt-2 flex flex-col gap-1 w-full relative z-10 border-t border-[var(--border)]",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "p-3 bg-green-500/10 text-green-600 rounded-md border border-green-500/20 w-full mb-3 text-center",
+                            className: "flex gap-1 items-center",
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
-                                    size: 20,
-                                    className: "inline-block mr-2"
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-xs",
+                                    children: "Width :"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 446,
+                                    lineNumber: 537,
                                     columnNumber: 15
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    children: "Compte Stripe connecté!"
-                                }, void 0, false, {
-                                    fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 447,
-                                    columnNumber: 15
-                                }, this)
+                                [
+                                    1,
+                                    2,
+                                    3
+                                ].map((c)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                        size: "sm",
+                                        variant: 1 === c ? "secondary" : "outline",
+                                        onClick: (e)=>{
+                                            e.stopPropagation();
+                                        },
+                                        disabled: c > 3,
+                                        className: "px-2 py-0.5 text-xs h-auto min-w-[24px]",
+                                        children: c
+                                    }, `stripe-width-${c}`, false, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 539,
+                                        columnNumber: 17
+                                    }, this))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 445,
+                            lineNumber: 536,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-col md:flex-row gap-2 mt-2 w-full",
+                            className: "flex gap-1 items-center",
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                    onClick: onFetchMrr,
-                                    variant: "outline",
-                                    className: "w-full md:flex-1",
-                                    disabled: isFetchingMrr || isDisconnectingStripe,
-                                    children: isFetchingMrr ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
-                                                size: 14,
-                                                className: "animate-spin mr-1"
-                                            }, void 0, false, {
-                                                fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 458,
-                                                columnNumber: 21
-                                            }, this),
-                                            "Chargement MRR..."
-                                        ]
-                                    }, void 0, true) : "Afficher le MRR Total"
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "text-xs",
+                                    children: "Height :"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 450,
+                                    lineNumber: 554,
                                     columnNumber: 15
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                    variant: "destructive",
-                                    onClick: handleDisconnectStripe,
-                                    disabled: isDisconnectingStripe || isFetchingMrr,
-                                    className: "w-full md:flex-1",
-                                    children: [
-                                        isDisconnectingStripe ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
-                                            size: 16,
-                                            className: "mr-2 animate-spin"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 472,
-                                            columnNumber: 19
-                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
-                                            size: 16,
-                                            className: "mr-2"
-                                        }, void 0, false, {
-                                            fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 474,
-                                            columnNumber: 19
-                                        }, this),
-                                        "Déconnecter"
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 465,
-                                    columnNumber: 15
-                                }, this)
+                                [
+                                    1,
+                                    2
+                                ].map((r)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                        size: "sm",
+                                        variant: 1 === r ? "secondary" : "outline",
+                                        onClick: (e)=>{
+                                            e.stopPropagation();
+                                        },
+                                        disabled: r > 2,
+                                        className: "px-2 py-0.5 text-xs h-auto min-w-[24px]",
+                                        children: r
+                                    }, `stripe-height-${r}`, false, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 556,
+                                        columnNumber: 17
+                                    }, this))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 449,
+                            lineNumber: 553,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 444,
+                    lineNumber: 535,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 349,
+            lineNumber: 447,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/dashboard/page.tsx",
-        lineNumber: 348,
+        lineNumber: 439,
         columnNumber: 5
     }, this);
 }
 _c2 = StripeCard;
-function Dashboard() {
+// NOUVEAU COMPOSANT POUR GÉRER LES CALLBACKS STRIPE
+function StripeCallbackHandler() {
     _s2();
-    var _s = __turbopack_context__.k.signature();
-    const { data: session, isPending: isLoadingSession } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSession"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"])();
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "StripeCallbackHandler.useEffect": ()=>{
+            const stripeSuccess = searchParams.get("stripe_success");
+            const stripeError = searchParams.get("stripe_error");
+            if (stripeSuccess) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Stripe account connected successfully!");
+                router.replace("/dashboard", {
+                    scroll: false
+                });
+            }
+            if (stripeError) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(`Stripe connection failed: ${stripeError}`);
+                router.replace("/dashboard", {
+                    scroll: false
+                });
+            }
+        }
+    }["StripeCallbackHandler.useEffect"], [
+        searchParams,
+        router
+    ]);
+    return null;
+}
+_s2(StripeCallbackHandler, "8i1PHtDhDf9NMpKTkROQKKwA/RI=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"]
+    ];
+});
+_c3 = StripeCallbackHandler;
+function Dashboard() {
+    _s3();
+    var _s = __turbopack_context__.k.signature();
+    const { data: session, isPending: isLoadingSession } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSession"])();
     const [activeStackId, setActiveStackId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [userProfile, setUserProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [isLoadingProfile, setIsLoadingProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -4171,12 +4268,7 @@ function Dashboard() {
     const [userStacks, setUserStacks] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isLoadingInitialData, setIsLoadingInitialData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [isPageEditMode, setIsPageEditMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [isAddTechModalOpen, setIsAddTechModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isResizeMode, setIsResizeMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [showDeleteConfirm, setShowDeleteConfirm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [stackToDelete, setStackToDelete] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [itemToRemove, setItemToRemove] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [showRemoveItemConfirm, setShowRemoveItemConfirm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     // États pour Stripe
     const [hasStripeConnection, setHasStripeConnection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isCheckingStripeConnection, setIsCheckingStripeConnection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -4212,12 +4304,16 @@ function Dashboard() {
             const checkStripeStatus = {
                 "Dashboard.useEffect.checkStripeStatus": async ()=>{
                     setIsCheckingStripeConnection(true);
-                    setHasStripeConnection(false);
+                    setHasStripeConnection(false); // Initialiser à false
                     try {
                         const response = await fetch("/api/stripe/connection-status");
                         const data = await response.json();
                         if (response.ok) {
                             setHasStripeConnection(data.isConnected);
+                            if (data.isConnected) {
+                                // Si connecté, récupérer le MRR immédiatement
+                                handleFetchStripeAccountMrr();
+                            }
                         } else {
                             __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(data.error || "Could not check Stripe connection status.");
                             setHasStripeConnection(false);
@@ -4239,38 +4335,9 @@ function Dashboard() {
         }
     }["Dashboard.useEffect"], [
         session,
-        isLoadingSession,
-        setHasStripeConnection,
-        setIsCheckingStripeConnection
+        isLoadingSession
     ]);
-    // useEffect pour les callbacks Stripe (stripe_success, stripe_error)
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "Dashboard.useEffect": ()=>{
-            const stripeSuccess = searchParams.get("stripe_success");
-            const stripeError = searchParams.get("stripe_error");
-            if (stripeSuccess) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Stripe account connected successfully!");
-                setHasStripeConnection(true);
-                router.replace("/dashboard", {
-                    scroll: false
-                });
-            }
-            if (stripeError) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(`Stripe connection failed: ${stripeError}`);
-                setHasStripeConnection(false);
-                router.replace("/dashboard", {
-                    scroll: false
-                });
-            }
-        }
-    }["Dashboard.useEffect"], [
-        searchParams,
-        router
-    ]);
-    const [userProfileDescription, setUserProfileDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [isEditingProfile, setIsEditingProfile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [editingDescription, setEditingDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [showAddStackForm, setShowAddStackForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [profileDescription, setProfileDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [orderedTechIds, setOrderedTechIds] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isStackEditMode, setIsStackEditMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -4279,8 +4346,7 @@ function Dashboard() {
         "Dashboard.useEffect": ()=>{
             if (session?.user) {
                 const currentDesc = session.user.description || "";
-                setUserProfileDescription(currentDesc);
-                setEditingDescription(currentDesc);
+                setProfileDescription(currentDesc);
             }
         }
     }["Dashboard.useEffect"], [
@@ -4333,7 +4399,23 @@ function Dashboard() {
                     let description = undefined;
                     let stars = 0;
                     let forks = 0;
-                    if (rawTech.isProject) {
+                    let isStripeCard = false;
+                    let specificGridSpan = undefined;
+                    if (rawTech.id === STRIPE_CARD_ID) {
+                        isStripeCard = true;
+                        icon = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$credit$2d$card$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CreditCard$3e$__["CreditCard"], {
+                            size: 24,
+                            className: "text-[#635BFF]"
+                        }, void 0, false, {
+                            fileName: "[project]/app/dashboard/page.tsx",
+                            lineNumber: 762,
+                            columnNumber: 16
+                        }, this);
+                        specificGridSpan = {
+                            cols: 1,
+                            rows: 1
+                        };
+                    } else if (rawTech.isProject) {
                         isProject = true;
                         url = rawTech.url;
                         description = rawTech.description;
@@ -4346,7 +4428,7 @@ function Dashboard() {
                                 height: 24
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 682,
+                                lineNumber: 776,
                                 columnNumber: 18
                             }, this);
                         } else if (favicon) {
@@ -4362,7 +4444,7 @@ function Dashboard() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 685,
+                                lineNumber: 779,
                                 columnNumber: 13
                             }, this);
                         } else {
@@ -4370,7 +4452,7 @@ function Dashboard() {
                                 size: 24
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 694,
+                                lineNumber: 788,
                                 columnNumber: 18
                             }, this);
                         }
@@ -4378,12 +4460,20 @@ function Dashboard() {
                         const techIdToLookup = rawTech.technologyId ? rawTech.technologyId.toLowerCase() : "";
                         icon = iconMap[techIdToLookup] || getDefaultIcon(rawTech.name);
                     }
-                    const gridCols = parseInt(rawTech.gridCols || "1", 10);
-                    const gridRows = parseInt(rawTech.gridRows || "1", 10);
-                    const gridSpan = gridCols > 1 || gridRows > 1 ? {
-                        cols: gridCols,
-                        rows: gridRows
-                    } : undefined;
+                    const calculatedGridSpan = ({
+                        "Dashboard.useCallback[hydrateTechnologies].hydrated.calculatedGridSpan": ()=>{
+                            if (specificGridSpan) return specificGridSpan; // Priorité à la carte Stripe
+                            const gridCols = parseInt(rawTech.gridCols || "1", 10);
+                            const gridRows = parseInt(rawTech.gridRows || "1", 10);
+                            if (gridCols > 1 || gridRows > 1) {
+                                return {
+                                    cols: gridCols,
+                                    rows: gridRows
+                                };
+                            }
+                            return undefined;
+                        }
+                    })["Dashboard.useCallback[hydrateTechnologies].hydrated.calculatedGridSpan"]();
                     const techItem = {
                         id: String(rawTech.id),
                         name: rawTech.name,
@@ -4391,9 +4481,10 @@ function Dashboard() {
                         icon: icon,
                         technologyId: rawTech.technologyId,
                         category: rawTech.category,
-                        gridSpan: gridSpan,
+                        gridSpan: calculatedGridSpan,
                         order: rawTech.order !== undefined ? rawTech.order : index,
                         isProject: isProject,
+                        isStripeCard: isStripeCard,
                         favicon: favicon,
                         url: url,
                         description: description,
@@ -4418,46 +4509,40 @@ function Dashboard() {
                 return null;
             }
             console.log("[DEBUG] saveActiveStack - stackToSave:", stackToSave);
-            try {
-                const technologiesToSave = stackToSave.technologies.map({
-                    "Dashboard.useCallback[saveActiveStack].technologiesToSave": (tech, index)=>{
-                        const isProject = tech.isProject || false;
-                        const favicon = tech.favicon || undefined;
-                        const url = tech.url || undefined;
-                        const description = tech.description || undefined;
-                        const apiTechItem = {
+            // L'API POST s'attend à ce que showStripeCard, stripeCardColSpan, etc.
+            // soient déduits de la présence/absence et des propriétés de l'item StripeTech.
+            // Donc, nous n'avons plus besoin de les envoyer séparément dans requestData.
+            // La logique dans l'API POST doit être adaptée pour cela (comme indiqué dans le résumé).
+            const requestData = {
+                id: stackToSave.id,
+                name: stackToSave.name,
+                technologies: stackToSave.technologies.map({
+                    "Dashboard.useCallback[saveActiveStack]": (tech)=>({
                             id: tech.id,
                             name: tech.name,
                             color: tech.color,
-                            technologyId: tech.technologyId || __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["allTechnologies"].find({
-                                "Dashboard.useCallback[saveActiveStack].technologiesToSave": (t)=>t.id.toLowerCase() === tech.id.toLowerCase()
-                            }["Dashboard.useCallback[saveActiveStack].technologiesToSave"])?.id || tech.id,
-                            category: tech.category || __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["allTechnologies"].find({
-                                "Dashboard.useCallback[saveActiveStack].technologiesToSave": (t)=>t.id.toLowerCase() === tech.id.toLowerCase()
-                            }["Dashboard.useCallback[saveActiveStack].technologiesToSave"])?.category || "Custom",
+                            technologyId: tech.technologyId || tech.id,
+                            category: tech.category || "Custom",
                             gridCols: tech.gridSpan?.cols || 1,
                             gridRows: tech.gridSpan?.rows || 1,
-                            isProject,
-                            favicon,
-                            url,
-                            description,
                             order: tech.order,
+                            isProject: tech.isProject || false,
+                            favicon: tech.favicon,
+                            url: tech.url,
+                            description: tech.description,
                             stars: tech.stars,
                             forks: tech.forks
-                        };
-                        return apiTechItem;
-                    }
-                }["Dashboard.useCallback[saveActiveStack].technologiesToSave"]);
+                        })
+                }["Dashboard.useCallback[saveActiveStack]"])
+            };
+            console.log("[DEBUG] saveActiveStack - requestData:", requestData);
+            try {
                 const response = await fetch("/api/tech/stack", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({
-                        id: stackToSave.id,
-                        name: stackToSave.name,
-                        technologies: technologiesToSave
-                    })
+                    body: JSON.stringify(requestData)
                 });
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -4536,118 +4621,38 @@ function Dashboard() {
         session,
         hydrateTechnologies
     ]);
-    const handleCreateNewStack = async (stackName)=>{
-        if (!session?.user?.id) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("You must be logged in to create a stack.");
-            return;
-        }
-        if (userStacks.length >= 5) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("You cannot have more than 5 stacks.");
-            return;
-        }
-        try {
-            const response = await fetch("/api/tech/stack", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: stackName,
-                    technologies: []
-                })
-            });
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || "Error while creating the stack");
-            }
-            const newStackData = await response.json();
-            const hydratedNewStack = {
-                ...newStackData,
-                technologies: hydrateTechnologies(newStackData.technologies || [])
-            };
-            setUserStacks((prevStacks)=>[
-                    ...prevStacks,
-                    hydratedNewStack
-                ]);
-            setActiveStackId(hydratedNewStack.id);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(`Stack '${hydratedNewStack.name}' created successfully!`);
-        } catch (error) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Unable to create the stack.");
-        }
-    };
-    const handleDeleteStack = async (stackId)=>{
-        if (!session?.user?.id) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("You must be logged in to delete a stack.");
-            return;
-        }
-        setStackToDelete(stackId);
-        setIsDeleteDialogOpen(true);
-    };
-    const confirmDeleteStack = async ()=>{
-        if (stackToDelete === null) return;
-        try {
-            const response = await fetch(`/api/tech/stack?id=${stackToDelete}&stackId=true`, {
-                method: "DELETE"
-            });
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || "Error while deleting the stack");
-            }
-            const updatedStacks = userStacks.filter((stack)=>stack.id !== stackToDelete);
-            setUserStacks(updatedStacks);
-            if (activeStackId === stackToDelete) {
-                setActiveStackId(updatedStacks.length > 0 ? updatedStacks[0].id : null);
-            }
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Stack deleted successfully!");
-        } catch (error) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Unable to delete the stack.");
-        } finally{
-            setIsDeleteDialogOpen(false);
-            setStackToDelete(null);
-        }
-    };
-    const handleAddTech = async (newTechFromForm)=>{
-        if (!activeStack) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Please select a stack to add a technology.");
-            return;
-        }
-        const updatedTechnologies = [
-            ...activeStack.technologies,
-            newTechFromForm
-        ];
-        const updatedStack = {
-            ...activeStack,
-            technologies: updatedTechnologies
-        };
-        // Optimistic update (optionnel)
-        setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
-        // Synchroniser avec la version serveur (pour avoir les bons ids)
-        const savedStack = await saveActiveStack(updatedStack);
-        if (savedStack) {
-            setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === savedStack.id ? {
-                        ...savedStack
-                    } : s));
-        }
-    };
-    const handleRemoveTech = async (stackTechnologyItemId)=>{
+    // La logique d'ajout de Stripe est maintenant gérée par handleShowStripeCardInGrid
+    // if (newTechFromForm.id === "STRIPE_CARD_ID_PLACEHOLDER") { // Ancien placeholder
+    //   handleShowStripeCardInGrid();
+    //   return;
+    // }
+    const handleRemoveTech = async (itemIdToRemove, showSuccessToast = true)=>{
         if (!activeStack) return;
-        try {
-            const response = await fetch(`/api/tech/stack?id=${stackTechnologyItemId}`, {
-                method: "DELETE"
-            });
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || "Error while deleting");
+        // NOUVELLE LOGIQUE: Si c'est la carte Stripe, on déconnecte Stripe entièrement
+        if (itemIdToRemove === STRIPE_CARD_ID) {
+            await handleDisconnectStripe(); // handleDisconnectStripe s'occupera de la sauvegarde et du toast
+            return; // Sortir tôt, car handleDisconnectStripe gère la suite
+        }
+        // Logique existante pour les autres technologies
+        let updatedStack = {
+            ...activeStack
+        };
+        updatedStack.technologies = activeStack.technologies.filter((tech)=>tech.id !== itemIdToRemove);
+        updatedStack.technologies = updatedStack.technologies.map((tech, index)=>({
+                ...tech,
+                order: index
+            }));
+        setActiveStack(updatedStack); // Optimistic update
+        const savedStack = await saveActiveStack(updatedStack, false);
+        if (savedStack) {
+            setActiveStack(savedStack);
+            setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === savedStack.id ? savedStack : s));
+            if (showSuccessToast) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Technology removed."); // Toast générique, Stripe a son propre message
             }
-            const updatedTechnologies = activeStack.technologies.filter((tech)=>tech.id !== stackTechnologyItemId);
-            const updatedStack = {
-                ...activeStack,
-                technologies: updatedTechnologies
-            };
-            setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Technology removed from the active stack!");
-        } catch (error) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Unable to delete the technology.");
+        } else {
+            setActiveStack(activeStack);
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Failed to update stack after removal.");
         }
     };
     const handleActiveStackNameChange = (newName)=>{
@@ -4658,32 +4663,6 @@ function Dashboard() {
         };
         setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
         saveActiveStack(updatedStack);
-    };
-    const handleProfileDescriptionChange = async (newDescription)=>{
-        setUserProfileDescription(newDescription);
-        setIsEditingProfile(false);
-        if (!session?.user?.id) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("You must be logged in to save your description.");
-            return;
-        }
-        try {
-            const response = await fetch("/api/user/profile", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    description: newDescription
-                })
-            });
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || "Error while saving the description.");
-            }
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Profile description saved!");
-        } catch (error) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Unable to save the description.");
-        }
     };
     const handleUpdateTech = (id, updates)=>{
         if (!activeStack) return;
@@ -4698,18 +4677,26 @@ function Dashboard() {
         console.log("[DEBUG] handleUpdateTech - id:", id, "updates:", updates);
         setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
         // Si on met à jour les stars ou forks, on persiste
-        if (typeof updates.stars !== "undefined" || typeof updates.forks !== "undefined") {
+        if (typeof updates.stars !== "undefined" || typeof updates.forks !== "undefined" || typeof updates.gridSpan !== "undefined" // Sauvegarder aussi si gridSpan change
+        ) {
             console.log("[DEBUG] handleUpdateTech - saveActiveStack called with:", updatedStack);
             saveActiveStack(updatedStack);
         }
     };
-    const handleReorderTechs = (reorderedTechs)=>{
+    const handleReorderTechs = (reorderedTechsInput)=>{
         if (!activeStack) return;
+        // Mettre à jour la propriété 'order' de chaque tech en fonction de sa nouvelle position
+        const finalReorderedTechs = reorderedTechsInput.map((tech, index)=>({
+                ...tech,
+                order: index
+            }));
         const updatedStack = {
             ...activeStack,
-            technologies: reorderedTechs
+            technologies: finalReorderedTechs
         };
         setUserStacks((prevStacks)=>prevStacks.map((s)=>s.id === activeStackId ? updatedStack : s));
+        // Sauvegarder le stack avec les ordres mis à jour.
+        // Le showSuccessToast est false car le DND est une opération fluide, pas besoin de toast à chaque fois.
         saveActiveStack(updatedStack, false);
     };
     // Fonction pour charger manuellement la description de l'utilisateur
@@ -4719,7 +4706,8 @@ function Dashboard() {
             if (!response.ok) throw new Error("Failed to fetch user profile data");
             const userData = await response.json();
             if (userData.description) {
-                setUserProfileDescription(userData.description);
+                setProfileDescription(userData.description);
+                setTempDescription(userData.description);
                 setEditingDescription(userData.description);
             }
         } catch (error) {
@@ -4736,87 +4724,259 @@ function Dashboard() {
     }["Dashboard.useEffect"], [
         session?.user?.id
     ]);
+    // >>> BLOC DES FONCTIONS STRIPE INSÉRÉ ICI <<<
     // Fonction pour la connexion Stripe
     const handleConnectStripe = async ()=>{
         setIsConnectingStripe(true);
         window.location.href = "/api/stripe/oauth/authorize";
     };
     // Nouvelle fonction pour récupérer le MRR total du compte
-    const handleFetchStripeAccountMrr = async ()=>{
-        setIsLoadingStripeAccountMrr(true);
-        try {
-            const response = await fetch("/api/stripe/mrr");
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || "Échec de la récupération du MRR");
+    const handleFetchStripeAccountMrr = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Dashboard.useCallback[handleFetchStripeAccountMrr]": async ()=>{
+            setIsLoadingStripeAccountMrr(true);
+            try {
+                const response = await fetch("/api/stripe/mrr");
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || "Échec de la récupération du MRR");
+                }
+                const data = await response.json();
+                setStripeAccountMrr(data);
+            // Le toast de succès ici peut être redondant si checkStripeStatus s'en charge aussi.
+            // toast.success("MRR du compte Stripe récupéré avec succès !");
+            } catch (error) {
+                console.error("Erreur lors de la récupération du MRR du compte Stripe:", error);
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Impossible de récupérer le MRR du compte Stripe.");
+                setStripeAccountMrr(null);
+            } finally{
+                setIsLoadingStripeAccountMrr(false);
             }
-            const data = await response.json();
-            setStripeAccountMrr(data);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("MRR du compte Stripe récupéré avec succès !");
-        } catch (error) {
-            console.error("Erreur lors de la récupération du MRR du compte Stripe:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Impossible de récupérer le MRR du compte Stripe.");
-            setStripeAccountMrr(null);
-        } finally{
-            setIsLoadingStripeAccountMrr(false);
         }
-    };
-    const handleDisconnectStripe = async ()=>{
-        setIsDisconnectingStripe(true);
-        try {
-            const response = await fetch("/api/stripe/disconnect", {
-                method: "DELETE"
-            });
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || "Échec de la déconnexion de Stripe");
+    }["Dashboard.useCallback[handleFetchStripeAccountMrr]"], [
+        setIsLoadingStripeAccountMrr,
+        setStripeAccountMrr
+    ]); // Dépendances: fonctions setState
+    const handleDisconnectStripe = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Dashboard.useCallback[handleDisconnectStripe]": async ()=>{
+            setIsDisconnectingStripe(true);
+            try {
+                const response = await fetch("/api/stripe/disconnect", {
+                    method: "DELETE"
+                });
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || "Échec de la déconnexion de Stripe");
+                }
+                setHasStripeConnection(false);
+                setStripeAccountMrr(null);
+                let finalStackToSave = activeStack;
+                // Retirer la carte Stripe du stack actif si elle y est et sauvegarder
+                if (activeStack && activeStack.technologies.some({
+                    "Dashboard.useCallback[handleDisconnectStripe]": (t)=>t.id === STRIPE_CARD_ID
+                }["Dashboard.useCallback[handleDisconnectStripe]"])) {
+                    console.log("[DEBUG] DisconnectStripe - Hiding StripeCard from activeStack");
+                    let updatedStack = {
+                        ...activeStack
+                    };
+                    updatedStack.technologies = activeStack.technologies.filter({
+                        "Dashboard.useCallback[handleDisconnectStripe]": (tech)=>tech.id !== STRIPE_CARD_ID
+                    }["Dashboard.useCallback[handleDisconnectStripe]"]);
+                    updatedStack.technologies = updatedStack.technologies.map({
+                        "Dashboard.useCallback[handleDisconnectStripe]": (tech, index)=>({
+                                ...tech,
+                                order: index
+                            })
+                    }["Dashboard.useCallback[handleDisconnectStripe]"]);
+                    setActiveStack(updatedStack); // Optimistic update UI
+                    finalStackToSave = updatedStack;
+                }
+                if (finalStackToSave) {
+                    await saveActiveStack(finalStackToSave, false); // Sauvegarder l'état sans la carte Stripe
+                }
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Stripe account disconnected and card hidden."); // Un seul toast ici
+            } catch (error) {
+                console.error("Erreur lors de la déconnexion de Stripe:", error);
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Impossible de déconnecter le compte Stripe.");
+            } finally{
+                setIsDisconnectingStripe(false);
             }
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Compte Stripe déconnecté avec succès.");
-            setHasStripeConnection(false);
-            setStripeAccountMrr(null);
-        } catch (error) {
-            console.error("Erreur lors de la déconnexion de Stripe:", error);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Impossible de déconnecter le compte Stripe.");
-        } finally{
-            setIsDisconnectingStripe(false);
         }
-    };
-    // Nouveau composant ProfileHeader
-    const ProfileHeader = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex flex-col items-center justify-center pb-12 text-center pt-24",
-            children: [
-                session?.user?.image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "relative w-28 h-28 mb-5 shadow-lg rounded-full",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        src: session.user.image,
-                        alt: session.user.name || "Avatar utilisateur",
-                        layout: "fill",
-                        objectFit: "cover",
-                        className: "rounded-full"
+    }["Dashboard.useCallback[handleDisconnectStripe]"], [
+        activeStack,
+        saveActiveStack,
+        setHasStripeConnection,
+        setStripeAccountMrr,
+        setIsDisconnectingStripe
+    ]); // Dépendances
+    // NOUVELLE FONCTION pour ajouter/afficher la carte Stripe
+    const handleShowStripeCardInGrid = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Dashboard.useCallback[handleShowStripeCardInGrid]": async ()=>{
+            if (!activeStack) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Please select or create a stack first.");
+                return;
+            }
+            if (activeStack.technologies.find({
+                "Dashboard.useCallback[handleShowStripeCardInGrid]": (t)=>t.id === STRIPE_CARD_ID
+            }["Dashboard.useCallback[handleShowStripeCardInGrid]"])) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].info("Stripe card is already in the grid.");
+                return;
+            }
+            const newOrder = activeStack.technologies.length > 0 ? Math.max(...activeStack.technologies.map({
+                "Dashboard.useCallback[handleShowStripeCardInGrid]": (t)=>t.order || 0
+            }["Dashboard.useCallback[handleShowStripeCardInGrid]"])) + 1 : 0;
+            // Créer un objet Tech pour la carte Stripe
+            const stripeTech = {
+                id: STRIPE_CARD_ID,
+                name: "Stripe MRR",
+                isStripeCard: true,
+                // Icône SVG pour Stripe (identique à hydrateTechnologies)
+                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    width: "24",
+                    height: "24",
+                    viewBox: "0 0 24 24",
+                    fill: "none",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M13.4764 7.45119C13.4764 6.54994 14.1659 6.12994 15.2364 6.12994C16.6114 6.12994 18.3889 6.63244 19.7239 7.49994V2.93744C18.2699 2.32494 16.8464 2.06244 15.2364 2.06244C11.3764 2.06244 8.77637 4.24494 8.77637 7.67994C8.77637 13.2349 16.2464 12.141 16.2464 14.8575C16.2464 15.9975 15.3539 16.4175 14.2464 16.4175C12.7414 16.4175 10.7764 15.7485 9.30137 14.7524V19.4324C10.9364 20.1675 12.5939 20.4999 14.2464 20.4999C18.1954 20.4999 20.9989 18.3749 20.9989 14.8575C20.9989 8.89119 13.4764 10.1625 13.4764 7.45119Z",
+                        fill: "#635BFF"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1159,
+                        lineNumber: 1210,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1158,
+                    lineNumber: 1203,
                     columnNumber: 9
                 }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                    className: "text-3xl font-bold text-[var(--foreground)] tracking-tight",
-                    children: session?.user?.name || "Utilisateur anonyme"
-                }, void 0, false, {
-                    fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1168,
-                    columnNumber: 7
-                }, this)
-            ]
-        }, void 0, true, {
+                color: "#635BFF",
+                gridSpan: {
+                    cols: 1,
+                    rows: 1
+                },
+                order: newOrder,
+                // Autres propriétés Tech optionnelles si nécessaire
+                category: "API",
+                technologyId: STRIPE_CARD_ID
+            };
+            const updatedTechnologies = [
+                ...activeStack.technologies,
+                stripeTech
+            ].sort({
+                "Dashboard.useCallback[handleShowStripeCardInGrid].updatedTechnologies": (a, b)=>(a.order || 0) - (b.order || 0)
+            }["Dashboard.useCallback[handleShowStripeCardInGrid].updatedTechnologies"]);
+            const updatedStack = {
+                ...activeStack,
+                technologies: updatedTechnologies
+            };
+            setActiveStack(updatedStack); // Optimistic update
+            const savedStack = await saveActiveStack(updatedStack, false);
+            if (savedStack) {
+                setActiveStack(savedStack);
+                setUserStacks({
+                    "Dashboard.useCallback[handleShowStripeCardInGrid]": (prevStacks)=>prevStacks.map({
+                            "Dashboard.useCallback[handleShowStripeCardInGrid]": (s)=>s.id === savedStack.id ? savedStack : s
+                        }["Dashboard.useCallback[handleShowStripeCardInGrid]"])
+                }["Dashboard.useCallback[handleShowStripeCardInGrid]"]);
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Stripe card added to the grid.");
+            } else {
+                // Revert
+                setActiveStack(activeStack);
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Failed to add Stripe card.");
+            }
+        }
+    }["Dashboard.useCallback[handleShowStripeCardInGrid]"], [
+        activeStack,
+        saveActiveStack,
+        setActiveStack
+    ]); // Dépendances
+    // Nouveau composant ProfileHeader
+    const ProfileHeader = ()=>{
+        const name = session?.user?.name;
+        const image = session?.user?.image;
+        const description = profileDescription;
+        const createdAt = session?.user?.createdAt;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "w-full max-w-4xl mx-auto p-4 md:p-6 bg-[var(--card)] rounded-xl mb-8 border border-[var(--border)] mask-b-from-30%",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col md:flex-row items-center gap-6",
+                children: [
+                    image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                        src: image,
+                        alt: name || "User avatar",
+                        width: 128,
+                        height: 128,
+                        className: "rounded-full border-4 border-[var(--primary-foreground)]"
+                    }, void 0, false, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 1260,
+                        columnNumber: 13
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex-grow text-center md:text-left",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                className: "text-3xl md:text-4xl font-bold text-[var(--text-foreground)] flex items-center gap-3",
+                                children: [
+                                    name || "Anonymous User",
+                                    hasStripeConnection && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$credit$2d$card$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CreditCard$3e$__["CreditCard"], {
+                                        size: 28,
+                                        className: "text-blue-500 cursor-pointer",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("title", {
+                                            children: "Stripe Connected"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 1273,
+                                            columnNumber: 19
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 1272,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/dashboard/page.tsx",
+                                lineNumber: 1269,
+                                columnNumber: 13
+                            }, this),
+                            description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-md text-[var(--muted-foreground)] mt-2",
+                                children: description
+                            }, void 0, false, {
+                                fileName: "[project]/app/dashboard/page.tsx",
+                                lineNumber: 1278,
+                                columnNumber: 15
+                            }, this),
+                            createdAt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-xs text-[var(--muted-foreground)] mt-1",
+                                children: [
+                                    "Joined: ",
+                                    new Date(createdAt).toLocaleDateString()
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/dashboard/page.tsx",
+                                lineNumber: 1283,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 1268,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/dashboard/page.tsx",
+                lineNumber: 1258,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1156,
-            columnNumber: 5
+            lineNumber: 1257,
+            columnNumber: 7
         }, this);
+    };
     // Composant StacksSelector modernisé
     const StacksSelector = ()=>{
         _s();
@@ -4862,7 +5022,7 @@ function Dashboard() {
                             children: isStackEditMode ? "Done Editing" : "Edit Grid"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1211,
+                            lineNumber: 1328,
                             columnNumber: 11
                         }, this),
                         !isStackEditMode && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -4874,13 +5034,13 @@ function Dashboard() {
                             children: "+ New Grid"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1221,
+                            lineNumber: 1338,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1210,
+                    lineNumber: 1327,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4900,7 +5060,7 @@ function Dashboard() {
                                         children: stack.name
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1253,
+                                        lineNumber: 1370,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -4916,18 +5076,18 @@ function Dashboard() {
                                             size: 14
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 1270,
+                                            lineNumber: 1387,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1263,
+                                        lineNumber: 1380,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1242,
+                                lineNumber: 1359,
                                 columnNumber: 17
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContextMenu"], {
                                 children: [
@@ -4945,17 +5105,17 @@ function Dashboard() {
                                                 children: stack.name
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1288,
+                                                lineNumber: 1405,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 1276,
+                                            lineNumber: 1393,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1275,
+                                        lineNumber: 1392,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContextMenuContent"], {
@@ -4967,12 +5127,12 @@ function Dashboard() {
                                                 children: "Delete"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1294,
+                                                lineNumber: 1411,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContextMenuSeparator"], {}, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1301,
+                                                lineNumber: 1418,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$context$2d$menu$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ContextMenuItem"], {
@@ -4989,29 +5149,29 @@ function Dashboard() {
                                                 children: "Rename"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1302,
+                                                lineNumber: 1419,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1293,
+                                        lineNumber: 1410,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1274,
+                                lineNumber: 1391,
                                 columnNumber: 17
                             }, this)
                         }, stack.id, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1240,
+                            lineNumber: 1357,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1238,
+                    lineNumber: 1355,
                     columnNumber: 9
                 }, this),
                 isCreateModalOpen && userStacks.length < 5 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5026,7 +5186,7 @@ function Dashboard() {
                                 children: "Create a New Stack"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1340,
+                                lineNumber: 1457,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -5039,7 +5199,7 @@ function Dashboard() {
                                 onKeyPress: (e)=>e.key === "Enter" && handleCreateAndClose()
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1343,
+                                lineNumber: 1460,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5051,23 +5211,23 @@ function Dashboard() {
                                     children: "Create"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1353,
+                                    lineNumber: 1470,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1352,
+                                lineNumber: 1469,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1336,
+                        lineNumber: 1453,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1332,
+                    lineNumber: 1449,
                     columnNumber: 11
                 }, this),
                 isCreateModalOpen && userStacks.length >= 5 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5082,7 +5242,7 @@ function Dashboard() {
                                 children: "Limite atteinte"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1373,
+                                lineNumber: 1490,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5090,7 +5250,7 @@ function Dashboard() {
                                 children: "Vous ne pouvez pas créer plus de 5 stacks."
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1376,
+                                lineNumber: 1493,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -5099,18 +5259,18 @@ function Dashboard() {
                                 children: "Fermer"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1379,
+                                lineNumber: 1496,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1369,
+                        lineNumber: 1486,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1365,
+                    lineNumber: 1482,
                     columnNumber: 11
                 }, this)
             ]
@@ -5138,7 +5298,7 @@ function Dashboard() {
             currency: currency || "EUR"
         };
     };
-    const BentoGridSection = ({ activeStack, technologies, isLoadingInitialData, handleAddTech, sessionUserId, handleRemoveTech, handleUpdateTech, handleReorderTechs, saveActiveStack, hasStripeConnection, isConnectingStripe, handleConnectStripe, stripeAccountMrr, isLoadingStripeAccountMrr, handleFetchStripeAccountMrr, isDisconnectingStripe, handleDisconnectStripe })=>{
+    const BentoGridSection = ({ activeStack, technologies, isLoadingInitialData, handleAddTech: handleAddTech1, sessionUserId, handleRemoveTech, handleUpdateTech, handleReorderTechs, saveActiveStack, hasStripeConnection, isConnectingStripe, handleConnectStripe, stripeAccountMrr, isLoadingStripeAccountMrr, handleFetchStripeAccountMrr, isDisconnectingStripe, handleDisconnectStripe, handleShowStripeCardInGrid })=>{
         if (!sessionUserId) return null;
         // Limites de la grille
         const gridMax = {
@@ -5147,6 +5307,7 @@ function Dashboard() {
         };
         // Limite à 5 lignes (3x5=15 emplacements max)
         // (On peut améliorer la logique pour empêcher le dépassement total si besoin)
+        console.log("[DEBUG BentoGridSection] props.hasStripeConnection:", hasStripeConnection);
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
             children: [
                 activeStack && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5156,7 +5317,7 @@ function Dashboard() {
                             className: "rounded-lg"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1468,
+                            lineNumber: 1591,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5169,17 +5330,18 @@ function Dashboard() {
                                         children: "Your Bento Grid. "
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1471,
+                                        lineNumber: 1594,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1470,
+                                    lineNumber: 1593,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex gap-2",
+                                    className: "flex gap-2 items-center",
                                     children: [
+                                        " ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                             variant: isPageEditMode ? "secondary" : "outline",
                                             onClick: ()=>{
@@ -5191,7 +5353,7 @@ function Dashboard() {
                                             children: isPageEditMode ? "Done Editing" : "Reorder"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 1474,
+                                            lineNumber: 1599,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -5205,49 +5367,98 @@ function Dashboard() {
                                             children: isResizeMode ? "Done Resizing" : "Resize"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 1485,
+                                            lineNumber: 1610,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex items-center",
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$add$2d$tech$2d$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AddTechForm"], {
-                                                onAddTech: handleAddTech,
-                                                userId: sessionUserId
+                                                onAddTech: handleAddTech1,
+                                                userId: sessionUserId,
+                                                // Props pour Stripe (résout l'erreur linter)
+                                                hasStripeConnection: hasStripeConnection,
+                                                onConnectStripe: handleConnectStripe,
+                                                onShowStripeInGrid: handleShowStripeCardInGrid
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1497,
+                                                lineNumber: 1622,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 1496,
+                                            lineNumber: 1621,
                                             columnNumber: 17
+                                        }, this),
+                                        hasStripeConnection && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                            variant: "outline",
+                                            onClick: handleDisconnectStripe,
+                                            disabled: isDisconnectingStripe,
+                                            className: "text-red-500 hover:bg-red-500/10 border-red-500/50 hover:border-red-500 px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base",
+                                            title: "Déconnecter le compte Stripe",
+                                            children: [
+                                                isDisconnectingStripe ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
+                                                    size: 16,
+                                                    className: "animate-spin mr-0 sm:mr-2"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 1641,
+                                                    columnNumber: 23
+                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
+                                                    size: 16,
+                                                    className: "mr-0 sm:mr-2"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 1646,
+                                                    columnNumber: 23
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "hidden sm:inline",
+                                                    children: "Déconnecter Stripe"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 1648,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "sm:hidden",
+                                                    children: "Déconnecter"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/app/dashboard/page.tsx",
+                                                    lineNumber: 1649,
+                                                    columnNumber: 21
+                                                }, this),
+                                                " "
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 1633,
+                                            columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1473,
+                                    lineNumber: 1596,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1469,
+                            lineNumber: 1592,
                             columnNumber: 13
                         }, this),
-                        technologies.length === 0 && !isLoadingInitialData && !hasStripeConnection && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        technologies.length === 0 && !isLoadingInitialData && !hasStripeConnection && (!activeStack || activeStack.technologies.filter((t)=>!t.isStripeCard).length === 0) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "text-center py-12 flex-grow flex flex-col justify-center items-center",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-[var(--muted-foreground)]",
                                     children: [
                                         'No technology in the stack "',
-                                        activeStack.name,
+                                        activeStack?.name,
                                         '".'
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1508,
+                                    lineNumber: 1662,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5255,13 +5466,13 @@ function Dashboard() {
                                     children: 'Click "Add" to get started.'
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1511,
+                                    lineNumber: 1665,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1507,
+                            lineNumber: 1661,
                             columnNumber: 17
                         }, this),
                         (technologies.length > 0 || hasStripeConnection) && !isLoadingInitialData && (isPageEditMode ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DndContext"], {
@@ -5273,126 +5484,104 @@ function Dashboard() {
                                     strategy: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$sortable$2f$dist$2f$sortable$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["rectSortingStrategy"],
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StripeCard, {
+                                        children: orderedTechIds.map((id)=>{
+                                            const tech = technologies.find((t)=>t.id === id);
+                                            if (!tech) return null;
+                                            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SortableTechCard, {
+                                                tech: tech,
+                                                isPageEditMode: true,
+                                                isResizeMode: false,
+                                                onRemoveTech: handleRemoveTech,
+                                                onUpdateTech: handleUpdateTech,
+                                                gridMax: gridMax,
+                                                // Props Stripe passées à chaque SortableTechCard
                                                 hasStripeConnection: hasStripeConnection,
                                                 isConnectingStripe: isConnectingStripe,
                                                 handleConnectStripe: handleConnectStripe,
-                                                mrrData: stripeAccountMrr,
-                                                onFetchMrr: handleFetchStripeAccountMrr,
-                                                isFetchingMrr: isLoadingStripeAccountMrr,
-                                                handleDisconnectStripe: handleDisconnectStripe,
-                                                isDisconnectingStripe: isDisconnectingStripe
-                                            }, void 0, false, {
+                                                stripeAccountMrr: stripeAccountMrr,
+                                                isLoadingStripeAccountMrr: isLoadingStripeAccountMrr,
+                                                handleFetchStripeAccountMrr: handleFetchStripeAccountMrr,
+                                                isDisconnectingStripe: isDisconnectingStripe,
+                                                handleDisconnectStripe: handleDisconnectStripe
+                                            }, tech.id, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1526,
-                                                columnNumber: 23
-                                            }, this),
-                                            orderedTechIds.map((id)=>{
-                                                const tech = technologies.find((t)=>t.id === id);
-                                                if (!tech) return null;
-                                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SortableTechCard, {
-                                                    tech: tech,
-                                                    isPageEditMode: true,
-                                                    isResizeMode: false,
-                                                    onRemoveTech: handleRemoveTech,
-                                                    onUpdateTech: (id, updates)=>{
-                                                        handleUpdateTech(id, {
-                                                            ...updates
-                                                        });
-                                                    },
-                                                    gridMax: gridMax
-                                                }, tech.id, false, {
-                                                    fileName: "[project]/app/dashboard/page.tsx",
-                                                    lineNumber: 1540,
-                                                    columnNumber: 27
-                                                }, this);
-                                            })
-                                        ]
-                                    }, void 0, true, {
+                                                lineNumber: 1684,
+                                                columnNumber: 27
+                                            }, this);
+                                        })
+                                    }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1524,
+                                        lineNumber: 1678,
                                         columnNumber: 21
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1520,
+                                    lineNumber: 1674,
                                     columnNumber: 19
                                 }, this),
                                 isPageEditMode && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DroppableTrash, {
                                     isVisible: isPageEditMode
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1557,
+                                    lineNumber: 1712,
                                     columnNumber: 21
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1519,
+                            lineNumber: 1673,
                             columnNumber: 17
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StripeCard, {
+                            children: orderedTechIds.map((id)=>{
+                                const tech = technologies.find((t)=>t.id === id);
+                                if (!tech) return null;
+                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SortableTechCard, {
+                                    tech: tech,
+                                    isPageEditMode: false,
+                                    isResizeMode: isResizeMode,
+                                    onRemoveTech: handleRemoveTech,
+                                    onUpdateTech: handleUpdateTech,
+                                    gridMax: gridMax,
+                                    // Props Stripe passées à chaque SortableTechCard
                                     hasStripeConnection: hasStripeConnection,
                                     isConnectingStripe: isConnectingStripe,
                                     handleConnectStripe: handleConnectStripe,
-                                    mrrData: stripeAccountMrr,
-                                    onFetchMrr: handleFetchStripeAccountMrr,
-                                    isFetchingMrr: isLoadingStripeAccountMrr,
-                                    handleDisconnectStripe: handleDisconnectStripe,
-                                    isDisconnectingStripe: isDisconnectingStripe
-                                }, void 0, false, {
+                                    stripeAccountMrr: stripeAccountMrr,
+                                    isLoadingStripeAccountMrr: isLoadingStripeAccountMrr,
+                                    handleFetchStripeAccountMrr: handleFetchStripeAccountMrr,
+                                    isDisconnectingStripe: isDisconnectingStripe,
+                                    handleDisconnectStripe: handleDisconnectStripe
+                                }, tech.id, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1563,
-                                    columnNumber: 19
-                                }, this),
-                                orderedTechIds.map((id)=>{
-                                    const tech = technologies.find((t)=>t.id === id);
-                                    if (!tech) return null;
-                                    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SortableTechCard, {
-                                        tech: tech,
-                                        isPageEditMode: false,
-                                        isResizeMode: isResizeMode,
-                                        onRemoveTech: handleRemoveTech,
-                                        onUpdateTech: (id, updates)=>{
-                                            handleUpdateTech(id, {
-                                                ...updates
-                                            });
-                                        },
-                                        gridMax: gridMax
-                                    }, tech.id, false, {
-                                        fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1577,
-                                        columnNumber: 23
-                                    }, this);
-                                })
-                            ]
-                        }, void 0, true, {
+                                    lineNumber: 1722,
+                                    columnNumber: 23
+                                }, this);
+                            })
+                        }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 1561,
+                            lineNumber: 1716,
                             columnNumber: 17
                         }, this))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1461,
+                    lineNumber: 1584,
                     columnNumber: 11
                 }, this),
                 !activeStack && !isLoadingInitialData && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "text-center py-12 bg-[var(--card)] rounded-lg shadow h-full flex flex-col justify-center items-center",
+                    className: "text-center py-12 bg-[var(--card)] rounded-lg h-full flex flex-col justify-center items-center",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "text-[var(--muted-foreground)]",
                         children: "Please select a stack to view its technologies or create a new one."
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1596,
+                        lineNumber: 1750,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1595,
+                    lineNumber: 1749,
                     columnNumber: 11
                 }, this)
             ]
@@ -5401,7 +5590,7 @@ function Dashboard() {
     if (isLoadingSession || isLoadingInitialData) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$skeleton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["LoadingSkeleton"], {}, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1607,
+            lineNumber: 1761,
             columnNumber: 12
         }, this);
     }
@@ -5414,7 +5603,7 @@ function Dashboard() {
                     children: "Please sign in to access your dashboard."
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1613,
+                    lineNumber: 1767,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -5423,160 +5612,179 @@ function Dashboard() {
                     children: "Sign in"
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1614,
+                    lineNumber: 1768,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1612,
+            lineNumber: 1766,
             columnNumber: 7
         }, this);
     }
+    console.log("[DEBUG Dashboard] hasStripeConnection:", hasStripeConnection, "isCheckingStripeConnection:", isCheckingStripeConnection);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex-grow",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "mx-auto py-2 md:py-8 px-4 md:px-0",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileHeader, {}, void 0, false, {
-                                fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1629,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StacksSelector, {}, void 0, false, {
-                                fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1630,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "mt-8",
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(BentoGridSection, {
-                                    activeStack: activeStack,
-                                    technologies: technologies,
-                                    isLoadingInitialData: isLoadingInitialData,
-                                    handleAddTech: handleAddTech,
-                                    sessionUserId: session?.user?.id,
-                                    handleRemoveTech: handleRemoveTech,
-                                    handleUpdateTech: handleUpdateTech,
-                                    handleReorderTechs: handleReorderTechs,
-                                    saveActiveStack: saveActiveStack,
-                                    hasStripeConnection: hasStripeConnection,
-                                    isConnectingStripe: isConnectingStripe,
-                                    handleConnectStripe: handleConnectStripe,
-                                    stripeAccountMrr: stripeAccountMrr,
-                                    isLoadingStripeAccountMrr: isLoadingStripeAccountMrr,
-                                    handleFetchStripeAccountMrr: handleFetchStripeAccountMrr,
-                                    isDisconnectingStripe: isDisconnectingStripe,
-                                    handleDisconnectStripe: handleDisconnectStripe
-                                }, void 0, false, {
-                                    fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1632,
-                                    columnNumber: 15
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1631,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1628,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
+                fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$skeleton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["LoadingSkeleton"], {}, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1627,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialog"], {
-                    open: isDeleteDialogOpen,
-                    onOpenChange: setIsDeleteDialogOpen,
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogContent"], {
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogHeader"], {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogTitle"], {
-                                        children: "Are you absolutely sure?"
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1660,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogDescription"], {
-                                        children: "This action cannot be undone. This will permanently delete your stack and remove your data from our servers."
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1661,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1659,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogFooter"], {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogCancel"], {
-                                        onClick: ()=>setIsDeleteDialogOpen(false),
-                                        children: "Cancel"
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1667,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogAction"], {
-                                        onClick: confirmDeleteStack,
-                                        children: "Continue"
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1670,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1666,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1658,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
+                    lineNumber: 1787,
+                    columnNumber: 27
+                }, void 0),
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StripeCallbackHandler, {}, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1654,
+                    lineNumber: 1788,
                     columnNumber: 9
                 }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1626,
-            columnNumber: 7
-        }, this)
-    }, void 0, false);
+            }, void 0, false, {
+                fileName: "[project]/app/dashboard/page.tsx",
+                lineNumber: 1787,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl pt-24",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex-grow",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "mx-auto py-2 md:py-8 px-4 md:px-0",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileHeader, {}, void 0, false, {
+                                    fileName: "[project]/app/dashboard/page.tsx",
+                                    lineNumber: 1794,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StacksSelector, {}, void 0, false, {
+                                    fileName: "[project]/app/dashboard/page.tsx",
+                                    lineNumber: 1795,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "mt-8",
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(BentoGridSection, {
+                                        activeStack: activeStack,
+                                        technologies: technologies,
+                                        isLoadingInitialData: isLoadingInitialData,
+                                        handleAddTech: handleAddTech,
+                                        sessionUserId: session?.user?.id,
+                                        handleRemoveTech: handleRemoveTech,
+                                        handleUpdateTech: handleUpdateTech,
+                                        handleReorderTechs: handleReorderTechs,
+                                        saveActiveStack: saveActiveStack,
+                                        hasStripeConnection: hasStripeConnection,
+                                        isConnectingStripe: isConnectingStripe,
+                                        handleConnectStripe: handleConnectStripe,
+                                        stripeAccountMrr: stripeAccountMrr,
+                                        isLoadingStripeAccountMrr: isLoadingStripeAccountMrr,
+                                        handleFetchStripeAccountMrr: handleFetchStripeAccountMrr,
+                                        isDisconnectingStripe: isDisconnectingStripe,
+                                        handleDisconnectStripe: handleDisconnectStripe,
+                                        handleShowStripeCardInGrid: handleShowStripeCardInGrid
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/dashboard/page.tsx",
+                                        lineNumber: 1797,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
+                                    fileName: "[project]/app/dashboard/page.tsx",
+                                    lineNumber: 1796,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/dashboard/page.tsx",
+                            lineNumber: 1793,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 1792,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialog"], {
+                        open: isDeleteDialogOpen,
+                        onOpenChange: setIsDeleteDialogOpen,
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogContent"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogHeader"], {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogTitle"], {
+                                            children: "Are you absolutely sure?"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 1826,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogDescription"], {
+                                            children: "This action cannot be undone. This will permanently delete your stack and remove your data from our servers."
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 1827,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/dashboard/page.tsx",
+                                    lineNumber: 1825,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogFooter"], {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogCancel"], {
+                                            onClick: ()=>setIsDeleteDialogOpen(false),
+                                            children: "Cancel"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 1833,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2d$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDialogAction"], {
+                                            onClick: confirmDeleteStack,
+                                            children: "Continue"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/dashboard/page.tsx",
+                                            lineNumber: 1836,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/dashboard/page.tsx",
+                                    lineNumber: 1832,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/dashboard/page.tsx",
+                            lineNumber: 1824,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 1820,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/dashboard/page.tsx",
+                lineNumber: 1791,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true);
 }
-_s2(Dashboard, "IHO+L9f31LYkuR7uRPCSHQnK6Ts=", false, function() {
+_s3(Dashboard, "jwKHh9zJbW/Po6T2EUuz+kuvxnI=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSession"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSensors"]
     ];
 });
-_c3 = Dashboard;
-var _c, _c1, _c2, _c3;
+_c4 = Dashboard;
+var _c, _c1, _c2, _c3, _c4;
 __turbopack_context__.k.register(_c, "DroppableTrash");
 __turbopack_context__.k.register(_c1, "SortableTechCard");
 __turbopack_context__.k.register(_c2, "StripeCard");
-__turbopack_context__.k.register(_c3, "Dashboard");
+__turbopack_context__.k.register(_c3, "StripeCallbackHandler");
+__turbopack_context__.k.register(_c4, "Dashboard");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }

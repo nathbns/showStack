@@ -13,15 +13,8 @@ import {
   RefreshCw,
   X as XIcon,
   Trash2 as TrashIcon,
-  CheckCircle2,
+  CreditCard,
 } from "lucide-react";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuSeparator,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import {
   DndContext,
@@ -39,19 +32,10 @@ import {
   sortableKeyboardCoordinates,
   rectSortingStrategy,
 } from "@dnd-kit/sortable";
-import GitHubLogo from "@/components/logo-card";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+import GitHubLogo, { Stripe } from "@/components/logo-card";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
 
 // Initialisation de iconMap au niveau du module
 const iconMap: Record<string, React.ReactNode> = {};
@@ -66,6 +50,7 @@ const getDefaultIcon = (name: string) => (
 );
 
 const TRASH_ID = "trash-can-droppable-id"; // ID unique pour la zone droppable
+const STRIPE_CARD_ID = "internal_stripe_card"; // ID unique pour la carte Stripe
 
 function DroppableTrash({ isVisible }: { isVisible: boolean }) {
   const { setNodeRef, isOver } = useDroppable({
@@ -97,7 +82,7 @@ function DroppableTrash({ isVisible }: { isVisible: boolean }) {
           isOver ? "text-red-500" : "text-[var(--muted-foreground)]"
         }`}
       >
-        {isOver ? "Relâcher pour supprimer" : "Glisser ici pour supprimer"}
+        {isOver ? "Release to delete" : "glide to delete"}
       </p>
     </div>
   );
@@ -110,22 +95,43 @@ export interface UserStack {
   technologies: Tech[];
   createdAt?: string;
   updatedAt?: string;
+  // Ajouts pour la carte Stripe
+  showStripeCard?: boolean;
+  stripeCardColSpan?: 1 | 2 | 3;
+  stripeCardRowSpan?: 1 | 2;
+  stripeCardOrder?: number;
 }
 
 function SortableTechCard({
   tech,
   isPageEditMode,
   isResizeMode,
-  onRemoveTech,
   onUpdateTech,
   gridMax,
+  // Props Stripe (nécessaires si tech.isStripeCard est true)
+  hasStripeConnection,
+  isConnectingStripe,
+  handleConnectStripe,
+  stripeAccountMrr,
+  isLoadingStripeAccountMrr,
+  handleFetchStripeAccountMrr,
+  isDisconnectingStripe,
+  handleDisconnectStripe,
 }: {
   tech: Tech;
   isPageEditMode: boolean;
   isResizeMode: boolean;
-  onRemoveTech: (id: string) => void;
   onUpdateTech: (id: string, updates: Partial<Tech>) => void;
   gridMax: { cols: number; rows: number };
+  // Types pour les props Stripe
+  hasStripeConnection?: boolean;
+  isConnectingStripe?: boolean;
+  handleConnectStripe?: () => void;
+  stripeAccountMrr?: { total: number; currency: string } | null;
+  isLoadingStripeAccountMrr?: boolean;
+  handleFetchStripeAccountMrr?: () => void;
+  isDisconnectingStripe?: boolean;
+  handleDisconnectStripe?: () => void;
 }) {
   const {
     attributes,
@@ -197,7 +203,7 @@ function SortableTechCard({
 
   const CardContent = (
     <div
-      className="bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden group transition-shadow hover:shadow-lg hover:border-[var(--primary)]"
+      className="bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden group hover:border-[var(--primary)]"
       style={{ minHeight }}
     >
       {/* Halo lumineux décoratif */}
@@ -309,7 +315,8 @@ function SortableTechCard({
     ...(isPageEditMode ? { ...attributes, ...listeners } : {}),
   };
 
-  if (WrapperElement === "a") {
+  if (WrapperElement === "a" && !tech.isStripeCard) {
+    // Ne pas faire un lien pour la carte Stripe
     wrapperProps.href = tech.url;
     wrapperProps.target = "_blank";
     wrapperProps.rel = "noopener noreferrer";
@@ -317,21 +324,73 @@ function SortableTechCard({
     wrapperProps.tabIndex = 0;
   }
 
+  // Si c'est la carte Stripe, rendre le composant StripeCard
+  if (tech.isStripeCard) {
+    if (
+      hasStripeConnection === undefined ||
+      !handleConnectStripe ||
+      !handleFetchStripeAccountMrr ||
+      !handleDisconnectStripe ||
+      !onUpdateTech // Assure que onUpdateTech est disponible pour onUpdateStripeCardSize
+    ) {
+      // Fallback simple si des props cruciales manquent
+      return (
+        <div
+          ref={setNodeRef}
+          style={style}
+          {...attributes}
+          {...listeners}
+          className={`${colSpanClass} ${rowSpanClass} bg-red-100 p-2 border border-red-500`}
+        >
+          Erreur: Props Stripe ou callback manquantes pour StripeCard via
+          SortableTechCard. ID: {tech.id}
+        </div>
+      );
+    }
+    console.log(
+      "[DEBUG SortableTechCard for Stripe] props.hasStripeConnection:",
+      hasStripeConnection
+    );
+    return (
+      <StripeCard
+        id={tech.id} // STRIPE_CARD_ID
+        ref={setNodeRef} // DND: Attacher la référence du nœud ici
+        style={style} // DND: Appliquer le style de transformation/transition
+        dndAttributes={isPageEditMode ? attributes : undefined}
+        dndListeners={isPageEditMode ? listeners : undefined}
+        hasStripeConnection={hasStripeConnection}
+        isConnectingStripe={isConnectingStripe || false}
+        handleConnectStripe={handleConnectStripe}
+        mrrData={stripeAccountMrr}
+        onFetchMrr={handleFetchStripeAccountMrr}
+        isFetchingMrr={isLoadingStripeAccountMrr || false}
+        handleDisconnectStripe={handleDisconnectStripe}
+        isDisconnectingStripe={isDisconnectingStripe || false}
+        isPageEditMode={isPageEditMode}
+      />
+    );
+  }
+
+  // Sinon, rendre le contenu normal de la carte technologique
   return <WrapperElement {...wrapperProps}>{CardContent}</WrapperElement>;
 }
 
 // Après la fonction SortableTechCard, ajoutons une fonction pour créer la carte Stripe
 
 function StripeCard({
+  id,
   hasStripeConnection,
   isConnectingStripe,
   handleConnectStripe,
   mrrData,
-  onFetchMrr,
   isFetchingMrr,
-  handleDisconnectStripe,
-  isDisconnectingStripe,
+  isPageEditMode,
+  style: dndStyle,
+  ref: dndRef,
+  dndAttributes,
+  dndListeners,
 }: {
+  id: string;
   hasStripeConnection: boolean;
   isConnectingStripe: boolean;
   handleConnectStripe: () => void;
@@ -340,15 +399,29 @@ function StripeCard({
   isFetchingMrr: boolean;
   handleDisconnectStripe: () => void;
   isDisconnectingStripe: boolean;
+  isPageEditMode: boolean;
+  style?: React.CSSProperties;
+  ref?: React.Ref<HTMLDivElement>;
+  dndAttributes?: ReturnType<typeof useSortable>["attributes"];
+  dndListeners?: ReturnType<typeof useSortable>["listeners"];
 }) {
-  const colSpanClass = "col-span-1 md:col-span-2";
-  const rowSpanClass = "row-span-1";
-  const minHeight = 150;
+  // Forcer la carte Stripe à être 1x1
+  const colSpanClass = "col-span-1"; // Toujours col-span-1
+  const rowSpanClass = "row-span-1"; // Toujours row-span-1
+  const minHeight = 1 * 150 + (1 - 1) * 16; // Hauteur pour 1 ligne (150px)
+  const showResizeControls = false; // La carte Stripe n'est jamais redimensionnable
 
   return (
-    <div className={`${colSpanClass} ${rowSpanClass}`}>
+    <div
+      ref={dndRef}
+      style={dndStyle}
+      className={`${colSpanClass} ${rowSpanClass} ${
+        isPageEditMode ? "cursor-grab active:cursor-grabbing" : ""
+      }`}
+      {...(isPageEditMode ? { ...dndAttributes, ...dndListeners } : {})}
+    >
       <div
-        className="bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden group transition-shadow hover:shadow-lg hover:border-[var(--primary)]"
+        className="bento-card p-4 rounded-2xl border border-[--border] flex flex-col items-start backdrop-blur-md relative overflow-hidden group hover:border-[var(--primary)] h-full"
         style={{ minHeight }}
       >
         {/* Decorative background */}
@@ -363,7 +436,6 @@ function StripeCard({
 
         <div className="flex items-center gap-2 mb-4 relative z-10 w-full">
           <div className="w-8 h-8 flex items-center justify-center">
-            {/* Stripe SVG Icon */}
             <svg
               width="24"
               height="24"
@@ -382,100 +454,94 @@ function StripeCard({
           </span>
         </div>
 
-        {!hasStripeConnection ? (
-          <Button
-            onClick={handleConnectStripe}
-            disabled={isConnectingStripe}
-            className="mt-2 w-full"
-          >
-            {isConnectingStripe ? (
-              <>
-                <RefreshCw size={16} className="animate-spin mr-2" />
-                Connexion...
-              </>
-            ) : (
-              "Connecter avec Stripe"
-            )}
-          </Button>
-        ) : mrrData ? (
-          <div className="flex flex-col w-full">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-3xl font-bold text-[--text-foreground]">
-                {(mrrData.total / 100).toLocaleString("fr-FR", {
-                  style: "currency",
-                  currency: mrrData.currency.toUpperCase(),
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-              </span>
-              <span className="text-xs text-[var(--muted-foreground)]">
-                MRR Total
-              </span>
+        <div className="flex-grow w-full flex flex-col">
+          {!hasStripeConnection ? (
+            <Button
+              onClick={handleConnectStripe}
+              disabled={isConnectingStripe}
+              className="mt-2 w-full"
+            >
+              {isConnectingStripe ? (
+                <>
+                  <RefreshCw size={16} className="animate-spin mr-2" />
+                  Connexion...
+                </>
+              ) : (
+                "Connecter avec Stripe"
+              )}
+            </Button>
+          ) : mrrData ? (
+            <div className="flex flex-col w-full">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-3xl font-bold text-[--text-foreground]">
+                  {(mrrData.total / 100).toLocaleString("fr-FR", {
+                    style: "currency",
+                    currency: mrrData.currency.toUpperCase(),
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </span>
+                <span className="text-xs text-[var(--muted-foreground)]">
+                  MRR Total
+                </span>
+              </div>
             </div>
-            <div className="flex flex-col md:flex-row gap-2 mt-2">
-              <Button
-                onClick={onFetchMrr}
-                disabled={isFetchingMrr || isDisconnectingStripe}
-                className="w-full md:flex-1"
-                variant="outline"
-              >
-                {isFetchingMrr ? (
-                  <RefreshCw size={16} className="mr-2 animate-spin" />
-                ) : (
-                  <RefreshCw size={16} className="mr-2" />
-                )}
-                Rafraîchir
-              </Button>
-              <Button
-                variant="destructive"
-                onClick={handleDisconnectStripe}
-                disabled={isDisconnectingStripe || isFetchingMrr}
-                className="w-full md:flex-1"
-              >
-                {isDisconnectingStripe ? (
-                  <RefreshCw size={16} className="mr-2 animate-spin" />
-                ) : (
-                  <XIcon size={16} className="mr-2" />
-                )}
-                Déconnecter
-              </Button>
+          ) : (
+            <div className="flex flex-col items-center justify-center flex-grow w-full">
+              {isFetchingMrr ? (
+                <>
+                  <RefreshCw size={20} className="animate-spin my-4" />
+                  <p className="text-sm text-[var(--muted-foreground)]">
+                    Chargement du MRR...
+                  </p>
+                </>
+              ) : (
+                // Cas où la connexion est établie mais MRR non encore chargé (ou échec précédent)
+                // On pourrait afficher un message ou un bouton de rafraîchissement manuel ici si souhaité
+                // Pour l'instant, on affiche un chargement subtil ou rien jusqu'à ce que MRR soit là
+                <p className="text-sm text-[var(--muted-foreground)]">
+                  Actualisation des données Stripe...
+                </p>
+              )}
             </div>
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center flex-grow w-full">
-            <div className="p-3 bg-green-500/10 text-green-600 rounded-md border border-green-500/20 w-full mb-3 text-center">
-              <CheckCircle2 size={20} className="inline-block mr-2" />
-              <span>Compte Stripe connecté!</span>
+          )}
+        </div>
+
+        {showResizeControls && (
+          <div className="mt-auto pt-2 flex flex-col gap-1 w-full relative z-10 border-t border-[var(--border)]">
+            <div className="flex gap-1 items-center">
+              <span className="text-xs">Width :</span>
+              {[1, 2, 3].map((c) => (
+                <Button
+                  key={`stripe-width-${c}`}
+                  size="sm"
+                  variant={1 === c ? "secondary" : "outline"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  disabled={c > 3}
+                  className="px-2 py-0.5 text-xs h-auto min-w-[24px]"
+                >
+                  {c}
+                </Button>
+              ))}
             </div>
-            <div className="flex flex-col md:flex-row gap-2 mt-2 w-full">
-              <Button
-                onClick={onFetchMrr}
-                variant="outline"
-                className="w-full md:flex-1"
-                disabled={isFetchingMrr || isDisconnectingStripe}
-              >
-                {isFetchingMrr ? (
-                  <>
-                    <RefreshCw size={14} className="animate-spin mr-1" />
-                    Chargement MRR...
-                  </>
-                ) : (
-                  "Afficher le MRR Total"
-                )}
-              </Button>
-              <Button
-                variant="destructive"
-                onClick={handleDisconnectStripe}
-                disabled={isDisconnectingStripe || isFetchingMrr}
-                className="w-full md:flex-1"
-              >
-                {isDisconnectingStripe ? (
-                  <RefreshCw size={16} className="mr-2 animate-spin" />
-                ) : (
-                  <XIcon size={16} className="mr-2" />
-                )}
-                Déconnecter
-              </Button>
+            <div className="flex gap-1 items-center">
+              <span className="text-xs">Height :</span>
+              {[1, 2].map((r) => (
+                <Button
+                  key={`stripe-height-${r}`}
+                  size="sm"
+                  variant={1 === r ? "secondary" : "outline"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  disabled={r > 2}
+                  className="px-2 py-0.5 text-xs h-auto min-w-[24px]"
+                >
+                  {r}
+                </Button>
+              ))}
             </div>
           </div>
         )}
@@ -508,29 +574,11 @@ function StripeCallbackHandler() {
 
 export default function Dashboard() {
   const { data: session, isPending: isLoadingSession } = useSession();
-  const router = useRouter();
 
-  const [activeStackId, setActiveStackId] = useState<number | null>(null);
-
-  const [userProfile, setUserProfile] = useState<{
-    name: string;
-    description: string;
-    image?: string;
-    layoutConfig?: string;
-  } | null>(null);
-  const [isLoadingProfile, setIsLoadingProfile] = useState(true);
-  const [activeStack, setActiveStack] = useState<UserStack | undefined>(
-    undefined
-  );
-  const [userStacks, setUserStacks] = useState<UserStack[]>([]);
+  const [userStack, setUserStack] = useState<UserStack | undefined>(undefined);
   const [isLoadingInitialData, setIsLoadingInitialData] = useState(true);
   const [isPageEditMode, setIsPageEditMode] = useState(false);
-  const [isAddTechModalOpen, setIsAddTechModalOpen] = useState(false);
   const [isResizeMode, setIsResizeMode] = useState(false);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [stackToDelete, setStackToDelete] = useState<number | null>(null);
-  const [itemToRemove, setItemToRemove] = useState<string | null>(null);
-  const [showRemoveItemConfirm, setShowRemoveItemConfirm] = useState(false);
 
   // États pour Stripe
   const [hasStripeConnection, setHasStripeConnection] = useState(false);
@@ -547,36 +595,22 @@ export default function Dashboard() {
     useState(false);
   const [isDisconnectingStripe, setIsDisconnectingStripe] = useState(false);
 
-  // Hydrate activeStack based on activeStackId and userStacks
-  useEffect(() => {
-    if (activeStackId !== null && userStacks.length > 0) {
-      const currentActiveStack = userStacks.find(
-        (stack) => stack.id === activeStackId
-      );
-      setActiveStack(currentActiveStack);
-    } else if (userStacks.length === 0) {
-      setActiveStack(undefined);
-    } else if (
-      activeStackId === null &&
-      userStacks.length > 0 &&
-      userStacks[0]
-    ) {
-      // Si aucun stack actif et des stacks existent, activer le premier par défaut
-      // setActiveStackId(userStacks[0].id); // Décommenter si ce comportement est souhaité
-      // setActiveStack(userStacks[0]); // Ou définir activeStack directement
-    }
-  }, [activeStackId, userStacks, setActiveStack]);
+  // Supprimé : Hydrate activeStack based on activeStackId and userStacks
 
   // useEffect pour le statut de connexion Stripe
   useEffect(() => {
     const checkStripeStatus = async () => {
       setIsCheckingStripeConnection(true);
-      setHasStripeConnection(false);
+      setHasStripeConnection(false); // Initialiser à false
       try {
         const response = await fetch("/api/stripe/connection-status");
         const data = await response.json();
         if (response.ok) {
           setHasStripeConnection(data.isConnected);
+          if (data.isConnected) {
+            // Si connecté, récupérer le MRR immédiatement
+            handleFetchStripeAccountMrr();
+          }
         } else {
           toast.error(
             data.error || "Could not check Stripe connection status."
@@ -599,25 +633,20 @@ export default function Dashboard() {
   }, [
     session,
     isLoadingSession,
-    setHasStripeConnection,
-    setIsCheckingStripeConnection,
+
+    // setHasStripeConnection, // Retiré car géré dans la fonction
+    // setIsCheckingStripeConnection, // Retiré car géré dans la fonction
   ]);
 
-  const [userProfileDescription, setUserProfileDescription] = useState("");
-  const [isEditingProfile, setIsEditingProfile] = useState(false);
-  const [editingDescription, setEditingDescription] = useState("");
-  const [showAddStackForm, setShowAddStackForm] = useState(false);
+  const [profileDescription, setProfileDescription] = useState<string>("");
   const [orderedTechIds, setOrderedTechIds] = useState<string[]>([]);
-  const [isStackEditMode, setIsStackEditMode] = useState(false);
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
-  const technologies = activeStack?.technologies || [];
+  const technologies = userStack?.technologies || [];
 
   useEffect(() => {
     if (session?.user) {
       const currentDesc = (session.user as any).description || "";
-      setUserProfileDescription(currentDesc);
-      setEditingDescription(currentDesc);
+      setProfileDescription(currentDesc);
     }
   }, [session]);
 
@@ -670,15 +699,21 @@ export default function Dashboard() {
       let description = undefined;
       let stars = 0;
       let forks = 0;
+      let isStripeCard = false;
+      let specificGridSpan: { cols: 1 | 2 | 3; rows: 1 | 2 } | undefined =
+        undefined;
 
-      if (rawTech.isProject) {
+      if (rawTech.id === STRIPE_CARD_ID) {
+        isStripeCard = true;
+        icon = <CreditCard size={24} className="text-[#635BFF]" />;
+        specificGridSpan = { cols: 1, rows: 1 };
+      } else if (rawTech.isProject) {
         isProject = true;
         url = rawTech.url;
         description = rawTech.description;
         favicon = rawTech.favicon;
         stars = rawTech.stars;
         forks = rawTech.forks;
-
         if (
           url &&
           typeof url === "string" &&
@@ -705,12 +740,15 @@ export default function Dashboard() {
         icon = iconMap[techIdToLookup] || getDefaultIcon(rawTech.name);
       }
 
-      const gridCols = parseInt(rawTech.gridCols || "1", 10);
-      const gridRows = parseInt(rawTech.gridRows || "1", 10);
-      const gridSpan =
-        gridCols > 1 || gridRows > 1
-          ? { cols: gridCols as 1 | 2 | 3, rows: gridRows as 1 | 2 }
-          : undefined;
+      const calculatedGridSpan = (() => {
+        if (specificGridSpan) return specificGridSpan; // Priorité à la carte Stripe
+        const gridCols = parseInt(rawTech.gridCols || "1", 10);
+        const gridRows = parseInt(rawTech.gridRows || "1", 10);
+        if (gridCols > 1 || gridRows > 1) {
+          return { cols: gridCols as 1 | 2 | 3, rows: gridRows as 1 | 2 };
+        }
+        return undefined;
+      })();
 
       const techItem: Tech = {
         id: String(rawTech.id),
@@ -719,9 +757,10 @@ export default function Dashboard() {
         icon: icon,
         technologyId: rawTech.technologyId,
         category: rawTech.category,
-        gridSpan: gridSpan,
+        gridSpan: calculatedGridSpan, // Utiliser le gridSpan calculé ou forcé
         order: rawTech.order !== undefined ? rawTech.order : index,
         isProject: isProject,
+        isStripeCard: isStripeCard,
         favicon: favicon,
         url: url,
         description: description,
@@ -733,70 +772,54 @@ export default function Dashboard() {
     return hydrated;
   }, []);
 
-  // Modified to save the active stack
-  const saveActiveStack = useCallback(
+  // Modified to save the user stack
+  const saveUserStack = useCallback(
     async (stackToSave: UserStack, showSuccessToast: boolean = true) => {
       if (!session?.user?.id) {
-        toast.error("You must be logged in to save.");
+        toast.error("Vous devez être connecté pour sauvegarder.");
         return null;
       }
       if (!stackToSave) {
-        toast.error("No active stack to save.");
+        toast.error("Aucune grille à sauvegarder.");
         return null;
       }
 
-      console.log("[DEBUG] saveActiveStack - stackToSave:", stackToSave);
+      console.log("[DEBUG] saveUserStack - stackToSave:", stackToSave);
+
+      const requestData = {
+        id: stackToSave.id,
+        technologies: stackToSave.technologies.map((tech) => ({
+          id: tech.id,
+          name: tech.name,
+          color: tech.color,
+          technologyId: tech.technologyId || tech.id, // Assurer un technologyId
+          category: tech.category || "Custom",
+          gridCols: tech.gridSpan?.cols || 1,
+          gridRows: tech.gridSpan?.rows || 1,
+          order: tech.order,
+          isProject: tech.isProject || false,
+          favicon: tech.favicon,
+          url: tech.url,
+          description: tech.description,
+          stars: tech.stars,
+          forks: tech.forks,
+        })),
+      };
+
+      console.log("[DEBUG] saveUserStack - requestData:", requestData);
+
       try {
-        const technologiesToSave = stackToSave.technologies.map(
-          (tech, index) => {
-            const isProject = (tech as any).isProject || false;
-            const favicon = (tech as any).favicon || undefined;
-            const url = (tech as any).url || undefined;
-            const description = (tech as any).description || undefined;
-
-            const apiTechItem = {
-              id: tech.id,
-              name: tech.name,
-              color: tech.color,
-              technologyId:
-                tech.technologyId ||
-                allTechnologies.find(
-                  (t) => t.id.toLowerCase() === tech.id.toLowerCase()
-                )?.id ||
-                tech.id,
-              category:
-                tech.category ||
-                allTechnologies.find(
-                  (t) => t.id.toLowerCase() === tech.id.toLowerCase()
-                )?.category ||
-                "Custom",
-              gridCols: tech.gridSpan?.cols || 1,
-              gridRows: tech.gridSpan?.rows || 1,
-              isProject,
-              favicon,
-              url,
-              description,
-              order: tech.order,
-              stars: tech.stars,
-              forks: tech.forks,
-            };
-            return apiTechItem;
-          }
-        );
-
         const response = await fetch("/api/tech/stack", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            id: stackToSave.id,
-            name: stackToSave.name,
-            technologies: technologiesToSave,
-          }),
+          body: JSON.stringify(requestData),
         });
 
         if (!response.ok) {
           const errorData = await response.json();
-          throw new Error(errorData.error || "Error while saving the stack");
+          throw new Error(
+            errorData.error || "Erreur lors de la sauvegarde de la grille"
+          );
         }
 
         const savedStackData = await response.json();
@@ -809,26 +832,24 @@ export default function Dashboard() {
           technologies: hydratedFromApi,
         };
 
-        setUserStacks((prevStacks) =>
-          prevStacks.map((s) => (s.id === savedStackData.id ? finalStack : s))
-        );
-        if (activeStackId === null && savedStackData.id) {
-          setActiveStackId(savedStackData.id);
-        }
+        setUserStack(finalStack);
+
         if (showSuccessToast) {
-          toast.success(`Stack '${savedStackData.name}' saved successfully!`);
+          toast.success("Grille sauvegardée avec succès !");
         }
         return finalStack;
       } catch (error) {
-        toast.error((error as Error).message || "Unable to save the stack.");
+        toast.error(
+          (error as Error).message || "Impossible de sauvegarder la grille."
+        );
         return null;
       }
     },
-    [session, hydrateTechnologies, activeStackId]
+    [session, hydrateTechnologies]
   );
 
   useEffect(() => {
-    const fetchUserStacks = async () => {
+    const fetchUserStack = async () => {
       if (session?.user?.id) {
         setIsLoadingInitialData(true);
         try {
@@ -836,245 +857,217 @@ export default function Dashboard() {
           if (!response.ok) throw new Error("Network or server error");
           const stacksData: UserStack[] = await response.json();
 
-          const hydratedStacks = stacksData.map((stack) => ({
-            ...stack,
-            technologies: hydrateTechnologies(stack.technologies || []),
-          }));
+          // Prendre la première stack (ou créer une stack par défaut si aucune n'existe)
+          const stackData = stacksData.length > 0 ? stacksData[0] : null;
 
-          setUserStacks(hydratedStacks);
+          if (stackData) {
+            console.log("[DEBUG] Stack existante trouvée, ID:", stackData.id);
+            const hydratedStack = {
+              ...stackData,
+              technologies: hydrateTechnologies(stackData.technologies || []),
+            };
+            setUserStack(hydratedStack);
+          } else {
+            console.log(
+              "[DEBUG] Aucune stack trouvée, création d'une stack par défaut"
+            );
+            // Créer une stack par défaut si l'utilisateur n'en a pas
+            try {
+              const createResponse = await fetch("/api/tech/stack", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  technologies: [],
+                }),
+              });
 
-          if (activeStackId === null && hydratedStacks.length > 0) {
-            setActiveStackId(hydratedStacks[0].id);
-          } else if (hydratedStacks.length === 0) {
-            setActiveStackId(null);
+              if (createResponse.ok) {
+                const newStackData = await createResponse.json();
+                console.log(
+                  "[DEBUG] Nouvelle stack créée avec succès, ID:",
+                  newStackData.id
+                );
+                const hydratedNewStack = {
+                  ...newStackData,
+                  technologies: hydrateTechnologies(
+                    newStackData.technologies || []
+                  ),
+                };
+                setUserStack(hydratedNewStack);
+              } else {
+                console.error(
+                  "[ERROR] Échec de création de la stack par défaut"
+                );
+                toast.error("Impossible de créer votre grille.");
+              }
+            } catch (createError) {
+              console.error(
+                "[ERROR] Exception lors de la création de la stack:",
+                createError
+              );
+              toast.error("Erreur lors de la création de votre grille.");
+            }
           }
         } catch (error) {
-          toast.error("Unable to load your stacks.");
-          setUserStacks([]);
-          setActiveStackId(null);
+          console.error("[ERROR] Impossible de charger la grille:", error);
+          toast.error("Impossible de charger votre grille.");
+
+          // Tentative de création d'une grille même en cas d'erreur de chargement
+          try {
+            const createResponse = await fetch("/api/tech/stack", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                technologies: [],
+              }),
+            });
+
+            if (createResponse.ok) {
+              const newStackData = await createResponse.json();
+              console.log(
+                "[DEBUG] Nouvelle stack créée après échec de chargement, ID:",
+                newStackData.id
+              );
+              const hydratedNewStack = {
+                ...newStackData,
+                technologies: hydrateTechnologies(
+                  newStackData.technologies || []
+                ),
+              };
+              setUserStack(hydratedNewStack);
+            }
+          } catch (createError) {
+            console.error(
+              "[ERROR] Échec de la tentative de récupération:",
+              createError
+            );
+            setUserStack(undefined);
+          }
         } finally {
           setIsLoadingInitialData(false);
         }
       } else if (!isLoadingSession && !session) {
         setIsLoadingInitialData(false);
-        setUserStacks([]);
-        setActiveStackId(null);
+        setUserStack(undefined);
       }
     };
 
     if (!isLoadingSession) {
-      fetchUserStacks();
+      fetchUserStack();
     }
   }, [isLoadingSession, session, hydrateTechnologies]);
 
-  const handleCreateNewStack = async (stackName: string) => {
-    if (!session?.user?.id) {
-      toast.error("You must be logged in to create a stack.");
-      return;
-    }
-    if (userStacks.length >= 5) {
-      toast.error("You cannot have more than 5 stacks.");
-      return;
-    }
-    try {
-      const response = await fetch("/api/tech/stack", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: stackName,
-          technologies: [],
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Error while creating the stack");
-      }
-      const newStackData = await response.json();
-      const hydratedNewStack: UserStack = {
-        ...newStackData,
-        technologies: hydrateTechnologies(newStackData.technologies || []),
-      };
-
-      setUserStacks((prevStacks) => [...prevStacks, hydratedNewStack]);
-      setActiveStackId(hydratedNewStack.id);
-      toast.success(`Stack '${hydratedNewStack.name}' created successfully!`);
-    } catch (error) {
-      toast.error((error as Error).message || "Unable to create the stack.");
-    }
-  };
-
-  const handleDeleteStack = async (stackId: number) => {
-    if (!session?.user?.id) {
-      toast.error("You must be logged in to delete a stack.");
-      return;
-    }
-    setStackToDelete(stackId);
-    setIsDeleteDialogOpen(true);
-  };
-
-  const confirmDeleteStack = async () => {
-    if (stackToDelete === null) return;
-
-    try {
-      const response = await fetch(
-        `/api/tech/stack?id=${stackToDelete}&stackId=true`,
-        {
-          method: "DELETE",
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Error while deleting the stack");
-      }
-
-      const updatedStacks = userStacks.filter(
-        (stack) => stack.id !== stackToDelete
-      );
-      setUserStacks(updatedStacks);
-
-      if (activeStackId === stackToDelete) {
-        setActiveStackId(updatedStacks.length > 0 ? updatedStacks[0].id : null);
-      }
-
-      toast.success("Stack deleted successfully!");
-    } catch (error) {
-      toast.error((error as Error).message || "Unable to delete the stack.");
-    } finally {
-      setIsDeleteDialogOpen(false);
-      setStackToDelete(null);
-    }
-  };
-
   const handleAddTech = async (newTechFromForm: Tech) => {
-    if (!activeStack) {
-      toast.error("Please select a stack to add a technology.");
+    if (!userStack) {
+      toast.error("Impossible d'ajouter une technologie sans grille.");
       return;
     }
 
-    const updatedTechnologies = [...activeStack.technologies, newTechFromForm];
-    const updatedStack = { ...activeStack, technologies: updatedTechnologies };
+    const newOrder =
+      userStack.technologies.length > 0
+        ? Math.max(...userStack.technologies.map((t: Tech) => t.order || 0)) + 1
+        : 0;
 
-    // Optimistic update (optionnel)
-    setUserStacks((prevStacks) =>
-      prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
-    );
+    const techToAddWithOrder = { ...newTechFromForm, order: newOrder };
 
-    // Synchroniser avec la version serveur (pour avoir les bons ids)
-    const savedStack = await saveActiveStack(updatedStack);
+    const updatedTechnologies = [...userStack.technologies, techToAddWithOrder];
+    const updatedStack = { ...userStack, technologies: updatedTechnologies };
+
+    setUserStack(updatedStack); // Optimistic update
+
+    const savedStack = await saveUserStack(updatedStack);
     if (savedStack) {
-      setUserStacks((prevStacks) =>
-        prevStacks.map((s) => (s.id === savedStack.id ? { ...savedStack } : s))
-      );
-    }
-  };
-
-  const handleRemoveTech = async (stackTechnologyItemId: string) => {
-    if (!activeStack) return;
-    try {
-      const response = await fetch(
-        `/api/tech/stack?id=${stackTechnologyItemId}`,
-        { method: "DELETE" }
-      );
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Error while deleting");
-      }
-
-      const updatedTechnologies = activeStack.technologies.filter(
-        (tech) => tech.id !== stackTechnologyItemId
-      );
-      const updatedStack = {
-        ...activeStack,
-        technologies: updatedTechnologies,
-      };
-      setUserStacks((prevStacks) =>
-        prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
-      );
-      toast.success("Technology removed from the active stack!");
-    } catch (error) {
+      setUserStack(savedStack); // Mettre à jour avec les données du serveur
+    } else {
+      // Revert optimistic update if save failed
+      setUserStack(userStack);
       toast.error(
-        (error as Error).message || "Unable to delete the technology."
+        "Impossible de sauvegarder la nouvelle technologie, veuillez réessayer."
       );
     }
   };
 
-  const handleActiveStackNameChange = (newName: string) => {
-    if (!activeStack) return;
+  const handleRemoveTech = async (
+    itemIdToRemove: string,
+    showSuccessToast: boolean = true
+  ) => {
+    if (!userStack) return;
 
-    const updatedStack = { ...activeStack, name: newName };
-    setUserStacks((prevStacks) =>
-      prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
+    // Si c'est la carte Stripe, on déconnecte Stripe entièrement
+    if (itemIdToRemove === STRIPE_CARD_ID) {
+      await handleDisconnectStripe(); // handleDisconnectStripe s'occupera de la sauvegarde et du toast
+      return; // Sortir tôt, car handleDisconnectStripe gère la suite
+    }
+
+    // Logique pour les autres technologies
+    let updatedStack = { ...userStack };
+    updatedStack.technologies = userStack.technologies.filter(
+      (tech: Tech) => tech.id !== itemIdToRemove
     );
-    saveActiveStack(updatedStack);
-  };
+    updatedStack.technologies = updatedStack.technologies.map(
+      (tech: Tech, index: number) => ({
+        ...tech,
+        order: index,
+      })
+    );
 
-  const handleProfileDescriptionChange = async (newDescription: string) => {
-    setUserProfileDescription(newDescription);
-    setIsEditingProfile(false);
+    setUserStack(updatedStack); // Optimistic update
 
-    if (!session?.user?.id) {
-      toast.error("You must be logged in to save your description.");
-      return;
-    }
+    const savedStack = await saveUserStack(updatedStack, false);
 
-    try {
-      const response = await fetch("/api/user/profile", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ description: newDescription }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.error || "Error while saving the description."
-        );
+    if (savedStack) {
+      setUserStack(savedStack);
+      if (showSuccessToast) {
+        toast.success("Technology deleted.");
       }
-      toast.success("Profile description saved!");
-    } catch (error) {
-      toast.error(
-        (error as Error).message || "Unable to save the description."
-      );
+    } else {
+      setUserStack(userStack);
+      toast.error("Unable to update the grid after deletion.");
     }
   };
 
   const handleUpdateTech = (id: string, updates: Partial<Tech>) => {
-    if (!activeStack) return;
+    if (!userStack) return;
 
-    const updatedTechnologies = activeStack.technologies.map((tech) =>
+    const updatedTechnologies = userStack.technologies.map((tech: Tech) =>
       tech.id === id ? { ...tech, ...updates } : tech
     );
-    const updatedStack = { ...activeStack, technologies: updatedTechnologies };
+    const updatedStack = { ...userStack, technologies: updatedTechnologies };
 
     console.log("[DEBUG] handleUpdateTech - id:", id, "updates:", updates);
-    setUserStacks((prevStacks) =>
-      prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
-    );
+    setUserStack(updatedStack);
 
-    // Si on met à jour les stars ou forks, on persiste
+    // Si on met à jour les stars, forks ou gridSpan, on persiste
     if (
       typeof updates.stars !== "undefined" ||
-      typeof updates.forks !== "undefined"
+      typeof updates.forks !== "undefined" ||
+      typeof updates.gridSpan !== "undefined"
     ) {
       console.log(
-        "[DEBUG] handleUpdateTech - saveActiveStack called with:",
+        "[DEBUG] handleUpdateTech - saveUserStack called with:",
         updatedStack
       );
-      saveActiveStack(updatedStack);
+      saveUserStack(updatedStack);
     }
   };
 
-  const handleReorderTechs = (reorderedTechs: Tech[]) => {
-    if (!activeStack) return;
+  const handleReorderTechs = (reorderedTechsInput: Tech[]) => {
+    if (!userStack) return;
 
-    const updatedStack = { ...activeStack, technologies: reorderedTechs };
-
-    setUserStacks((prevStacks) =>
-      prevStacks.map((s) => (s.id === activeStackId ? updatedStack : s))
+    // Mettre à jour la propriété 'order' de chaque tech en fonction de sa nouvelle position
+    const finalReorderedTechs = reorderedTechsInput.map(
+      (tech: Tech, index: number) => ({
+        ...tech,
+        order: index, // Assigner le nouvel ordre basé sur l'index
+      })
     );
-    saveActiveStack(updatedStack, false);
+
+    const updatedStack = { ...userStack, technologies: finalReorderedTechs };
+
+    setUserStack(updatedStack);
+    // Sauvegarder le stack avec les ordres mis à jour.
+    // Le showSuccessToast est false car le DND est une opération fluide, pas besoin de toast à chaque fois.
+    saveUserStack(updatedStack, false);
   };
 
   // Fonction pour charger manuellement la description de l'utilisateur
@@ -1086,8 +1079,7 @@ export default function Dashboard() {
       const userData = await response.json();
 
       if (userData.description) {
-        setUserProfileDescription(userData.description);
-        setEditingDescription(userData.description);
+        setProfileDescription(userData.description);
       }
     } catch (error) {
       // Silently fail
@@ -1101,6 +1093,7 @@ export default function Dashboard() {
     }
   }, [session?.user?.id]);
 
+  // >>> BLOC DES FONCTIONS STRIPE INSÉRÉ ICI <<<
   // Fonction pour la connexion Stripe
   const handleConnectStripe = async () => {
     setIsConnectingStripe(true);
@@ -1108,7 +1101,7 @@ export default function Dashboard() {
   };
 
   // Nouvelle fonction pour récupérer le MRR total du compte
-  const handleFetchStripeAccountMrr = async () => {
+  const handleFetchStripeAccountMrr = useCallback(async () => {
     setIsLoadingStripeAccountMrr(true);
     try {
       const response = await fetch("/api/stripe/mrr");
@@ -1118,7 +1111,8 @@ export default function Dashboard() {
       }
       const data = await response.json();
       setStripeAccountMrr(data);
-      toast.success("MRR du compte Stripe récupéré avec succès !");
+      // Le toast de succès ici peut être redondant si checkStripeStatus s'en charge aussi.
+      // toast.success("MRR du compte Stripe récupéré avec succès !");
     } catch (error: any) {
       console.error(
         "Erreur lors de la récupération du MRR du compte Stripe:",
@@ -1131,9 +1125,9 @@ export default function Dashboard() {
     } finally {
       setIsLoadingStripeAccountMrr(false);
     }
-  };
+  }, [setIsLoadingStripeAccountMrr, setStripeAccountMrr]); // Dépendances: fonctions setState
 
-  const handleDisconnectStripe = async () => {
+  const handleDisconnectStripe = useCallback(async () => {
     setIsDisconnectingStripe(true);
     try {
       const response = await fetch("/api/stripe/disconnect", {
@@ -1143,291 +1137,169 @@ export default function Dashboard() {
         const errorData = await response.json();
         throw new Error(errorData.error || "Échec de la déconnexion de Stripe");
       }
-      toast.success("Compte Stripe déconnecté avec succès.");
+
       setHasStripeConnection(false);
       setStripeAccountMrr(null);
+
+      let finalStackToSave = userStack;
+
+      // Retirer la carte Stripe de la grille si elle y est et sauvegarder
+      if (
+        userStack &&
+        userStack.technologies.some((t: Tech) => t.id === STRIPE_CARD_ID)
+      ) {
+        console.log(
+          "[DEBUG] DisconnectStripe - Hiding StripeCard from userStack"
+        );
+        let updatedStack = { ...userStack };
+        updatedStack.technologies = userStack.technologies.filter(
+          (tech: Tech) => tech.id !== STRIPE_CARD_ID
+        );
+        updatedStack.technologies = updatedStack.technologies.map(
+          (tech: Tech, index: number) => ({
+            ...tech,
+            order: index,
+          })
+        );
+
+        setUserStack(updatedStack); // Optimistic update UI
+        finalStackToSave = updatedStack;
+      }
+
+      if (finalStackToSave) {
+        await saveUserStack(finalStackToSave, false); // Sauvegarder l'état sans la carte Stripe
+      }
+
+      toast.success("Stripe account disconnected and card hidden.");
     } catch (error: any) {
-      console.error("Erreur lors de la déconnexion de Stripe:", error);
-      toast.error(
-        error.message || "Impossible de déconnecter le compte Stripe."
-      );
+      console.error("Error disconnecting Stripe:", error);
+      toast.error(error.message || "Unable to disconnect Stripe account.");
     } finally {
       setIsDisconnectingStripe(false);
     }
-  };
+  }, [
+    userStack,
+    saveUserStack,
+    setHasStripeConnection,
+    setStripeAccountMrr,
+    setIsDisconnectingStripe,
+  ]); // Dépendances
+
+  // Fonction pour ajouter/afficher la carte Stripe
+  const handleShowStripeCardInGrid = useCallback(async () => {
+    if (!userStack) {
+      toast.error("Impossible d'ajouter la carte Stripe sans grille.");
+      return;
+    }
+    if (userStack.technologies.find((t: Tech) => t.id === STRIPE_CARD_ID)) {
+      toast.info("La carte Stripe est déjà dans la grille.");
+      return;
+    }
+
+    const newOrder =
+      userStack.technologies.length > 0
+        ? Math.max(...userStack.technologies.map((t: Tech) => t.order || 0)) + 1
+        : 0;
+
+    // Créer un objet Tech pour la carte Stripe
+    const stripeTech: Tech = {
+      id: STRIPE_CARD_ID,
+      name: "Stripe MRR", // Nom par défaut
+      isStripeCard: true,
+      // Icône SVG pour Stripe
+      icon: (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.4764 7.45119C13.4764 6.54994 14.1659 6.12994 15.2364 6.12994C16.6114 6.12994 18.3889 6.63244 19.7239 7.49994V2.93744C18.2699 2.32494 16.8464 2.06244 15.2364 2.06244C11.3764 2.06244 8.77637 4.24494 8.77637 7.67994C8.77637 13.2349 16.2464 12.141 16.2464 14.8575C16.2464 15.9975 15.3539 16.4175 14.2464 16.4175C12.7414 16.4175 10.7764 15.7485 9.30137 14.7524V19.4324C10.9364 20.1675 12.5939 20.4999 14.2464 20.4999C18.1954 20.4999 20.9989 18.3749 20.9989 14.8575C20.9989 8.89119 13.4764 10.1625 13.4764 7.45119Z"
+            fill="#635BFF"
+          />
+        </svg>
+      ),
+      color: "#635BFF", // Couleur par défaut
+      gridSpan: { cols: 1, rows: 1 }, // Dimensions par défaut
+      order: newOrder,
+      category: "API",
+      technologyId: STRIPE_CARD_ID,
+    };
+
+    const updatedTechnologies = [...userStack.technologies, stripeTech].sort(
+      (a, b) => (a.order || 0) - (b.order || 0)
+    );
+    const updatedStack = {
+      ...userStack,
+      technologies: updatedTechnologies,
+    };
+
+    setUserStack(updatedStack); // Optimistic update
+
+    const savedStack = await saveUserStack(updatedStack, false);
+    if (savedStack) {
+      setUserStack(savedStack);
+      toast.success("Carte Stripe ajoutée à la grille.");
+    } else {
+      // Revert
+      setUserStack(userStack);
+      toast.error("Impossible d'ajouter la carte Stripe.");
+    }
+  }, [userStack, saveUserStack]); // Dépendances
 
   // Nouveau composant ProfileHeader
-  const ProfileHeader = () => (
-    <div className="flex flex-col items-center justify-center pb-12 text-center pt-24">
-      {session?.user?.image && (
-        <div className="relative w-28 h-28 mb-5 shadow-lg rounded-full">
-          <Image
-            src={session.user.image}
-            alt={session?.user?.name || "Avatar utilisateur"}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-full"
-          />
-        </div>
-      )}
-      <h1 className="text-3xl font-bold text-[var(--foreground)] tracking-tight">
-        {session?.user?.name || "Utilisateur anonyme"}
-      </h1>
-      {/* Vous pouvez ajouter une bio ou d'autres infos ici si disponibles */}
-      {/* <p className="text-md text-[var(--muted-foreground)] mt-2">Bio de l'utilisateur...</p> */}
-    </div>
-  );
-
-  // Composant StacksSelector modernisé
-  const StacksSelector = () => {
-    const [newStackName, setNewStackName] = useState("");
-    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-
-    const openCreateModal = () => {
-      if (isStackEditMode) return;
-      setNewStackName("");
-      setIsCreateModalOpen(true);
-    };
-
-    const closeCreateModal = () => {
-      setIsCreateModalOpen(false);
-    };
-
-    useEffect(() => {
-      if (isStackEditMode && isCreateModalOpen) {
-        closeCreateModal();
-      }
-    }, [isStackEditMode, isCreateModalOpen]);
-
-    const handleCreateAndClose = async () => {
-      if (newStackName.trim()) {
-        try {
-          await handleCreateNewStack(newStackName.trim());
-          closeCreateModal();
-        } catch (error) {
-          // L'erreur est gérée par le toast dans handleCreateNewStack
-        }
-      }
-    };
+  const ProfileHeader = () => {
+    const name = session?.user?.name;
+    const image = session?.user?.image;
+    const description = profileDescription;
+    const createdAt = session?.user?.createdAt;
 
     return (
-      <>
-        <div className="flex flex-col sm:flex-row sm:justify-end gap-3 mb-6 px-4 sm:px-0">
-          <Button
-            variant={isStackEditMode ? "secondary" : "outline"}
-            onClick={() => setIsStackEditMode(!isStackEditMode)}
-            className="w-full sm:w-auto text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
-          >
-            {isStackEditMode ? "Done Editing" : "Edit Grid"}
-          </Button>
-
-          {/* Carte pour créer une nouvelle stack transformée en Button */}
-          {!isStackEditMode && (
-            <Button
-              variant="outline"
-              onClick={openCreateModal}
-              className="w-full sm:w-auto"
-              disabled={userStacks.length >= 5 || isStackEditMode}
-              title={
-                userStacks.length >= 5
-                  ? "Limite de 5 stacks atteinte"
-                  : isStackEditMode
-                  ? "Finish editing stacks to add a new one"
-                  : "Create a new grid"
-              }
-            >
-              + New Grid
-            </Button>
+      <div className="w-full max-w-4xl mx-auto p-4 md:p-6 bg-[var(--card)] rounded-xl mb-8 border border-[var(--border)] mask-b-from-30%">
+        <div className="flex flex-col md:flex-row items-center gap-6">
+          {image && (
+            <Image
+              src={image}
+              alt={name || "User avatar"}
+              width={128}
+              height={128}
+              className="rounded-full border-4 border-[var(--primary-foreground)]"
+            />
           )}
-        </div>
-        <div className="flex flex-wrap justify-center items-center gap-4 px-4 py-4">
-          {userStacks.map((stack) => (
-            <div key={stack.id} className="relative group">
-              {isStackEditMode ? (
-                <div
-                  className={`
-                     px-3 py-1 rounded-lg border-1 flex items-center gap-2
-                    text-[var(--foreground)] bg-[var(--card)] border-[var(--border)]
-                    ${
-                      activeStackId === stack.id
-                        ? "border-[var(--primary)]/50 border-dashed bg-[var(--accent)]/70"
-                        : ""
-                    }
-                  `}
-                >
-                  <span
-                    onClick={() =>
-                      !isStackEditMode && setActiveStackId(stack.id)
-                    }
-                    className={`${
-                      !isStackEditMode ? "cursor-pointer" : "cursor-default"
-                    } hover:text-[var(--primary)] transition-colors`}
-                  >
-                    {stack.name}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteStack(stack.id)}
-                    className="p-0 rounded-full bg-red-500/10 hover:bg-red-500/20 text-red-500/80 hover:text-red-500 transition-colors flex items-center justify-center cursor-pointer"
-                    aria-label={`Delete stack ${stack.name}`}
-                    style={{ width: "24px", height: "24px" }}
-                  >
-                    <XIcon size={14} />
-                  </button>
+          <div className="flex-grow text-center md:text-left">
+            <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-foreground)] flex items-center gap-3">
+              {name || "Anonymous User"}
+              {hasStripeConnection && (
+                <div className="flex items-center justify-center hidden md:flex ml-3 mt-1 bg-[#635BFF]/40 py-0.5 px-1 rounded-sm">
+                  <Stripe className="my-auto" />
                 </div>
-              ) : (
-                <ContextMenu>
-                  <ContextMenuTrigger asChild>
-                    <button
-                      onClick={() => setActiveStackId(stack.id)}
-                      className={`
-                        px-4 py-1 rounded-lg
-                        border-1 
-                        ${
-                          activeStackId === stack.id
-                            ? " text-[var(--foreground)] border-[var(--primary)]/30 border-dashed bg-[var(--accent)]/60"
-                            : "hover:bg-[var(--accent)]/40 cursor-pointer"
-                        }
-                      `}
-                    >
-                      <span className="text-[var(--foreground)]">
-                        {stack.name}
-                      </span>
-                    </button>
-                  </ContextMenuTrigger>
-                  <ContextMenuContent>
-                    <ContextMenuItem
-                      variant="destructive"
-                      onClick={() => handleDeleteStack(stack.id)}
-                      className="cursor-pointer"
-                    >
-                      Delete
-                    </ContextMenuItem>
-                    <ContextMenuSeparator />
-                    <ContextMenuItem
-                      onClick={() => {
-                        const newNamePrompt = prompt(
-                          "New name for this grid:",
-                          stack.name
-                        );
-                        if (
-                          newNamePrompt &&
-                          newNamePrompt.trim() &&
-                          newNamePrompt !== stack.name
-                        ) {
-                          saveActiveStack?.({
-                            ...stack,
-                            name: newNamePrompt.trim(),
-                          });
-                        }
-                      }}
-                      className="cursor-pointer"
-                    >
-                      Rename
-                    </ContextMenuItem>
-                  </ContextMenuContent>
-                </ContextMenu>
               )}
-            </div>
-          ))}
-        </div>
-
-        {/* Modal pour créer une nouvelle stack */}
-        {isCreateModalOpen && userStacks.length < 5 && (
-          <div
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-            onClick={closeCreateModal}
-          >
-            <div
-              className="bg-[var(--card)] p-6 sm:p-8 rounded-xl mx-auto max-w-sm border border-[var(--border)]"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3 className="text-2xl font-semibold text-[var(--foreground)] mb-6 text-center">
-                Create a New Stack
-              </h3>
-              <input
-                type="text"
-                value={newStackName}
-                onChange={(e) => setNewStackName(e.target.value)}
-                placeholder="Enter stack name..."
-                className="p-3 rounded-md bg-[var(--input)] border border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] mb-6 focus:ring-2 focus:ring-[var(--primary)] focus:border-[var(--primary)] outline-none"
-                autoFocus
-                onKeyPress={(e) => e.key === "Enter" && handleCreateAndClose()}
-              />
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button
-                  onClick={handleCreateAndClose}
-                  className="w-full sm:flex-1 bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[var(--primary)]/90 py-3 text-base"
-                  disabled={!newStackName.trim()}
-                >
-                  Create
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-        {isCreateModalOpen && userStacks.length >= 5 && (
-          <div
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-            onClick={closeCreateModal}
-          >
-            <div
-              className="bg-[var(--card)] p-6 sm:p-8 rounded-xl mx-auto max-w-sm border border-[var(--border)] text-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3 className="text-xl font-semibold text-[var(--foreground)] mb-4">
-                Limite atteinte
-              </h3>
-              <p className="text-[var(--muted-foreground)] mb-4">
-                Vous ne pouvez pas créer plus de 5 stacks.
+            </h1>
+            {description && (
+              <p className="text-md text-[var(--muted-foreground)] mt-2">
+                {description}
               </p>
-              <Button
-                onClick={closeCreateModal}
-                className="w-full bg-[var(--primary)] text-[var(--primary-foreground)] mt-2"
-              >
-                Fermer
-              </Button>
-            </div>
+            )}
+            {createdAt && (
+              <p className="text-xs text-[var(--muted-foreground)] mt-1">
+                Joined: {new Date(createdAt).toLocaleDateString()}
+              </p>
+            )}
           </div>
-        )}
-      </>
+        </div>
+      </div>
     );
-  };
-
-  // Ajouter cette fonction avant le BentoGridSection
-  const calculateTotalMrr = (technologies: Tech[]) => {
-    // Si aucun projet n'a de MRR, retourner undefined
-    const projectsWithMrr = technologies.filter((tech) =>
-      Boolean((tech as any).mrr)
-    );
-    if (projectsWithMrr.length === 0) return undefined;
-
-    // Calculer le MRR total et déterminer la devise (on utilise la première rencontrée)
-    let totalMrr = 0;
-    let currency = "";
-
-    projectsWithMrr.forEach((tech) => {
-      if ((tech as any).mrr) {
-        totalMrr += (tech as any).mrr;
-        if (!currency && (tech as any).mrrCurrency) {
-          currency = (tech as any).mrrCurrency;
-        }
-      }
-    });
-
-    return { total: totalMrr, currency: currency || "EUR" };
   };
 
   const BentoGridSection = ({
-    activeStack,
     technologies,
     isLoadingInitialData,
     handleAddTech,
     sessionUserId,
     handleRemoveTech,
     handleUpdateTech,
-    handleReorderTechs,
-    saveActiveStack,
     hasStripeConnection,
     isConnectingStripe,
     handleConnectStripe,
@@ -1436,16 +1308,14 @@ export default function Dashboard() {
     handleFetchStripeAccountMrr,
     isDisconnectingStripe,
     handleDisconnectStripe,
+    handleShowStripeCardInGrid, // Prop passée
   }: {
-    activeStack: UserStack | undefined;
     technologies: Tech[];
     isLoadingInitialData: boolean;
     handleAddTech: (tech: Tech) => void;
     sessionUserId: string | undefined;
     handleRemoveTech: (id: string) => void;
     handleUpdateTech: (id: string, updates: Partial<Tech>) => void;
-    handleReorderTechs: (reorderedTechs: Tech[]) => void;
-    saveActiveStack?: (stack: UserStack) => Promise<any>;
     hasStripeConnection: boolean;
     isConnectingStripe: boolean;
     handleConnectStripe: () => void;
@@ -1454,15 +1324,20 @@ export default function Dashboard() {
     handleFetchStripeAccountMrr: () => void;
     isDisconnectingStripe: boolean;
     handleDisconnectStripe: () => void;
+    handleShowStripeCardInGrid: () => void; // Modifié: rendu non optionnel
   }) => {
     if (!sessionUserId) return null;
     // Limites de la grille
     const gridMax = { cols: 3, rows: 2 };
     // Limite à 5 lignes (3x5=15 emplacements max)
     // (On peut améliorer la logique pour empêcher le dépassement total si besoin)
+    console.log(
+      "[DEBUG BentoGridSection] props.hasStripeConnection:",
+      hasStripeConnection
+    );
     return (
       <>
-        {activeStack && (
+        {
           <div
             className={`relative w-full bg-[var(--card)] p-4 rounded-lg border border-[var(--border)] h-full flex flex-col ${
               isPageEditMode || isResizeMode
@@ -1475,7 +1350,9 @@ export default function Dashboard() {
               <h2 className="text-xs sm:text-base md:text-lg lg:text-2xl font-bold text-[var(--foreground)] text-center md:text-left break-words">
                 <span className="hidden sm:inline">Your Bento Grid. </span>
               </h2>
-              <div className="flex gap-2">
+              <div className="flex gap-2 items-center">
+                {" "}
+                {/* Ajout de items-center pour l'alignement vertical */}
                 <Button
                   variant={isPageEditMode ? "secondary" : "outline"}
                   onClick={() => {
@@ -1502,16 +1379,45 @@ export default function Dashboard() {
                   <AddTechForm
                     onAddTech={handleAddTech}
                     userId={sessionUserId}
+                    // Props pour Stripe (résout l'erreur linter)
+                    hasStripeConnection={hasStripeConnection}
+                    onConnectStripe={handleConnectStripe}
+                    onShowStripeInGrid={handleShowStripeCardInGrid}
                   />
                 </div>
+                {/* NOUVEAU BOUTON DE DÉCONNEXION STRIPE */}
+                {hasStripeConnection && (
+                  <Button
+                    variant="outline"
+                    onClick={handleDisconnectStripe}
+                    disabled={isDisconnectingStripe}
+                    className="text-red-500 hover:bg-red-500/10 border-red-500/50 hover:border-red-500 px-3 py-1 text-sm sm:px-4 sm:py-2 sm:text-base"
+                    title="Disconnect Stripe account"
+                  >
+                    {isDisconnectingStripe ? (
+                      <RefreshCw
+                        size={16}
+                        className="animate-spin mr-0 sm:mr-2"
+                      />
+                    ) : (
+                      <XIcon size={16} className="mr-0 sm:mr-2" />
+                    )}
+                    <span className="hidden sm:inline">Disconnect Stripe</span>
+                    <span className="sm:hidden">Disconnect</span>{" "}
+                    {/* Texte plus court pour mobile */}
+                  </Button>
+                )}
               </div>
             </div>
             {technologies.length === 0 &&
               !isLoadingInitialData &&
-              !hasStripeConnection && (
+              !hasStripeConnection &&
+              (!userStack ||
+                userStack.technologies.filter((t) => !t.isStripeCard).length ===
+                  0) && (
                 <div className="text-center py-12 flex-grow flex flex-col justify-center items-center">
                   <p className="text-[var(--muted-foreground)]">
-                    No technology in the stack "{activeStack.name}".
+                    No technology in the stack "{userStack?.name}".
                   </p>
                   <p className="text-[var(--muted-foreground)]">
                     Click "Add" to get started.
@@ -1527,17 +1433,7 @@ export default function Dashboard() {
                     strategy={rectSortingStrategy}
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {/* Carte Stripe toujours affichée pour permettre la connexion/déconnexion */}
-                      <StripeCard
-                        hasStripeConnection={hasStripeConnection}
-                        isConnectingStripe={isConnectingStripe}
-                        handleConnectStripe={handleConnectStripe}
-                        mrrData={stripeAccountMrr}
-                        onFetchMrr={handleFetchStripeAccountMrr}
-                        isFetchingMrr={isLoadingStripeAccountMrr}
-                        handleDisconnectStripe={handleDisconnectStripe}
-                        isDisconnectingStripe={isDisconnectingStripe}
-                      />
+                      {/* La carte Stripe est maintenant rendue via cette boucle si présente dans orderedTechIds */}
                       {orderedTechIds.map((id) => {
                         const tech = technologies.find((t) => t.id === id);
                         if (!tech) return null;
@@ -1547,11 +1443,21 @@ export default function Dashboard() {
                             tech={tech}
                             isPageEditMode={true}
                             isResizeMode={false}
-                            onRemoveTech={handleRemoveTech}
-                            onUpdateTech={(id, updates) => {
-                              handleUpdateTech(id, { ...updates });
-                            }}
+                            onUpdateTech={handleUpdateTech}
                             gridMax={gridMax}
+                            // Props Stripe passées à chaque SortableTechCard
+                            hasStripeConnection={hasStripeConnection}
+                            isConnectingStripe={isConnectingStripe}
+                            handleConnectStripe={handleConnectStripe}
+                            stripeAccountMrr={stripeAccountMrr}
+                            isLoadingStripeAccountMrr={
+                              isLoadingStripeAccountMrr
+                            }
+                            handleFetchStripeAccountMrr={
+                              handleFetchStripeAccountMrr
+                            }
+                            isDisconnectingStripe={isDisconnectingStripe}
+                            handleDisconnectStripe={handleDisconnectStripe}
                           />
                         );
                       })}
@@ -1564,17 +1470,7 @@ export default function Dashboard() {
                 </DndContext>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {/* Carte Stripe toujours affichée pour permettre la connexion/déconnexion */}
-                  <StripeCard
-                    hasStripeConnection={hasStripeConnection}
-                    isConnectingStripe={isConnectingStripe}
-                    handleConnectStripe={handleConnectStripe}
-                    mrrData={stripeAccountMrr}
-                    onFetchMrr={handleFetchStripeAccountMrr}
-                    isFetchingMrr={isLoadingStripeAccountMrr}
-                    handleDisconnectStripe={handleDisconnectStripe}
-                    isDisconnectingStripe={isDisconnectingStripe}
-                  />
+                  {/* La carte Stripe est maintenant rendue via cette boucle si présente dans orderedTechIds */}
                   {orderedTechIds.map((id) => {
                     const tech = technologies.find((t) => t.id === id);
                     if (!tech) return null;
@@ -1584,26 +1480,26 @@ export default function Dashboard() {
                         tech={tech}
                         isPageEditMode={false}
                         isResizeMode={isResizeMode}
-                        onRemoveTech={handleRemoveTech}
-                        onUpdateTech={(id, updates) => {
-                          handleUpdateTech(id, { ...updates });
-                        }}
+                        onUpdateTech={handleUpdateTech}
                         gridMax={gridMax}
+                        // Props Stripe passées à chaque SortableTechCard
+                        hasStripeConnection={hasStripeConnection}
+                        isConnectingStripe={isConnectingStripe}
+                        handleConnectStripe={handleConnectStripe}
+                        stripeAccountMrr={stripeAccountMrr}
+                        isLoadingStripeAccountMrr={isLoadingStripeAccountMrr}
+                        handleFetchStripeAccountMrr={
+                          handleFetchStripeAccountMrr
+                        }
+                        isDisconnectingStripe={isDisconnectingStripe}
+                        handleDisconnectStripe={handleDisconnectStripe}
                       />
                     );
                   })}
                 </div>
               ))}
           </div>
-        )}
-        {!activeStack && !isLoadingInitialData && (
-          <div className="text-center py-12 bg-[var(--card)] rounded-lg shadow h-full flex flex-col justify-center items-center">
-            <p className="text-[var(--muted-foreground)]">
-              Please select a stack to view its technologies or create a new
-              one.
-            </p>
-          </div>
-        )}
+        }
       </>
     );
   };
@@ -1626,6 +1522,12 @@ export default function Dashboard() {
     );
   }
 
+  console.log(
+    "[DEBUG Dashboard] hasStripeConnection:",
+    hasStripeConnection,
+    "isCheckingStripeConnection:",
+    isCheckingStripeConnection
+  );
   return (
     <>
       {/* AJOUT DE SUSPENSE AUTOUR DU NOUVEAU COMPOSANT */}
@@ -1633,22 +1535,18 @@ export default function Dashboard() {
         <StripeCallbackHandler />
       </Suspense>
 
-      <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl">
+      <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] mx-auto max-w-4xl pt-24">
         <div className="flex-grow">
           <div className="mx-auto py-2 md:py-8 px-4 md:px-0">
             <ProfileHeader />
-            <StacksSelector />
             <div className="mt-8">
               <BentoGridSection
-                activeStack={activeStack}
                 technologies={technologies}
                 isLoadingInitialData={isLoadingInitialData}
                 handleAddTech={handleAddTech}
                 sessionUserId={session?.user?.id}
                 handleRemoveTech={handleRemoveTech}
                 handleUpdateTech={handleUpdateTech}
-                handleReorderTechs={handleReorderTechs}
-                saveActiveStack={saveActiveStack}
                 hasStripeConnection={hasStripeConnection}
                 isConnectingStripe={isConnectingStripe}
                 handleConnectStripe={handleConnectStripe}
@@ -1657,32 +1555,11 @@ export default function Dashboard() {
                 handleFetchStripeAccountMrr={handleFetchStripeAccountMrr}
                 isDisconnectingStripe={isDisconnectingStripe}
                 handleDisconnectStripe={handleDisconnectStripe}
+                handleShowStripeCardInGrid={handleShowStripeCardInGrid}
               />
             </div>
           </div>
         </div>
-        <AlertDialog
-          open={isDeleteDialogOpen}
-          onOpenChange={setIsDeleteDialogOpen}
-        >
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your
-                stack and remove your data from our servers.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel onClick={() => setIsDeleteDialogOpen(false)}>
-                Cancel
-              </AlertDialogCancel>
-              <AlertDialogAction onClick={confirmDeleteStack}>
-                Continue
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
       </div>
     </>
   );

@@ -5,11 +5,14 @@ import { Button } from "@/components/ui/button";
 import { type Tech } from "@/components/tech-stack/tech-stack-grid";
 import { allTechnologies } from "@/components/tech-stack/tech-data";
 import Image from "next/image";
-import { ExternalLink, RefreshCw } from "lucide-react";
+import { ExternalLink, RefreshCw, CreditCard, Share2 } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-import GitHubLogo from "@/components/logo-card";
+import GitHubLogo, { Stripe } from "@/components/logo-card";
 import { useParams } from "next/navigation";
 import { LoadingSkeleton } from "@/components/ui/skeleton";
+
+const STRIPE_CARD_ID = "internal_stripe_card"; // Assurez-vous que c'est le même ID que sur le dashboard
+
 // --- Interfaces pour les données du profil ---
 interface ProfileUser {
   id: string;
@@ -18,6 +21,8 @@ interface ProfileUser {
   image: string | null;
   description: string | null;
   createdAt: string | null;
+  hasStripeConnection?: boolean;
+  shareCount?: number;
 }
 
 export interface UserStack {
@@ -90,13 +95,31 @@ function TechDisplayCard({
           {tech.name}
         </span>
       </div>
-      {tech.description && (
-        <div
-          className={`text-xs text-[var(--muted-foreground)] mt-1 relative z-10 flex-grow`}
-        >
-          {tech.description}
+
+      {tech.isStripeCard && tech.mrr !== undefined && tech.mrrCurrency ? (
+        <div className="relative z-10 flex-grow w-full flex flex-col justify-center">
+          <span className="text-3xl font-bold text-[var(--text-foreground)]">
+            {(tech.mrr / 100).toLocaleString("fr-FR", {
+              style: "currency",
+              currency: tech.mrrCurrency.toUpperCase(),
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>
+          <span className="text-xs text-[var(--muted-foreground)]">
+            MRR Total
+          </span>
         </div>
+      ) : (
+        tech.description && (
+          <div
+            className={`text-xs text-[var(--muted-foreground)] mt-1 relative z-10 flex-grow`}
+          >
+            {tech.description}
+          </div>
+        )
       )}
+
       {isGithubProject &&
         (tech.stars !== undefined || tech.forks !== undefined) && (
           <div className="flex gap-4 items-center mt-auto pt-2 text-xs text-[var(--muted-foreground)] relative z-10 self-start">
@@ -139,6 +162,9 @@ export default function UserProfilePage() {
   const [activeStackId, setActiveStackId] = useState<number | null>(null);
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentShareCount, setCurrentShareCount] = useState<
+    number | undefined
+  >(undefined);
 
   const activeStack = userStacks.find((stack) => stack.id === activeStackId);
   const technologies = activeStack?.technologies || [];
@@ -150,13 +176,16 @@ export default function UserProfilePage() {
       rawTechs
     );
     return rawTechs.map((rawTech, index) => {
+      const isStripe =
+        rawTech.id === STRIPE_CARD_ID ||
+        rawTech.technologyId === STRIPE_CARD_ID;
       console.log(
-        `[Profile Page] Processing rawTech (${rawTech.name || "No Name"}):`,
+        `[Profile Page] Processing rawTech (${rawTech.name || "No Name"}, ID: ${
+          rawTech.id
+        }, TechID: ${rawTech.technologyId}, isStripe: ${isStripe}):`,
         {
           isProject: rawTech.isProject,
           url: rawTech.url,
-          id: rawTech.id,
-          technologyId: rawTech.technologyId,
         }
       );
 
@@ -165,7 +194,23 @@ export default function UserProfilePage() {
       const url = rawTech.url || undefined;
       const favicon = rawTech.favicon || undefined;
 
-      if (isProject) {
+      if (isStripe) {
+        // Icône spécifique pour Stripe
+        icon = (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.4764 7.45119C13.4764 6.54994 14.1659 6.12994 15.2364 6.12994C16.6114 6.12994 18.3889 6.63244 19.7239 7.49994V2.93744C18.2699 2.32494 16.8464 2.06244 15.2364 2.06244C11.3764 2.06244 8.77637 4.24494 8.77637 7.67994C8.77637 13.2349 16.2464 12.141 16.2464 14.8575C16.2464 15.9975 15.3539 16.4175 14.2464 16.4175C12.7414 16.4175 10.7764 15.7485 9.30137 14.7524V19.4324C10.9364 20.1675 12.5939 20.4999 14.2464 20.4999C18.1954 20.4999 20.9989 18.3749 20.9989 14.8575C20.9989 8.89119 13.4764 10.1625 13.4764 7.45119Z"
+              fill="#635BFF"
+            />
+          </svg>
+        );
+      } else if (isProject) {
         if (
           url &&
           typeof url === "string" &&
@@ -210,18 +255,21 @@ export default function UserProfilePage() {
       return {
         id: String(rawTech.id),
         name: rawTech.name || "Unnamed Item",
-        color: rawTech.color || "#808080",
+        color: rawTech.color || (isStripe ? "#635BFF" : "#808080"),
         icon: icon,
         technologyId: rawTech.technologyId,
         category: rawTech.category,
         gridSpan: gridSpan,
         order: rawTech.order ?? index,
         isProject: isProject,
+        isStripeCard: isStripe,
         favicon: favicon,
         url: url,
         description: rawTech.description,
         stars: rawTech.stars,
         forks: rawTech.forks,
+        mrr: rawTech.mrr,
+        mrrCurrency: rawTech.mrrCurrency,
       } as Tech;
     });
   }, []);
@@ -247,19 +295,20 @@ export default function UserProfilePage() {
           );
         }
         const data: PublicProfileData = await response.json();
-
         setProfileData(data);
+        setCurrentShareCount(data.user.shareCount);
+        if (data.stacks && data.stacks.length > 0) {
+          const hydratedStacks = (data.stacks || []).map((stack) => ({
+            ...stack,
+            technologies: hydrateTechnologies(stack.technologies || []),
+          }));
+          setUserStacks(hydratedStacks);
 
-        const hydratedStacks = (data.stacks || []).map((stack) => ({
-          ...stack,
-          technologies: hydrateTechnologies(stack.technologies || []),
-        }));
-        setUserStacks(hydratedStacks);
-
-        if (hydratedStacks.length > 0) {
-          setActiveStackId(hydratedStacks[0].id);
-        } else {
-          setActiveStackId(null);
+          if (hydratedStacks.length > 0) {
+            setActiveStackId(hydratedStacks[0].id);
+          } else {
+            setActiveStackId(null);
+          }
         }
       } catch (err) {
         setError((err as Error).message);
@@ -270,63 +319,82 @@ export default function UserProfilePage() {
     fetchPublicProfileData();
   }, [userId, hydrateTechnologies]);
 
-  const ProfileHeader = () => {
-    if (!profileData?.user) return null;
-    const user = profileData.user;
-    return (
-      <div className="flex flex-col items-center justify-center pb-12 text-center">
-        {user.image && (
-          <div className="relative w-28 h-28 mb-5 shadow-lg rounded-full">
-            <Image
-              src={user.image}
-              alt={user.name || "Avatar"}
-              layout="fill"
-              objectFit="cover"
-              className="rounded-full"
-            />
-          </div>
-        )}
-        <h1 className="text-3xl font-bold text-[var(--foreground)] tracking-tight">
-          {user.name || "Anonymous User"}
-        </h1>
-        {user.description && (
-          <p className="text-md text-[var(--muted-foreground)] mt-3 max-w-2xl whitespace-pre-line">
-            {user.description}
-          </p>
-        )}
-        {sessionData?.user?.id === userId && (
-          <Button asChild variant="outline" className="mt-6">
-            <a href="/dashboard">Edit Your Profile & Stacks</a>
-          </Button>
-        )}
-      </div>
-    );
+  const handleShareProfile = async () => {
+    if (!profileData?.user.id) return;
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      console.log("Profile link copied to clipboard!");
+
+      const response = await fetch(
+        `/api/profile/${profileData.user.id}/share`,
+        {
+          method: "POST",
+        }
+      );
+      if (response.ok) {
+        const result = await response.json();
+        setCurrentShareCount(result.shareCount);
+      } else {
+        console.error("Failed to increment share count");
+      }
+    } catch (err) {
+      console.error("Failed to share profile:", err);
+    }
   };
 
-  const StacksSelector = () => {
-    if (!userStacks || userStacks.length === 0) {
-      return (
-        <div className="text-center py-4 text-[var(--muted-foreground)]">
-          This user has not created any stacks yet.
-        </div>
-      );
-    }
+  const ProfileHeader = () => {
+    if (!profileData?.user) return null;
+    const { name, image, description, createdAt, hasStripeConnection } =
+      profileData.user;
+
     return (
-      <div className="flex flex-wrap justify-center items-center gap-3 px-4 py-6 mb-8 max-w-4xl mx-auto">
-        {userStacks.map((stack) => (
-          <Button
-            key={stack.id}
-            variant={activeStackId === stack.id ? "default" : "outline"}
-            onClick={() => setActiveStackId(stack.id)}
-            className={`px-5 py-2 rounded-lg shadow-sm transition-all border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary)] ${
-              activeStackId === stack.id
-                ? "bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)] scale-105"
-                : "bg-[var(--card)] text-[var(--foreground)] border-[var(--border)] hover:bg-[var(--accent)] hover:border-[var(--primary)]"
-            }`}
-          >
-            <span className="text-md font-medium">{stack.name}</span>
-          </Button>
-        ))}
+      <div className="w-full max-w-4xl mx-auto p-4 md:p-6 bg-[var(--card)] rounded-xl shadow-lg mb-8 border border-[var(--border)] mask-b-from-30%">
+        <div className="flex flex-col md:flex-row items-center gap-6">
+          {image && (
+            <Image
+              src={image}
+              alt={name || "User avatar"}
+              width={128}
+              height={128}
+              className="rounded-full border-4 border-[var(--primary-foreground)] shadow-md"
+            />
+          )}
+          <div className="flex-grow text-center md:text-left">
+            <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-foreground)] flex items-center gap-3">
+              {name || "Anonymous User"}
+              {hasStripeConnection && (
+                <div className="flex items-center justify-center hidden md:flex ml-3 mt-1 bg-[#635BFF]/40 py-0.5 px-1 rounded-sm">
+                  <Stripe />
+                </div>
+              )}
+            </h1>
+            {description && (
+              <p className="text-md text-[var(--muted-foreground)] mt-2">
+                {description}
+              </p>
+            )}
+            {createdAt && (
+              <p className="text-xs text-[var(--muted-foreground)] mt-1">
+                Joined: {new Date(createdAt).toLocaleDateString()}
+              </p>
+            )}
+          </div>
+          <div className="flex flex-col items-center md:items-end gap-2 mt-4 md:mt-0">
+            <Button
+              onClick={handleShareProfile}
+              variant="outline"
+              className="flex items-center gap-2 bg-transparent border-[var(--border)] hover:bg-[var(--hover-background)] hover:border-[var(--primary)] text-[var(--text-foreground)]"
+            >
+              <Share2 size={18} />
+              Share Profile
+            </Button>
+            {currentShareCount !== undefined && (
+              <p className="text-xs text-[var(--muted-foreground)]">
+                Shared {currentShareCount} times
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     );
   };
@@ -396,7 +464,6 @@ export default function UserProfilePage() {
     <div className="flex flex-col min-h-screen bg-[var(--background)] text-[var(--foreground)] pt-24">
       <div className="flex-grow container mx-auto px-4">
         <ProfileHeader />
-        <StacksSelector />
         <BentoGridSection />
       </div>
     </div>
