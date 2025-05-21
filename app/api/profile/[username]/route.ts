@@ -36,18 +36,21 @@ interface ApiTechItemForProfile {
 
 export async function GET(
   request: Request,
-  context: { params: { userId: string } } // Modifié: Utilisation de context
+  { params }: { params: { username: string } } // Paramètres destructurés directement
 ) {
-  const userId = context.params.userId; // Modifié: Extraction depuis context.params
+  const username = params.username; // Accès direct au paramètre
 
-  if (!userId) {
-    return NextResponse.json({ error: "User ID is required" }, { status: 400 });
+  if (!username) {
+    return NextResponse.json(
+      { error: "Username is required" },
+      { status: 400 }
+    );
   }
 
   try {
     // 1. Récupérer les informations de l'utilisateur
     const userInfoFromDb = await db.query.user.findFirst({
-      where: eq(user.id, userId),
+      where: eq(user.username, username),
       columns: {
         id: true,
         name: true,
@@ -67,7 +70,7 @@ export async function GET(
     // 2. Vérifier la connexion Stripe pour cet utilisateur directement dans stripeConnection
     // Utiliser la même table que fetchMrrForUser pour assurer la cohérence
     const stripeConnectionInfo = await db.query.stripeConnection.findFirst({
-      where: eq(stripeConnection.userId, userId),
+      where: eq(stripeConnection.userId, userInfoFromDb.id),
       columns: {
         stripeUserId: true, // Vérifions vraiment que l'ID du compte Stripe existe
       },
@@ -83,7 +86,7 @@ export async function GET(
 
     // 3. Récupérer les stacks technologiques de l'utilisateur
     const userStacksFromDb = await db.query.techStack.findMany({
-      where: eq(techStack.userId, userId),
+      where: eq(techStack.userId, userInfoFromDb.id),
       with: {
         technologies: {
           columns: {
@@ -124,7 +127,7 @@ export async function GET(
         if (stack.showStripeCard) {
           let mrrData = { total: 0, currency: "USD" };
           if (hasStripeConnection) {
-            const fetchedMrr = await fetchMrrForUser(userId);
+            const fetchedMrr = await fetchMrrForUser(userInfoFromDb.id);
             if (fetchedMrr) {
               mrrData.total = fetchedMrr.total;
               mrrData.currency = fetchedMrr.currency;
@@ -235,7 +238,7 @@ export async function GET(
       stacks: processedStacks,
     });
   } catch (error) {
-    console.error(`Error fetching profile data for user ${userId}:`, error);
+    console.error(`Error fetching profile data for user ${username}:`, error);
     return NextResponse.json(
       { error: "Failed to fetch profile data" },
       { status: 500 }

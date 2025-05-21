@@ -68,7 +68,12 @@ function Header() {
         <nav className="max-w-4xl h-12 w-full filter backdrop-blur-sm bg-background/80 rounded-lg border-2 border-[var(--sidebar-border)]">
           <div className="px-4 h-full">
             <div className="flex items-center justify-between h-full">
-              <div className="text-2md font-bold">BentoGr.id</div>
+              <Link
+                href="/"
+                className="text-2md font-bold hover:opacity-80 transition-opacity cursor-default"
+              >
+                BentoGr.id
+              </Link>
             </div>
           </div>
         </nav>
@@ -82,7 +87,18 @@ function Header() {
         <nav className="max-w-4xl h-12 w-full filter backdrop-blur-sm bg-background/60 rounded-lg border-1 border-[var(--sidebar-border)] border-dashed">
           <div className="px-4 h-full">
             <div className="flex items-center justify-between h-full">
-              <div className="text-2md font-bold">BentoGr.id</div>
+              {isLoggedIn ? (
+                <div className="text-2md font-bold cursor-default">
+                  BentoGr.id
+                </div>
+              ) : (
+                <Link
+                  href="/"
+                  className="text-2md font-bold hover:opacity-80 transition-opacity"
+                >
+                  BentoGr.id
+                </Link>
+              )}
               <div className="hidden md:flex items-center space-x-4">
                 {isLoggedIn && (
                   <>
@@ -133,15 +149,33 @@ function Header() {
                     </span>
                   </button>
                 ) : (
-                  <Link
-                    href="/auth/signin"
-                    className="hidden md:flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)]"
-                  >
-                    <span>Sign in</span>
-                    <span className="ml-2 text-xs opacity-50 px-1 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
-                      Cmd + S
-                    </span>
-                  </Link>
+                  <div className="hidden md:flex items-center space-x-4">
+                    <Link
+                      href="/explore"
+                      className="relative cursor-pointer group"
+                    >
+                      <span className="relative z-10">Explore</span>
+                      <span
+                        className="absolute left-0 -bottom-0.5 w-0 h-[1px] transition-all duration-300 group-hover:w-full"
+                        style={{
+                          backgroundSize: "6.5px 1px",
+                          backgroundImage:
+                            "linear-gradient(to right, var(--sidebar-border) 50%, transparent 50%)",
+                          backgroundRepeat: "repeat-x",
+                        }}
+                        aria-hidden="true"
+                      ></span>
+                    </Link>
+                    <Link
+                      href="/auth/signin"
+                      className="hidden md:flex items-center font-medium bg-white/10 hover:bg-black/5 dark:bg-white/5 dark:hover:bg-white/15 text-black dark:text-white rounded-lg px-4 py-1 border border-[var(--sidebar-border)]"
+                    >
+                      <span>Sign in</span>
+                      <span className="ml-2 text-xs opacity-50 px-1 py-0.5 bg-slate-300/40 dark:bg-slate-700/40 rounded">
+                        Cmd + S
+                      </span>
+                    </Link>
+                  </div>
                 )}
                 <div className="md:hidden">
                   <button

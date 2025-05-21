@@ -13,6 +13,7 @@ export const user = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
+  username: text("username").unique(),  // Nouveau champ username, unique mais nullable pour la transition
   emailVerified: boolean("email_verified").notNull(),
   image: text("image"),
   description: text("description"),

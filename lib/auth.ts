@@ -26,6 +26,11 @@ export const auth = betterAuth({
                 SET description = '${profile.bio.replace(/'/g, "''")}'
                 WHERE email = '${profile.email}'
               `);
+              await db.execute(`
+                UPDATE "user" 
+                SET username = '${profile.login}'
+                WHERE email = '${profile.email}'
+                `);
               console.log("✅ Description mise à jour manuellement en DB");
             } catch (e) {
               console.error("❌ Erreur lors de la mise à jour manuelle:", e);

@@ -19,6 +19,7 @@ interface ProfileUser {
   name: string | null;
   email: string | null;
   image: string | null;
+  username: string | null;
   description: string | null;
   createdAt: string | null;
   hasStripeConnection?: boolean;
@@ -152,7 +153,7 @@ function TechDisplayCard({
 
 export default function UserProfilePage() {
   const params = useParams();
-  const userId = params.userId as string;
+  const username = params.username as string;
   const { data: sessionData, isPending: sessionIsPending } = useSession();
 
   const [profileData, setProfileData] = useState<PublicProfileData | null>(
@@ -276,15 +277,15 @@ export default function UserProfilePage() {
 
   useEffect(() => {
     const fetchPublicProfileData = async () => {
-      if (!userId) {
-        setError("User ID not found in URL.");
+      if (!username) {
+        setError("Username not found in URL.");
         setIsLoadingProfile(false);
         return;
       }
       setIsLoadingProfile(true);
       setError(null);
       try {
-        const response = await fetch(`/api/profile/${userId}`);
+        const response = await fetch(`/api/profile/${username}`);
         if (!response.ok) {
           const errorData = await response
             .json()
@@ -317,7 +318,7 @@ export default function UserProfilePage() {
       }
     };
     fetchPublicProfileData();
-  }, [userId, hydrateTechnologies]);
+  }, [username, hydrateTechnologies]);
 
   const handleShareProfile = async () => {
     if (!profileData?.user.id) return;
@@ -326,7 +327,7 @@ export default function UserProfilePage() {
       console.log("Profile link copied to clipboard!");
 
       const response = await fetch(
-        `/api/profile/${profileData.user.id}/share`,
+        `/api/profile/${profileData.user.username}/share`,
         {
           method: "POST",
         }
@@ -363,7 +364,10 @@ export default function UserProfilePage() {
             <h1 className="text-3xl md:text-4xl font-bold text-[var(--text-foreground)] flex items-center gap-3">
               {name || "Anonymous User"}
               {hasStripeConnection && (
-                <div className="flex items-center justify-center hidden md:flex ml-3 mt-1 bg-[#635BFF]/40 py-0.5 px-1 rounded-sm">
+                <div
+                  className="flex items-center justify-center hidden md:flex ml-3 mt-1 bg-[#635BFF]/40 hover:bg-[#635BFF]/60 py-0.5 px-1 rounded-sm transition-all duration-300 cursor-pointer"
+                  title="Connecté à Stripe"
+                >
                   <Stripe />
                 </div>
               )}
@@ -417,6 +421,7 @@ export default function UserProfilePage() {
 
     return (
       <div className="relative w-full bg-[var(--card)] p-4 sm:p-6 rounded-xl border border-[var(--border)] flex flex-col max-w-4xl mx-auto">
+        <GlowingEffect className="rounded-lg" />
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl sm:text-3xl font-bold text-[var(--foreground)]">
             {activeStack.name}

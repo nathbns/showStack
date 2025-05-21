@@ -9,6 +9,7 @@ type User = {
   id: string;
   name: string | null; // name est notNull dans le schéma, mais gardons null pour la flexibilité
   email: string | null; // email est notNull, unique
+  username?: string | null; // Nouveau champ username ajouté au schéma
   image: string | null;
   // emailVerified?: boolean;
   // description?: string | null;
@@ -89,7 +90,7 @@ function UserCard({ user }: UserCardProps) {
   const displayEmail = user.email;
 
   return (
-    <Link href={`/profile/${user.id}`} passHref legacyBehavior>
+    <Link href={`/profile/${user.username}`} passHref legacyBehavior>
       <a className="bg-card border border-border rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 ease-in-out flex flex-col items-center p-6 text-center h-full transform hover:-translate-y-1 no-underline hover:border-primary/50">
         {user.image ? (
           <div className="w-20 h-20 rounded-full overflow-hidden flex items-center justify-center mb-5 border-2 border-primary/30 shadow-sm">

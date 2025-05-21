@@ -1509,26 +1509,12 @@ const techsByCategory = {
             category: "Backend"
         },
         {
-            id: "nestjs",
-            name: "NestJS",
-            color: "#E0234E",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "N"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 132,
-                columnNumber: 13
-            }, this),
-            category: "Backend"
-        },
-        {
             id: "graphql",
             name: "GraphQL",
             color: "#E535AB",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["GraphQL"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 139,
+                lineNumber: 132,
                 columnNumber: 13
             }, this),
             category: "Backend"
@@ -1542,94 +1528,24 @@ const techsByCategory = {
                 children: "P"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 146,
+                lineNumber: 139,
                 columnNumber: 13
             }, this),
             category: "Backend"
         },
         {
-            id: "django",
-            name: "Django",
+            id: "drizzle",
+            name: "Drizzle",
             color: "#092E20",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                 className: "text-xl",
                 children: "D"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 153,
+                lineNumber: 146,
                 columnNumber: 13
             }, this),
             category: "Backend"
-        },
-        {
-            id: "laravel",
-            name: "Laravel",
-            color: "#FF2D20",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "L"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 160,
-                columnNumber: 13
-            }, this),
-            category: "Backend"
-        },
-        {
-            id: "spring",
-            name: "Spring",
-            color: "#6DB33F",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "S"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 167,
-                columnNumber: 13
-            }, this),
-            category: "Backend"
-        },
-        {
-            id: "flask",
-            name: "Flask",
-            color: "#000000",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "F"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 174,
-                columnNumber: 13
-            }, this),
-            category: "Backend"
-        },
-        {
-            id: "fastapi",
-            name: "FastAPI",
-            color: "#009688",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "F"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 181,
-                columnNumber: 13
-            }, this),
-            category: "Backend"
-        },
-        {
-            id: "mongodb",
-            name: "MongoDB",
-            color: "#47A248",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "M"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 188,
-                columnNumber: 13
-            }, this),
-            category: "Database"
         },
         {
             id: "postgresql",
@@ -1640,35 +1556,7 @@ const techsByCategory = {
                 children: "P"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 195,
-                columnNumber: 13
-            }, this),
-            category: "Database"
-        },
-        {
-            id: "mysql",
-            name: "MySQL",
-            color: "#4479A1",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "M"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 202,
-                columnNumber: 13
-            }, this),
-            category: "Database"
-        },
-        {
-            id: "redis",
-            name: "Redis",
-            color: "#DC382D",
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                className: "text-xl",
-                children: "R"
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 209,
+                lineNumber: 153,
                 columnNumber: 13
             }, this),
             category: "Database"
@@ -1679,7 +1567,7 @@ const techsByCategory = {
             color: "#FFCA28",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Firebase"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 216,
+                lineNumber: 160,
                 columnNumber: 13
             }, this),
             category: "Database"
@@ -1693,7 +1581,7 @@ const techsByCategory = {
                 children: "S"
             }, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 223,
+                lineNumber: 167,
                 columnNumber: 13
             }, this),
             category: "Database"
@@ -1706,7 +1594,7 @@ const techsByCategory = {
             color: "#02569B",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Ionic"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 232,
+                lineNumber: 176,
                 columnNumber: 13
             }, this),
             category: "Mobile"
@@ -1717,7 +1605,7 @@ const techsByCategory = {
             color: "#7F52FF",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Kotlin"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 239,
+                lineNumber: 183,
                 columnNumber: 13
             }, this),
             category: "Mobile"
@@ -1728,7 +1616,7 @@ const techsByCategory = {
             color: "#F05138",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Swift"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 246,
+                lineNumber: 190,
                 columnNumber: 13
             }, this),
             category: "Mobile"
@@ -1739,7 +1627,7 @@ const techsByCategory = {
             color: "#020240",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Expo"], {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 253,
+                lineNumber: 197,
                 columnNumber: 13
             }, this),
             category: "Mobile"
@@ -1752,7 +1640,7 @@ const techsByCategory = {
             color: "#635BFF",
             icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(StripeIcon, {}, void 0, false, {
                 fileName: "[project]/components/tech-stack/tech-data.tsx",
-                lineNumber: 262,
+                lineNumber: 206,
                 columnNumber: 13
             }, this),
             category: "Services"

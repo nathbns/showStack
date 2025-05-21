@@ -1,9 +1,7 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/api/auth/[...all]/route": "app/api/auth/[...all]/route.js",
-  "/api/github/repos/route": "app/api/github/repos/route.js",
-  "/api/profile/[userId]/route": "app/api/profile/[userId]/route.js",
-  "/api/profile/username/[username]/route": "app/api/profile/username/[username]/route.js",
+  "/api/profile/[username]/route": "app/api/profile/[username]/route.js",
   "/api/stripe/connection-status/route": "app/api/stripe/connection-status/route.js",
   "/api/stripe/disconnect/route": "app/api/stripe/disconnect/route.js",
   "/api/stripe/mrr/route": "app/api/stripe/mrr/route.js",
@@ -16,6 +14,5 @@
   "/dashboard/page": "app/dashboard/page.js",
   "/explore/page": "app/explore/page.js",
   "/page": "app/page.js",
-  "/profile/[userId]/page": "app/profile/[userId]/page.js",
-  "/profile/username/[username]/page": "app/profile/username/[username]/page.js"
+  "/profile/[username]/page": "app/profile/[username]/page.js"
 }
