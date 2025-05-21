@@ -1828,854 +1828,15 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
 }}),
-"[project]/components/tech-stack/add-tech-form.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
-"use strict";
+"[project]/components/tech-stack/add-tech-form.tsx [app-client] (ecmascript)": (function(__turbopack_context__) {
 
-var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
+var { g: global, __dirname, k: __turbopack_refresh__, m: module, e: exports } = __turbopack_context__;
 {
-__turbopack_context__.s({
-    "AddTechForm": (()=>AddTechForm)
-});
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/input.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/label.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/textarea.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/dialog.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-plus.js [app-client] (ecmascript) <export default as PlusCircle>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/globe.js [app-client] (ecmascript) <export default as Globe>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/external-link.js [app-client] (ecmascript) <export default as ExternalLink>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/loader-circle.js [app-client] (ecmascript) <export default as Loader2>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/refresh-cw.js [app-client] (ecmascript) <export default as RefreshCw>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/logo-card.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/tech-stack/tech-data.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/tabs.tsx [app-client] (ecmascript)");
-;
-var _s = __turbopack_context__.k.signature();
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-function AddTechForm({ onAddTech, userId, hasStripeConnection, onConnectStripe, onShowStripeInGrid }) {
-    _s();
-    const [open, setOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [activeCategory, setActiveCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("Frontend");
-    const [githubRepos, setGithubRepos] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
-    const [isLoadingGithub, setIsLoadingGithub] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const projectFormRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // États pour l'ajout de projet
-    const [projectUrl, setProjectUrl] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [projectDescription, setProjectDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [projectName, setProjectName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [projectColor, setProjectColor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("#3b82f6"); // Bleu par défaut
-    const [isSubmitting, setIsSubmitting] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [favicon, setFavicon] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [isFetchingFavicon, setIsFetchingFavicon] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    // Onglet actif (Technologies ou Projets)
-    const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("technologies");
-    // Charger les repos GitHub quand l'onglet Projets est ouvert
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "AddTechForm.useEffect": ()=>{
-            if (activeTab === "projets" && !githubRepos.length) {
-                fetchGithubRepos();
-            }
-        }
-    }["AddTechForm.useEffect"], [
-        activeTab
-    ]);
-    const fetchGithubRepos = async ()=>{
-        setIsLoadingGithub(true);
-        try {
-            const response = await fetch("/api/github/repos");
-            if (!response.ok) throw new Error("Erreur lors de la récupération des repos");
-            const data = await response.json();
-            setGithubRepos(data);
-        } catch (error) {
-            console.error("Erreur lors du chargement des repos GitHub:", error);
-        } finally{
-            setIsLoadingGithub(false);
-        }
-    };
-    // Nettoyage de l'URL pour éviter les problèmes CORS
-    const cleanUrl = (url)=>{
-        let cleanedUrl = url.trim();
-        if (!cleanedUrl.startsWith("http")) {
-            cleanedUrl = "https://" + cleanedUrl;
-        }
-        try {
-            const urlObj = new URL(cleanedUrl);
-            return urlObj.toString();
-        } catch (e) {
-            return cleanedUrl;
-        }
-    };
-    // Récupérer le favicon d'un site web
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "AddTechForm.useEffect": ()=>{
-            if (!projectUrl || !projectUrl.includes(".")) {
-                setFavicon(null);
-                return;
-            }
-            const fetchFavicon = {
-                "AddTechForm.useEffect.fetchFavicon": async ()=>{
-                    try {
-                        setIsFetchingFavicon(true);
-                        // Nettoyer l'URL
-                        const cleanedUrl = cleanUrl(projectUrl);
-                        try {
-                            const urlObj = new URL(cleanedUrl);
-                            // On utilise Google Favicon Service qui est généralement le plus fiable
-                            // et qui contourne les problèmes de CORS
-                            const faviconUrl = `https://www.google.com/s2/favicons?domain=${urlObj.hostname}&sz=128`;
-                            // On vérifie que le service renvoie bien une image
-                            const img = new Image();
-                            img.src = faviconUrl;
-                            img.onload = ({
-                                "AddTechForm.useEffect.fetchFavicon": ()=>{
-                                    // Si l'image est chargée avec succès, on utilise cette URL
-                                    setFavicon(faviconUrl);
-                                    setIsFetchingFavicon(false);
-                                }
-                            })["AddTechForm.useEffect.fetchFavicon"];
-                            img.onerror = ({
-                                "AddTechForm.useEffect.fetchFavicon": ()=>{
-                                    // Si l'image ne se charge pas, on utilise une icône par défaut
-                                    console.log("Favicon not found or not accessible");
-                                    setFavicon(null);
-                                    setIsFetchingFavicon(false);
-                                }
-                            })["AddTechForm.useEffect.fetchFavicon"];
-                        } catch (e) {
-                            console.error("URL invalide", e);
-                            setFavicon(null);
-                            setIsFetchingFavicon(false);
-                        }
-                    } catch (error) {
-                        console.error("Erreur lors de la récupération du favicon:", error);
-                        setFavicon(null);
-                        setIsFetchingFavicon(false);
-                    }
-                }
-            }["AddTechForm.useEffect.fetchFavicon"];
-            // Attendre un peu que l'utilisateur finisse de taper
-            const timer = setTimeout({
-                "AddTechForm.useEffect.timer": ()=>{
-                    fetchFavicon();
-                }
-            }["AddTechForm.useEffect.timer"], 500);
-            return ({
-                "AddTechForm.useEffect": ()=>clearTimeout(timer)
-            })["AddTechForm.useEffect"];
-        }
-    }["AddTechForm.useEffect"], [
-        projectUrl
-    ]);
-    const handleTechSelect = (tech)=>{
-        if (tech.id === "stripe-mrr") {
-            if (!hasStripeConnection) {
-                onConnectStripe();
-            } else {
-                onShowStripeInGrid();
-            }
-            setOpen(false); // Fermer la modale après l'action Stripe
-        } else {
-            // S'assurer que le technologyId est correctement défini
-            onAddTech({
-                ...tech,
-                technologyId: tech.id
-            });
-            setOpen(false);
-        }
-    };
-    const handleProjectSubmit = async (e)=>{
-        e.preventDefault();
-        if (!projectUrl.trim() || !projectDescription.trim() || !projectName.trim()) return;
-        setIsSubmitting(true);
-        try {
-            // Créer un nouvel identifiant unique
-            const newId = Math.random().toString(36).substring(2, 11);
-            // Créer un nouvel élément de type ProjectTech pour représenter le projet
-            const newProject = {
-                id: newId,
-                name: projectName,
-                color: projectColor,
-                // Utiliser le favicon récupéré ou une icône par défaut
-                icon: favicon ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                    src: favicon,
-                    alt: projectName,
-                    width: 24,
-                    height: 24,
-                    style: {
-                        maxWidth: "100%",
-                        maxHeight: "100%"
-                    }
-                }, void 0, false, {
-                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                    lineNumber: 196,
-                    columnNumber: 11
-                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
-                    size: 24
-                }, void 0, false, {
-                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                    lineNumber: 204,
-                    columnNumber: 11
-                }, this),
-                category: "Project",
-                technologyId: newId,
-                url: cleanUrl(projectUrl),
-                description: projectDescription,
-                isProject: true,
-                favicon: favicon || undefined,
-                gridSpan: {
-                    cols: 2,
-                    rows: 1
-                },
-                stars: 0,
-                forks: 0
-            };
-            // Ajouter le projet à la grille en utilisant la même fonction que pour les technologies
-            onAddTech(newProject);
-            // Réinitialiser le formulaire
-            setProjectUrl("");
-            setProjectName("");
-            setProjectDescription("");
-            setFavicon(null);
-            setOpen(false);
-        } catch (error) {
-            console.error("Erreur lors de l'ajout du projet :", error);
-        } finally{
-            setIsSubmitting(false);
-        }
-    };
-    // Bouton fixe qui soumettra le formulaire via la référence
-    const submitProjectForm = ()=>{
-        if (projectFormRef.current && projectName && projectUrl && projectDescription) {
-            projectFormRef.current.dispatchEvent(new Event("submit", {
-                cancelable: true,
-                bubbles: true
-            }));
-        }
-    };
-    // Couleurs disponibles pour les projets
-    const availableColors = [
-        "#3b82f6",
-        "#06b6d4",
-        "#10b981",
-        "#282828",
-        "#0ea5e9",
-        "#22c55e",
-        "#ef4444",
-        "#ec4899"
-    ];
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
-        open: open,
-        onOpenChange: setOpen,
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTrigger"], {
-                asChild: true,
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                    className: "bg-background hover:bg-background/90 text-[var(--foreground)] border border-[var(--border)] px-4 py-2 rounded-lg flex items-center gap-2",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__PlusCircle$3e$__["PlusCircle"], {
-                            size: 18
-                        }, void 0, false, {
-                            fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                            lineNumber: 266,
-                            columnNumber: 11
-                        }, this),
-                        "Add"
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                    lineNumber: 265,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                lineNumber: 264,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
-                className: "bg-background border-[var(--border)] text-[var(--foreground)] p-0 overflow-hidden",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col h-[750px] ",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
-                            className: "p-4 pb-0 max-w-[500px]",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
-                                    className: "text-xl font-bold text-[var(--foreground)] text-center",
-                                    children: "Add to your profile"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                    lineNumber: 273,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
-                                    className: "text-[var(--muted-foreground)] text-center mx-auto mb-4",
-                                    children: "Enrich your profile with technologies or projects."
-                                }, void 0, false, {
-                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                    lineNumber: 276,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                            lineNumber: 272,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tabs"], {
-                            value: activeTab,
-                            onValueChange: (v)=>setActiveTab(v),
-                            className: "flex-1 flex flex-col w-full max-w-[500px] mx-auto",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "px-4",
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsList"], {
-                                        className: "grid grid-cols-2 w-full max-w-[500px] mx-auto",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
-                                                value: "technologies",
-                                                className: "data-[state=active]:bg-[var(--primary)] data-[state=active]:text-[var(--primary-foreground)] cursor-pointer",
-                                                children: "Technologies"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                lineNumber: 289,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
-                                                value: "projets",
-                                                className: "data-[state=active]:bg-[var(--primary)] data-[state=active]:text-[var(--primary-foreground)] cursor-pointer",
-                                                children: "Projects"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                lineNumber: 295,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                        lineNumber: 288,
-                                        columnNumber: 15
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                    lineNumber: 287,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex-1 flex flex-col",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
-                                            value: "technologies",
-                                            className: "h-full p-4 overflow-y-auto",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex-1 overflow-hidden flex flex-col w-full",
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tabs"], {
-                                                    defaultValue: "Frontend",
-                                                    value: activeCategory,
-                                                    onValueChange: setActiveCategory,
-                                                    className: "flex-1 flex flex-col",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "px-4",
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsList"], {
-                                                                className: "flex overflow-x-auto w-full bg-background border-b border-[var(--border)] px-2",
-                                                                children: Object.keys(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["techsByCategory"]).map((category)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
-                                                                        value: category,
-                                                                        className: "flex-shrink-0 px-3 py-1.5 data-[state=active]:bg-[var(--muted)] data-[state=active]:text-[var(--primary)] data-[state=active]:shadow-sm",
-                                                                        children: category
-                                                                    }, category, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 320,
-                                                                        columnNumber: 27
-                                                                    }, this))
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 318,
-                                                                columnNumber: 23
-                                                            }, this)
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                            lineNumber: 317,
-                                                            columnNumber: 21
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "flex-1 overflow-hidden",
-                                                            children: Object.entries(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$tech$2d$stack$2f$tech$2d$data$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["techsByCategory"]).map(([category, techs])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
-                                                                    value: category,
-                                                                    className: "overflow-y-auto p-4",
-                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "grid grid-cols-2 gap-2",
-                                                                        children: techs.map((tech)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                className: "flex items-center gap-2 p-6 rounded hover:bg-background/90 cursor-pointer border border-[var(--border)]",
-                                                                                onClick: ()=>handleTechSelect(tech),
-                                                                                children: [
-                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                        className: "flex items-center justify-center h-6 w-6",
-                                                                                        children: tech.icon
-                                                                                    }, void 0, false, {
-                                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                        lineNumber: 346,
-                                                                                        columnNumber: 35
-                                                                                    }, this),
-                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                        className: "flex flex-col",
-                                                                                        children: [
-                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                                className: "text-sm",
-                                                                                                children: tech.name
-                                                                                            }, void 0, false, {
-                                                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                                lineNumber: 350,
-                                                                                                columnNumber: 37
-                                                                                            }, this),
-                                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                                className: "w-4 h-1 rounded-full",
-                                                                                                style: {
-                                                                                                    backgroundColor: tech.color
-                                                                                                }
-                                                                                            }, void 0, false, {
-                                                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                                lineNumber: 351,
-                                                                                                columnNumber: 37
-                                                                                            }, this)
-                                                                                        ]
-                                                                                    }, void 0, true, {
-                                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                        lineNumber: 349,
-                                                                                        columnNumber: 35
-                                                                                    }, this)
-                                                                                ]
-                                                                            }, tech.id, true, {
-                                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 341,
-                                                                                columnNumber: 33
-                                                                            }, this))
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 339,
-                                                                        columnNumber: 29
-                                                                    }, this)
-                                                                }, category, false, {
-                                                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                    lineNumber: 334,
-                                                                    columnNumber: 27
-                                                                }, this))
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                            lineNumber: 331,
-                                                            columnNumber: 21
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                    lineNumber: 311,
-                                                    columnNumber: 19
-                                                }, this)
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                lineNumber: 310,
-                                                columnNumber: 17
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                            lineNumber: 306,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
-                                            value: "projets",
-                                            className: "flex-1 flex flex-col",
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex-1 p-4 space-y-4 overflow-y-auto",
-                                                children: [
-                                                    isLoadingGithub ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "mb-4 flex justify-center",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
-                                                            className: "h-6 w-6 animate-spin text-[var(--muted-foreground)]"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                            lineNumber: 373,
-                                                            columnNumber: 23
-                                                        }, this)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                        lineNumber: 372,
-                                                        columnNumber: 21
-                                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "mb-4",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "flex items-center justify-between mb-2",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                                        className: "text-sm font-medium",
-                                                                        children: "Your GitHub projects"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 378,
-                                                                        columnNumber: 25
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                                                        variant: "ghost",
-                                                                        size: "sm",
-                                                                        onClick: fetchGithubRepos,
-                                                                        disabled: isLoadingGithub,
-                                                                        className: "h-8 px-2",
-                                                                        children: [
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
-                                                                                size: 14,
-                                                                                className: "mr-1"
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 388,
-                                                                                columnNumber: 27
-                                                                            }, this),
-                                                                            "Refresh"
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 381,
-                                                                        columnNumber: 25
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 377,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            githubRepos.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "grid gap-2",
-                                                                children: githubRepos.map((repo)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "flex items-center gap-2 p-2 rounded hover:bg-background/90 cursor-pointer border border-[var(--border)]",
-                                                                        onClick: ()=>{
-                                                                            const newProject = {
-                                                                                id: repo.id.toString(),
-                                                                                name: repo.name,
-                                                                                color: "#24292e",
-                                                                                icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                                                    width: 20,
-                                                                                    height: 20
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 403,
-                                                                                    columnNumber: 41
-                                                                                }, void 0),
-                                                                                category: "Project",
-                                                                                technologyId: repo.id.toString(),
-                                                                                url: repo.html_url,
-                                                                                description: repo.description || "Projet GitHub",
-                                                                                isProject: true,
-                                                                                gridSpan: {
-                                                                                    cols: 2,
-                                                                                    rows: 1
-                                                                                },
-                                                                                stars: repo.stargazers_count,
-                                                                                forks: repo.forks_count
-                                                                            };
-                                                                            onAddTech(newProject);
-                                                                            setOpen(false);
-                                                                        },
-                                                                        children: [
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                className: "flex items-center justify-center h-6 w-6",
-                                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                                                    width: 20,
-                                                                                    height: 20
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 422,
-                                                                                    columnNumber: 33
-                                                                                }, this)
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 421,
-                                                                                columnNumber: 31
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                className: "flex flex-col",
-                                                                                children: [
-                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                        className: "text-sm",
-                                                                                        children: repo.name
-                                                                                    }, void 0, false, {
-                                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                        lineNumber: 425,
-                                                                                        columnNumber: 33
-                                                                                    }, this),
-                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                        className: "text-xs text-[var(--muted-foreground)]",
-                                                                                        children: repo.description || "Pas de description"
-                                                                                    }, void 0, false, {
-                                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                        lineNumber: 426,
-                                                                                        columnNumber: 33
-                                                                                    }, this)
-                                                                                ]
-                                                                            }, void 0, true, {
-                                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 424,
-                                                                                columnNumber: 31
-                                                                            }, this)
-                                                                        ]
-                                                                    }, repo.id, true, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 395,
-                                                                        columnNumber: 29
-                                                                    }, this))
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 393,
-                                                                columnNumber: 25
-                                                            }, this) : null
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                        lineNumber: 376,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
-                                                        ref: projectFormRef,
-                                                        onSubmit: handleProjectSubmit,
-                                                        className: "space-y-4",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                                        htmlFor: "projectName",
-                                                                        className: "text-[var(--muted-foreground)] mb-2",
-                                                                        children: "Project Name:"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 443,
-                                                                        columnNumber: 23
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                                        id: "projectName",
-                                                                        value: projectName,
-                                                                        onChange: (e)=>setProjectName(e.target.value),
-                                                                        placeholder: "Mon Projet",
-                                                                        className: "bg-background border-[var(--border)] text-[var(--foreground)]",
-                                                                        required: true
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 449,
-                                                                        columnNumber: 23
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 442,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                                        htmlFor: "projectUrl",
-                                                                        className: "text-[var(--muted-foreground)] mb-2",
-                                                                        children: "Project URL:"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 459,
-                                                                        columnNumber: 23
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "flex",
-                                                                        children: [
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "inline-flex items-center justify-center px-3 bg-[var(--muted)] border border-r-0 border-[var(--border)] rounded-l-md w-10",
-                                                                                children: isFetchingFavicon ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$loader$2d$circle$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Loader2$3e$__["Loader2"], {
-                                                                                    size: 16,
-                                                                                    className: "text-[var(--muted-foreground)] animate-spin"
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 468,
-                                                                                    columnNumber: 29
-                                                                                }, this) : favicon ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                                                                    src: favicon,
-                                                                                    alt: "Site favicon",
-                                                                                    width: 16,
-                                                                                    height: 16
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 473,
-                                                                                    columnNumber: 29
-                                                                                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__["Globe"], {
-                                                                                    size: 16,
-                                                                                    className: "text-[var(--muted-foreground)]"
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                    lineNumber: 480,
-                                                                                    columnNumber: 29
-                                                                                }, this)
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 466,
-                                                                                columnNumber: 25
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                                                id: "projectUrl",
-                                                                                type: "url",
-                                                                                value: projectUrl,
-                                                                                onChange: (e)=>setProjectUrl(e.target.value),
-                                                                                placeholder: "https://monprojetincroyable.com",
-                                                                                className: "bg-background border-[var(--border)] text-[var(--foreground)] rounded-l-none",
-                                                                                required: true
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 486,
-                                                                                columnNumber: 25
-                                                                            }, this)
-                                                                        ]
-                                                                    }, void 0, true, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 465,
-                                                                        columnNumber: 23
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 458,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                                        htmlFor: "projectDescription",
-                                                                        className: "text-[var(--muted-foreground)] mb-2",
-                                                                        children: "Description:"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 498,
-                                                                        columnNumber: 23
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
-                                                                        id: "projectDescription",
-                                                                        value: projectDescription,
-                                                                        onChange: (e)=>setProjectDescription(e.target.value),
-                                                                        placeholder: "Describe your project in a few words...",
-                                                                        className: "bg-background border-[var(--border)] text-[var(--foreground)]",
-                                                                        rows: 3,
-                                                                        required: true
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 504,
-                                                                        columnNumber: 23
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 497,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                                        className: "text-[var(--muted-foreground)] mb-2",
-                                                                        children: "Color:"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 516,
-                                                                        columnNumber: 23
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "grid grid-cols-8 gap-1 mt-1",
-                                                                        children: availableColors.map((color)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                                                type: "button",
-                                                                                className: `w-6 h-6 rounded-full border-2 transition-transform ${projectColor === color ? "border-[var(--foreground)] scale-110" : "border-transparent"}`,
-                                                                                style: {
-                                                                                    backgroundColor: color
-                                                                                },
-                                                                                onClick: ()=>setProjectColor(color)
-                                                                            }, color, false, {
-                                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                                lineNumber: 521,
-                                                                                columnNumber: 27
-                                                                            }, this))
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                        lineNumber: 519,
-                                                                        columnNumber: 23
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
-                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 515,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                                                type: "submit",
-                                                                className: "w-full bg-[var(--primary)] hover:bg-[var(--primary)]/90 text-[var(--primary-foreground)]",
-                                                                disabled: isSubmitting,
-                                                                children: isSubmitting ? "Adding project..." : "Add project"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                                lineNumber: 536,
-                                                                columnNumber: 21
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                        lineNumber: 437,
-                                                        columnNumber: 19
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                                lineNumber: 369,
-                                                columnNumber: 17
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                            lineNumber: 368,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                                    lineNumber: 304,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                            lineNumber: 282,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                    lineNumber: 271,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-                lineNumber: 270,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/components/tech-stack/add-tech-form.tsx",
-        lineNumber: 263,
-        columnNumber: 5
-    }, this);
-}
-_s(AddTechForm, "OIkEkbs9vBd3EN76yLjkBILydHw=");
-_c = AddTechForm;
-var _c;
-__turbopack_context__.k.register(_c, "AddTechForm");
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
-}
-}}),
+const e = new Error(`Could not parse module '[project]/components/tech-stack/add-tech-form.tsx'
+
+Unexpected token `Dialog`. Expected jsx identifier`);
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/components/ui/skeleton.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
@@ -3690,7 +2851,84 @@ function Dashboard() {
     const [isResizeMode, setIsResizeMode] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     // États pour Stripe
     const [hasStripeConnection, setHasStripeConnection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [isCheckingStripeConnection, setIsCheckingStripeConnection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [isCheckingStripeConnection, setIsCheckingStripeConnection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Fonction pour sauvegarder les modifications du stack
+    const saveStack = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "Dashboard.useCallback[saveStack]": async (technologies)=>{
+            if (!session?.user?.id) return;
+            try {
+                const response = await fetch("/api/tech/stack", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        technologies
+                    })
+                });
+                if (!response.ok) throw new Error("Failed to save stack");
+            } catch (error) {
+                console.error("Error saving stack:", error);
+            // Supprimons certains toasts comme demandé
+            }
+        }
+    }["Dashboard.useCallback[saveStack]"], [
+        session?.user?.id
+    ]);
+    // Effet pour gérer l'ajout/suppression automatique de la carte Stripe
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Dashboard.useEffect": ()=>{
+            if (!userStack) return;
+            const stripeCardExists = userStack.technologies.some({
+                "Dashboard.useEffect.stripeCardExists": (tech)=>tech.id === STRIPE_CARD_ID
+            }["Dashboard.useEffect.stripeCardExists"]);
+            if (hasStripeConnection && !stripeCardExists) {
+                // Créer la carte Stripe
+                const stripeTech = {
+                    id: STRIPE_CARD_ID,
+                    name: "Stripe MRR",
+                    description: "Revenus mensuels récurrents via Stripe",
+                    color: "#635BFF",
+                    icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$logo$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Stripe"], {}, void 0, false, {
+                        fileName: "[project]/app/dashboard/page.tsx",
+                        lineNumber: 622,
+                        columnNumber: 15
+                    }, this),
+                    isStripeCard: true,
+                    gridSpan: {
+                        cols: 1,
+                        rows: 1
+                    }
+                };
+                // Ajouter la carte Stripe au début du tableau
+                const newTechnologies = [
+                    stripeTech,
+                    ...userStack.technologies
+                ];
+                setUserStack({
+                    ...userStack,
+                    technologies: newTechnologies
+                });
+                // Sauvegarder immédiatement
+                saveStack(newTechnologies);
+            } else if (!hasStripeConnection && stripeCardExists) {
+                // Si déconnecté de Stripe, retirer la carte
+                const newTechnologies = userStack.technologies.filter({
+                    "Dashboard.useEffect.newTechnologies": (tech)=>tech.id !== STRIPE_CARD_ID
+                }["Dashboard.useEffect.newTechnologies"]);
+                setUserStack({
+                    ...userStack,
+                    technologies: newTechnologies
+                });
+                // Sauvegarder immédiatement
+                saveStack(newTechnologies);
+            }
+        }
+    }["Dashboard.useEffect"], [
+        hasStripeConnection,
+        userStack,
+        saveStack
+    ]);
     const [isConnectingStripe, setIsConnectingStripe] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     // Nouveaux états pour le MRR total du compte Stripe
     const [stripeAccountMrr, setStripeAccountMrr] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -3718,7 +2956,7 @@ function Dashboard() {
                             setHasStripeConnection(false);
                         }
                     } catch (error) {
-                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Failed to check Stripe connection status.");
+                        console.error("Failed to check Stripe connection status.");
                         setHasStripeConnection(false);
                     } finally{
                         setIsCheckingStripeConnection(false);
@@ -3805,7 +3043,7 @@ function Dashboard() {
                             className: "text-[#635BFF]"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/page.tsx",
-                            lineNumber: 708,
+                            lineNumber: 775,
                             columnNumber: 16
                         }, this);
                         specificGridSpan = {
@@ -3825,7 +3063,7 @@ function Dashboard() {
                                 height: 24
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 722,
+                                lineNumber: 789,
                                 columnNumber: 18
                             }, this);
                         } else if (favicon) {
@@ -3841,7 +3079,7 @@ function Dashboard() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 725,
+                                lineNumber: 792,
                                 columnNumber: 13
                             }, this);
                         } else {
@@ -3849,7 +3087,7 @@ function Dashboard() {
                                 size: 24
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 734,
+                                lineNumber: 801,
                                 columnNumber: 18
                             }, this);
                         }
@@ -3902,7 +3140,7 @@ function Dashboard() {
                 return null;
             }
             if (!stackToSave) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Aucune grille à sauvegarder.");
+                console.error("No grid to save");
                 return null;
             }
             console.log("[DEBUG] saveUserStack - stackToSave:", stackToSave);
@@ -3938,7 +3176,7 @@ function Dashboard() {
                 });
                 if (!response.ok) {
                     const errorData = await response.json();
-                    throw new Error(errorData.error || "Erreur lors de la sauvegarde de la grille");
+                    throw new Error(errorData.error || "Error saving grid");
                 }
                 const savedStackData = await response.json();
                 const hydratedFromApi = hydrateTechnologies(savedStackData.technologies || []);
@@ -3948,11 +3186,11 @@ function Dashboard() {
                 };
                 setUserStack(finalStack);
                 if (showSuccessToast) {
-                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Grille sauvegardée avec succès !");
+                // Success saving grid, pas besoin de toast
                 }
                 return finalStack;
             } catch (error) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Impossible de sauvegarder la grille.");
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(error.message || "Failed to save grid.");
                 return null;
             }
         }
@@ -4001,17 +3239,17 @@ function Dashboard() {
                                         };
                                         setUserStack(hydratedNewStack);
                                     } else {
-                                        console.error("[ERROR] Échec de création de la stack par défaut");
-                                        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Impossible de créer votre grille.");
+                                        console.error("[ERROR] Failed to create default stack");
+                                        console.error("Failed to create your grid.");
                                     }
                                 } catch (createError) {
-                                    console.error("[ERROR] Exception lors de la création de la stack:", createError);
-                                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Erreur lors de la création de votre grille.");
+                                    console.error("[ERROR] Exception lors de la création de la grid:", createError);
+                                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Failed to create your grid.");
                                 }
                             }
                         } catch (error) {
-                            console.error("[ERROR] Impossible de charger la grille:", error);
-                            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Impossible de charger votre grille.");
+                            console.error("[ERROR] Failed to load grid:", error);
+                            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Failed to load your grid.");
                             // Tentative de création d'une grille même en cas d'erreur de chargement
                             try {
                                 const createResponse = await fetch("/api/tech/stack", {
@@ -4033,7 +3271,7 @@ function Dashboard() {
                                     setUserStack(hydratedNewStack);
                                 }
                             } catch (createError) {
-                                console.error("[ERROR] Échec de la tentative de récupération:", createError);
+                                console.error("[ERROR] Failed to create default grid after loading error:", createError);
                                 setUserStack(undefined);
                             }
                         } finally{
@@ -4056,7 +3294,7 @@ function Dashboard() {
     ]);
     const handleAddTech = async (newTechFromForm)=>{
         if (!userStack) {
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Impossible d'ajouter une technologie sans grille.");
+            console.error("Failed to add technology without grid.");
             return;
         }
         const newOrder = userStack.technologies.length > 0 ? Math.max(...userStack.technologies.map((t)=>t.order || 0)) + 1 : 0;
@@ -4079,7 +3317,7 @@ function Dashboard() {
         } else {
             // Revert optimistic update if save failed
             setUserStack(userStack);
-            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Impossible de sauvegarder la nouvelle technologie, veuillez réessayer.");
+            console.error("Failed to save new technology");
         }
     };
     const handleRemoveTech = async (itemIdToRemove, showSuccessToast = true)=>{
@@ -4103,7 +3341,7 @@ function Dashboard() {
         if (savedStack) {
             setUserStack(savedStack);
             if (showSuccessToast) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Technology deleted.");
+            // Toast supprimé - Technology deleted
             }
         } else {
             setUserStack(userStack);
@@ -4255,13 +3493,13 @@ function Dashboard() {
     const handleShowStripeCardInGrid = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "Dashboard.useCallback[handleShowStripeCardInGrid]": async ()=>{
             if (!userStack) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Impossible d'ajouter la carte Stripe sans grille.");
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Failed to add Stripe card to grid.");
                 return;
             }
             if (userStack.technologies.find({
                 "Dashboard.useCallback[handleShowStripeCardInGrid]": (t)=>t.id === STRIPE_CARD_ID
             }["Dashboard.useCallback[handleShowStripeCardInGrid]"])) {
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].info("La carte Stripe est déjà dans la grille.");
+                console.info("Stripe card is already in the grid.");
                 return;
             }
             const newOrder = userStack.technologies.length > 0 ? Math.max(...userStack.technologies.map({
@@ -4284,12 +3522,12 @@ function Dashboard() {
                         fill: "#635BFF"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1218,
+                        lineNumber: 1277,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1211,
+                    lineNumber: 1270,
                     columnNumber: 9
                 }, this),
                 color: "#635BFF",
@@ -4315,11 +3553,11 @@ function Dashboard() {
             const savedStack = await saveUserStack(updatedStack, false);
             if (savedStack) {
                 setUserStack(savedStack);
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success("Carte Stripe ajoutée à la grille.");
+            // Success adding Stripe card
             } else {
                 // Revert
                 setUserStack(userStack);
-                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Impossible d'ajouter la carte Stripe.");
+                __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error("Failed to add Stripe card to grid.");
             }
         }
     }["Dashboard.useCallback[handleShowStripeCardInGrid]"], [
@@ -4345,7 +3583,7 @@ function Dashboard() {
                         className: "rounded-full border-4 border-[var(--primary-foreground)]"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1263,
+                        lineNumber: 1322,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4361,18 +3599,18 @@ function Dashboard() {
                                             className: "my-auto"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 1276,
+                                            lineNumber: 1335,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1275,
+                                        lineNumber: 1334,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1272,
+                                lineNumber: 1331,
                                 columnNumber: 13
                             }, this),
                             description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4380,7 +3618,7 @@ function Dashboard() {
                                 children: description
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1281,
+                                lineNumber: 1340,
                                 columnNumber: 15
                             }, this),
                             createdAt && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4391,24 +3629,24 @@ function Dashboard() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1286,
+                                lineNumber: 1345,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1271,
+                        lineNumber: 1330,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 1261,
+                lineNumber: 1320,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1260,
+            lineNumber: 1319,
             columnNumber: 7
         }, this);
     };
@@ -4430,7 +3668,7 @@ function Dashboard() {
                         className: "rounded-lg"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1348,
+                        lineNumber: 1407,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4443,12 +3681,12 @@ function Dashboard() {
                                     children: "Your Bento Grid. "
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1351,
+                                    lineNumber: 1410,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1350,
+                                lineNumber: 1409,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4466,7 +3704,7 @@ function Dashboard() {
                                         children: isPageEditMode ? "Done Editing" : "Reorder"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1356,
+                                        lineNumber: 1415,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -4480,7 +3718,7 @@ function Dashboard() {
                                         children: isResizeMode ? "Done Resizing" : "Resize"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1367,
+                                        lineNumber: 1426,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4494,12 +3732,12 @@ function Dashboard() {
                                             onShowStripeInGrid: handleShowStripeCardInGrid
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 1379,
+                                            lineNumber: 1438,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1378,
+                                        lineNumber: 1437,
                                         columnNumber: 17
                                     }, this),
                                     hasStripeConnection && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -4514,14 +3752,14 @@ function Dashboard() {
                                                 className: "animate-spin mr-0 sm:mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1398,
+                                                lineNumber: 1457,
                                                 columnNumber: 23
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
                                                 size: 16,
                                                 className: "mr-0 sm:mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1403,
+                                                lineNumber: 1462,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4529,7 +3767,7 @@ function Dashboard() {
                                                 children: "Disconnect Stripe"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1405,
+                                                lineNumber: 1464,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4537,26 +3775,26 @@ function Dashboard() {
                                                 children: "Disconnect"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/page.tsx",
-                                                lineNumber: 1406,
+                                                lineNumber: 1465,
                                                 columnNumber: 21
                                             }, this),
                                             " "
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/dashboard/page.tsx",
-                                        lineNumber: 1390,
+                                        lineNumber: 1449,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1353,
+                                lineNumber: 1412,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1349,
+                        lineNumber: 1408,
                         columnNumber: 13
                     }, this),
                     technologies.length === 0 && !isLoadingInitialData && !hasStripeConnection && (!userStack || userStack.technologies.filter((t)=>!t.isStripeCard).length === 0) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4571,7 +3809,7 @@ function Dashboard() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1419,
+                                lineNumber: 1478,
                                 columnNumber: 19
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4579,13 +3817,13 @@ function Dashboard() {
                                 children: 'Click "Add" to get started.'
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1422,
+                                lineNumber: 1481,
                                 columnNumber: 19
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1418,
+                        lineNumber: 1477,
                         columnNumber: 17
                     }, this),
                     (technologies.length > 0 || hasStripeConnection) && !isLoadingInitialData && (isPageEditMode ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DndContext"], {
@@ -4617,31 +3855,31 @@ function Dashboard() {
                                             handleDisconnectStripe: handleDisconnectStripe
                                         }, tech.id, false, {
                                             fileName: "[project]/app/dashboard/page.tsx",
-                                            lineNumber: 1441,
+                                            lineNumber: 1500,
                                             columnNumber: 27
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1435,
+                                    lineNumber: 1494,
                                     columnNumber: 21
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1431,
+                                lineNumber: 1490,
                                 columnNumber: 19
                             }, this),
                             isPageEditMode && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(DroppableTrash, {
                                 isVisible: isPageEditMode
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1468,
+                                lineNumber: 1527,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1430,
+                        lineNumber: 1489,
                         columnNumber: 17
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
@@ -4665,19 +3903,19 @@ function Dashboard() {
                                 handleDisconnectStripe: handleDisconnectStripe
                             }, tech.id, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1478,
+                                lineNumber: 1537,
                                 columnNumber: 23
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1472,
+                        lineNumber: 1531,
                         columnNumber: 17
                     }, this))
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 1341,
+                lineNumber: 1400,
                 columnNumber: 11
             }, this)
         }, void 0, false);
@@ -4685,7 +3923,7 @@ function Dashboard() {
     if (isLoadingSession || isLoadingInitialData) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$skeleton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["LoadingSkeleton"], {}, void 0, false, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1508,
+            lineNumber: 1567,
             columnNumber: 12
         }, this);
     }
@@ -4698,7 +3936,7 @@ function Dashboard() {
                     children: "Please sign in to access your dashboard."
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1514,
+                    lineNumber: 1573,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -4707,13 +3945,13 @@ function Dashboard() {
                     children: "Sign in"
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1515,
+                    lineNumber: 1574,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/page.tsx",
-            lineNumber: 1513,
+            lineNumber: 1572,
             columnNumber: 7
         }, this);
     }
@@ -4723,17 +3961,17 @@ function Dashboard() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Suspense"], {
                 fallback: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$skeleton$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["LoadingSkeleton"], {}, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1534,
+                    lineNumber: 1593,
                     columnNumber: 27
                 }, void 0),
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(StripeCallbackHandler, {}, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1535,
+                    lineNumber: 1594,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 1534,
+                lineNumber: 1593,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4745,7 +3983,7 @@ function Dashboard() {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ProfileHeader, {}, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1541,
+                                lineNumber: 1600,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4768,34 +4006,34 @@ function Dashboard() {
                                     handleShowStripeCardInGrid: handleShowStripeCardInGrid
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/page.tsx",
-                                    lineNumber: 1543,
+                                    lineNumber: 1602,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/page.tsx",
-                                lineNumber: 1542,
+                                lineNumber: 1601,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/page.tsx",
-                        lineNumber: 1540,
+                        lineNumber: 1599,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/page.tsx",
-                    lineNumber: 1539,
+                    lineNumber: 1598,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/page.tsx",
-                lineNumber: 1538,
+                lineNumber: 1597,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true);
 }
-_s3(Dashboard, "sfPyzVM2mRvMDfSspODSJ0ZemHE=", false, function() {
+_s3(Dashboard, "JDmeQlVMCzsjY2NQwQkZKmNw6hk=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSession"],
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$dnd$2d$kit$2f$core$2f$dist$2f$core$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSensors"]

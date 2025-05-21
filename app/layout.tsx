@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "./header/page";
 import { Footer } from "@/components/ui/footer";
 import { Toaster } from "sonner";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Plausible Analytics */}
+        <Script
+          strategy="lazyOnload" // ne bloque pas le rendu initial
+          data-domain="show-stack-ecru.vercel.app"
+          src="https://plausible.io/js/script.js"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

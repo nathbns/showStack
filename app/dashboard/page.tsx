@@ -4,6 +4,7 @@ import { useSession } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { AddTechForm } from "@/components/tech-stack/add-tech-form";
 import { type Tech } from "@/components/tech-stack/tech-stack-grid";
+import { AnalyticsButton } from "@/components/tech-stack/analytics-button";
 import { toast } from "sonner";
 import { allTechnologies } from "@/components/tech-stack/tech-data";
 import Image from "next/image";
@@ -583,7 +584,74 @@ export default function Dashboard() {
   // États pour Stripe
   const [hasStripeConnection, setHasStripeConnection] = useState(false);
   const [isCheckingStripeConnection, setIsCheckingStripeConnection] =
-    useState(true);
+    useState(false);
+
+  // Fonction pour sauvegarder les modifications du stack
+  const saveStack = useCallback(
+    async (technologies: Tech[]) => {
+      if (!session?.user?.id) return;
+      try {
+        const response = await fetch("/api/tech/stack", {
+          method: "POST", // POST est la méthode utilisée par votre API existante
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ technologies }),
+        });
+        if (!response.ok) throw new Error("Failed to save stack");
+      } catch (error) {
+        console.error("Error saving stack:", error);
+        // Supprimons certains toasts comme demandé
+      }
+    },
+    [session?.user?.id]
+  );
+
+  // Effet pour gérer l'ajout/suppression automatique de la carte Stripe
+  useEffect(() => {
+    if (!userStack) return;
+
+    const stripeCardExists = userStack.technologies.some(
+      (tech) => tech.id === STRIPE_CARD_ID
+    );
+
+    if (hasStripeConnection && !stripeCardExists) {
+      // Créer la carte Stripe
+      const stripeTech: Tech = {
+        id: STRIPE_CARD_ID,
+        name: "Stripe MRR",
+        description: "Revenus mensuels récurrents via Stripe",
+        color: "#635BFF",
+        icon: <Stripe />,
+        isStripeCard: true,
+        gridSpan: {
+          cols: 1,
+          rows: 1,
+        },
+      };
+
+      // Ajouter la carte Stripe au début du tableau
+      const newTechnologies = [stripeTech, ...userStack.technologies];
+      setUserStack({
+        ...userStack,
+        technologies: newTechnologies,
+      });
+
+      // Sauvegarder immédiatement
+      saveStack(newTechnologies);
+    } else if (!hasStripeConnection && stripeCardExists) {
+      // Si déconnecté de Stripe, retirer la carte
+      const newTechnologies = userStack.technologies.filter(
+        (tech) => tech.id !== STRIPE_CARD_ID
+      );
+      setUserStack({
+        ...userStack,
+        technologies: newTechnologies,
+      });
+
+      // Sauvegarder immédiatement
+      saveStack(newTechnologies);
+    }
+  }, [hasStripeConnection, userStack, saveStack]);
+
   const [isConnectingStripe, setIsConnectingStripe] = useState(false);
 
   // Nouveaux états pour le MRR total du compte Stripe
@@ -618,7 +686,7 @@ export default function Dashboard() {
           setHasStripeConnection(false);
         }
       } catch (error) {
-        toast.error("Failed to check Stripe connection status.");
+        console.error("Failed to check Stripe connection status.");
         setHasStripeConnection(false);
       } finally {
         setIsCheckingStripeConnection(false);
@@ -780,7 +848,7 @@ export default function Dashboard() {
         return null;
       }
       if (!stackToSave) {
-        toast.error("Aucune grille à sauvegarder.");
+        console.error("No grid to save");
         return null;
       }
 
@@ -817,9 +885,7 @@ export default function Dashboard() {
 
         if (!response.ok) {
           const errorData = await response.json();
-          throw new Error(
-            errorData.error || "Erreur lors de la sauvegarde de la grille"
-          );
+          throw new Error(errorData.error || "Error saving grid");
         }
 
         const savedStackData = await response.json();
@@ -835,13 +901,11 @@ export default function Dashboard() {
         setUserStack(finalStack);
 
         if (showSuccessToast) {
-          toast.success("Grille sauvegardée avec succès !");
+          // Success saving grid, pas besoin de toast
         }
         return finalStack;
       } catch (error) {
-        toast.error(
-          (error as Error).message || "Impossible de sauvegarder la grille."
-        );
+        toast.error((error as Error).message || "Failed to save grid.");
         return null;
       }
     },
@@ -895,22 +959,20 @@ export default function Dashboard() {
                 };
                 setUserStack(hydratedNewStack);
               } else {
-                console.error(
-                  "[ERROR] Échec de création de la stack par défaut"
-                );
-                toast.error("Impossible de créer votre grille.");
+                console.error("[ERROR] Failed to create default stack");
+                console.error("Failed to create your grid.");
               }
             } catch (createError) {
               console.error(
-                "[ERROR] Exception lors de la création de la stack:",
+                "[ERROR] Exception lors de la création de la grid:",
                 createError
               );
-              toast.error("Erreur lors de la création de votre grille.");
+              toast.error("Failed to create your grid.");
             }
           }
         } catch (error) {
-          console.error("[ERROR] Impossible de charger la grille:", error);
-          toast.error("Impossible de charger votre grille.");
+          console.error("[ERROR] Failed to load grid:", error);
+          toast.error("Failed to load your grid.");
 
           // Tentative de création d'une grille même en cas d'erreur de chargement
           try {
@@ -938,7 +1000,7 @@ export default function Dashboard() {
             }
           } catch (createError) {
             console.error(
-              "[ERROR] Échec de la tentative de récupération:",
+              "[ERROR] Failed to create default grid after loading error:",
               createError
             );
             setUserStack(undefined);
@@ -959,7 +1021,7 @@ export default function Dashboard() {
 
   const handleAddTech = async (newTechFromForm: Tech) => {
     if (!userStack) {
-      toast.error("Impossible d'ajouter une technologie sans grille.");
+      console.error("Failed to add technology without grid.");
       return;
     }
 
@@ -981,9 +1043,7 @@ export default function Dashboard() {
     } else {
       // Revert optimistic update if save failed
       setUserStack(userStack);
-      toast.error(
-        "Impossible de sauvegarder la nouvelle technologie, veuillez réessayer."
-      );
+      console.error("Failed to save new technology");
     }
   };
 
@@ -1018,7 +1078,7 @@ export default function Dashboard() {
     if (savedStack) {
       setUserStack(savedStack);
       if (showSuccessToast) {
-        toast.success("Technology deleted.");
+        // Toast supprimé - Technology deleted
       }
     } else {
       setUserStack(userStack);
@@ -1188,11 +1248,11 @@ export default function Dashboard() {
   // Fonction pour ajouter/afficher la carte Stripe
   const handleShowStripeCardInGrid = useCallback(async () => {
     if (!userStack) {
-      toast.error("Impossible d'ajouter la carte Stripe sans grille.");
+      toast.error("Failed to add Stripe card to grid.");
       return;
     }
     if (userStack.technologies.find((t: Tech) => t.id === STRIPE_CARD_ID)) {
-      toast.info("La carte Stripe est déjà dans la grille.");
+      console.info("Stripe card is already in the grid.");
       return;
     }
 
@@ -1241,11 +1301,11 @@ export default function Dashboard() {
     const savedStack = await saveUserStack(updatedStack, false);
     if (savedStack) {
       setUserStack(savedStack);
-      toast.success("Carte Stripe ajoutée à la grille.");
+      // Success adding Stripe card
     } else {
       // Revert
       setUserStack(userStack);
-      toast.error("Impossible d'ajouter la carte Stripe.");
+      toast.error("Failed to add Stripe card to grid.");
     }
   }, [userStack, saveUserStack]); // Dépendances
 
@@ -1375,7 +1435,7 @@ export default function Dashboard() {
                 >
                   {isResizeMode ? "Done Resizing" : "Resize"}
                 </Button>
-                <div className="flex items-center">
+                <div className="flex items-center space-x-2">
                   <AddTechForm
                     onAddTech={handleAddTech}
                     userId={sessionUserId}
@@ -1384,6 +1444,7 @@ export default function Dashboard() {
                     onConnectStripe={handleConnectStripe}
                     onShowStripeInGrid={handleShowStripeCardInGrid}
                   />
+                  <AnalyticsButton onAddTech={handleAddTech} />
                 </div>
                 {/* NOUVEAU BOUTON DE DÉCONNEXION STRIPE */}
                 {hasStripeConnection && (

@@ -22,6 +22,7 @@ import GitHubLogo from "@/components/logo-card";
 import { techsByCategory } from "./tech-data";
 import { type Tech } from "./tech-stack-grid";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AnalyticsCard } from "./analytics-card";
 
 type AddTechFormProps = {
   onAddTech: (tech: Tech) => void;
@@ -63,10 +64,18 @@ export function AddTechForm({
   const [favicon, setFavicon] = useState<string | null>(null);
   const [isFetchingFavicon, setIsFetchingFavicon] = useState(false);
 
-  // Onglet actif (Technologies ou Projets)
-  const [activeTab, setActiveTab] = useState<"technologies" | "projets">(
-    "technologies"
-  );
+  // Onglet actif (Technologies, Projets ou Analytics)
+  const [activeTab, setActiveTab] = useState<
+    "technologies" | "projets" | "analytics"
+  >("technologies");
+
+  // États pour l'onglet Analytics
+  const [analyticsType, setAnalyticsType] = useState<
+    "plausible" | "ga" | "custom"
+  >("plausible");
+  const [analyticsUrl, setAnalyticsUrl] = useState("");
+  const [analyticsId, setAnalyticsId] = useState("");
+  const [isSubmittingAnalytics, setIsSubmittingAnalytics] = useState(false);
 
   // Charger les repos GitHub quand l'onglet Projets est ouvert
   useEffect(() => {
@@ -281,7 +290,9 @@ export function AddTechForm({
           {/* Onglets principaux: Technologies / Projets */}
           <Tabs
             value={activeTab}
-            onValueChange={(v) => setActiveTab(v as "technologies" | "projets")}
+            onValueChange={(v) =>
+              setActiveTab(v as "technologies" | "projets" | "analytics")
+            }
             className="flex-1 flex flex-col w-full max-w-[500px] mx-auto"
           >
             <div className="px-4">
@@ -347,11 +358,9 @@ export function AddTechForm({
                                     {tech.icon}
                                   </div>
                                   <div className="flex flex-col">
-                                    <span className="text-sm">{tech.name}</span>
-                                    <div
-                                      className="w-4 h-1 rounded-full"
-                                      style={{ backgroundColor: tech.color }}
-                                    />
+                                    <span className="text-sm font-medium">
+                                      {tech.name}
+                                    </span>
                                   </div>
                                 </div>
                               ))}
