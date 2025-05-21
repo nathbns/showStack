@@ -530,7 +530,6 @@ async function GET(request) {
         // Debug pour vérifier que showStripeCard est bien présent
         console.log("[DEBUG GET API] Stacks before Stripe-Tech injection:", userStacksResults.map((stack)=>({
                 id: stack.id,
-                name: stack.name,
                 showStripeCard: stack.showStripeCard,
                 stripeCardColSpan: stack.stripeCardColSpan,
                 stripeCardRowSpan: stack.stripeCardRowSpan,
@@ -564,7 +563,6 @@ async function GET(request) {
         });
         console.log("[DEBUG GET API] Stacks AFTER Stripe-Tech injection and sort:", stacksWithPossibleStripeCard.map((stack)=>({
                 id: stack.id,
-                name: stack.name,
                 showStripeCard: stack.showStripeCard,
                 numTechs: stack.technologies.length,
                 techs: stack.technologies.map((t)=>({
@@ -630,7 +628,6 @@ async function POST(request) {
         let currentStack;
         const stackData = {
             userId: session.user.id,
-            name: name,
             updatedAt: new Date(),
             showStripeCard: stackShowStripeCard,
             stripeCardColSpan: stackStripeColSpan,
@@ -644,12 +641,30 @@ async function POST(request) {
                 where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].id, id)
             });
         } else {
-            // Création d'une nouvelle stack
-            const newStacks = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].insert(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"]).values({
-                ...stackData,
-                createdAt: new Date()
-            }).returning();
-            currentStack = newStacks[0];
+            // Aucun ID de stack fourni dans la requête.
+            // On vérifie si l'utilisateur a déjà une stack.
+            // Si oui, on la met à jour. Si non, on en crée une.
+            let existingStackForUser = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.techStack.findFirst({
+                where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].userId, session.user.id)
+            });
+            if (existingStackForUser) {
+                // L'utilisateur a déjà une stack, on la met à jour.
+                // On utilise l'ID de sa stack existante.
+                await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].update(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"]).set(stackData) // stackData contient userId, name, updatedAt, et les props Stripe
+                .where((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].id, existingStackForUser.id));
+                currentStack = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].query.techStack.findFirst({
+                    where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"].id, existingStackForUser.id)
+                });
+                console.log(`[DEBUG API POST - UPSERT] User ${session.user.id} already has stack (ID: ${existingStackForUser.id}). Updated it.`);
+            } else {
+                // L'utilisateur n'a pas de stack, on en crée une nouvelle.
+                const newStacks = await __TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$index$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["db"].insert(__TURBOPACK__imported__module__$5b$project$5d2f$drizzle$2f$db$2f$schema$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["techStack"]).values({
+                    ...stackData,
+                    createdAt: new Date()
+                }).returning();
+                currentStack = newStacks[0];
+                console.log(`[DEBUG API POST - UPSERT] User ${session.user.id} has no stack. Created new one (ID: ${currentStack?.id}).`);
+            }
         }
         if (!currentStack) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({

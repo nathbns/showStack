@@ -49,7 +49,6 @@ export async function GET(request: Request) {
       "[DEBUG GET API] Stacks before Stripe-Tech injection:",
       userStacksResults.map((stack) => ({
         id: stack.id,
-        name: stack.name,
         showStripeCard: stack.showStripeCard,
         stripeCardColSpan: stack.stripeCardColSpan,
         stripeCardRowSpan: stack.stripeCardRowSpan,
@@ -94,7 +93,6 @@ export async function GET(request: Request) {
       "[DEBUG GET API] Stacks AFTER Stripe-Tech injection and sort:",
       stacksWithPossibleStripeCard.map((stack) => ({
         id: stack.id,
-        name: stack.name,
         showStripeCard: stack.showStripeCard,
         numTechs: stack.technologies.length,
         techs: stack.technologies.map((t) => ({
@@ -198,7 +196,6 @@ export async function POST(request: Request) {
 
     const stackData: Partial<typeof techStack.$inferSelect> = {
       userId: session.user.id,
-      name: name,
       updatedAt: new Date(),
       showStripeCard: stackShowStripeCard,
       stripeCardColSpan: stackStripeColSpan,
@@ -213,16 +210,40 @@ export async function POST(request: Request) {
         where: eq(techStack.id, id),
       });
     } else {
-      // Création d'une nouvelle stack
-      const newStacks = await db
-        .insert(techStack)
-        .values({
-          ...(stackData as typeof techStack.$inferInsert),
-          createdAt: new Date(),
-          // Les valeurs de stackData (showStripeCard, etc.) sont déjà définies ci-dessus
-        })
-        .returning();
-      currentStack = newStacks[0];
+      // Aucun ID de stack fourni dans la requête.
+      // On vérifie si l'utilisateur a déjà une stack.
+      // Si oui, on la met à jour. Si non, on en crée une.
+      let existingStackForUser = await db.query.techStack.findFirst({
+        where: eq(techStack.userId, session.user.id),
+      });
+
+      if (existingStackForUser) {
+        // L'utilisateur a déjà une stack, on la met à jour.
+        // On utilise l'ID de sa stack existante.
+        await db
+          .update(techStack)
+          .set(stackData) // stackData contient userId, name, updatedAt, et les props Stripe
+          .where(eq(techStack.id, existingStackForUser.id));
+        currentStack = await db.query.techStack.findFirst({
+          where: eq(techStack.id, existingStackForUser.id),
+        });
+        console.log(
+          `[DEBUG API POST - UPSERT] User ${session.user.id} already has stack (ID: ${existingStackForUser.id}). Updated it.`
+        );
+      } else {
+        // L'utilisateur n'a pas de stack, on en crée une nouvelle.
+        const newStacks = await db
+          .insert(techStack)
+          .values({
+            ...(stackData as typeof techStack.$inferInsert), // Contient userId, name, updatedAt, props Stripe
+            createdAt: new Date(), // Seule la création nécessite createdAt explicitement ici
+          })
+          .returning();
+        currentStack = newStacks[0];
+        console.log(
+          `[DEBUG API POST - UPSERT] User ${session.user.id} has no stack. Created new one (ID: ${currentStack?.id}).`
+        );
+      }
     }
 
     if (!currentStack) {

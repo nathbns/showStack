@@ -4,7 +4,6 @@ import { useSession } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { AddTechForm } from "@/components/tech-stack/add-tech-form";
 import { type Tech } from "@/components/tech-stack/tech-stack-grid";
-import { AnalyticsButton } from "@/components/tech-stack/analytics-button";
 import { toast } from "sonner";
 import { allTechnologies } from "@/components/tech-stack/tech-data";
 import Image from "next/image";
@@ -1444,7 +1443,6 @@ export default function Dashboard() {
                     onConnectStripe={handleConnectStripe}
                     onShowStripeInGrid={handleShowStripeCardInGrid}
                   />
-                  <AnalyticsButton onAddTech={handleAddTech} />
                 </div>
                 {/* NOUVEAU BOUTON DE DÉCONNEXION STRIPE */}
                 {hasStripeConnection && (
